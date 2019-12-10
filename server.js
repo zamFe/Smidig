@@ -30,6 +30,9 @@ app.get('*', function(req, res) {
 	try {
 		if(fs.existsSync(`./${target}.html`)){
 			res.sendFile(`/${target}.html`,{root: __dirname});
+		} else if (target === "/") {
+			console.log("Blank path specified: Redirecting to index")
+			res.sendFile(`/html/index.html`, {root: __dirname});
 		} else {
 			res.send('404 - This file does not exist');
 		}
