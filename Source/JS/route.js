@@ -3,26 +3,27 @@ let fullRoute = [
     {
         cost: 756,
         map: {},
-        startTime: "13:27",
-        endTime: "22:45",
+        startTime: "13:34",
+        endTime: "15:54",
+        totalTime: "2t 20min",
         route: [
             {
                 action: "walk",
-                time: 1232342,
+                time: "2min",
                 Co2: 2,
                 place: "Oslo Bussterminal",
                 metres: 324
             },
             {
                 action: "bus",
-                time: 74367983,
+                time: "15min",
                 Co2: 646,
                 place: "Skøyen Stasjon",
                 metres: 2485   
             }, 
             {
                 action: "train",
-                time: 648884900,
+                time: "1t 37min",
                 Co2: 12,
                 place: "Larvik stasjon",
                 metres: 9663
