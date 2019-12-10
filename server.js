@@ -1,32 +1,44 @@
-var request = require('request');
-var fs = require('fs');
+let express = require('express');
+let app = express();
 
-fs.readFile('api-keys/tripgo.properties', 'utf8', (err, data) => {
-  if (err) throw err;
-  openServer(data);
-});
- 
-function openServer(key) {
-	var options = {
-	  url: 'https://api.tripgo.com/v1/routing.json?from=(59.9233%2C10.79249)&to=(60.38568%2C5.33622)&departAfter=1575889860&arriveBefore=0&modes=me_car&wp=(1%2C1%2C1%2C1)&tt=0&unit=auto&v=11&locale=en&ir=1&ws=1&cs=1',
-	  headers: {
-	    'User-Agent': 'request',
-	    'X-TripGo-Key': key
-	  }
-	};
-	 
-	function callback(error, response, body) {
-		
-	  if (!error && response.statusCode == 200) {
-	    var info = JSON.parse(body);
-	    console.log(info);
+let fs = require('fs');
 
-	  }else {
-	  	console.log(response)
-	  }
+app.get('*', function(req, res) {
+	let URL = req.originalUrl;
+	let target = req.path;
+	let query = req.query;
+
+	//Logs useful information
+	console.log("path: " + target)
+	console.log(query)
+
+	if(URL.includes('..')){
+		target = 'html/index';
 	}
-	 
-	request(options, callback);
+	if(URL.includes('action=')){
+		switch(query.action){
+			case 'getroute': 
+				console.log(`Getting route: ${JSON.stringify(query)}`); //Sends the querystring given action=getroute in the URL as JSON
+				break;
+			case 'getlocations':
+				console.log(`Getting locations: ${JSON.stringify(query)}`); //Sends the querystring given action=getlocations in the URL as JSON
+				break;
+			default: 
+				res.send('400 - Bad Request')
+		}
+	}
+	try {
+		if(fs.existsSync(`./${target}.html`)){
+			res.sendFile(`/${target}.html`,{root: __dirname});
+		} else {
+			res.send('404 - This file does not exist');
+		}
+	} catch(e) {
+		console.error(e);
+	}
+})
 
+//Server listens on localhost:8080
+//Visit pages by visiting localhost:8080/filepath
 
-}
+app.listen(8080);
