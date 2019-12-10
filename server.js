@@ -5,12 +5,16 @@ let fs = require('fs');
 
 app.get('*', function(req, res) {
 	let URL = req.originalUrl;
-	let target = req.path;
+	let target = req.path.substring(0,(req.path.includes('.') ? req.path.lastIndexOf('.') : req.path.length));
+	let dotfile = "html";
+	req.path.includes('.') ? dotfile = req.path.substring(req.path.lastIndexOf('.')+1) : "html";
+	
 	let query = req.query;
 
 	//Logs useful information
 	console.log("path: " + target)
 	console.log(query)
+	console.log(dotfile)
 
 	if(URL.includes('..')){
 		target = 'html/index';
@@ -28,12 +32,14 @@ app.get('*', function(req, res) {
 		}
 	}
 	try {
-		if(fs.existsSync(`./${target}.html`)){
-			res.sendFile(`/${target}.html`,{root: __dirname});
+		if(fs.existsSync(`.${target}.${dotfile}`)){
+			console.log(`Sending file: ${target}.${dotfile}`)
+			res.sendFile(`${target}.${dotfile}`,{root: __dirname});
 		} else if (target === "/") {
 			console.log("Blank path specified: Redirecting to index")
 			res.sendFile(`/html/index.html`, {root: __dirname});
 		} else {
+			console.error(`Did not find ${target}.${dotfile}`)
 			res.send('404 - This file does not exist');
 		}
 	} catch(e) {
