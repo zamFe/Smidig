@@ -1,0 +1,84 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+header {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    grid-template-rows: 200px;
+    justify-items: start;
+    width: 100%;
+    height: 200px;
+
+}
+
+main {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 400px);
+    overflow: scroll;
+}
+
+footer {
+    position: relative;
+    background-color: gray;
+    width: 100%;
+    height: 200px;
+}
+
+/* header elements */
+
+#logo-container {
+    height: 100%;
+
+}
+
+#logo {
+    height: 100%;
+}
+
+#login-container {
+    width: 100%;
+    height: 100%;
+    font-size: 2em;
+    font-family: "Arial Black";
+    text-align: center;
+    vertical-align: middle;
+    line-height: 200px;
+
+}
+
+#menu-container {
+    height: 100%;
+}
+
+#hamburger-menu {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15%;
+}
+
+/* main elements */
+
+#main-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 1fr repeat(2, 2fr);
+
+}
+
+#hello-container {
+    width: 100%;
+    height: 100%;
+    font-family: "Arial Black";
+    font-size: 3.5em;
+    text-align: left;
+    margin-left: 5%;
+    margin-top: 50px;
+}
