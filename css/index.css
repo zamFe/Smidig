@@ -1,0 +1,62 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    grid-template-rows: 150px;
+    justify-items: start;
+    width: 100%;
+    height: 150px;
+
+}
+
+main {
+    position: relative;
+    background-color: red;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+footer {
+    position: relative;
+    background-color: green;
+    width: 100%;
+    height: 150px;
+}
+
+/* header elements */
+
+#main-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-items: center;
+
+}
+
+#logo-container {
+    height: 100%;
+
+}
+
+#logo {
+    height: 100%;
+}
+
+#login-container {
+    top: 50%;
+    width: 100%;
+    font-size: 2em;
+    font-family: "Arial Black";
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+
+}
