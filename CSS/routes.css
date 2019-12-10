@@ -1,6 +1,64 @@
 /* Styling for main container */
-.main-container-routes {
+body{
+    background-color: #f2f2f3;
+    margin: 0;
+}
+
+#main-container-routes {
     height: 100%;
     width: 100%;
-    background-color: ;
+}
+
+.header-routes {
+    position: relative;
+    background-color: red;
+    height: 100%;
+    width: 100%;
+}
+
+.priority-container-routes {
+    background-color: green;
+}
+
+.footer-routes {
+    background-color: yellow;
+}
+
+
+/* Styling of routes box container */
+.routes-box-container {
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    grid-template-rows: 13% auto 20%;
+    border-bottom: solid;
+}
+
+#start-time {
+    grid-column: 1;
+}
+
+#end-time {
+    grid-column: 3;
+}
+
+#start-symbol {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#routing-symbols {
+    grid-column: 1/4;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    align-content: center;
+}
+
+#total-time {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+#total-price {
+    grid-column: 3;
+    grid-row: 3;
 }

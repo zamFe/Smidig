@@ -36,7 +36,6 @@ function getRouteDetails() {
         routeSymbols.appendChild(div);
     }
 
-
 }
 
 /* Runs functions to print out to routes.html */

@@ -1,48 +1,48 @@
 Vy Sort
-HEX #212721
-CMYK 73-61-69-71
-Pantone PMS Black 3C
+HEX: #212721
+CMYK: 73-61-69-71
+Pantone: PMS Black 3C
 
 Vy Grønn
-HEX #00957a
-CMYK 90-18-63-3
-Pantone PMS 2243 C
+HEX: #00957a
+CMYK: 90-18-63-3
+Pantone: PMS 2243 C
 
 Vy Mørkegrønn
-HEX #00685e
-CMYK 100-36-64-23
-Pantone PMS 329 C
+HEX: #00685e
+CMYK: 100-36-64-23
+Pantone: PMS 329 C
 
 Vy Lyseblå
-HEX #a7b7cd
-CMYK 34-19-6-0
-Pantone PMS 651 C
+HEX: #a7b7cd
+CMYK: 34-19-6-0
+Pantone: PMS 651 C
 
 Vy Blågrå
-HEX #383e42
-CMYK 72-62-57-47
-Pantone RAL 7016
+HEX: #383e42
+CMYK: 72-62-57-47
+Pantone: RAL 7016
 
 Vy Gul
-HEX #fae053
-CMYK 3-7-80-0
-Pantone PMS 113 C
+HEX: #fae053
+CMYK: 3-7-80-0
+Pantone: PMS 113 C
 
 Vy Oransje
-HEX #df8200
-CMYK 0-60-100-0
-Pantone PMS 151 C
+HEX: #df8200
+CMYK: 0-60-100-0
+Pantone: PMS 151 C
 
 Vy Hvit
-HEX #f2f2f3
-CMYK 4-2-2-0
+HEX: #f2f2f3
+CMYK: 4-2-2-0
 
 Vy Blågrå
-HEX #383e42
-CMYK 72-62-57-47
-Pantone RAL 7016
+HEX: #383e42
+CMYK: 72-62-57-47
+Pantone: RAL 7016
 
 Vy Mellomgrå
-HEX #c7c9c7
-CMYK 22-16-18-0
-Pantone PMS 420 C
+HEX: #c7c9c7
+CMYK: 22-16-18-0
+Pantone: PMS 420 C
