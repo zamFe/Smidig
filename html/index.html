@@ -5,11 +5,11 @@
     <link href="../css/index.css" rel="stylesheet">
     <title>Vy</title>
 </head>
-<body>
+<body style='font-family:"Arial Black"'>
 
     <header>
         <div id="logo-container">
-            <img id="logo" src="../VyAssets/vy.logo.final_primary.png" alt="">
+            <img id="logo" src="../img/logos/vy_reiser_logo.png" alt="">
         </div><!--end logo-container-->
     </header>
 
@@ -18,19 +18,27 @@
             <div id="hello-container">
                 <span>Hei, hvor vil du reise?</span>
             </div><!--end hello-container-->
-           
-            <div id="from-input-container">
-                <span class="Destination-Input">Reise fra:</span>
-                <br>
-                <input id="from-input" type="text" name="from" placeholder="Reise fra...">
-            </div><!--end from-container-->        
 
-            
-            <div id="to-input-container">
-                <span class="Destination-Input">Reise til:</span>
-                <br>
-                <input id="to-input" type="text" name="to-input" placeholder="Reise til...">
-            </div><!--end to-container-->                     
+            <div id="destination-container">
+
+                <div id="from-input-container" class="input-container">
+                    <span>Reise fra:</span>
+                    <br>
+                    <input id="from-input" class="Destination-Input" type="text" name="from" placeholder="Reise fra...">
+                </div><!--end from-input-container-->
+
+
+                <div id="to-input-container" class="input-container">
+                    <span>Reise til:</span>
+                    <br>
+                    <input id="to-input" class="Destination-Input" type="text" name="to" placeholder="Reise til...">
+                </div><!--end to-input-container-->
+
+            </div> <!--end destination-container-->
+
+            <div id="route-button-container">
+                <img id="route_button" src="../img/icons/find_route_button.png" alt="">
+            </div>
 
         </div><!--end main-container-->
     </main>
