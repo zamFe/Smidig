@@ -84,14 +84,20 @@ function convertTime(time) {
 //stepBuilder("T-Bane", "Jernbanetorget", "10:30");
 
 function setUp() {
-    for(let i = 0; i < fullRoute[0].route.length; i++) {
-        let step = fullRoute[0].route[i];
+    if(fullRoute.statusCode === 500) {
+        alert("error!");
+        return;
+    }
+    var index = (urlParams.get('index'))?urlParams.get('index'):0;
+    console.log(urlParams.get('index'));
+    for(let i = 0; i < fullRoute[index].route.length; i++) {
+        let step = fullRoute[index].route[i];
         if (step.action === 'Overgang') {
             transitionBuilder(step.startTime, step.endTime);
             continue;
         }
         stepBuilder(step.action, step.from.address, convertTime(step.startTime));
-        if(i === fullRoute[0].route.length - 1) {
+        if(i === fullRoute[index].route.length - 1) {
             stepBuilder("", step.to.address, convertTime(step.endTime));
         }
         else {
