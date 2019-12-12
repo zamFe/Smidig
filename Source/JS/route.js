@@ -12,14 +12,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Hasle',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.92438,
           lng: 10.79461,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
@@ -38,14 +38,14 @@ let fullRoute = [
         description: 'Oslo S',
         from: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
@@ -63,14 +63,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
@@ -89,14 +89,14 @@ let fullRoute = [
         description: 'Near Stortorget',
         from: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Near Stortorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79453,
           lng: 11.068,
           timezone: 'Europe/Oslo'
@@ -119,14 +119,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Hasle',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.92438,
           lng: 10.79461,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
@@ -145,14 +145,14 @@ let fullRoute = [
         description: 'Oslo S',
         from: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
@@ -170,14 +170,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
@@ -196,14 +196,14 @@ let fullRoute = [
         description: 'Near Stortorget',
         from: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Near Stortorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79453,
           lng: 11.068,
           timezone: 'Europe/Oslo'
@@ -226,14 +226,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Hasle',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.92438,
           lng: 10.79461,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
@@ -252,14 +252,14 @@ let fullRoute = [
         description: 'Oslo S',
         from: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.90998,
           lng: 10.7546,
           timezone: 'Europe/Oslo'
@@ -277,14 +277,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.90998,
           lng: 10.7546,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
@@ -303,14 +303,14 @@ let fullRoute = [
         description: 'Near Stortorget',
         from: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Near Stortorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79453,
           lng: 11.068,
           timezone: 'Europe/Oslo'
@@ -333,14 +333,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Hasle',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.92438,
           lng: 10.79461,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
@@ -359,14 +359,14 @@ let fullRoute = [
         description: 'Oslo S',
         from: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
@@ -384,14 +384,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
@@ -410,14 +410,14 @@ let fullRoute = [
         description: 'Near Stortorget',
         from: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Near Stortorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79453,
           lng: 11.068,
           timezone: 'Europe/Oslo'
@@ -440,14 +440,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Hasle',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.92438,
           lng: 10.79461,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
@@ -466,14 +466,14 @@ let fullRoute = [
         description: 'Oslo S',
         from: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
@@ -491,14 +491,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
@@ -517,14 +517,14 @@ let fullRoute = [
         description: 'Near Stortorget',
         from: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Near Stortorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79453,
           lng: 11.068,
           timezone: 'Europe/Oslo'
@@ -547,14 +547,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Hasle',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.92438,
           lng: 10.79461,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
@@ -573,14 +573,14 @@ let fullRoute = [
         description: 'Oslo S',
         from: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
@@ -598,14 +598,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79118,
           lng: 11.07854,
           timezone: 'Europe/Oslo'
@@ -624,14 +624,14 @@ let fullRoute = [
         description: 'Near Stortorget',
         from: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79118,
           lng: 11.07854,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Near Stortorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79453,
           lng: 11.068,
           timezone: 'Europe/Oslo'
@@ -654,14 +654,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Hasle',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.92438,
           lng: 10.79461,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
@@ -680,14 +680,14 @@ let fullRoute = [
         description: 'Oslo S',
         from: {
           address: 'Jernbanetorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.91227,
           lng: 10.75133,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
@@ -705,14 +705,14 @@ let fullRoute = [
         description: '<DIRECTION>',
         from: {
           address: 'Oslo S',
-          'class': 'Location',
+          class: 'Location',
           lat: 59.9104,
           lng: 10.755,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
@@ -731,14 +731,14 @@ let fullRoute = [
         description: 'Near Stortorget',
         from: {
           address: 'Hamar stasjon',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79132,
           lng: 11.07858,
           timezone: 'Europe/Oslo'
         },
         to: {
           address: 'Near Stortorget',
-          'class': 'Location',
+          class: 'Location',
           lat: 60.79453,
           lng: 11.068,
           timezone: 'Europe/Oslo'
