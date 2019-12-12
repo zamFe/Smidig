@@ -49,11 +49,9 @@ function errorHandling(error, response, body) {
 
     }
 
-    console.log(error, response)
-
     return {
         statusCode: (error)?error:response.statusCode,
-        data: null
+        data: (error)?error:response
     }
 
 }
@@ -137,7 +135,7 @@ function getRoute(error, response, body) {
 }
 
 function transmitData (data) {
-	console.log(data);
+	console.log(JSON.stringify(data));
 }
 
 fromTripGo({ //geocode
