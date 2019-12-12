@@ -1,6 +1,8 @@
 let express = require('express');
 let app = express();
 
+let tripGo = require('./api-calls.js');
+
 let fs = require('fs');
 
 app.get('*', function(req, res) {
@@ -22,7 +24,7 @@ app.get('*', function(req, res) {
 	if(URL.includes('action=')){
 		switch(query.action){
 			case 'getroute': 
-				console.log(`Getting route: ${JSON.stringify(query)}`); //Sends the querystring given action=getroute in the URL as JSON
+				tripGo.getRoute(query.from, query.to, query.datetime, res);
 				break;
 			case 'getlocations':
 				console.log(`Getting locations: ${JSON.stringify(query)}`); //Sends the querystring given action=getlocations in the URL as JSON
@@ -46,6 +48,12 @@ app.get('*', function(req, res) {
 		console.error(e);
 	}
 })
+
+function toRoutesWithQuery (queryString, res) {
+	res.redirect(`./html/routes.html${queryString}`);
+}
+
+module.exports.toRoutesWithQuery = toRoutesWithQuery;
 
 //Server listens on localhost:8080
 //Visit pages by visiting localhost:8080/filepath

@@ -1,18 +1,20 @@
-var request = require('request');
-var fs = require('fs');
-var querystring = require('querystring');
+let request = require('request');
+let fs = require('fs');
+let querystring = require('querystring');
+let server = require('./server.js');
 
 // console.log(querystring.decode("a=(59.9233%2C10.79249)"))
 
-function fromTripGo(args) {
+function fromTripGo(args, res) {
 
     fs.readFile('api-keys/tripgo.properties', 'utf8', (err, data) => {
         if (err) throw err;
-        getData(data, args);
+        getData(data, args, res);
     });
 }
 
-function getData(key, args) {
+
+function getData(key, args, res) {
 
     query = convertQuery(args.parameters);
 
@@ -26,7 +28,18 @@ function getData(key, args) {
         }
     };
 
-    request(options, args.callback); //, {form:{key:'value'}}
+    // const requestPromise = util.promisify(request);
+    // const response = await requestPromise(options.url);
+    request(options, (error, response, body)=>{
+        args.callback(error, response, body, res);
+    }); //, {form:{key:'value'}}
+    // console.log(response)
+
+    
+
+    // let resp = await doRequest(options);
+
+    // console.log(resp)
 
 }
 
@@ -67,7 +80,7 @@ function formatData(data) {
     	var d = trips[i];
 
     	formattedData[i] = {
-    		cost: (d.moneyCost)?d.moneyCost:"Ukjent",
+    		cost: (d.moneyCost)?d.moneyCost:149,
     		map: {},
     		startTime: d.depart,
     		endTime: d.arrive,
@@ -124,39 +137,44 @@ function getSegmentTemplate (data, hashCode) {
 
 }
 
-function getRoute(error, response, body) {
+function getRouteData(error, response, body, res) {
     var data = errorHandling(error, response, body);
 
     if (data.statusCode != 200) {
-        transmitData(data);
+        transmitData(data, res);
     } else {
-		transmitData(formatData(data.data));
+		transmitData(formatData(data.data), res);
 	}
 }
 
-function transmitData (data) {
-	console.log(JSON.stringify(data));
+function transmitData (data, res) {
+    console.log(res)
+	server.toRoutesWithQuery(convertQuery(data), res)
 }
 
-fromTripGo({ //geocode
-    requestFile: "routing.json",
+function getRoute (from, to, dateTime, res) {
+	fromTripGo({ //geocode
+	    requestFile: "routing.json",
 
-    parameters: {
-        from: "(59.9233,10.79249)",
-        to: "(60.7945331,11.067997699999978)",
-        departAfter: 1575889860,
-        modes: "pt_pub",
-        unit: "auto",
-        //wp: "(1,1,1,1)",
-        locale: "no",
-        bestOnly: true,
-        // ir: 1,
-        // ws: 1,
-        // cs: 1,
-        // tt: 0,
-        v: 11
+	    parameters: {
+	        from: "(59.9233,10.79249)",
+	        to: "(60.7945331,11.067997699999978)",
+	        departAfter: 1575889860,
+	        modes: "pt_pub",
+	        unit: "auto",
+	        //wp: "(1,1,1,1)",
+	        locale: "no",
+	        bestOnly: true,
+	        // ir: 1,
+	        // ws: 1,
+	        // cs: 1,
+	        // tt: 0,
+	        v: 11
 
-    },
-    // parameters: '?from=(' + args.from + ')&to=(' + args.to + ')&departAfter=1575889860&arriveBefore=0&modes=me_car&wp=(1%2C1%2C1%2C1)&tt=0&unit=auto&v=11&locale=en&ir=1&ws=1&cs=1',
-    callback: getRoute
-})
+	    },
+	    // parameters: '?from=(' + args.from + ')&to=(' + args.to + ')&departAfter=1575889860&arriveBefore=0&modes=me_car&wp=(1%2C1%2C1%2C1)&tt=0&unit=auto&v=11&locale=en&ir=1&ws=1&cs=1',
+	    callback: getRouteData
+	}, res)
+}
+
+module.exports.getRoute = getRoute;
