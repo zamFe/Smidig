@@ -159,8 +159,8 @@ function getRoute () {
 
 	    },
 	    // parameters: '?from=(' + args.from + ')&to=(' + args.to + ')&departAfter=1575889860&arriveBefore=0&modes=me_car&wp=(1%2C1%2C1%2C1)&tt=0&unit=auto&v=11&locale=en&ir=1&ws=1&cs=1',
-	    callback: getRoute
+	    callback: getRouteData
 	})
 }
 
-export {getRoute} 
+module.exports.getRoute = getRoute;
