@@ -124,7 +124,7 @@ function getSegmentTemplate (data, hashCode) {
 
 }
 
-function getRoute(error, response, body) {
+function getRouteData(error, response, body) {
     var data = errorHandling(error, response, body);
 
     if (data.statusCode != 200) {
@@ -138,25 +138,29 @@ function transmitData (data) {
 	console.log(JSON.stringify(data));
 }
 
-fromTripGo({ //geocode
-    requestFile: "routing.json",
+function getRoute () {
+	fromTripGo({ //geocode
+	    requestFile: "routing.json",
 
-    parameters: {
-        from: "(59.9233,10.79249)",
-        to: "(60.7945331,11.067997699999978)",
-        departAfter: 1575889860,
-        modes: "pt_pub",
-        unit: "auto",
-        //wp: "(1,1,1,1)",
-        locale: "no",
-        bestOnly: true,
-        // ir: 1,
-        // ws: 1,
-        // cs: 1,
-        // tt: 0,
-        v: 11
+	    parameters: {
+	        from: "(59.9233,10.79249)",
+	        to: "(60.7945331,11.067997699999978)",
+	        departAfter: 1575889860,
+	        modes: "pt_pub",
+	        unit: "auto",
+	        //wp: "(1,1,1,1)",
+	        locale: "no",
+	        bestOnly: true,
+	        // ir: 1,
+	        // ws: 1,
+	        // cs: 1,
+	        // tt: 0,
+	        v: 11
 
-    },
-    // parameters: '?from=(' + args.from + ')&to=(' + args.to + ')&departAfter=1575889860&arriveBefore=0&modes=me_car&wp=(1%2C1%2C1%2C1)&tt=0&unit=auto&v=11&locale=en&ir=1&ws=1&cs=1',
-    callback: getRoute
-})
+	    },
+	    // parameters: '?from=(' + args.from + ')&to=(' + args.to + ')&departAfter=1575889860&arriveBefore=0&modes=me_car&wp=(1%2C1%2C1%2C1)&tt=0&unit=auto&v=11&locale=en&ir=1&ws=1&cs=1',
+	    callback: getRoute
+	})
+}
+
+export {getRoute} 
