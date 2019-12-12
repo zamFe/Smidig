@@ -28,7 +28,6 @@ app.get('*', function(req, res) {
 				break;
 			case 'getlocations':
 				console.log(`Getting locations: ${JSON.stringify(query)}`); //Sends the querystring given action=getlocations in the URL as JSON
-				window.location
 				break;
 			default: 
 				res.send('400 - Bad Request')
@@ -49,6 +48,12 @@ app.get('*', function(req, res) {
 		console.error(e);
 	}
 })
+
+function toRoutesWithQuery (queryString, res) {
+	res.redirect(`./html/routes.html${queryString}`);
+}
+
+module.exports.toRoutesWithQuery = toRoutesWithQuery;
 
 //Server listens on localhost:8080
 //Visit pages by visiting localhost:8080/filepath
