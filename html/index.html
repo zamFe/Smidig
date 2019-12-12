@@ -8,6 +8,31 @@
 </head>
 <body style='font-family:"Arial Black"'>
 
+<script>
+
+    function fromDropdownMenu(){
+        document.getElementById("from-droplist").style.display = "block";
+    }
+
+
+    function toDropdownMenu(){
+        document.getElementById("to-droplist").style.display = "block";
+    }
+
+
+    function fromGetName(city){
+        document.getElementById("from-input").value = city;
+        document.getElementById("from-droplist").style.display = "none";
+    }
+
+
+    function toGetName(city){
+        document.getElementById("to-input").value = city;
+        document.getElementById("to-droplist").style.display = "none";
+    }
+
+</script>
+
     <header>
         <div id="logo-container">
             <img id="logo" src="../img/logos/vy_reiser_logo.png" alt="">
@@ -17,26 +42,44 @@
     <main>
         <div id="main-container">
             <div id="hello-container">
-                <span>Hei, hvor vil du reise?</span>
+                <span>God morgen, "Bruker"</span>
             </div><!--end hello-container-->
 
             <div id="destination-container">
 
                 <div id="from-input-container" class="input-container">
-                    <span>Reise fra:</span>
+                    <span>Hvor vil du reise fra?</span>
                     <br>
-                    <input id="from-input" class="Destination-Input" type="text" name="from" placeholder="Reise fra...">
+                    <input id="from-input" class="Destination-Input" type="text" name="from" placeholder="Reise fra..." onclick="fromDropdownMenu();">
+                    <div id="from-droplist">
+                        <div class="droplist-content" onclick="fromGetName('Kroghstadveien 7')">
+                            <span class="dropdown-span">Kroghstadveien 7</span>
+                        </div>
+                        
+                        <div class="droplist-content" onclick="fromGetName('Akersbakken 30');">
+                            <span class="dropdown-span">Akersbakken 30</span>
+                        </div>
+                    </div>
                 </div><!--end from-input-container-->
 
 
                 <div id="to-input-container" class="input-container">
-                    <span>Reise til:</span>
+                    <span>Hvor vil du reise?</span>
                     <br>
-                    <input id="to-input" class="Destination-Input" type="text" name="to" placeholder="Reise til...">
+                    <input id="to-input" class="Destination-Input" type="text" name="to" placeholder="Reise til..."  onclick="toDropdownMenu();">
+                       <div id="to-droplist">
+                            <div class="droplist-content" onclick="toGetName('Kroghstadveien 7');">
+                                <span class="dropdown-span">Kroghstadveien 7</span>
+                            </div>    
+                        
+                        <div class="droplist-content" onclick="toGetName('Akersbakken 30');">
+                            <span class="dropdown-span">Akersbakken 30</span>
+                        </div>
+                    </div>
                 </div><!--end to-input-container-->
 
                 <div id="route-button-container">
-                    <img onclick="alert('onclick placeholder')" id="route_button" src="../img/icons/find_route_button.png" alt="">
+                    <img onclick="window.location.href='routes.html?from=(59.9233,10.79249)&to=(60.7945331,11.067997699999978)&datetime=1575889860'" id="route_button" src="../img/icons/find_route_button.png" alt="">
                 </div>
             </div> <!--end destination-container-->
 
@@ -47,22 +90,23 @@
 
     <footer>
         <div class="flex-container">
-            <div>
+            <div class="nav-container">
                 <img class="footer-img" src="../img/icons/routeSearch.png">
                 <br>
                 <span>Reise</span>
             </div>
-            <div>
+            <div class="nav-container">
                 <img class="footer-img" src="../img/icons/starFooter.png">
                 <br>
                 <span>Favoritter</span>
             </div>
-            <div>
+            <div class="nav-container">
                 <img class="footer-img" src="../img/icons/profilFooter.png">
                 <br>
                 <span>Profil</span>
             </div>
         </div>
     </footer>
+
 </body>
 </html>
