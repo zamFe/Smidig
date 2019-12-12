@@ -20,37 +20,25 @@ body{
     background-color: green;
 }
 
-.footer-routes {
-    background-color: yellow;
-}
-
-
 /* Styling of routes box container */
 .routes-box-container {
     display: grid;
-    grid-template-columns: 10% auto 10%;
+    grid-template-columns: 20% auto 20%;
     grid-template-rows: 13% auto 20%;
-    border-bottom: solid;
+    border-bottom: solid 1px;
 }
 
-#start-time {
+#startTime {
     grid-column: 1;
 }
 
-#end-time {
+#endTime {
     grid-column: 3;
 }
 
-#start-symbol {
-    grid-column: 1;
-    grid-row: 2;
-}
-
-#routing-symbols {
+#route-box {
     grid-column: 1/4;
-    display: grid;
-    grid-template-columns: repeat(5, 20%);
-    align-content: center;
+    grid-row: 2;
 }
 
 #total-time {
@@ -61,4 +49,12 @@ body{
 #total-price {
     grid-column: 3;
     grid-row: 3;
+}
+
+#route-box {
+    display: grid;
+}
+
+.route-detail-2 {
+  
 }

@@ -1,44 +1,79 @@
+const container = document.getElementById("routes-result-container");
 
-function getTime() {
-    const start = document.getElementById("start-time");
-    const end = document.getElementById("end-time");
-    const total = document.getElementById("total-time");
-    start.innerHTML = fullRoute[0].startTime;
-    end.innerHTML = fullRoute[0].endTime;
-    total.innerHTML = fullRoute[0].totalTime;
+function convertTime(time) {
+    let date = new Date(time*1000);
+    let convertedTime = `${date.getHours()}:${date.getMinutes()}`
+    return convertedTime;
 }
 
-function getPrice() {
-    const price = document.getElementById("total-price");
-    price.innerHTML = `kr ${fullRoute[0].cost},-`;
+function setGridColom(routeLength) {
+    
 }
 
-function getRouteDetails() {
-    let routeSymbols = document.getElementById("routing-symbols");
+function setRoutings(oneRoute) {
+    const div = document.createElement("div");
+    div.setAttribute("id", "route-box");
+    setGridColom(oneRoute.route.length);
 
-    for(let i = 0; i < fullRoute[0].route.length; i++) {
-        const div = document.createElement("div");
-        div.setAttribute("class", `symbol`);
+    let routeLength = oneRoute.route.length;
+    let number = 1;
 
-        /* type of transport of point */
-        const type = document.createElement("div");
-        type.setAttribute("class", "type");
-        type.innerHTML = fullRoute[0].route[i].action;
+    for(let i = 0;  i < routeLength; i++) {
+        if(oneRoute.route[i].action === "Overgang") {
 
-        /* Time for travel of point */
-        const time = document.createElement("div");
-        time.setAttribute("class", "symbol-time");
-        time.innerHTML = fullRoute[0].route[i].time;
+        } else {
+            number += 1;
+            const routeDetailDiv = document.createElement("div");
+            routeDetailDiv.setAttribute("class", `route-detail-${number}`);
 
-        div.appendChild(type);
-        div.appendChild(time);
+            const actionDiv = document.createElement("div");
+            actionDiv.setAttribute("class", "action-div");
+            actionDiv.innerHTML = oneRoute.route[i].action;
+            routeDetailDiv.appendChild(actionDiv);
 
-        routeSymbols.appendChild(div);
+            if(oneRoute.route[i].serviceNumber != undefined) {
+                const serviceDiv = document.createElement("div");
+                serviceDiv.setAttribute("class", "service-div");
+                serviceDiv.innerHTML = oneRoute.route[i].serviceNumber;
+                routeDetailDiv.appendChild(serviceDiv);
+            }
+            div.appendChild(routeDetailDiv);
+        }
     }
-
+    return div;
 }
 
-/* Runs functions to print out to routes.html */
-getTime();
-getPrice();
-getRouteDetails();
+// Create dynamic route alternatives of search
+for(let i = 0; i < fullRoute.length; i++) {
+    let start = convertTime(fullRoute[i].startTime);
+    let end = convertTime(fullRoute[i].endTime);
+
+    const box = document.createElement("div");
+    box.setAttribute("class", "routes-box-container");
+
+    const startTime = document.createElement("div");
+    startTime.setAttribute("id", "startTime");
+    startTime.innerHTML = start;
+
+    const endTime = document.createElement("div");
+    endTime.setAttribute("id", "endTime");
+    endTime.innerHTML = end;
+
+    const routings = setRoutings(fullRoute[i]);
+
+    const totalTime = document.createElement("div");
+    totalTime.setAttribute("id", "total-time");
+    totalTime.innerHTML = (fullRoute[i].endTime - fullRoute[i].startTime);
+
+    const totalPrice = document.createElement("div");
+    totalPrice.setAttribute("id", "total-price");
+    totalPrice.innerHTML = `kr ${fullRoute[i].cost},-`;
+
+    //Load to page
+    container.appendChild(box);
+    box.appendChild(startTime);
+    box.appendChild(endTime);
+    box.appendChild(routings);
+    box.appendChild(totalTime);
+    box.appendChild(totalPrice);
+}
