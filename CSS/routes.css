@@ -53,8 +53,21 @@ body{
 
 #route-box {
     display: grid;
+    align-content: center;
 }
 
-.route-detail-2 {
-  
+.round {
+    border: solid 4px black;
+    border-radius: 50%;
+    height: 2vh; 
+    width: 4vw;
+    align-self: center;
 }
+
+.first-dot-routes {
+    grid-column: 1; 
+}
+
+
+
+

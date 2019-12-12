@@ -1,30 +1,41 @@
 const container = document.getElementById("routes-result-container");
 
+// Convert from Seconds to real time
 function convertTime(time) {
     let date = new Date(time*1000);
     let convertedTime = `${date.getHours()}:${date.getMinutes()}`
     return convertedTime;
 }
 
-function setGridColom(routeLength) {
-    
+// Sets grid styling
+function setGridColom(routeLength, div) {
+    const number = 100/routeLength+2;
+    const value = `repeat(${number}%, ${routeLength+2})`;
+    div.style.gridTemplateColumns = value;
 }
 
+// Create route details inside route choice
 function setRoutings(oneRoute) {
     const div = document.createElement("div");
     div.setAttribute("id", "route-box");
-    setGridColom(oneRoute.route.length);
-
+    setGridColom(oneRoute.route.length, div);
+    
     let routeLength = oneRoute.route.length;
     let number = 1;
 
+    const firstDot = document.createElement("div");
+    firstDot.setAttribute("class", "first-dot-routes round")
+    div.appendChild(firstDot);
+
+
     for(let i = 0;  i < routeLength; i++) {
         if(oneRoute.route[i].action === "Overgang") {
-
+            // Do nothing
         } else {
             number += 1;
             const routeDetailDiv = document.createElement("div");
             routeDetailDiv.setAttribute("class", `route-detail-${number}`);
+            routeDetailDiv.style.gridColumn = number;
 
             const actionDiv = document.createElement("div");
             actionDiv.setAttribute("class", "action-div");
@@ -40,6 +51,11 @@ function setRoutings(oneRoute) {
             div.appendChild(routeDetailDiv);
         }
     }
+    const lastDot = document.createElement("div");
+    lastDot.setAttribute("class", "last-dot-routes round");
+    lastDot.style.gridColumn = routeLength+2;
+    div.appendChild(lastDot);
+
     return div;
 }
 
