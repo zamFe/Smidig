@@ -1,0 +1,101 @@
+//TODO: function to build route from template with data from API
+
+let container = document.getElementById("main-container");
+
+
+//build step and adds to HTML
+function stepBuilder(action, stepName, stepTime) {
+    //the step "container"
+    let step = document.createElement("div");
+    step.id = "departure";
+
+    //build time element
+    let time = document.createElement("div");
+    time.id = "time-container";
+
+    let timeP = document.createElement("p");
+    timeP.innerText = stepTime;
+
+    //build node element
+    let stopNode = document.createElement("div");
+    stopNode.id = "node-container";
+
+    let nodeImg = document.createElement("img");
+    nodeImg.classList.add("Node");
+    nodeImg.src = "../img/icons/node.png";
+    nodeImg.alt = "";
+
+    //build name element
+    let name = document.createElement("div");
+    name.id = "name-container";
+
+    let nameP = document.createElement("p");
+    if(action === "") {
+        nameP.innerText = stepName;
+    }
+    else {
+        nameP.innerText = stepName + " [" + action + "]";
+    }
+
+    time.appendChild(timeP);
+    stopNode.appendChild(nodeImg);
+    name.appendChild(nameP);
+
+    step.appendChild(time);
+    step.appendChild(stopNode);
+    step.appendChild(name);
+
+    container.appendChild(step);
+}
+
+function transitionBuilder(startTime, stopTime) {
+    let step = document.createElement("div");
+    step.id = "departure";
+
+    let time = document.createElement("div");
+    time.id = "time-container";
+
+    let timeP = document.createElement("p");
+    timeP.innerText = (stopTime-startTime) / 60 + "min";
+
+    let stopNode = document.createElement("div");
+    stopNode.id = "node-container";
+
+    let name = document.createElement("div");
+    name.id = "name-container";
+    let nameP = document.createElement("p");
+    nameP.innerText = "overgang";
+
+    time.appendChild(timeP);
+    name.appendChild(nameP);
+
+    step.appendChild(time);
+    step.appendChild(stopNode);
+    step.appendChild(name);
+
+    container.appendChild(step);
+}
+
+function convertTime(time) {
+    let date = new Date(time*1000);
+    let convertedTime = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
+    return convertedTime;
+}
+
+//stepBuilder("T-Bane", "Ellingsrud", "10:00");
+//stepBuilder("T-Bane", "Jernbanetorget", "10:30");
+
+for(let i = 0; i < fullRoute[0].route.length; i++) {
+    let step = fullRoute[0].route[i];
+    if (step.action === 'Overgang') {
+        transitionBuilder(step.startTime, step.endTime);
+        continue;
+    }
+    stepBuilder(step.action, step.from.address, convertTime(step.startTime));
+    if(i === fullRoute[0].route.length - 1) {
+        stepBuilder("", step.to.address, convertTime(step.endTime));
+    }
+    else {
+        stepBuilder("", step.to.address, convertTime(step.endTime));
+    }
+}
