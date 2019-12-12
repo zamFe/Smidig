@@ -60,36 +60,42 @@ function setRoutings(oneRoute) {
 }
 
 // Create dynamic route alternatives of search
-for(let i = 0; i < fullRoute.length; i++) {
-    let start = convertTime(fullRoute[i].startTime);
-    let end = convertTime(fullRoute[i].endTime);
+function setUp() {
+    for(let i = 0; i < fullRoute.length; i++) {
+        let start = convertTime(fullRoute[i].startTime);
+        let end = convertTime(fullRoute[i].endTime);
 
-    const box = document.createElement("div");
-    box.setAttribute("class", "routes-box-container");
+        const box = document.createElement("div");
+        box.setAttribute("class", "routes-box-container");
 
-    const startTime = document.createElement("div");
-    startTime.setAttribute("id", "startTime");
-    startTime.innerHTML = start;
+        const startTime = document.createElement("div");
+        startTime.setAttribute("id", "startTime");
+        startTime.innerHTML = start;
 
-    const endTime = document.createElement("div");
-    endTime.setAttribute("id", "endTime");
-    endTime.innerHTML = end;
+        const endTime = document.createElement("div");
+        endTime.setAttribute("id", "endTime");
+        endTime.innerHTML = end;
 
-    const routings = setRoutings(fullRoute[i]);
+        const routings = setRoutings(fullRoute[i]);
 
-    const totalTime = document.createElement("div");
-    totalTime.setAttribute("id", "total-time");
-    totalTime.innerHTML = (fullRoute[i].endTime - fullRoute[i].startTime);
+        const totalTime = document.createElement("div");
+        totalTime.setAttribute("id", "total-time");
+        totalTime.innerHTML = (fullRoute[i].endTime - fullRoute[i].startTime);
 
-    const totalPrice = document.createElement("div");
-    totalPrice.setAttribute("id", "total-price");
-    totalPrice.innerHTML = `kr ${fullRoute[i].cost},-`;
+        const totalPrice = document.createElement("div");
+        totalPrice.setAttribute("id", "total-price");
+        totalPrice.innerHTML = `kr ${fullRoute[i].cost},-`;
 
-    //Load to page
-    container.appendChild(box);
-    box.appendChild(startTime);
-    box.appendChild(endTime);
-    box.appendChild(routings);
-    box.appendChild(totalTime);
-    box.appendChild(totalPrice);
+        const lineDiv = document.createElement("div");
+        lineDiv.setAttribute("class", "border-line-2");
+
+        //Load to page
+        container.appendChild(box);
+        box.appendChild(startTime);
+        box.appendChild(endTime);
+        box.appendChild(routings);
+        box.appendChild(totalTime);
+        box.appendChild(totalPrice);
+        container.appendChild(lineDiv);
+    }
 }

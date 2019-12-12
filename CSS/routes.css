@@ -9,6 +9,11 @@ body {
     width: 100%;
 }
 
+.border-line {
+    border: solid 1px;
+    opacity: 0.4;
+}
+
 /* Header routes styling */
 .header-routes {
     position: relative;
@@ -55,7 +60,7 @@ body {
     margin: 5vw
 }
 
-/* ? check if keeping */
+/* Priority styling*/
 .priority-container-routes {
     display: grid;
     grid-template-columns: 90% 10%;
@@ -78,7 +83,13 @@ body {
     display: grid;
     grid-template-columns: 20% auto 20%;
     grid-template-rows: 13% auto 20%;
-    border-bottom: solid 1px;
+}
+
+.border-line-2 {
+    border: solid 1px;
+    opacity: 0.2;
+    margin-top: 1.4vh;
+    margin-bottom: 1.4vh;
 }
 
 #startTime {
