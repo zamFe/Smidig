@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../Source/JS/getRoutes.js"></script>
     <link rel="stylesheet" type="text/css" href="../CSS/routes.css">
     <title>Ruter</title>
 </head>
@@ -11,23 +12,22 @@
 
     <div id="main-container-routes">
         <header class="header-routes">
-            <img class="back-arrow">
-            <div>Rutevalg</div>
+            <img id="back-arrow" src="../img/icons/back.png">
+            <div id="title-routes">Rutevalg</div>
             <div class="from-destination-routes">Kroghstadveien 7</div>
+            <img id="switch-arrow" src="../img/icons/revert.png">
             <div class="to-destination-routes">Akersbakken 30</div>
         </header>
-
+        <div class="border-line"></div>
         <div class="priority-container-routes">
-            Priority field
+            <div id="priority-routes">Prioritering: Raskest</div>
+            <img id="burger-menu-routes" src="../img/icons/burgermenu.png">
         </div> <!-- End of priority container -->
-
+        <div class="border-line"></div>
         <div id="routes-result-container">        
         </div> <!-- End of routes result container -->
 
     </div> <!-- End of main container -->
-    
-
-    <script src="../Source/JS/route.js"></script>
     <script src="../Source/JS/routegetter.js"></script>
 </body>
 </html>

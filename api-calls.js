@@ -3,6 +3,8 @@ let fs = require('fs');
 let querystring = require('querystring');
 let server = require('./server.js');
 
+let rp = require('request-promise-native');
+
 // console.log(querystring.decode("a=(59.9233%2C10.79249)"))
 
 function fromTripGo(args, res) {
@@ -64,7 +66,7 @@ function errorHandling(error, response, body) {
 
     return {
         statusCode: (error)?error:response.statusCode,
-        data: (error)?error:response
+        data: "The API Call failed - Cannot display routes"
     }
 
 }
@@ -119,10 +121,9 @@ function formatData(data) {
 
     		}
     	}
-
     }
 
-    return formattedData
+    return formattedData;
 
 }
 
@@ -138,18 +139,19 @@ function getSegmentTemplate (data, hashCode) {
 }
 
 function getRouteData(error, response, body, res) {
-    var data = errorHandling(error, response, body);
-
+	var data = errorHandling(error, response, body);
+	console.log(data);
     if (data.statusCode != 200) {
-        transmitData(data, res);
+		transmitData(data, res);
     } else {
-		transmitData(formatData(data.data), res);
+		transmitData({statusCode: 200,
+			data: formatData(data.data)}, res
+		);
 	}
 }
 
 function transmitData (data, res) {
-    console.log(res)
-	server.toRoutesWithQuery(convertQuery(data), res)
+	server.toRoutesWithQuery(data, res)
 }
 
 function getRoute (from, to, dateTime, res) {
@@ -157,8 +159,8 @@ function getRoute (from, to, dateTime, res) {
 	    requestFile: "routing.json",
 
 	    parameters: {
-	        from: "(59.9233,10.79249)",
-	        to: "(60.7945331,11.067997699999978)",
+	        from: from,
+	        to: to,
 	        departAfter: 1575889860,
 	        modes: "pt_pub",
 	        unit: "auto",
@@ -178,3 +180,6 @@ function getRoute (from, to, dateTime, res) {
 }
 
 module.exports.getRoute = getRoute;
+
+// from: "(59.9233,10.79249)",
+// to: "(60.7945331,11.067997699999978)",

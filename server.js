@@ -32,25 +32,27 @@ app.get('*', function(req, res) {
 			default: 
 				res.send('400 - Bad Request')
 		}
-	}
-	try {
-		if(fs.existsSync(`.${target}.${dotfile}`)){
-			console.log(`Sending file: ${target}.${dotfile}`)
-			res.sendFile(`${target}.${dotfile}`,{root: __dirname});
-		} else if (target === "/") {
-			console.log("Blank path specified: Redirecting to index")
-			res.sendFile(`/html/index.html`, {root: __dirname});
-		} else {
-			console.error(`Did not find ${target}.${dotfile}`)
-			res.send('404 - This file does not exist');
+	} else {
+		try {
+			if(fs.existsSync(`.${target}.${dotfile}`)){
+				console.log(`Sending file: ${target}.${dotfile}`)
+				res.sendFile(`${target}.${dotfile}`,{root: __dirname});
+			} else if (target === "/") {
+				console.log("Blank path specified: Redirecting to index")
+				res.sendFile(`/html/index.html`, {root: __dirname});
+			} else {
+				console.error(`Did not find ${target}.${dotfile}`)
+				res.send('404 - This file does not exist');
+			}
+		} catch(e) {
+			console.error(e);
 		}
-	} catch(e) {
-		console.error(e);
 	}
 })
 
 function toRoutesWithQuery (queryString, res) {
-	res.redirect(`./html/routes.html${queryString}`);
+	res.json(queryString);
+	//console.log(queryString);
 }
 
 module.exports.toRoutesWithQuery = toRoutesWithQuery;
