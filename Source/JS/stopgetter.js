@@ -1,5 +1,3 @@
-//TODO: function to build route from template with data from API
-
 let container = document.getElementById("main-container");
 
 
@@ -85,17 +83,19 @@ function convertTime(time) {
 //stepBuilder("T-Bane", "Ellingsrud", "10:00");
 //stepBuilder("T-Bane", "Jernbanetorget", "10:30");
 
-for(let i = 0; i < fullRoute[0].route.length; i++) {
-    let step = fullRoute[0].route[i];
-    if (step.action === 'Overgang') {
-        transitionBuilder(step.startTime, step.endTime);
-        continue;
-    }
-    stepBuilder(step.action, step.from.address, convertTime(step.startTime));
-    if(i === fullRoute[0].route.length - 1) {
-        stepBuilder("", step.to.address, convertTime(step.endTime));
-    }
-    else {
-        stepBuilder("", step.to.address, convertTime(step.endTime));
+function setUp() {
+    for(let i = 0; i < fullRoute[0].route.length; i++) {
+        let step = fullRoute[0].route[i];
+        if (step.action === 'Overgang') {
+            transitionBuilder(step.startTime, step.endTime);
+            continue;
+        }
+        stepBuilder(step.action, step.from.address, convertTime(step.startTime));
+        if(i === fullRoute[0].route.length - 1) {
+            stepBuilder("", step.to.address, convertTime(step.endTime));
+        }
+        else {
+            stepBuilder("", step.to.address, convertTime(step.endTime));
+        }
     }
 }
