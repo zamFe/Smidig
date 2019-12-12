@@ -9,24 +9,14 @@
 </head>
 <body style='font-family: "Arial Black'>
     <header>
-        <div id="back-tab-container">
+        <a id="back-tab-container" href="routes.html">
             <img id="back-tab" src="../img/icons/back.png" alt="">
-        </div>
+        </a>
     </header>
 
     <main>
         <div id="main-container">
-            <div id="departure">
-                <div id="time-container">
-                    <p>00:00</p>
-                </div>
-                <div id="node-container">
-                    <img class="Node" src="../img/icons/node.png" alt="">
-                </div>
-                <div id="name-container">
-                    <p>[Navn på stop]</p>
-                </div>
-
+            <!--content added via stopgetter.js, based on the stop.node.component.js templatte-->
             </div>
         </div>
     </main>
@@ -52,5 +42,7 @@
     </footer>
 
 <script src="../components/stop.node.component.js"></script>
+<script src="../Source/JS/getRoutes.js"></script>
+<script src="../Source/JS/stopgetter.js"></script>
 </body>
 </html>

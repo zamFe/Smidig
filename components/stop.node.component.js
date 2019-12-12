@@ -1,5 +1,3 @@
-let container = document.getElementById("main-container");
-
 let template = `
      <div id="departure">
                 <div id="time-container">
@@ -14,7 +12,3 @@ let template = `
 
             </div>
 `;
-
-container.innerHTML += template;
-
-//TODO: function to build route from template with data from API
