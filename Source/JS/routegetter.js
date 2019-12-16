@@ -94,6 +94,8 @@ function setUp() {
     for(let i = 0; i < fullRoute.length; i++) {
         let start = convertTime(fullRoute[i].startTime);
         let end = convertTime(fullRoute[i].endTime);
+        if(end.length == 4) { end = end + "0"; }
+        if(start.length == 4) { start = "0" + start; }
 
         const box = document.createElement("div");
         box.setAttribute("class", "routes-box-container");
