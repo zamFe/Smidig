@@ -5,6 +5,26 @@ let locationData = {
 
 let inputDelay;
 
+/*
+window.addEventListener("click", () =>  {
+    console.log("click");
+    document.getElementById("from-droplist").style.display = "none";
+    document.getElementById("to-droplist").style.display = "none";
+})
+*/
+
+document.getElementById("dark-screen").addEventListener("click", (e) =>  {  
+    e.stopPropagation();
+    document.getElementById("from-droplist").style.display = "none"; 
+    document.getElementById("dark-screen").style.display = "none";
+})
+
+document.getElementById("dark-screen").addEventListener("click", (e) =>  {
+   e.stopPropagation();
+    document.getElementById("to-droplist").style.display = "none";
+    document.getElementById("dark-screen").style.display = "none"; 
+})
+
 function updateDropdown(loc) {
 
     if(inputDelay){
@@ -24,11 +44,13 @@ function updateDropdown(loc) {
 
 
 function fromDropdownMenu(){
+    document.getElementById("dark-screen").style.display = "block";
     document.getElementById("from-droplist").style.display = "block";
 }
 
 
 function toDropdownMenu(){
+    document.getElementById("dark-screen").style.display = "block";
     document.getElementById("to-droplist").style.display = "block";
 }
 
@@ -42,6 +64,7 @@ function getName(address, lat, lng, loc){
 
     document.getElementById(loc + "-input").value = address;
     document.getElementById(loc + "-droplist").style.display = "none";
+    document.getElementById("dark-screen").style.display = "none";
 }
 
 function setup(name){
