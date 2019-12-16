@@ -134,12 +134,14 @@ function getImages(routeAction) {
     return image;
 }
 
+/*
 stepBuilder("T-bane", "Ellingsrudåsen", "10:00", "Ruter");
 stepBuilder("", "Jernbanetorget", "10:30", "");
 stepBuilder("Buss", "Jernbanetorget", "10:35", "VY");
 stepBuilder("", "Lilletorget", "10:45", "");
 stepBuilder("Gå", "Lilletorget", "10:45", "");
 stepBuilder("", "Campus Fjerdingen", "10:50", "");
+*/
 
 function setUp() {
     if(fullRoute.statusCode === 500) {
@@ -154,12 +156,12 @@ function setUp() {
             transitionBuilder(step.startTime, step.endTime);
             continue;
         }
-        stepBuilder(step.action, step.from.address, convertTime(step.startTime), step.serviceWorker);
+        stepBuilder(step.action, step.from.address, convertTime(step.startTime), step.operatorName);
         if(i === fullRoute[index].route.length - 1) {
-            stepBuilder("", step.to.address, convertTime(step.endTime), step.serviceWorker);
+            stepBuilder("", step.to.address, convertTime(step.endTime), step.operatorName);
         }
         else {
-            stepBuilder("", step.to.address, convertTime(step.endTime), step.serviceWorker);
+            stepBuilder("", step.to.address, convertTime(step.endTime), step.operatorName);
         }
     }
 }
