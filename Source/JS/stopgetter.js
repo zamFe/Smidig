@@ -2,7 +2,6 @@ let container = document.getElementById("main-container");
 
 //build step and adds to HTML
 function stepBuilder(action, stepName, stepTime) {
-
     //the step "container"
     let step = document.createElement("div");
     step.id = "departure";
@@ -14,36 +13,63 @@ function stepBuilder(action, stepName, stepTime) {
     let timeP = document.createElement("p");
     timeP.innerText = stepTime;
 
+    //add service provider icon
+    let serviceProvider = document.createElement("div");
+    serviceProvider.id = "serviceprovider-icon-container";
+    if(action != "") {
+        let serviceProviderIcon = document.createElement("img");
+        serviceProviderIcon.id = "serviceprovider-icon";
+        serviceProviderIcon.src = "../VyAssets/vy.logo.final_primary.png"; //PLACEHOLDER
+        serviceProvider.appendChild(serviceProviderIcon);
+    }
+
     //build node element
     let stopNode = document.createElement("div");
     stopNode.id = "node-container";
 
-
     let routeLine = document.createElement("div");
     routeLine.id = "route-line";
-    container.appendChild(routeLine);
 
     let nodeImg = document.createElement("img");
     nodeImg.classList.add("Node");
     nodeImg.src = "../img/icons/node.png";
     nodeImg.alt = "";
+    routeLine.appendChild(nodeImg);
 
     //build name element
     let name = document.createElement("div");
     name.id = "name-container";
 
     let nameP = document.createElement("p");
-    if(action === "") {
-        nameP.innerText = stepName;
-    }
-    else {
-        nameP.innerText = stepName + " [" + action + "]";
+    nameP.classList.add("Text-Name");
+    nameP.innerText = stepName;
+
+    //build transport-medium information
+    let transport = document.createElement("p");
+    transport.classList.add("Text-Transport");
+    transport.innerHTML = action;
+
+    if(action != "") {
+        var transportIcon = document.createElement("div");
+        transportIcon.id = "transport-icon-container";
+
+        var transportIconImg = document.createElement("img");
+        transportIconImg.id = "transport-icon";
+        transportIconImg.src = "../img/icons/bus.png";
+        transportIcon.appendChild(transportIconImg);
+
     }
 
     time.appendChild(timeP);
-    routeLine.appendChild(nodeImg);
+    time.appendChild(serviceProvider);
     stopNode.appendChild(routeLine);
+
     name.appendChild(nameP);
+    name.appendChild(transport);
+    if(action != "") {
+        name.appendChild(transportIcon);
+    }
+
 
     step.appendChild(time);
     step.appendChild(stopNode);
@@ -78,7 +104,13 @@ function transitionBuilder(startTime, stopTime) {
     step.appendChild(name);
 
     container.appendChild(step);
+    count++;
+
+    let line = document.getElementById("route-line");
+    line.style.height = 300 * count + "px";
 }
+
+
 
 function convertTime(time) {
     let date = new Date(time*1000);
@@ -86,8 +118,12 @@ function convertTime(time) {
     return convertedTime;
 }
 
-//stepBuilder("T-Bane", "Ellingsrud", "10:00");
-//stepBuilder("T-Bane", "Jernbanetorget", "10:30");
+stepBuilder("T-Bane", "Ellingsrudåsen", "10:00");
+stepBuilder("", "Jernbanetorget", "10:30");
+stepBuilder("Buss", "Jernbanetorget", "10:35");
+stepBuilder("", "Lilletorget", "10:45");
+stepBuilder("Gå", "Lilletorget", "10:45");
+stepBuilder("", "Campus Fjerdingen", "10:50");
 
 function setUp() {
     if(fullRoute.statusCode === 500) {
