@@ -14,13 +14,6 @@ body {
     opacity: 0.4;
 }
 
-footer {
-    position: relative;
-    background-color: gray;
-    width: 100%;
-    height: 200px;
-}
-
 /* Header routes styling */
 .header-routes {
     position: relative;
@@ -137,8 +130,4 @@ footer {
 
 .first-dot-routes {
     grid-column: 1; 
-}
-
-.action-img {
-    height: 3vh;
 }

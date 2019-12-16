@@ -8,6 +8,31 @@
 </head>
 <body style='font-family:"Arial Black"'>
 
+<script>
+
+    function fromDropdownMenu(){
+        document.getElementById("from-droplist").style.display = "block";
+    }
+
+
+    function toDropdownMenu(){
+        document.getElementById("to-droplist").style.display = "block";
+    }
+
+
+    function fromGetName(city){
+        document.getElementById("from-input").value = city;
+        document.getElementById("from-droplist").style.display = "none";
+    }
+
+
+    function toGetName(city){
+        document.getElementById("to-input").value = city;
+        document.getElementById("to-droplist").style.display = "none";
+    }
+
+</script>
+
     <header>
         <div id="logo-container">
             <img id="logo" src="../img/logos/vy_reiser_logo.png" alt="">
@@ -17,32 +42,44 @@
     <main>
         <div id="main-container">
             <div id="hello-container">
-                <span id="hello-span">God morgen, "Bruker"</span>
-            </div> <!--end hello-container-->
-
+                <span>God morgen, "Bruker"</span>
+            </div><!--end hello-container-->
 
             <div id="destination-container">
 
                 <div id="from-input-container" class="input-container">
                     <span>Hvor vil du reise fra?</span>
                     <br>
-                    <input id="from-input" class="Destination-Input" type="text" name="from" placeholder="Reise fra..." onclick="fromDropdownMenu();"oninput="updateDropdown('from')">
-
-                    <div id="from-droplist"></div>
+                    <input id="from-input" class="Destination-Input" type="text" name="from" placeholder="Reise fra..." onclick="fromDropdownMenu();">
+                    <div id="from-droplist">
+                        <div class="droplist-content" onclick="fromGetName('Kroghstadveien 7')">
+                            <span class="dropdown-span">Kroghstadveien 7</span>
+                        </div>
+                        
+                        <div class="droplist-content" onclick="fromGetName('Akersbakken 30');">
+                            <span class="dropdown-span">Akersbakken 30</span>
+                        </div>
+                    </div>
                 </div><!--end from-input-container-->
 
 
                 <div id="to-input-container" class="input-container">
                     <span>Hvor vil du reise?</span>
                     <br>
-                    <input id="to-input" class="Destination-Input" type="text" name="to" placeholder="Reise til..."  onclick="toDropdownMenu();"oninput="updateDropdown('to')">
-
-                    <div id="to-droplist"></div>
-
+                    <input id="to-input" class="Destination-Input" type="text" name="to" placeholder="Reise til..."  onclick="toDropdownMenu();">
+                       <div id="to-droplist">
+                            <div class="droplist-content" onclick="toGetName('Kroghstadveien 7');">
+                                <span class="dropdown-span">Kroghstadveien 7</span>
+                            </div>    
+                        
+                        <div class="droplist-content" onclick="toGetName('Akersbakken 30');">
+                            <span class="dropdown-span">Akersbakken 30</span>
+                        </div>
+                    </div>
                 </div><!--end to-input-container-->
 
                 <div id="route-button-container">
-                    <img onclick="window.location.href='html/datetime.html?from=('+ locationData.from.lat + ',' + locationData.from.lng +')&to=('+ locationData.to.lat + ',' + locationData.to.lng +')&fromname=' + encodeURI(locationData.from.address) + '&toname=' + encodeURI(locationData.to.address)"  id="route_button" src="../img/icons/find_route_button.png" alt="">
+                    <img onclick="window.location.href='html/routes.html?from=(59.9233,10.79249)&to=(60.7945331,11.067997699999978)&datetime=1575889860'" id="route_button" src="../img/icons/find_route_button.png" alt="">
                 </div>
             </div> <!--end destination-container-->
 
@@ -71,6 +108,5 @@
         </div>
     </footer>
 
-<script src="../Source/JS/index.js"></script>
 </body>
 </html>
