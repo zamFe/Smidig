@@ -1,5 +1,6 @@
-let container = document.getElementById("main-container");
+var count = 0;
 
+let container = document.getElementById("main-container");
 
 //build step and adds to HTML
 function stepBuilder(action, stepName, stepTime) {
@@ -17,6 +18,12 @@ function stepBuilder(action, stepName, stepTime) {
     //build node element
     let stopNode = document.createElement("div");
     stopNode.id = "node-container";
+
+    if(count === 0) {
+        let routeLine = document.createElement("div");
+        routeLine.id = "route-line";
+        stopNode.appendChild(routeLine);
+    }
 
     let nodeImg = document.createElement("img");
     nodeImg.classList.add("Node");
@@ -44,6 +51,10 @@ function stepBuilder(action, stepName, stepTime) {
     step.appendChild(name);
 
     container.appendChild(step);
+    count++;
+
+    let line = document.getElementById("route-line");
+    line.style.height = (300 * (count - 1)) + "px";
 }
 
 function transitionBuilder(startTime, stopTime) {
@@ -72,6 +83,10 @@ function transitionBuilder(startTime, stopTime) {
     step.appendChild(name);
 
     container.appendChild(step);
+    count++;
+
+    let line = document.getElementById("route-line");
+    line.style.height = 300 * count + "px";
 }
 
 function convertTime(time) {
