@@ -3,7 +3,7 @@ let fs = require('fs');
 let querystring = require('querystring');
 // let server = require('./server.js');
 
-let rp = require('request-promise-native');
+//let rp = require('request-promise-native');
 
 // console.log(querystring.decode("a=(59.9233%2C10.79249)"))
 
