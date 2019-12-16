@@ -4,6 +4,17 @@ function displayDestinations() {
 
 }
 
+//Swaps the route directions
+const swapRouteButton = document.getElementById('switch-arrow');
+swapRouteButton.addEventListener('click', e => {
+    let from = urlParams.get('to');
+    let fromName = urlParams.get('toname');
+    let to = urlParams.get('from');
+    let toName = urlParams.get('fromname');
+    let datetime = urlParams.get('datetime');
+    window.location = `/html/routes.html?from=${from}&fromname=${fromName}&to=${to}&toname=${toName}&datetime=${datetime}`;
+})
+
 // Convert from Seconds to real time
 function convertTime(time) {
     let date = new Date(time*1000);
