@@ -35,11 +35,11 @@ function getImages(routeAction) {
     switch(routeAction) {
         case "T-bane": image += "subway.png";
             break;
-        case "Gå": image += "walk.jpg";
+        case "Gå": image += "walk.png";
             break; 
         case "Tog": image += "traing.png";
             break;
-        case "Buss": image += "bus.jpg";
+        case "Buss": image += "bus.png";
             break; 
     }
     return image;
