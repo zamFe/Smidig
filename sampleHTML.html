@@ -8,10 +8,21 @@
     <title>Document</title>
 </head>
 <body>
-    This is the text I want and stuff
+    <h1>This page is a test page</h1>
+    <p>Pressing the below will "Simulate a delay</p>
 
-    <div id="nav"></div>
+    <!-- Simulates a delay warning - Currently only works as an alert -->
+    <input id="sim-delay-btn" type="button" value="Simulate Delay"/>
+    <script>
+        const simulateDelayBtn = document.getElementById("sim-delay-btn");
+        simulateDelayBtn.addEventListener("click", e => {
+            const urlParams = new URLSearchParams(window.location.search);
+            let fromname = urlParams.get('fromname');
+            let toname = urlParams.get('toname');
+            alert(`Det har oppstått en forsinkelse på ruten ${fromname} - ${toname}!`);
+        })
+    </script>
+    <!-- End of simulation -->
 
-    <script src="/components/nav.component.js"></script>
 </body>
 </html>
