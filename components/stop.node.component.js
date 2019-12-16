@@ -4,11 +4,16 @@ let template = `
                     <p>00:00</p>
                 </div>
                 <div id="node-container">
-                    <img class="Node" src="../img/icons/node.png" alt="">
+                    <div id="route-line">
+                        <img class="Node" src="../img/icons/node.png" alt="">
+                    </div>
                 </div>
                 <div id="name-container">
-                    <p>[Navn på stop]</p>
+                    <p class="Text-Name">[Navn på stop]</p>
+                    <p class="Text-Transport">Transportmiddel</p>
+                    <div id="transport-icon-container">
+                        <img id="transport-icon" src="../img/icons/bus.jpg" alt="">
+                    </div>
                 </div>
-
             </div>
 `;
