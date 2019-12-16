@@ -4,6 +4,12 @@ function displayDestinations() {
 
 }
 
+//Displays the route names in the route list
+const fromElem = document.getElementById("from-dest");
+const toElem = document.getElementById("to-dest");
+fromElem.innerText = urlParams.get("fromname");
+toElem.innerText = urlParams.get("toname");
+
 //Swaps the route directions
 const swapRouteButton = document.getElementById('switch-arrow');
 swapRouteButton.addEventListener('click', e => {
@@ -29,6 +35,22 @@ function setGridColom(routeLength, div) {
     div.style.gridTemplateColumns = value;
 }
 
+// Displays correct route action image
+function getImages(routeAction) {
+    let image = "../img/icons/"; 
+    switch(routeAction) {
+        case "T-bane": image += "subway.png";
+            break;
+        case "Gå": image += "walk.jpg";
+            break; 
+        case "Tog": image += "traing.png";
+            break;
+        case "Buss": image += "bus.jpg";
+            break; 
+    }
+    return image;
+}
+
 // Create route details inside route choice
 function setRoutings(oneRoute) {
     const div = document.createElement("div");
@@ -42,7 +64,6 @@ function setRoutings(oneRoute) {
     firstDot.setAttribute("class", "first-dot-routes round")
     div.appendChild(firstDot);
 
-
     for(let i = 0;  i < routeLength; i++) {
         if(oneRoute.route[i].action === "Overgang") {
             // Do nothing
@@ -52,11 +73,14 @@ function setRoutings(oneRoute) {
             routeDetailDiv.setAttribute("class", `route-detail-${number}`);
             routeDetailDiv.style.gridColumn = number;
 
-            const actionDiv = document.createElement("div");
-            actionDiv.setAttribute("class", "action-div");
-            actionDiv.innerHTML = oneRoute.route[i].action;
-            routeDetailDiv.appendChild(actionDiv);
+            // Gets correct action
+            const actionImage = document.createElement("img");
+            actionImage.setAttribute("class", "action-img");
+            image = getImages(oneRoute.route[i].action);
+            actionImage.setAttribute("src", image);
+            routeDetailDiv.appendChild(actionImage);
 
+            // Checks if action is not "Overgang"
             if(oneRoute.route[i].serviceNumber != undefined) {
                 const serviceDiv = document.createElement("div");
                 serviceDiv.setAttribute("class", "service-div");
@@ -94,6 +118,8 @@ function setUp() {
     for(let i = 0; i < fullRoute.length; i++) {
         let start = convertTime(fullRoute[i].startTime);
         let end = convertTime(fullRoute[i].endTime);
+        if(end.length == 4) { end = end + "0"; }
+        if(start.length == 4) { start = "0" + start; }
 
         const box = document.createElement("div");
         box.setAttribute("class", "routes-box-container");
