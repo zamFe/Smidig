@@ -7,6 +7,7 @@ body {
 #main-container-routes {
     height: 100%;
     width: 100%;
+    overflow-x: hidden;
 }
 
 .border-line {
@@ -90,6 +91,7 @@ footer {
     display: grid;
     grid-template-columns: 20% auto 20%;
     grid-template-rows: 13% auto 20%;
+    overflow: scroll;
 }
 
 .border-line-2 {
@@ -110,6 +112,11 @@ footer {
 #route-box {
     grid-column: 1/4;
     grid-row: 2;
+    overflow-x: scroll;
+}
+
+.route-detail-spacing {
+    margin: 3vw;
 }
 
 #total-time {
@@ -125,6 +132,8 @@ footer {
 #route-box {
     display: grid;
     align-content: center;
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .round {

@@ -60,17 +60,14 @@ function setRoutings(oneRoute) {
     let routeLength = oneRoute.route.length;
     let number = 1;
 
-    const firstDot = document.createElement("div");
-    firstDot.setAttribute("class", "first-dot-routes round")
-    div.appendChild(firstDot);
-
     for(let i = 0;  i < routeLength; i++) {
         if(oneRoute.route[i].action === "Overgang") {
             // Do nothing
         } else {
             number += 1;
             const routeDetailDiv = document.createElement("div");
-            routeDetailDiv.setAttribute("class", `route-detail-${number}`);
+            routeDetailDiv.setAttribute("class", `route-detail-${number} route-detail-spacing`);
+
             routeDetailDiv.style.gridColumn = number;
 
             // Gets correct action
@@ -90,11 +87,6 @@ function setRoutings(oneRoute) {
             div.appendChild(routeDetailDiv);
         }
     }
-    const lastDot = document.createElement("div");
-    lastDot.setAttribute("class", "last-dot-routes round");
-    lastDot.style.gridColumn = routeLength+2;
-    div.appendChild(lastDot);
-
     return div;
 }
 
@@ -118,6 +110,7 @@ function setUp() {
     for(let i = 0; i < fullRoute.length; i++) {
         let start = convertTime(fullRoute[i].startTime);
         let end = convertTime(fullRoute[i].endTime);
+        // change this to more dynamic
         if(end.length == 4) { end = end + "0"; }
         if(start.length == 4) { start = "0" + start; }
 
@@ -134,6 +127,12 @@ function setUp() {
         const endTime = document.createElement("div");
         endTime.setAttribute("id", "endTime");
         endTime.innerHTML = end;
+
+        const firstDot = document.createElement("div");
+        firstDot.setAttribute("id", "first-dot-routes");
+        
+        const lastDot = document.createElement("div");
+        lastDot.setAttribute("id", "last-dot-routes");
 
         const routings = setRoutings(fullRoute[i]);
 
@@ -153,7 +152,9 @@ function setUp() {
         container.appendChild(box);
         box.appendChild(startTime);
         box.appendChild(endTime);
+        box.appendChild(firstDot);
         box.appendChild(routings);
+        box.appendChild(lastDot);
         box.appendChild(totalTime);
         box.appendChild(totalPrice);
         container.appendChild(lineDiv);
