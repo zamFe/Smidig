@@ -4,6 +4,12 @@ function displayDestinations() {
 
 }
 
+//Displays the route names in the route list
+const fromElem = document.getElementById("from-dest");
+const toElem = document.getElementById("to-dest");
+fromElem.innerText = urlParams.get("fromname");
+toElem.innerText = urlParams.get("toname");
+
 //Swaps the route directions
 const swapRouteButton = document.getElementById('switch-arrow');
 swapRouteButton.addEventListener('click', e => {
