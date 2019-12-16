@@ -78,10 +78,6 @@ function transitionBuilder(startTime, stopTime) {
     step.appendChild(name);
 
     container.appendChild(step);
-    count++;
-
-    let line = document.getElementById("route-line");
-    line.style.height = 300 * count + "px";
 }
 
 function convertTime(time) {
