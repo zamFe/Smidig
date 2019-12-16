@@ -1,5 +1,20 @@
 const container = document.getElementById("routes-result-container");
 
+function displayDestinations() {
+
+}
+
+//Swaps the route directions
+const swapRouteButton = document.getElementById('switch-arrow');
+swapRouteButton.addEventListener('click', e => {
+    let from = urlParams.get('to');
+    let fromName = urlParams.get('toname');
+    let to = urlParams.get('from');
+    let toName = urlParams.get('fromname');
+    let datetime = urlParams.get('datetime');
+    window.location = `/html/routes.html?from=${from}&fromname=${fromName}&to=${to}&toname=${toName}&datetime=${datetime}`;
+})
+
 // Convert from Seconds to real time
 function convertTime(time) {
     let date = new Date(time*1000);
@@ -10,7 +25,7 @@ function convertTime(time) {
 // Sets grid styling
 function setGridColom(routeLength, div) {
     const number = 100/routeLength+2;
-    const value = `repeat(${number}%, ${("0" + routeLength+2).slice(-2)})`;
+    const value = `repeat(${number}%, ${(routeLength+2)})`;
     div.style.gridTemplateColumns = value;
 }
 
@@ -59,6 +74,21 @@ function setRoutings(oneRoute) {
     return div;
 }
 
+function secondsToTime(end, start) {
+    let time = end - start;
+    let hour = Math.floor(time / 3600);
+    let min = Math.floor(time % 3600 / 60);
+    let convTime;
+
+    if (hour != 0) {
+        convTime = `${hour}t `;
+    } 
+    convTime += min + "min";
+
+    return convTime;
+}
+
+
 // Create dynamic route alternatives of search
 function setUp() {
     for(let i = 0; i < fullRoute.length; i++) {
@@ -83,7 +113,8 @@ function setUp() {
 
         const totalTime = document.createElement("div");
         totalTime.setAttribute("id", "total-time");
-        totalTime.innerHTML = (fullRoute[i].endTime - fullRoute[i].startTime);
+        let travelTime = secondsToTime(fullRoute[i].endTime, fullRoute[i].startTime);
+        totalTime.innerHTML = travelTime;
 
         const totalPrice = document.createElement("div");
         totalPrice.setAttribute("id", "total-price");

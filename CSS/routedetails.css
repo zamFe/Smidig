@@ -77,6 +77,15 @@ footer {
     transform: translate(-50%, -50%);
 }
 
+#route-line {
+    background-color: rgba(56, 62, 66, 0.5);
+    position: absolute;
+    width: 20px;
+    /*height: 300px; //done via js for now */
+    left: 297px;
+    top: 150px;
+}
+
 #name-container {
 
     text-align: left;
