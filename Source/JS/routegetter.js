@@ -29,6 +29,17 @@ function setGridColom(routeLength, div) {
     div.style.gridTemplateColumns = value;
 }
 
+function getImages(routeAction) {
+    let image;
+    switch(routeAction) {
+        case "T-bane": image = ;
+            break;
+        case "Gå": image = 1
+            break; 
+    }
+    return image;
+}
+
 // Create route details inside route choice
 function setRoutings(oneRoute) {
     const div = document.createElement("div");
@@ -42,7 +53,6 @@ function setRoutings(oneRoute) {
     firstDot.setAttribute("class", "first-dot-routes round")
     div.appendChild(firstDot);
 
-
     for(let i = 0;  i < routeLength; i++) {
         if(oneRoute.route[i].action === "Overgang") {
             // Do nothing
@@ -52,10 +62,11 @@ function setRoutings(oneRoute) {
             routeDetailDiv.setAttribute("class", `route-detail-${number}`);
             routeDetailDiv.style.gridColumn = number;
 
-            const actionDiv = document.createElement("div");
-            actionDiv.setAttribute("class", "action-div");
-            actionDiv.innerHTML = oneRoute.route[i].action;
-            routeDetailDiv.appendChild(actionDiv);
+            const actionImage = document.createElement("a");
+            actionImage.setAttribute("class", "action-a");
+            image = getImages(oneRoute.route[i].action);
+            actionImage.innerHTML = image;
+            routeDetailDiv.appendChild(actionImage);
 
             if(oneRoute.route[i].serviceNumber != undefined) {
                 const serviceDiv = document.createElement("div");
