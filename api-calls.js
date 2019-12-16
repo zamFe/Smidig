@@ -1,7 +1,7 @@
 let request = require('request');
 let fs = require('fs');
 let querystring = require('querystring');
-let server = require('./server.js');
+// let server = require('./server.js');
 
 let rp = require('request-promise-native');
 
@@ -150,12 +150,29 @@ function getRouteData(error, response, body, res) {
 	}
 }
 
+function getLocationData (error, response, body, res) {
+    var data = errorHandling(error, response, body);
+    console.log(data);
+    if (data.statusCode != 200) {
+        transmitData(data, res);
+    } else {
+
+        if (data.data.usererror) {
+            data.data.choices = [];
+        }
+
+        transmitData({statusCode: 200,
+            data: data.data}, res
+        );
+    }
+}
+
 function transmitData (data, res) {
-	server.toRoutesWithQuery(data, res)
+	res.json(data);
 }
 
 function getRoute (from, to, dateTime, res) {
-	fromTripGo({ //geocode
+	fromTripGo({
 	    requestFile: "routing.json",
 
 	    parameters: {
@@ -164,7 +181,7 @@ function getRoute (from, to, dateTime, res) {
 	        departAfter: 1575889860,
 	        modes: "pt_pub",
 	        unit: "auto",
-	        //wp: "(1,1,1,1)",
+	        wp: "(1,1,1,1)",
 	        locale: "no",
 	        bestOnly: true,
 	        // ir: 1,
@@ -174,12 +191,25 @@ function getRoute (from, to, dateTime, res) {
 	        v: 11
 
 	    },
-	    // parameters: '?from=(' + args.from + ')&to=(' + args.to + ')&departAfter=1575889860&arriveBefore=0&modes=me_car&wp=(1%2C1%2C1%2C1)&tt=0&unit=auto&v=11&locale=en&ir=1&ws=1&cs=1',
 	    callback: getRouteData
 	}, res)
 }
 
+function getLocation (loc, res) {
+    fromTripGo({
+        requestFile: "geocode.json",
+
+        parameters: {
+            q: loc
+        },
+        callback: getLocationData
+    }, res)
+}
+
+
+
 module.exports.getRoute = getRoute;
+module.exports.getLocation = getLocation;
 
 // from: "(59.9233,10.79249)",
 // to: "(60.7945331,11.067997699999978)",

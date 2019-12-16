@@ -26,8 +26,8 @@ app.get('*', function(req, res) {
 			case 'getroute': 
 				tripGo.getRoute(query.from, query.to, query.datetime, res);
 				break;
-			case 'getlocations':
-				console.log(`Getting locations: ${JSON.stringify(query)}`); //Sends the querystring given action=getlocations in the URL as JSON
+			case 'getlocation':
+				tripGo.getLocation(query.q, res);
 				break;
 			default: 
 				res.send('400 - Bad Request')
@@ -50,12 +50,6 @@ app.get('*', function(req, res) {
 	}
 })
 
-function toRoutesWithQuery (queryString, res) {
-	res.json(queryString);
-	//console.log(queryString);
-}
-
-module.exports.toRoutesWithQuery = toRoutesWithQuery;
 
 //Server listens on localhost:8080
 //Visit pages by visiting localhost:8080/filepath
