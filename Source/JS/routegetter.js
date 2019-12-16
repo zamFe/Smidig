@@ -29,12 +29,17 @@ function setGridColom(routeLength, div) {
     div.style.gridTemplateColumns = value;
 }
 
+// Displays correct route action image
 function getImages(routeAction) {
-    let image;
+    let image = "../img/icons/"; 
     switch(routeAction) {
-        case "T-bane": image = ;
+        case "T-bane": image += "subway.png";
             break;
-        case "Gå": image = 1
+        case "Gå": image += "walk.jpg";
+            break; 
+        case "Tog": image += "traing.png";
+            break;
+        case "Buss": image += "bus.jpg";
             break; 
     }
     return image;
@@ -62,12 +67,14 @@ function setRoutings(oneRoute) {
             routeDetailDiv.setAttribute("class", `route-detail-${number}`);
             routeDetailDiv.style.gridColumn = number;
 
-            const actionImage = document.createElement("a");
-            actionImage.setAttribute("class", "action-a");
+            // Gets correct action
+            const actionImage = document.createElement("img");
+            actionImage.setAttribute("class", "action-img");
             image = getImages(oneRoute.route[i].action);
-            actionImage.innerHTML = image;
+            actionImage.setAttribute("src", image);
             routeDetailDiv.appendChild(actionImage);
 
+            // Checks if action is not "Overgang"
             if(oneRoute.route[i].serviceNumber != undefined) {
                 const serviceDiv = document.createElement("div");
                 serviceDiv.setAttribute("class", "service-div");

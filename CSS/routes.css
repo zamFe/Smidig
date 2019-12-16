@@ -138,3 +138,7 @@ footer {
 .first-dot-routes {
     grid-column: 1; 
 }
+
+.action-img {
+    height: 3vh;
+}
