@@ -98,6 +98,8 @@ function convertTime(time) {
 //stepBuilder("T-Bane", "Ellingsrud", "10:00");
 //stepBuilder("T-Bane", "Jernbanetorget", "10:30");
 
+
+
 function setUp() {
     if(fullRoute.statusCode === 500) {
         alert("error!");
