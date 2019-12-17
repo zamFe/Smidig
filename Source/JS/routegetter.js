@@ -1,9 +1,5 @@
 const container = document.getElementById("routes-result-container");
 
-function displayDestinations() {
-
-}
-
 //Displays the route names in the route list
 const fromElem = document.getElementById("from-dest");
 const toElem = document.getElementById("to-dest");
@@ -25,6 +21,15 @@ swapRouteButton.addEventListener('click', e => {
 function convertTime(time) {
     let date = new Date(time*1000);
     let convertedTime = `${date.getHours()}:${date.getMinutes()}`
+
+    if(convertedTime.length != 5){
+        if (convertedTime.indexOf(':', 0) === 1) {
+            convertedTime = "0" + convertedTime;
+        } else {
+            convertedTime = convertedTime + "0";
+        }
+    }
+
     return convertedTime;
 }
 
@@ -110,9 +115,8 @@ function setUp() {
     for(let i = 0; i < fullRoute.length; i++) {
         let start = convertTime(fullRoute[i].startTime);
         let end = convertTime(fullRoute[i].endTime);
-        // change this to more dynamic
-        if(end.length == 4) { end = end + "0"; }
-        if(start.length == 4) { start = "0" + start; }
+        
+        
 
         const box = document.createElement("div");
         box.setAttribute("class", "routes-box-container");
@@ -122,17 +126,19 @@ function setUp() {
 
         const startTime = document.createElement("div");
         startTime.setAttribute("id", "startTime");
+        startTime.setAttribute("class", "time-font");
         startTime.innerHTML = start;
 
         const endTime = document.createElement("div");
         endTime.setAttribute("id", "endTime");
+        endTime.setAttribute("class", "time-font");
         endTime.innerHTML = end;
 
         const firstDot = document.createElement("div");
-        firstDot.setAttribute("id", "first-dot-routes");
+        firstDot.setAttribute("id", "first-dot-routes round");
         
         const lastDot = document.createElement("div");
-        lastDot.setAttribute("id", "last-dot-routes");
+        lastDot.setAttribute("id", "last-dot-routes round");
 
         const routings = setRoutings(fullRoute[i]);
 
