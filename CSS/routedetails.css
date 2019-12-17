@@ -107,6 +107,8 @@ footer {
 
 .Text-Name {
     font-size: 1em;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .Text-Transport {
