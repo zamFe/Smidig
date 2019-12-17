@@ -15,7 +15,7 @@ main {
     position: relative;
     width: 100%;
     height: calc(100% - 600px);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 footer {
