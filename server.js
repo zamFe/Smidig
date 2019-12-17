@@ -45,7 +45,7 @@ app.get('*', function(req, res) {
 				res.send('404 - This file does not exist');
 			}
 		} catch(e) {
-			console.error(e);
+			console.error(e + "AAAAAAAAAAAAa");
 		}
 	}
 })
