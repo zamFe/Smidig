@@ -75,8 +75,32 @@ function setup(name){
 
 function addToDropdown(data, loc) {
     
-
+    // Creates an error message upon API Call failures
     console.log(data);
+    let container = document.getElementById('error-container');
+    if(typeof(data) !== 'object') {
+        container.innerHTML = "";
+        if(data.substring(0,6) == 'Error:'){
+            let errorBox = document.createElement('div');
+            errorBox.style.position = 'absolute';
+            errorBox.style.width = '100%';
+            errorBox.style.height = '12vh';
+            errorBox.style.zIndex = '100';
+            errorBox.style.margin = '0 0 auto 0';
+            errorBox.style.top = '0px';
+            errorBox.style.fontSize = '2rem';
+            errorBox.style.backgroundColor = 'rgba(255,100,100,.8)';
+            errorBox.style.color = '#ffffff';
+            errorBox.style.textAlign = 'center';
+            let errorTextElem = document.createElement('p');
+            errorTextElem.innerText = data;
+            errorBox.appendChild(errorTextElem);
+            container.appendChild(errorBox);
+        }
+    } else {
+        container.innerHTML = "";
+    }
+
     let template = "";
 
     for(let i = 0; i < data.choices.length; i++){
