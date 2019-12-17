@@ -123,7 +123,7 @@ function secondsToTime(end, start) {
 console.log();
 // Create dynamic route alternatives of search
 function setUp() {
-    localStorage.setItem("route", fullRoute);
+    localStorage.setItem("route", JSON.stringify(fullRoute));
     for(let i = 0; i < fullRoute.length; i++) {
         let start = convertTime(fullRoute[i].startTime);
         let end = convertTime(fullRoute[i].endTime);
