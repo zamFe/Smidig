@@ -59,8 +59,7 @@ footer {
     grid-template-columns: 2fr 1fr 5fr;
 }
 
-#time-container {
-
+#time-container {;
     text-align: center;
     line-height: 230px;
 }
@@ -72,6 +71,7 @@ footer {
     left: 50%;
     top: -20%;
     transform: translateX(-50%);
+    line-height: 40px;
 }
 
 #serviceprovider-icon {
