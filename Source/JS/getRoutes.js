@@ -18,6 +18,7 @@ fetch(`${window.location.origin}?action=getroute&from=${searchData.from}&to=${se
         return response.text();
     }).then(function (text) {
         fullRoute = JSON.parse(text).data;
+        fullRoute.sort((a,b) => (a.startTime > b.startTime) ? 1 : -1);
         console.log(fullRoute);
         setUp();
 })
