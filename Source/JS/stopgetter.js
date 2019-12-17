@@ -134,20 +134,18 @@ function getImages(routeAction) {
     return image;
 }
 
-/*
+
 stepBuilder("T-bane", "Ellingsrudåsen", "10:00", "Ruter");
 stepBuilder("", "Jernbanetorget", "10:30", "");
 stepBuilder("Buss", "Jernbanetorget", "10:35", "VY");
 stepBuilder("", "Lilletorget", "10:45", "");
 stepBuilder("Gå", "Lilletorget", "10:45", "");
 stepBuilder("", "Campus Fjerdingen", "10:50", "");
-*/
 
-function setUp() {
-    if(fullRoute.statusCode === 500) {
-        alert("error!");
-        return;
-    }
+
+let fullRoute = localStorage.getItem("route");
+
+
     var index = (urlParams.get('index'))?urlParams.get('index'):0;
     console.log(urlParams.get('index'));
     for(let i = 0; i < fullRoute[index].route.length; i++) {
@@ -157,11 +155,9 @@ function setUp() {
             continue;
         }
         stepBuilder(step.action, step.from.address, convertTime(step.startTime), step.operatorName);
-        if(i === fullRoute[index].route.length - 1) {
+        if (i === fullRoute[index].route.length - 1) {
             stepBuilder("", step.to.address, convertTime(step.endTime), step.operatorName);
-        }
-        else {
+        } else {
             stepBuilder("", step.to.address, convertTime(step.endTime), step.operatorName);
         }
     }
-}
