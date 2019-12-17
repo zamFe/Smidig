@@ -18,7 +18,11 @@
     </style>
 </head>
 <body>
-<div id="map"></div>
+  <div id="map"></div>
+
+  <script id="googleMap"
+    async defer></script>
+
     <script>
       var fullRoute = JSON.parse(localStorage.getItem("route"));
       var map;
@@ -52,10 +56,15 @@
         }
 
       }
-    </script>
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo64tGtuF4iuRlCoxM9k3jaL8KMvqqvq4&callback=initMap&libraries=geometry"
-    async defer></script>
+      fetch(`${window.location.origin}?action=getmap`)
+      .then(function (response) {
+          return response.text();
+      }).then(function (text) {
+          console.log(JSON.parse(text));
+          document.getElementById("googleMap").innerHTML = JSON.parse(text).response.body;
+      })
+    </script>
 
 
 </body>

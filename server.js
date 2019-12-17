@@ -1,7 +1,8 @@
 let express = require('express');
 let app = express();
+let request = require('request');
 
-let tripGo = require('./api-calls.js');
+let api = require('./api-calls.js');
 
 let fs = require('fs');
 
@@ -24,10 +25,13 @@ app.get('*', function(req, res) {
 	if(URL.includes('action=')){
 		switch(query.action){
 			case 'getroute': 
-				tripGo.getRoute(query.from, query.to, query.datetime, res);
+				api.getRoute(query.from, query.to, query.datetime, res);
 				break;
 			case 'getlocation':
-				tripGo.getLocation(query.q, res);
+				api.getLocation(query.q, res);
+				break;
+			case 'getmap':
+				api.getMap(res);
 				break;
 			default: 
 				res.send('400 - Bad Request')

@@ -15,6 +15,21 @@ function fromTripGo(args, res) {
     });
 }
 
+function getMap(res) {
+    fs.readFile('api-keys/googleMaps.properties', 'utf8', (err, data) => {
+        if (err) throw err;
+        var options = {
+            url: 'https://maps.googleapis.com/maps/api/js?key=' + data + '&callback=initMap&libraries=geometry',
+            headers: {
+                'User-Agent': 'request'
+            }
+        };
+        request(options, (error, response, body) => {
+            res.json({ error, response, body });
+        });
+    });
+}
+
 
 function getData(key, args, res) {
 
@@ -32,12 +47,12 @@ function getData(key, args, res) {
 
     // const requestPromise = util.promisify(request);
     // const response = await requestPromise(options.url);
-    request(options, (error, response, body)=>{
+    request(options, (error, response, body) => {
         args.callback(error, response, body, res);
     }); //, {form:{key:'value'}}
     // console.log(response)
 
-    
+
 
     // let resp = await doRequest(options);
 
@@ -65,100 +80,101 @@ function errorHandling(error, response, body) {
     }
 
     return {
-        statusCode: (error)?error:response.statusCode,
+        statusCode: (error) ? error : response.statusCode,
         data: `Error: The API Call failed with message:\n\t ${error} \nCannot display routes`
     }
 
 }
 
 function formatData(data) {
-	//console.log(data)
+    //console.log(data)
     trips = data.groups[0].trips;
-    
+
 
     var formattedData = [];
 
     for (var i = 0; i < trips.length; i++) {
-    	var d = trips[i];
+        var d = trips[i];
 
-    	formattedData[i] = {
-    		cost: (d.moneyCost)?d.moneyCost:149,
-    		map: {},
-    		startTime: d.depart,
-    		endTime: d.arrive,
-    		calories: d.caloriesCost,
-    		carbonCost: d.caloriesCost,
-    		route: []
-    	}
+        formattedData[i] = {
+            cost: (d.moneyCost) ? d.moneyCost : 149,
+            map: {},
+            startTime: d.depart,
+            endTime: d.arrive,
+            calories: d.caloriesCost,
+            carbonCost: d.caloriesCost,
+            route: []
+        }
 
-    	// Route
-    	var r = d.segments;
+        // Route
+        var r = d.segments;
 
-    	if (!r) {
-    		return formattedData;
-    	}
+        if (!r) {
+            return formattedData;
+        }
 
-    	for (var j = 0; j < r.length; j++) {
+        for (var j = 0; j < r.length; j++) {
 
-    		var segment = getSegmentTemplate(data, r[j].segmentTemplateHashCode);
+            var segment = getSegmentTemplate(data, r[j].segmentTemplateHashCode);
 
-    		//console.log(segment)
-    		formattedData[i].route[j] = {
-    			action: segment.modeInfo.alt,
-    			description: segment.mini.description,
-    			from: segment.from,
-    			to: segment.to,
-    			//time: r[j].durationString,
-    			operatorName: segment.serviceOperator,
-    			stops: r[j].stops,
-    			platform: r[j].platform,
-    			endPlatform: r[j].endPlatform,
-    			serviceName: r[j].serviceName,
-    			serviceNumber: r[j].serviceNumber,
-    			startTime: r[j].startTime,
-    			endTime: r[j].endTime,
-    			stops: r[j].stops,
+            //console.log(segment)
+            formattedData[i].route[j] = {
+                action: segment.modeInfo.alt,
+                description: segment.mini.description,
+                from: segment.from,
+                to: segment.to,
+                //time: r[j].durationString,
+                operatorName: segment.serviceOperator,
+                stops: r[j].stops,
+                platform: r[j].platform,
+                endPlatform: r[j].endPlatform,
+                serviceName: r[j].serviceName,
+                serviceNumber: r[j].serviceNumber,
+                startTime: r[j].startTime,
+                endTime: r[j].endTime,
+                stops: r[j].stops,
                 metres: segment.metres,
                 waypoints: {
-                    shapes: (segment.shapes)? segment.shapes: [],
+                    shapes: (segment.shapes) ? segment.shapes : [],
                     color: segment.modeInfo.color
                 }
 
-    		}
+            }
             // if (!segment.shapes && segment.streets) {
             //     formattedData[i].route[j].waypoints.shapes = segment.streets;
             // }
-    	}
+        }
     }
 
     return formattedData;
 
 }
 
-function getSegmentTemplate (data, hashCode) {
+function getSegmentTemplate(data, hashCode) {
 
-	for (var i = 0; i < data.segmentTemplates.length; i++) {
-		// console.log(data.segmentTemplates[i].hashCode + ", " + hashCode)
-		if (data.segmentTemplates[i].hashCode === hashCode) {
-			return data.segmentTemplates[i];
-		}
-	}
+    for (var i = 0; i < data.segmentTemplates.length; i++) {
+        // console.log(data.segmentTemplates[i].hashCode + ", " + hashCode)
+        if (data.segmentTemplates[i].hashCode === hashCode) {
+            return data.segmentTemplates[i];
+        }
+    }
 
 }
 
 function getRouteData(error, response, body, res) {
-	var data = errorHandling(error, response, body);
-	console.log(data);
+    var data = errorHandling(error, response, body);
+    console.log(data);
     if (data.statusCode != 200) {
-		transmitData(data, res);
+        transmitData(data, res);
     } else {
-		transmitData({statusCode: 200,
-			data: formatData(data.data)}, res
-		);
-	}
+        transmitData({
+            statusCode: 200,
+            data: formatData(data.data)
+        }, res);
+    }
 }
 
-function getLocationData (error, response, body, res) {
+function getLocationData(error, response, body, res) {
     var data = errorHandling(error, response, body);
     console.log(data);
     if (data.statusCode != 200) {
@@ -169,41 +185,42 @@ function getLocationData (error, response, body, res) {
             data.data.choices = [];
         }
 
-        transmitData({statusCode: 200,
-            data: data.data}, res
-        );
+        transmitData({
+            statusCode: 200,
+            data: data.data
+        }, res);
     }
 }
 
-function transmitData (data, res) {
-	res.json(data);
+function transmitData(data, res) {
+    res.json(data);
 }
 
-function getRoute (from, to, dateTime, res) {
-	fromTripGo({
-	    requestFile: "routing.json",
+function getRoute(from, to, dateTime, res) {
+    fromTripGo({
+        requestFile: "routing.json",
 
-	    parameters: {
-	        from: from,
-	        to: to,
-	        departAfter: dateTime,
-	        modes: "pt_pub",
-	        unit: "auto",
-	        wp: "(1,1,1,1)",
-	        locale: "no",
-	        bestOnly: true,
-	        // ir: 1,
-	        // ws: 1,
-	        // cs: 1,
-	        // tt: 0,
-	        v: 11
+        parameters: {
+            from: from,
+            to: to,
+            departAfter: dateTime,
+            modes: "pt_pub",
+            unit: "auto",
+            wp: "(1,1,1,1)",
+            locale: "no",
+            bestOnly: true,
+            // ir: 1,
+            // ws: 1,
+            // cs: 1,
+            // tt: 0,
+            v: 11
 
-	    },
-	    callback: getRouteData
-	}, res)
+        },
+        callback: getRouteData
+    }, res)
 }
 
-function getLocation (loc, res) {
+function getLocation(loc, res) {
     fromTripGo({
         requestFile: "geocode.json",
 
@@ -215,7 +232,7 @@ function getLocation (loc, res) {
 }
 
 
-
+module.exports.getMap = getMap;
 module.exports.getRoute = getRoute;
 module.exports.getLocation = getLocation;
 
