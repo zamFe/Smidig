@@ -117,7 +117,11 @@ function formatData(data) {
     			serviceNumber: r[j].serviceNumber,
     			startTime: r[j].startTime,
     			endTime: r[j].endTime,
-    			stops: r[j].stops
+    			stops: r[j].stops,
+                waypoints: {
+                    streets: segment.streets,
+                    color: modeInfo.color
+                }
 
     		}
     	}
