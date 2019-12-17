@@ -1,7 +1,7 @@
 let container = document.getElementById("main-container");
 
 //build step and adds to HTML
-function stepBuilder(action, stepName, stepTime) {
+function stepBuilder(action, stepName, stepTime, provider) {
     //the step "container"
     let step = document.createElement("div");
     step.id = "departure";
@@ -21,6 +21,7 @@ function stepBuilder(action, stepName, stepTime) {
         serviceProviderIcon.id = "serviceprovider-icon";
         serviceProviderIcon.src = "../VyAssets/vy.logo.final_primary.png"; //PLACEHOLDER
         serviceProvider.appendChild(serviceProviderIcon);
+        serviceProvider.innerText = provider;
     }
 
     //build node element
@@ -55,7 +56,7 @@ function stepBuilder(action, stepName, stepTime) {
 
         var transportIconImg = document.createElement("img");
         transportIconImg.id = "transport-icon";
-        transportIconImg.src = "../img/icons/bus.png";
+        transportIconImg.src = getImages(action);
         transportIcon.appendChild(transportIconImg);
 
     }
@@ -118,12 +119,29 @@ function convertTime(time) {
     return convertedTime;
 }
 
-stepBuilder("T-Bane", "Ellingsrudåsen", "10:00");
-stepBuilder("", "Jernbanetorget", "10:30");
-stepBuilder("Buss", "Jernbanetorget", "10:35");
-stepBuilder("", "Lilletorget", "10:45");
-stepBuilder("Gå", "Lilletorget", "10:45");
-stepBuilder("", "Campus Fjerdingen", "10:50");
+function getImages(routeAction) {
+    let image = "../img/icons/";
+    switch(routeAction) {
+        case "T-bane": image += "subway.png";
+            break;
+        case "Gå": image += "walk.png";
+            break;
+        case "Tog": image += "traing.png";
+            break;
+        case "Buss": image += "bus.png";
+            break;
+    }
+    return image;
+}
+
+/*
+stepBuilder("T-bane", "Ellingsrudåsen", "10:00", "Ruter");
+stepBuilder("", "Jernbanetorget", "10:30", "");
+stepBuilder("Buss", "Jernbanetorget", "10:35", "VY");
+stepBuilder("", "Lilletorget", "10:45", "");
+stepBuilder("Gå", "Lilletorget", "10:45", "");
+stepBuilder("", "Campus Fjerdingen", "10:50", "");
+*/
 
 function setUp() {
     if(fullRoute.statusCode === 500) {
@@ -138,12 +156,12 @@ function setUp() {
             transitionBuilder(step.startTime, step.endTime);
             continue;
         }
-        stepBuilder(step.action, step.from.address, convertTime(step.startTime));
+        stepBuilder(step.action, step.from.address, convertTime(step.startTime), step.operatorName);
         if(i === fullRoute[index].route.length - 1) {
-            stepBuilder("", step.to.address, convertTime(step.endTime));
+            stepBuilder("", step.to.address, convertTime(step.endTime), step.operatorName);
         }
         else {
-            stepBuilder("", step.to.address, convertTime(step.endTime));
+            stepBuilder("", step.to.address, convertTime(step.endTime), step.operatorName);
         }
     }
 }
