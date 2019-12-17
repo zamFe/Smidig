@@ -66,7 +66,7 @@ function errorHandling(error, response, body) {
 
     return {
         statusCode: (error)?error:response.statusCode,
-        data: "The API Call failed - Cannot display routes"
+        data: `The API Call failed with message:\n\t ${error} \nCannot display routes`
     }
 
 }
