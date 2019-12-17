@@ -178,7 +178,7 @@ function getRoute (from, to, dateTime, res) {
 	    parameters: {
 	        from: from,
 	        to: to,
-	        departAfter: 1575889860,
+	        departAfter: dateTime,
 	        modes: "pt_pub",
 	        unit: "auto",
 	        wp: "(1,1,1,1)",
