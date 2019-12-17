@@ -118,6 +118,7 @@ function formatData(data) {
     			startTime: r[j].startTime,
     			endTime: r[j].endTime,
     			stops: r[j].stops,
+                metres: segment.metres,
                 waypoints: {
                     streets: segment.streets,
                     color: segment.modeInfo.color
