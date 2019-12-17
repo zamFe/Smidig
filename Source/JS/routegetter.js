@@ -16,7 +16,7 @@ swapRouteButton.addEventListener('click', e => {
     let datetime = urlParams.get('datetime');
     window.location = `/html/routes.html?from=${from}&fromname=${fromName}&to=${to}&toname=${toName}&datetime=${datetime}`;
 })
-
+ 
 // Convert from Seconds to real time
 function convertTime(time) {
     let date = new Date(time*1000);
@@ -64,34 +64,45 @@ function setRoutings(oneRoute) {
     
     let routeLength = oneRoute.route.length;
     let number = 1;
+    let lineNumber = 1;
 
     for(let i = 0;  i < routeLength; i++) {
         if(oneRoute.route[i].action === "Overgang") {
-            // Do nothing
-        } else {
-            number += 1;
-            const routeDetailDiv = document.createElement("div");
-            routeDetailDiv.setAttribute("class", `route-detail-${number} route-detail-spacing`);
+            // Overgang is not accounted for in this overview for travel
+            } else {
+                number += 1;
+                const routeDetailDiv = document.createElement("div");
+                routeDetailDiv.setAttribute("class", `route-detail-${number} route-detail-spacing routes-row`);
 
-            routeDetailDiv.style.gridColumn = number;
+                routeDetailDiv.style.gridColumn = number;
 
-            // Gets correct action
-            const actionImage = document.createElement("img");
-            actionImage.setAttribute("class", "action-img");
-            image = getImages(oneRoute.route[i].action);
-            actionImage.setAttribute("src", image);
-            routeDetailDiv.appendChild(actionImage);
+                // Gets correct action
+                const actionImage = document.createElement("img");
+                actionImage.setAttribute("class", "action-img");
+                image = getImages(oneRoute.route[i].action);
+                actionImage.setAttribute("src", image);
+                routeDetailDiv.appendChild(actionImage);
+                
+                // Checks if action is not empty
+                if(oneRoute.route[i].serviceNumber != undefined) {
+                    const serviceDiv = document.createElement("div");
+                    serviceDiv.setAttribute("class", "service-div");
+                    serviceDiv.innerHTML = oneRoute.route[i].serviceNumber;
+                    routeDetailDiv.appendChild(serviceDiv);
+                }
+                div.appendChild(routeDetailDiv);
 
-            // Checks if action is not "Overgang"
-            if(oneRoute.route[i].serviceNumber != undefined) {
-                const serviceDiv = document.createElement("div");
-                serviceDiv.setAttribute("class", "service-div");
-                serviceDiv.innerHTML = oneRoute.route[i].serviceNumber;
-                routeDetailDiv.appendChild(serviceDiv);
+                if(i <= routeLength-1) {
+                    let line = document.createElement("div");
+                    line.setAttribute("class", "line-routes routes-row");
+                    line.style.gridColumn = `${lineNumber}/${lineNumber+2}`;
+                    div.appendChild(line);
+                    lineNumber += 1;
+                }
+
             }
-            div.appendChild(routeDetailDiv);
-        }
     }
+
     return div;
 }
 
@@ -109,14 +120,13 @@ function secondsToTime(end, start) {
     return convTime;
 }
 
-
+console.log();
 // Create dynamic route alternatives of search
 function setUp() {
+    localStorage.setItem("route", JSON.stringify(fullRoute));
     for(let i = 0; i < fullRoute.length; i++) {
         let start = convertTime(fullRoute[i].startTime);
         let end = convertTime(fullRoute[i].endTime);
-        
-        
 
         const box = document.createElement("div");
         box.setAttribute("class", "routes-box-container");
@@ -135,10 +145,12 @@ function setUp() {
         endTime.innerHTML = end;
 
         const firstDot = document.createElement("div");
-        firstDot.setAttribute("id", "first-dot-routes round");
+        firstDot.setAttribute("id", "first-dot-routes");
+        firstDot.setAttribute("class", "round");
         
         const lastDot = document.createElement("div");
-        lastDot.setAttribute("id", "last-dot-routes round");
+        lastDot.setAttribute("id", "last-dot-routes");
+        lastDot.setAttribute("class", "round");
 
         const routings = setRoutings(fullRoute[i]);
 
