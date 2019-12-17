@@ -15,6 +15,5 @@ buttonElem.setAttribute("href", `/html/routes?${route}&datetime=${Math.floor(new
 // Changes the link based on changes made in the input
 inputElem.addEventListener('change', e => {
     let selectedTime = Math.floor(new Date(inputElem.value).getTime()/1000);
-    console.log("Time set to: " + selectedTime.getTime()/1000);
     buttonElem.setAttribute("href", `/html/routes?${route}&datetime=${selectedTime}`);
 })

@@ -34,6 +34,14 @@ function updateDropdown(loc) {
     }, 600)
 }
 
+document.getElementById("swap-from-to").addEventListener("click", (e) => {
+    let tempData = locationData.from;
+    locationData.from = locationData.to;
+    locationData.to = tempData;
+    document.getElementById("from-input").value = locationData.from.address;
+    document.getElementById("to-input").value = locationData.to.address;
+})
+
 
 function fromDropdownMenu(){
     document.getElementById("dark-screen").style.display = "block";

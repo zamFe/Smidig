@@ -136,6 +136,23 @@ footer {
     overflow-y: scroll;
 }
 
+#swap-from-to {
+    grid-row: 3;
+    display: inline-block;
+    margin-right: 2%;
+    margin-left: auto;
+    margin-top: 3%;
+    margin-bottom: auto;
+}
+
+#swap-from-to:hover{
+    cursor: pointer;
+}
+
+#swap-from-to:active {
+    transform: scale(0.9);
+}
+
 /*
 #from-input:hover ~ #from-droplist, #from-droplist:hover {
     display: block;
