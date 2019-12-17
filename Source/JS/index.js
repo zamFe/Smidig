@@ -5,14 +5,6 @@ let locationData = {
 
 let inputDelay;
 
-/*
-window.addEventListener("click", () =>  {
-    console.log("click");
-    document.getElementById("from-droplist").style.display = "none";
-    document.getElementById("to-droplist").style.display = "none";
-})
-*/
-
 document.getElementById("dark-screen").addEventListener("click", (e) =>  {  
     e.stopPropagation();
     document.getElementById("from-droplist").style.display = "none"; 
@@ -39,7 +31,7 @@ function updateDropdown(loc) {
             addToDropdown(JSON.parse(text).data, loc);
         })
         console.log("Post");
-    }, 800)
+    }, 600)
 }
 
 
@@ -80,13 +72,10 @@ function addToDropdown(data, loc) {
     let template = "";
 
     for(let i = 0; i < data.choices.length; i++){
-        template += '<div class="droplist-content" onclick="getName(\''+ data.choices[i].name + '\', \''+ data.choices[i].lat + '\', \''+ data.choices[i].lng + '\', \''+ loc + '\'  )"><span class="dropdown-span">' + data.choices[i].name + '</span></div>'
+        template += '<div class="droplist-content" onclick="getName(\''+ data.choices[i].address + '\', \''+ data.choices[i].lat + '\', \''+ data.choices[i].lng + '\', \''+ loc + '\'  )"><span class="dropdown-span">' + data.choices[i].name + '</span></div>'
     }
 
     document.getElementById(loc + "-droplist").innerHTML = template;
 }
 
-
-
-
-setup("Candis");
+setup("Zoomers");
