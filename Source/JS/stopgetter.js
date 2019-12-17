@@ -143,7 +143,7 @@ stepBuilder("Gå", "Lilletorget", "10:45", "");
 stepBuilder("", "Campus Fjerdingen", "10:50", "");
 
 
-let fullRoute = localStorage.getItem("route");
+let fullRoute = JSON.parse(localStorage.getItem("route"));
 
 
     var index = (urlParams.get('index'))?urlParams.get('index'):0;
