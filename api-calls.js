@@ -120,7 +120,7 @@ function formatData(data) {
     			stops: r[j].stops,
                 waypoints: {
                     streets: segment.streets,
-                    color: modeInfo.color
+                    color: segment.modeInfo.color
                 }
 
     		}
