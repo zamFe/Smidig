@@ -32,13 +32,19 @@
         let index = new URLSearchParams(window.location.search).get("index");
 
         for (var i = 0; i < fullRoute[index].route.length; i++) {
-          for (var j = 0; j < fullRoute[index].route[i].waypoints.streets.length; j++) {
+          //console.log(fullRoute[index].route[i])
+
+          for (var j = 0; j < fullRoute[index].route[i].waypoints.shapes.length; j++) {
             
+
+            console.log(fullRoute[index].route[i].waypoints.color.red, fullRoute[index].route[i].waypoints.color.green, fullRoute[index].route[i].waypoints.color.blue)
+            //console.log('#' + fullRoute[index].route[i].waypoints.color.red.toString(16) + fullRoute[index].route[i].waypoints.color.green.toString(16) + fullRoute[index].route[i].waypoints.color.blue.toString(16))
+
             var cascadiaFault = new google.maps.Polyline({
-              strokeColor: '#000000',
+              strokeColor: '#' + fullRoute[index].route[i].waypoints.color.red.toString(16) + fullRoute[index].route[i].waypoints.color.green.toString(16) + fullRoute[index].route[i].waypoints.color.blue.toString(16),
               strokeOpacity: 1,
               strokeWeight: 100,
-              path: google.maps.geometry.encoding.decodePath(fullRoute[index].route[i].waypoints.streets[j].encodedWaypoints)
+              path: google.maps.geometry.encoding.decodePath(fullRoute[index].route[i].waypoints.shapes[j].encodedWaypoints)
             });
 
             cascadiaFault.setMap(map);

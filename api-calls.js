@@ -120,11 +120,14 @@ function formatData(data) {
     			stops: r[j].stops,
                 metres: segment.metres,
                 waypoints: {
-                    streets: (segment.streets)? segment.streets: [],
+                    shapes: (segment.shapes)? segment.shapes: [],
                     color: segment.modeInfo.color
                 }
 
     		}
+            // if (!segment.shapes && segment.streets) {
+            //     formattedData[i].route[j].waypoints.shapes = segment.streets;
+            // }
     	}
     }
 
