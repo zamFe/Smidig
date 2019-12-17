@@ -94,12 +94,7 @@ function transitionBuilder(startTime, stopTime) {
 
     let routeLine = document.createElement("div");
     routeLine.id = "route-line";
-
-    let nodeImg = document.createElement("img");
-    nodeImg.classList.add("Node");
-    nodeImg.src = "../img/icons/node.png";
-    nodeImg.alt = "";
-    routeLine.appendChild(nodeImg);
+    routeLine.style.background = "repeating-linear-gradient(to bottom, #FFFFFF, #FFFFFF 10px, #383e42 10px, #383e42 30px)";
 
     let name = document.createElement("div");
     name.id = "name-container";
@@ -139,6 +134,7 @@ function getImages(routeAction) {
     }
     return image;
 }
+
 /*
 stepBuilder("Gå", "Ellingsrudåsen", "10:00", "T-Bane");
 stepBuilder("", "Jernbanetorget", "10:30", "");
@@ -146,7 +142,6 @@ transitionBuilder(1030, 4243);
 stepBuilder("Buss", "Jernbanetorget", "10:35", "VY");
 stepBuilder("", "Lilletorget", "10:45", "");
 */
-
 
 let fullRoute = JSON.parse(localStorage.getItem("route"));
 urlParams = new URLSearchParams(window.location.search);
