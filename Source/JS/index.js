@@ -70,7 +70,7 @@ function getName(address, lat, lng, loc){
 function setup(name){
 
     let username = document.getElementById("hello-span");
-    username.innerText = "God Morgen, " + name;   
+    username.innerText = "God Morgen, " + name + "!";   
 }
 
 function addToDropdown(data, loc) {
@@ -112,4 +112,4 @@ function addToDropdown(data, loc) {
     document.getElementById(loc + "-droplist").innerHTML = template;
 }
 
-setup("Zoomers");
+setup("Ola Nordmann");
