@@ -82,12 +82,12 @@ footer {
 }
 
 #back-arrow {
-    height: 6vh;
+    height: 5.5vh;
     align-self: center;
     grid-column: 1;
     grid-row: 1;
-    margin-top: 1.3vh;
-    margin-left: 2vw;
+    margin-top: 2vh;
+    margin-left: 4vw;
 }
 
 #title-routes {
@@ -176,14 +176,17 @@ footer {
     grid-row: 1;
 }
 
+.line-routes-div {
+    width: 5vw;
+}
+
 .line-routes {
     background-color: #383e42;
     height: 5px;
-    width: 13px;
+    width: 100%;
     position: relative;
-    left: 43px;
-    top: 20px;
-}
+    top: 30%;
+} 
 
 .route-detail-spacing {
     margin: 3vw;
@@ -230,4 +233,5 @@ footer {
     z-index: 1;
     padding: 5%;
     background-color: white;
+    align-content: center;
 }

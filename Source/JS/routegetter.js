@@ -63,8 +63,7 @@ function setRoutings(oneRoute) {
     setGridColom(oneRoute.route.length, div);
     
     let routeLength = oneRoute.route.length;
-    let number = 1;
-    let lineNumber = 1;
+    let number = 0;
 
     for(let i = 0;  i < routeLength; i++) {
         if(oneRoute.route[i].action === "Overgang") {
@@ -72,8 +71,7 @@ function setRoutings(oneRoute) {
             } else {
                 number += 1;
                 const routeDetailDiv = document.createElement("div");
-                routeDetailDiv.setAttribute("class", `route-detail-${number} route-detail-spacing routes-row`);
-
+                routeDetailDiv.setAttribute("class", `route-detail-spacing routes-row`);
                 routeDetailDiv.style.gridColumn = number;
 
                 // Gets correct action
@@ -91,13 +89,17 @@ function setRoutings(oneRoute) {
                     routeDetailDiv.appendChild(serviceDiv);
                 }
                 div.appendChild(routeDetailDiv);
-
-                if(i <= routeLength-1) {
-                    let line = document.createElement("div");
+                
+                if(i < routeLength-1) {
+                    const lineDiv = document.createElement("div");
+                    lineDiv.setAttribute("class", "line-routes-div")
+                    lineDiv.style.gridColumn = `${number+1}`;
+                    div.appendChild(lineDiv);
+                    number += 1;
+                    
+                    const line = document.createElement("div");
                     line.setAttribute("class", "line-routes routes-row");
-                    line.style.gridColumn = `${lineNumber}/${lineNumber+2}`;
-                    div.appendChild(line);
-                    lineNumber += 1;
+                    lineDiv.appendChild(line);
                 }
 
             }
