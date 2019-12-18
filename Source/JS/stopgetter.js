@@ -21,7 +21,9 @@ function stepBuilder(action, stepName, stepTime, provider) {
         serviceProviderIcon.id = "serviceprovider-icon";
         serviceProviderIcon.src = "../VyAssets/vy.logo.final_primary.png"; //PLACEHOLDER
         serviceProvider.appendChild(serviceProviderIcon);
-        serviceProvider.innerText = provider;
+        if(action != "Gå") {
+            serviceProvider.innerText = provider;
+        }
     }
 
     //build node element
