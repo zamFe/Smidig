@@ -79,7 +79,17 @@ function stepBuilder(stop) {
     //build transport-medium information
     let transport = document.createElement("p");
     transport.classList.add("Text-Transport");
-    transport.innerHTML = stop.action;
+    if(stop.action != "Gå") {
+        transport.innerHTML = stop.serviceName;
+        if(stop.serviceName != stop.serviceNumber) {
+            transport.innerHTML += " (" + stop.serviceNumber + ")";
+        }
+
+    }
+    else{
+        transport.innerHTML = stop.action;
+    }
+
 
     if(stop.action != "") {
         var transportIcon = document.createElement("div");
@@ -89,7 +99,6 @@ function stepBuilder(stop) {
         transportIconImg.id = "transport-icon";
         transportIconImg.src = getImages(stop.action);
         transportIcon.appendChild(transportIconImg);
-
     }
 
     time.appendChild(timeP);
@@ -140,6 +149,7 @@ function transitionBuilder(startTime, stopTime, stopName) {
 
     step.appendChild(time);
     step.appendChild(stopNode);
+
     step.appendChild(name);
 
     container.appendChild(step);
