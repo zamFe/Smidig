@@ -1,7 +1,7 @@
 let container = document.getElementById("main-container");
 
 //build step and adds to HTML
-function stepBuilder(action, stepName, stepTime, provider) {
+function stepBuilder(action, stepName, stepTime, provider, distance) {
     //the step "container"
     let step = document.createElement("div");
     step.id = "departure";
@@ -21,7 +21,12 @@ function stepBuilder(action, stepName, stepTime, provider) {
         serviceProviderIcon.id = "serviceprovider-icon";
         serviceProviderIcon.src = "../VyAssets/vy.logo.final_primary.png"; //PLACEHOLDER
         serviceProvider.appendChild(serviceProviderIcon);
-        serviceProvider.innerText = provider;
+        if(action != "Gå") {
+            serviceProvider.innerText = provider;
+        }
+        else {
+            serviceProvider.innerText = distance + " meter";
+        }
     }
 
     //build node element
@@ -154,7 +159,7 @@ urlParams = new URLSearchParams(window.location.search);
             transitionBuilder(step.startTime, step.endTime);
             continue;
         }
-        stepBuilder(step.action, step.from.address, convertTime(step.startTime), step.operatorName);
+        stepBuilder(step.action, step.from.address, convertTime(step.startTime), step.operatorName, step.metres);
         if (i === fullRoute[index].route.length - 1) {
             stepBuilder("", step.to.address, convertTime(step.endTime), step.operatorName);
         } else {

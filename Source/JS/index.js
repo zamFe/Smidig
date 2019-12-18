@@ -96,6 +96,8 @@ function addToDropdown(data, loc) {
             errorTextElem.innerText = data;
             errorBox.appendChild(errorTextElem);
             container.appendChild(errorBox);
+
+            data = fallbackData.dropDownData;
         }
     } else {
         container.innerHTML = "";
