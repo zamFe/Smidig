@@ -28,18 +28,20 @@ fetch(`${window.location.origin}?action=getroute&from=${searchData.from}&to=${se
             let errorBox = document.createElement('div');
             errorBox.style.position = 'absolute';
             errorBox.style.width = '100%';
-            errorBox.style.height = '15vh';
+            errorBox.style.height = '5vh';
             errorBox.style.zIndex = '100';
             errorBox.style.margin = '0 0 auto 0';
             errorBox.style.top = '0px';
             errorBox.style.fontSize = '1rem';
-            errorBox.style.backgroundColor = 'rgba(200,100,100,.9)';
+            errorBox.style.backgroundColor = 'rgba(200,100,100,0.9)';
             errorBox.style.color = '#ffffff';
             errorBox.style.textAlign = 'center';
             let errorTextElem = document.createElement('p');
-            errorTextElem.innerText = fullRoute;
+            errorTextElem.innerText = "API Call Error - Fallback Data Displayed";
             errorBox.appendChild(errorTextElem);
             container.appendChild(errorBox);
+        
+            fullRoute = fallbackData.routeList; //Sets route-list
         }
     } else {
         container.innerHTML = "";
