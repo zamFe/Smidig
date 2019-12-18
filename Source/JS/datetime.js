@@ -17,3 +17,7 @@ inputElem.addEventListener('change', e => {
     let selectedTime = Math.floor(new Date(inputElem.value).getTime()/1000);
     buttonElem.setAttribute("href", `/html/routes?${route}&datetime=${selectedTime}`);
 })
+
+let fromPlace = searchParams.get("fromname");
+let toPlace = searchParams.get("toname");
+document.getElementById("route-names").innerText = `${fromPlace}   🡆   ${toPlace}`

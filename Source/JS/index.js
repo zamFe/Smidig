@@ -106,7 +106,13 @@ function addToDropdown(data, loc) {
     let template = "";
 
     for(let i = 0; i < data.choices.length; i++){
-        template += '<div class="droplist-content" onclick="getName(\''+ data.choices[i].address + '\', \''+ data.choices[i].lat + '\', \''+ data.choices[i].lng + '\', \''+ loc + '\'  )"><span class="dropdown-span">' + data.choices[i].name + '</span></div>'
+        template += '<div class="droplist-content" onclick="getName(\''+
+            data.choices[i].address +
+            '\', \''+
+            data.choices[i].lat +
+            '\', \''+ data.choices[i].lng +
+            '\', \''+ loc + '\'  )"><span class="dropdown-span">' +
+            data.choices[i].address + '</span></div>'
     }
 
     document.getElementById(loc + "-droplist").innerHTML = template;
