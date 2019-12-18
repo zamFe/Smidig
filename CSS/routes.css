@@ -86,6 +86,8 @@ footer {
     align-self: center;
     grid-column: 1;
     grid-row: 1;
+    margin-top: 1.3vh;
+    margin-left: 2vw;
 }
 
 #title-routes {
@@ -127,10 +129,11 @@ footer {
 #priority-routes {
     grid-column: 1;
     align-self: center;
+    margin-left: 1.3vw;
 }
 
-#burger-menu-routes {
-    height: 4vh;
+#filter-routes {
+    height: 2.4vh;
     grid-column: 2;
     align-self: center;
 }
@@ -156,6 +159,7 @@ footer {
 
 #startTime {
     grid-column: 1;
+    margin-left: 1.3vw;
 }
 
 #endTime {
@@ -190,6 +194,7 @@ footer {
     grid-row: 3;
     font-size: 2vh;
     color: #00957a;
+    margin-left: 1.3vw;
 }
 
 #total-price {
