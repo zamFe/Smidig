@@ -26,10 +26,8 @@
          
 
             <div id="hello-container">
-                <span id="hello-span">God morgen, "Bruker"</span>
+                <span id="hello-span"></span>
             </div> <!--end hello-container-->
-
-            
 
             <div id="destination-container">
 
@@ -52,7 +50,7 @@
                 </div><!--end to-input-container-->
 
                 <div id="route-button-container">
-                    <img onclick="window.location.href='html/datetime.html?from=('+ locationData.from.lat + ',' + locationData.from.lng +')&to=('+ locationData.to.lat + ',' + locationData.to.lng +')&fromname=' + encodeURI(locationData.from.address) + '&toname=' + encodeURI(locationData.to.address)"  id="route_button" src="../img/icons/find_route_button.png" alt="Find route">
+                    <img onclick="checkLocation()"  id="route_button" src="../img/icons/find_route_button.png" alt="Find route" >
                 </div>
             </div> <!--end destination-container-->
 
