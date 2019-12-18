@@ -153,12 +153,6 @@ footer {
     transform: scale(0.9);
 }
 
-/*
-#from-input:hover ~ #from-droplist, #from-droplist:hover {
-    display: block;
-}
-*/
-
 #to-input-container {
     grid-row: 4;
     z-index: 1;
@@ -167,12 +161,6 @@ footer {
 #to-droplist {
     display: none;
 }
-
-/*
- #to-input:hover ~ #to-droplist, #to-droplist:hover {
-    display: block;
-}
-*/
 
 
 #to.droplist:hover {
