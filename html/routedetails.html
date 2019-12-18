@@ -12,7 +12,7 @@
     <div id="back-tab-container" onclick="window.history.go(-1); return false;">
         <img id="back-tab" src="../img/icons/back.png" alt="">
     </div>
-    <div id="map-button-container" onclick="alert('placeholder');">
+    <div id="map-button-container" onclick="let index = new URLSearchParams(window.location.search).get('index'); window.location.href='/html/routemap.html?index=' + index">
         <img id="map-button" src="../img/icons/button_map.png" alt="">
     </div>
 </header>
