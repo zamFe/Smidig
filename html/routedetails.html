@@ -9,10 +9,10 @@
 </head>
 <body style='font-family: "Arial Black'>
 <header>
-    <div id="back-tab-container" onclick="window.history.go(-1); return false;">
+    <div id="back-tab-container" onclick="window.location.href='/html/routes.html' + window.location.search;">
         <img id="back-tab" src="../img/icons/back.png" alt="">
     </div>
-    <div id="map-button-container" onclick="let index = new URLSearchParams(window.location.search).get('index'); window.location.href='/html/routemap.html?index=' + index">
+    <div id="map-button-container" onclick="window.location.href='/html/routemap.html' + window.location.search">
         <img id="map-button" src="../img/icons/button_map.png" alt="">
     </div>
 </header>
