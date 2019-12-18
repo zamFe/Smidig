@@ -1,7 +1,7 @@
 let container = document.getElementById("main-container");
 
 //build step and adds to HTML
-function stepBuilder(action, stepName, stepTime, provider, distance) {
+function stepBuilder(stop) {
     //the step "container"
     let step = document.createElement("div");
     step.id = "departure";
@@ -11,21 +11,27 @@ function stepBuilder(action, stepName, stepTime, provider, distance) {
     time.id = "time-container";
 
     let timeP = document.createElement("p");
-    timeP.innerText = stepTime;
+    timeP.innerText = convertTime(stop.startTime);
+
+    let endTime = document.createElement("div");
+    endTime.id = "time-container";
+
+    let endTimeP = document.createElement("p");
+    endTimeP.innerText = convertTime((stop.endTime));
 
     //add service provider icon
     let serviceProvider = document.createElement("div");
     serviceProvider.id = "serviceprovider-icon-container";
-    if(action != "") {
+    if(stop.action != "") {
         let serviceProviderIcon = document.createElement("img");
         serviceProviderIcon.id = "serviceprovider-icon";
         serviceProviderIcon.src = "../VyAssets/vy.logo.final_primary.png"; //PLACEHOLDER
         serviceProvider.appendChild(serviceProviderIcon);
-        if(action != "Gå") {
-            serviceProvider.innerText = provider;
+        if(stop.action != "Gå") {
+            serviceProvider.innerText = stop.operatorName;
         }
         else {
-            serviceProvider.innerText = distance + " meter";
+            serviceProvider.innerText = stop.metres + " meter";
         }
     }
 
@@ -35,6 +41,9 @@ function stepBuilder(action, stepName, stepTime, provider, distance) {
 
     let routeLine = document.createElement("div");
     routeLine.id = "route-line";
+    if(stop.action == "Gå") {
+        routeLine.style.background = "repeating-linear-gradient(to bottom, #FFFFFF, #FFFFFF 10px, #383e42 10px, #383e42 30px)";
+    }
 
     let nodeImg = document.createElement("img");
     nodeImg.classList.add("Node");
@@ -42,26 +51,43 @@ function stepBuilder(action, stepName, stepTime, provider, distance) {
     nodeImg.alt = "";
     routeLine.appendChild(nodeImg);
 
+    //build end node
+    let endNode = document.createElement("div");
+    endNode.id = "node-container";
+    let endNodeImg = document.createElement("img");
+    endNodeImg.classList.add("Node");
+    endNodeImg.src = "../img/icons/node.png";
+    endNodeImg.alt = "";
+    endNodeImg.style.top = "calc(100% - 50px)";
+    routeLine.appendChild(endNodeImg);
+
     //build name element
     let name = document.createElement("div");
     name.id = "name-container";
 
     let nameP = document.createElement("p");
     nameP.classList.add("Text-Name");
-    nameP.innerText = stepName;
+    nameP.innerText = stop.from.address;
+
+    let endName = document.createElement("div");
+    endName.id = "name-container";
+
+    let endNameP = document.createElement("p");
+    endNameP.classList.add("Text-name");
+    endNameP.innerText = stop.to.address;
 
     //build transport-medium information
     let transport = document.createElement("p");
     transport.classList.add("Text-Transport");
-    transport.innerHTML = action;
+    transport.innerHTML = stop.action;
 
-    if(action != "") {
+    if(stop.action != "") {
         var transportIcon = document.createElement("div");
         transportIcon.id = "transport-icon-container";
 
         var transportIconImg = document.createElement("img");
         transportIconImg.id = "transport-icon";
-        transportIconImg.src = getImages(action);
+        transportIconImg.src = getImages(stop.action);
         transportIcon.appendChild(transportIconImg);
 
     }
@@ -72,19 +98,25 @@ function stepBuilder(action, stepName, stepTime, provider, distance) {
 
     name.appendChild(nameP);
     name.appendChild(transport);
-    if(action != "") {
+    if(stop.action != "") {
         name.appendChild(transportIcon);
     }
+
+    endTime.appendChild(endTimeP);
+    endName.appendChild(endNameP);
 
 
     step.appendChild(time);
     step.appendChild(stopNode);
     step.appendChild(name);
+    step.appendChild(endTime);
+    step.appendChild(document.createElement("br"));
+    step.appendChild(endName);
 
     container.appendChild(step);
 }
 
-function transitionBuilder(startTime, stopTime) {
+function transitionBuilder(startTime, stopTime, stopName) {
     let step = document.createElement("div");
     step.id = "departure";
 
@@ -97,18 +129,14 @@ function transitionBuilder(startTime, stopTime) {
     let stopNode = document.createElement("div");
     stopNode.id = "node-container";
 
-    let routeLine = document.createElement("div");
-    routeLine.id = "route-line";
-    routeLine.style.background = "repeating-linear-gradient(to bottom, #FFFFFF, #FFFFFF 10px, #383e42 10px, #383e42 30px)";
-
     let name = document.createElement("div");
     name.id = "name-container";
     let nameP = document.createElement("p");
     nameP.innerText = "overgang";
 
+
     time.appendChild(timeP);
     name.appendChild(nameP);
-    stopNode.appendChild(routeLine);
 
     step.appendChild(time);
     step.appendChild(stopNode);
@@ -159,10 +187,5 @@ urlParams = new URLSearchParams(window.location.search);
             transitionBuilder(step.startTime, step.endTime);
             continue;
         }
-        stepBuilder(step.action, step.from.address, convertTime(step.startTime), step.operatorName, step.metres);
-        if (i === fullRoute[index].route.length - 1) {
-            stepBuilder("", step.to.address, convertTime(step.endTime), step.operatorName);
-        } else {
-            stepBuilder("", step.to.address, convertTime(step.endTime), step.operatorName);
-        }
+        stepBuilder(step);
     }

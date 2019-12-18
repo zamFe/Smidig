@@ -119,6 +119,8 @@ footer {
     position: relative;
     text-align: left;
     top: 80px;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .Text-Name {
