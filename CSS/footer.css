@@ -5,17 +5,17 @@
 	margin: 0;
 	background-color: #c7c9c7;
 	width: inherit;
-	height: inherit;
+	height: 100%;
 }
 
 .flex-container > div  {
 	background-color: #c7c9c7;
 	width: 100%;
-	height: 200px;
+	height: 100%;
 	text-align: center;
 	align-content: center;
-	font-size: 40px; 
-	border: 4px solid grey;
+	font-size: 6vw; 
+	border: .4vw solid grey;
 }
 
 .flex-container > div:hover {
@@ -25,5 +25,9 @@
 .footer-img {
 	position: relative;
 	top: 10%;
-	width: 100px;
+	width: 15%;
+}
+
+.nav-container span {
+	bottom: 5%;
 }
