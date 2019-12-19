@@ -1,0 +1,276 @@
+* 9c3d7ed - (HEAD -> master, origin/master, origin/HEAD) updated css bottom dropdown border and dropdown size (68 minutes ago) <Andreas Sæther>
+* d0b35e4 - Returning to route list from detailed route now removes index from the URL (78 minutes ago) <Krister>
+*   9b14dcf - Merge branch 'master' of https://github.com/zamFe/Smidig (2 hours ago) <Tommyhama95>
+|\  
+| * fb1ceac - Swap button on index now only shows after two routes are selected (2 hours ago) <Krister>
+| * 7746021 - fixed time for routedetails and routes, reformated som code in index (2 hours ago) <Andreas Sæther>
+* | 2f153d5 - Changed layout for routedetails.html (2 hours ago) <Tommyhama95>
+|/  
+* 6db56ed - Moved style from routemap to map.css and implemented a check for same location input in frontpage (19 hours ago) <Andreas Sæther>
+*   9f24e69 - Merge branch 'master' of https://github.com/zamFe/Smidig (20 hours ago) <Tommyhama95>
+|\  
+| * 4a87c74 - Updated font for routemap and route details (21 hours ago) <Andreas Sæther>
+| * a846566 - Altered horizontal swap button. Now matches with the one in index.html (21 hours ago) <Krister>
+| * 1abad3d - Implemented HTML and Styling for Date-Time, modified Nav styling. Is now responsive (21 hours ago) <Krister>
+| * 2201586 - Added text to back to routedetails (21 hours ago) <Andreas Sæther>
+* | 95cfd43 - Fixed visuals in routes.html (20 hours ago) <Tommyhama95>
+|/  
+*   45ea5cd - Merge branch 'master' of https://github.com/zamFe/Smidig (22 hours ago) <Tommyhama95>
+|\  
+| *   4306afe - Merge remote-tracking branch 'origin/master' (22 hours ago) <zamFe>
+| |\  
+| * | a3cb1b5 - improved transport information (22 hours ago) <zamFe>
+* | | 03faa05 - Design fixes in routes.html (22 hours ago) <Tommyhama95>
+| |/  
+|/|   
+* | 7de4b6b - End of styling on routes.html detail lines (22 hours ago) <Tommyhama95>
+* | f5f7746 - Changed username (22 hours ago) <Andreas Sæther>
+|/  
+*   075dfee - Merge remote-tracking branch 'origin/master' (23 hours ago) <zamFe>
+|\  
+| * df1c076 - removed comments (23 hours ago) <Andreas Østby>
+| * 9e7ae0e - Implemented back button to map (23 hours ago) <Andreas Sæther>
+* | 8a46c17 - reworked routedetails, making the page more understandable and easier to read (23 hours ago) <zamFe>
+|/  
+*   0f50062 - Updated the map to zoom and pan according to the route data (24 hours ago) <Andreas Østby>
+|\  
+| * c17e5ee - added walking distance (24 hours ago) <zamFe>
+| * 6b45f56 - made transport-icons transparent (24 hours ago) <zamFe>
+| * f91ea28 - Fixed "Gå" showing "undefined" service provider (24 hours ago) <zamFe>
+| * 5ecdc02 - added "show im map" button to routedetails.html (24 hours ago) <zamFe>
+| * 176d906 - Implemented fallback system in case of API call failures. Error Message remains displayed (25 hours ago) <Krister>
+* | 7a04075 - Updated the map to zoom and pan according to the route data (24 hours ago) <Andreas Østby>
+|/  
+* abb7bb7 - Moved the HTML script into a separate file (25 hours ago) <Andreas Østby>
+* d993ceb - Navigated route details to map (25 hours ago) <Andreas Sæther>
+* 48ed9e3 - Added on-page error messages on failed API calls (2 days ago) <Krister>
+* 6f1d2b0 - updated dropdown overflow (2 days ago) <Andreas Sæther>
+*   3982854 - Hidden the apikey for google maps (2 days ago) <Andreas Østby>
+|\  
+| * 2f4e1a0 - added "show im map" button to routedetails.html (2 days ago) <zamFe>
+* |   a5cc1e1 - Hidden the apikey for google maps (2 days ago) <Andreas Østby>
+|\ \  
+| |/  
+| * d89ea37 - added "show in map" button (2 days ago) <zamFe>
+* | 1cad30e - Hidden the apikey for google maps (2 days ago) <Andreas Østby>
+|/  
+*   f52ff35 - Merge remote-tracking branch 'origin/master' (2 days ago) <zamFe>
+|\  
+| * 87aed2b - Updated status to api-calls and server (2 days ago) <Krister>
+* | daec90b - added nowrap to stop names (2 days ago) <zamFe>
+|/  
+*   c101f83 - Merge remote-tracking branch 'origin/master' (2 days ago) <zamFe>
+|\  
+| * b5547a9 - updated shapes (2 days ago) <Andreas Østby>
+* | e1a90c1 - route-line now have striped lines on transitions (2 days ago) <zamFe>
+|/  
+*   83e75c2 - Merge remote-tracking branch 'origin/master' (2 days ago) <zamFe>
+|\  
+| * 957b6db - s (2 days ago) <Andreas Østby>
+* | 959eda5 - fixed "overgang" (2 days ago) <zamFe>
+|/  
+* d079cfd - added width to map (2 days ago) <Andreas Sæther>
+* 911f8a7 - Added swapping addresses on index (2 days ago) <Krister>
+*   2742a20 - Merge branch 'master' of https://github.com/zamFe/Smidig (2 days ago) <Krister>
+|\  
+| * 3a5223b - added metres to each step in the api data (2 days ago) <Andreas Østby>
+* |   69d67f8 - Merge branch 'master' of https://github.com/zamFe/Smidig (2 days ago) <Krister>
+|\ \  
+| |/  
+| *   16315c4 - Merge remote-tracking branch 'origin/master' (2 days ago) <zamFe>
+| |\  
+| | * 4299d62 - Added localstorage json stringify (2 days ago) <Andreas Østby>
+| * |   dec8a67 - Merge remote-tracking branch 'origin/master' (2 days ago) <zamFe>
+| |\ \  
+| | |/  
+| | *   1f820c2 - Merge branch 'master' of https://github.com/zamFe/Smidig (2 days ago) <Tommyhama95>
+| | |\  
+| | | *   8912d62 - Merge branch 'master' of https://github.com/zamFe/Smidig (2 days ago) <Andreas Sæther>
+| | | |\  
+| | | * | 08bea3a - Renamed testmap to routemap (2 days ago) <Andreas Sæther>
+| | * | | e0fddbd - Routes.html changes (2 days ago) <Tommyhama95>
+| * | | | 5fd54cc - JSON.parse on localstorage (2 days ago) <zamFe>
+| | |_|/  
+| |/| |   
+| * | |   edf2731 - Merge remote-tracking branch 'origin/master' (2 days ago) <zamFe>
+| |\ \ \  
+| | | |/  
+| | |/|   
+| * | | d74d534 - set up localstorage support (2 days ago) <zamFe>
+| | |/  
+| |/|   
+* | |   f856548 - Merge branch 'master' of https://github.com/zamFe/Smidig (2 days ago) <Krister>
+|\ \ \  
+| | |/  
+| |/|   
+| * |   a38a0dc - Merge branch 'master' of https://github.com/zamFe/Smidig (2 days ago) <Andreas Sæther>
+| |\ \  
+| | * | 8784160 - Added waypoints tot the data sent to the client (2 days ago) <Andreas Østby>
+| | * | 0afa1fb - Added waypoints tot the data sent to the client (2 days ago) <Andreas Østby>
+| | |/  
+| * | 5f5f4f6 - Updated index html and css (2 days ago) <Andreas Sæther>
+| |/  
+* | 46d4d25 - Datetime is now actually taken in to the API call (2 days ago) <Krister>
+|/  
+* 02fd5fe - Sorted routes based on start times (2 days ago) <Krister>
+*   8157bf0 - Merge branch 'master' of https://github.com/zamFe/Smidig (2 days ago) <Tommyhama95>
+|\  
+| * 141e115 - Improved error message on API call failure (2 days ago) <Krister>
+* | 293c789 - Routes.html design fixes (2 days ago) <Tommyhama95>
+* |   6f0236e - Merge branch 'master' of https://github.com/zamFe/Smidig (2 days ago) <Tommyhama95>
+|\ \  
+| |/  
+| * b2054a2 - Updated dropdown menu (3 days ago) <Andreas Sæther>
+| * f897901 - flexibility improvements (3 days ago) <zamFe>
+| * d0debe2 - flexibility improvements (3 days ago) <zamFe>
+* |   d972031 - Merge branch 'master' of https://github.com/zamFe/Smidig (3 days ago) <Tommyhama95>
+|\ \  
+| |/  
+| * c6cc1d5 - fixed lost files (3 days ago) <zamFe>
+| * 458af1c - fixed lost files (3 days ago) <zamFe>
+* | bcde89a - Implemented fix on Nav bar in routes.html (3 days ago) <Tommyhama95>
+|/  
+*   9260c5f - Merge branch 'master' of https://github.com/zamFe/Smidig (3 days ago) <Tommyhama95>
+|\  
+| * c68fd39 - Revert "Revert "Merge branch 'master' of https://github.com/zamFe/Smidig"" (3 days ago) <Basteox>
+| * b7146f8 - Revert "Merge branch 'master' of https://github.com/zamFe/Smidig" (3 days ago) <Basteox>
+| *   25d9d00 - Merge branch 'master' of https://github.com/zamFe/Smidig (3 days ago) <Basteox>
+| |\  
+| * | 56e6277 - Create mapping.hmtl (3 days ago) <Basteox>
+* | | 43fb3c1 - Fixed visual layout of routes box in routes.html (3 days ago) <Tommyhama95>
+* | |   f917220 - Merge branch 'master' of https://github.com/zamFe/Smidig (3 days ago) <Tommyhama95>
+|\ \ \  
+| | |/  
+| |/|   
+| * | b7e8da7 - Route names now change depending on URL fromname and toname headers (3 days ago) <Krister>
+* | | 2ed5ec2 - fixed typo in routes merge (3 days ago) <Tommyhama95>
+|/ /  
+* |   5aa5292 - Merge branch 'master' of https://github.com/zamFe/Smidig (3 days ago) <Andreas Sæther>
+|\ \  
+| * | 26abd32 - Configured icons, all are now 100x100p (3 days ago) <Krister>
+| * | b0302d2 - add images (3 days ago) <Tommyhama95>
+| * | 64d52d3 - Making changes to routes.html with images as route (3 days ago) <Tommyhama95>
+| * | 10e07f3 - Created sample delay alert in sample page (3 days ago) <Krister>
+| * | 5b85cb5 - fixed dynamic line between stops (3 days ago) <zamFe>
+| * |   1486507 - Merge remote-tracking branch 'origin/master' (3 days ago) <zamFe>
+| |\ \  
+| | * | f214350 - Finished time convertion for routes.html (3 days ago) <Tommyhama95>
+| | |/  
+| * | 126d4d4 - fixed dynamic line between stops (3 days ago) <zamFe>
+| |/  
+* | 50e44c6 - Added auto-complete search (3 days ago) <Andreas Sæther>
+|/  
+*   ba0ac1b - Merge branch 'master' of https://github.com/zamFe/Smidig (3 days ago) <Andreas Østby>
+|\  
+| * 3ee4dbf - Added route swapping on routes.js (3 days ago) <Krister>
+| * 2d934d4 - added dynamic line to routedetails (3 days ago) <zamFe>
+| *   1d36512 - Merge remote-tracking branch 'origin/master' (3 days ago) <zamFe>
+| |\  
+| | * 678c39d - Changes to routes.html display of time (3 days ago) <Tommyhama95>
+| | * 155f688 - Improved date-time handling in the datetime selection page (3 days ago) <Krister>
+| * | 72551d4 - added dynamic line to routedetails (3 days ago) <zamFe>
+* | | 9ff815f - removed r-p-n (3 days ago) <Andreas Østby>
+| |/  
+|/|   
+* | 0bcfaec - Implemented datetime selection page (3 days ago) <Krister>
+|/  
+* 9be5b97 - added server functionality for autocompletion of locations (3 days ago) <Andreas Østby>
+* f5a3057 - takes index from urlParams.get('index') (3 days ago) <zamFe>
+*   d7055f9 - fixed routing issues (6 days ago) <Tommyhama95>
+|\  
+| * 91e8244 - Changed the link back to index.html (6 days ago) <Andreas Sæther>
+* | fddedd7 - Fixed routing issues (6 days ago) <Tommyhama95>
+|/  
+* 9cf338f - Fixed routing from index to routes.html (6 days ago) <Tommyhama95>
+* 407aaa8 - Re-added package-lock.json (7 days ago) <Tommyhama95>
+*   8bade76 - Merge branch 'master' of https://github.com/zamFe/Smidig (7 days ago) <Tommyhama95>
+|\  
+| * 530f4d3 - Added dropdown menu and fixed footer divs (7 days ago) <Andreas Sæther>
+| * 27c1da7 - takes index from urlParams.get('index') (7 days ago) <zamFe>
+| * 361a908 - routedetails now linked to routes (7 days ago) <zamFe>
+| * 4c7db84 - routedetails now connected to node sever.js (7 days ago) <zamFe>
+| *   9490041 - Merge remote-tracking branch 'origin/master' (7 days ago) <zamFe>
+| |\  
+| * | 805c77c - routedetails now reads data from object in format similar to the APIs format, and displays basic information. Next step is to add more details (use the stop.node.component.js template before you edit the .js directly) (7 days ago) <zamFe>
+* | | 8a723ed - Implemented changes (7 days ago) <Tommyhama95>
+| |/  
+|/|   
+* | 90306c8 - Implemented dymanic searching for routes through API calls (7 days ago) <Krister>
+* | d0bebc1 - Set up before API fetching data for routes.html (7 days ago) <Tommyhama95>
+* |   43fa36a - Merge branch 'master' of https://github.com/zamFe/Smidig (7 days ago) <Tommyhama95>
+|\ \  
+| |/  
+| * b8c45f8 - Grid for routedetails is now working. Next is getting data from API into route (7 days ago) <zamFe>
+| * 775d06a - node for stops (7 days ago) <zamFe>
+* | a9c3af6 - Add JS file to get from API srver (7 days ago) <Tommyhama95>
+* | dd0b4eb - Update on routes-html (7 days ago) <Tommyhama95>
+|/  
+*   7eb54c1 - Merge branch 'master' of https://github.com/zamFe/Smidig (7 days ago) <Tommyhama95>
+|\  
+| * 5dacf3a - returning routes to user (7 days ago) <Andreas Østby>
+| * f098fc9 - Changed redirect from window to express (7 days ago) <Krister>
+| * 1213f42 - Added function to redirect to routes with query (7 days ago) <Krister>
+| * 0727ca6 - Implemented node exporting and requiring between API calls and server (7 days ago) <Krister>
+| * e88d8e2 - Updated route (7 days ago) <Andreas Østby>
+* | 6214cca - New Route.js content for layout  of route.html (7 days ago) <Tommyhama95>
+|/  
+* 3ef51c9 - Updated route (7 days ago) <Andreas Østby>
+* d22a2f2 - Updated route (7 days ago) <Andreas Østby>
+* 3cd2874 - Updated Vy logo (7 days ago) <Andreas Sæther>
+* c40fadf - back tab button (8 days ago) <zamFe>
+* 5dacc5d - fixed footer overflow (8 days ago) <zamFe>
+* f888b56 - fixed footer overflow (8 days ago) <zamFe>
+* 0f2d4bb - improved flexibility and added nav bar in footer (8 days ago) <zamFe>
+* 3c9b73a - Added footer html and css files (8 days ago) <Andreas Sæther>
+* 1059985 - fixed transparency (8 days ago) <zamFe>
+* 0d43fb1 - Added starFooter (8 days ago) <Andreas Sæther>
+* 11a0cac - fixed transparency (8 days ago) <zamFe>
+* 19cccc7 - added icons and logos (8 days ago) <zamFe>
+*   b49857a - Merge remote-tracking branch 'origin/master' (8 days ago) <zamFe>
+|\  
+| * 86708de - Little api error handling, formatted data retrieved from the server (8 days ago) <Andreas Østby>
+| * 8cb336c - Added 2 images (8 days ago) <Andreas Sæther>
+* | dbcbfef - finished index html & css (8 days ago) <zamFe>
+|/  
+* 340f890 - Updated vylogo path (8 days ago) <Andreas Sæther>
+* 04b6849 - Renamed VyAsset Folder (8 days ago) <Andreas Sæther>
+* b54cca0 - Updated landingsite (8 days ago) <Andreas Sæther>
+* 196f465 - fixed index.css (9 days ago) <zamFe>
+* 7b8525b - fixed index.css (9 days ago) <zamFe>
+* 9e7f159 - Delete index.css (9 days ago) <zamFe>
+* d954670 - updated css (9 days ago) <zamFe>
+* 9e79cac - updated css (9 days ago) <zamFe>
+* 39ba7b2 - added some icons (9 days ago) <zamFe>
+* 0a6ca2f - added header to index page (9 days ago) <zamFe>
+*   de5de49 - Merge remote-tracking branch 'origin/master' (9 days ago) <zamFe>
+|\  
+| *   0ae2c8d - Merge branch 'master' of https://github.com/zamFe/Smidig (9 days ago) <Tommyhama95>
+| |\  
+| | * a23f64f - Implemented sending CSS and JS files along with HTML documents (9 days ago) <Krister>
+| * | 38cd25f - Started styling for routes.html (9 days ago) <Tommyhama95>
+| |/  
+| * e38875a - Created design color file for Vy (9 days ago) <Tommyhama95>
+| * 29c571b - Empty pathspecification now redirects to Index.html (9 days ago) <Krister>
+| * 2f7fcdd - Handled parameter inputs and getting the response from server (9 days ago) <Andreas Østby>
+| *   5ca0f70 - Merge branch 'master' of https://github.com/zamFe/Smidig (9 days ago) <Krister>
+| |\  
+| | *   10e86a8 - Merge branch 'master' of https://github.com/zamFe/Smidig (9 days ago) <Tommyhama95>
+| | |\  
+| | * | bf0b8d6 - Created foulders and files for routes from search (9 days ago) <Tommyhama95>
+| * | | 557f0df - Implmented server.js, Switch case actions for gettingroute/gettinglocations TBA (9 days ago) <Krister>
+| | |/  
+| |/|   
+| * | 7a04244 - Deleted dummy api-key folder (9 days ago) <Krister>
+| * | 2b6b80a - Made server and connected against API (9 days ago) <Andreas Østby>
+| * | f831382 - Made server and connected against API (9 days ago) <Andreas Østby>
+| |/  
+* | 0922ea5 - formatted index page (9 days ago) <zamFe>
+|/  
+* cdd2142 - added index.html (10 days ago) <zamFe>
+* 4ff5f47 - added vy assets to project (10 days ago) <zamFe>
+*   175dd88 - Merge branch 'master' of https://github.com/zamFe/Smidig (10 days ago) <Krister>
+|\  
+| * a28df38 - Update README.md (2 weeks ago) <Frederik Zimmer Wold>
+* | b062ac7 - Implemented node-module package-lock for TripGo Leaflet and gitignore (10 days ago) <Krister>
+|/  
+* af8e261 - Initial commit (2 weeks ago) <zamFe>
