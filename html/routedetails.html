@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <div id="back-tab-container" onclick="window.location.href='/html/routes.html' + window.location.search;">
+    <div id="back-tab-container" onclick="window.location.href='/html/routes.html' + window.location.search.substring(0,window.location.search.lastIndexOf('&'));">
         <img id="back-tab" src="../img/icons/back.png" alt="">
     </div>
     <div id="map-button-container" onclick="window.location.href='/html/routemap.html' + window.location.search">
