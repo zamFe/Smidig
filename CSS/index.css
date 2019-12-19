@@ -142,7 +142,7 @@ footer {
 
 #swap-from-to {
     grid-row: 3;
-    display: inline-block;
+    display: none;
     margin-right: 2%;
     margin-left: auto;
     margin-top: 3%;
