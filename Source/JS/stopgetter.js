@@ -13,11 +13,11 @@ function stepBuilder(stop) {
     let timeP = document.createElement("p");
     timeP.innerText = convertTime(stop.startTime);
 
-    let endTime = document.createElement("div");
-    endTime.id = "time-container";
+/*     let endTime = document.createElement("div");
+    endTime.id = "time-container"; */
 
-    let endTimeP = document.createElement("p");
-    endTimeP.innerText = convertTime((stop.endTime));
+/*     let endTimeP = document.createElement("p");
+    endTimeP.innerText = convertTime((stop.endTime)); */
 
     //add service provider icon
     let serviceProvider = document.createElement("div");
@@ -69,12 +69,12 @@ function stepBuilder(stop) {
     nameP.classList.add("Text-Name");
     nameP.innerText = stop.from.address;
 
-    let endName = document.createElement("div");
+/*     let endName = document.createElement("div");
     endName.id = "name-container";
 
     let endNameP = document.createElement("p");
     endNameP.classList.add("Text-name");
-    endNameP.innerText = stop.to.address;
+    endNameP.innerText = stop.to.address; */
 
     //build transport-medium information
     let transport = document.createElement("p");
@@ -111,16 +111,16 @@ function stepBuilder(stop) {
         name.appendChild(transportIcon);
     }
 
-    endTime.appendChild(endTimeP);
-    endName.appendChild(endNameP);
+ /*    endTime.appendChild(endTimeP); */
+/*     endName.appendChild(endNameP); */
 
 
     step.appendChild(time);
     step.appendChild(stopNode);
     step.appendChild(name);
-    step.appendChild(endTime);
-    step.appendChild(document.createElement("br"));
-    step.appendChild(endName);
+  //  step.appendChild(endTime);
+   // step.appendChild(document.createElement("br"));
+   // step.appendChild(endName);
 
     container.appendChild(step);
 }
@@ -194,7 +194,7 @@ urlParams = new URLSearchParams(window.location.search);
     for(let i = 0; i < fullRoute[index].route.length; i++) {
         let step = fullRoute[index].route[i];
         if (step.action === 'Overgang') {
-            transitionBuilder(step.startTime, step.endTime);
+            //transitionBuilder(step.startTime, step.endTime);
             continue;
         }
         stepBuilder(step);
