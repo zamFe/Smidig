@@ -19,6 +19,7 @@ swapRouteButton.addEventListener('click', e => {
  
 // Convert from Seconds to real time
 function convertTime(time) {
+    /*
     let date = new Date(time*1000);
     let convertedTime = `${date.getHours()}:${date.getMinutes()}`
 
@@ -28,6 +29,12 @@ function convertTime(time) {
         } else {
             convertedTime = convertedTime + "0";
         }
+    }*/
+    let date = new Date(time*1000);
+    let convertedTime = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
+
+    if(date.getHours() < 10) {
+        convertedTime = '0' + `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
     }
 
     return convertedTime;
@@ -111,13 +118,15 @@ function setRoutings(oneRoute) {
 function secondsToTime(end, start) {
     let time = end - start;
     let hour = Math.floor(time / 3600);
-    let min = Math.floor(time % 3600 / 60);
-    let convTime;
+    let min = Math.ceil(time % 3600 / 60);
+    let convTime = "";
 
     if (hour != 0) {
-        convTime = `${hour}t `;
+        convTime += `${hour}t `;
     } 
-    convTime += min + "min";
+    
+    convTime += min + "min";    
+    
 
     return convTime;
 }

@@ -158,9 +158,20 @@ function transitionBuilder(startTime, stopTime, stopName) {
 
 
 function convertTime(time) {
+    /*let date = new Date(time*1000);
+    let convertedTime = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
+    return convertedTime;*/
+
     let date = new Date(time*1000);
     let convertedTime = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
+
+    if(date.getHours() < 10) {
+        convertedTime = '0' + `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
+    }
+
     return convertedTime;
+
+
 }
 
 function getImages(routeAction) {

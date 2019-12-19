@@ -62,6 +62,13 @@ function getName(address, lat, lng, loc){
         address, lat, lng
     };
 
+    if(locationData.from && locationData.to){
+        document.getElementById("swap-from-to").style.display = "inline-block";
+    } else {
+        document.getElementById("swap-from-to").style.display = "none";
+    }
+
+
     document.getElementById(loc + "-input").value = address;
     document.getElementById(loc + "-droplist").style.display = "none";
     document.getElementById("dark-screen").style.display = "none";
@@ -121,7 +128,10 @@ function checkLocation(){
     if(locationData.from.address == locationData.to.address){
         alert("Samme lokasjoner støttes ikke!");
     } else {
-        window.location.href="html/datetime.html?from=(" + locationData.from.lat + "," + locationData.from.lng + ")&to=(" + locationData.to.lat + "," + locationData.to.lng +")&fromname=" + encodeURI(locationData.from.address) + "&toname=" + encodeURI(locationData.to.address);      
+        window.location.href="html/datetime.html?from=(" + locationData.from.lat + 
+        "," + locationData.from.lng + ")&to=(" + locationData.to.lat + 
+        "," + locationData.to.lng +")&fromname=" + 
+        encodeURI(locationData.from.address) + "&toname=" + encodeURI(locationData.to.address);      
     }
     
 }
