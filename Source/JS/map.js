@@ -19,9 +19,15 @@ function initMap() {
     for (var i = 0; i < fullRoute[index].route.length; i++) {
 
         for (var j = 0; j < fullRoute[index].route[i].waypoints.shapes.length; j++) {
+           
+            /*
+            if(fullRoute[index].route[i].waypoints.shapes[j].travelled) {
+                continue;
+            }
+            */
 
             let shapes = google.maps.geometry.encoding.decodePath(fullRoute[index].route[i].waypoints.shapes[j].encodedWaypoints)
-
+            
             var cascadiaFault = new google.maps.Polyline({
                 strokeColor: '#' + fullRoute[index].route[i].waypoints.color.red.toString(16) + fullRoute[index].route[i].waypoints.color.green.toString(16) + fullRoute[index].route[i].waypoints.color.blue.toString(16),
                 strokeOpacity: 1,
@@ -30,7 +36,9 @@ function initMap() {
             });
 
             for (var a = 0; a < shapes.length; a++) {
-              bounds.extend(new google.maps.LatLng(shapes[a].lat(), shapes[a].lng()));     
+
+
+                bounds.extend(new google.maps.LatLng(shapes[a].lat(), shapes[a].lng()));     
 
             }
 

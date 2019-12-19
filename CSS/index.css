@@ -103,13 +103,13 @@ footer {
 
 .droplist-content {
     display: inline-block;
-    width: 100%;
+    width: 80vw;
     height: 100px;
     background-color: lightgray;
     border-left: 5px solid grey;
     border-right: 5px solid grey;
     border-top: 2px solid grey;
-    border-bottom: 2px solid grey;
+    border-bottom: 3px solid #00957a;
     margin: 0;
 
 }
