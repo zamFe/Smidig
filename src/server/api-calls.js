@@ -9,14 +9,14 @@ let querystring = require('querystring');
 
 function fromTripGo(args, res) {
 
-    fs.readFile('api-keys/tripgo.properties', 'utf8', (err, data) => {
+    fs.readFile('src/server/api-keys/tripgo.properties', 'utf8', (err, data) => {
         if (err) throw err;
         getData(data, args, res);
     });
 }
 
 function getMap(res) {
-    fs.readFile('api-keys/googleMaps.properties', 'utf8', (err, data) => {
+    fs.readFile('src/server/api-keys/googleMaps.properties', 'utf8', (err, data) => {
         if (err) throw err;
         var options = {
             url: 'https://maps.googleapis.com/maps/api/js?key=' + data + '&callback=initMap&libraries=geometry',

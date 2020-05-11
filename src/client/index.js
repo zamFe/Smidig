@@ -24,7 +24,7 @@ function updateDropdown(loc) {
     } 
 
      inputDelay = setTimeout(() => {
-        fetch(`${window.location.origin}?action=getlocation&q=` + document.getElementById(loc + "-input").value)
+        fetch(`${window.location.origin}/api/routes?action=getlocation&q=` + document.getElementById(loc + "-input").value)
         .then(function (response) {
             return response.text();
         }).then(function (text) {
