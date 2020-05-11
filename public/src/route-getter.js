@@ -142,7 +142,7 @@ function setUp() {
         const box = document.createElement("div");
         box.setAttribute("class", "routes-box-container");
         box.addEventListener("click", () => {
-            window.location.href = "routedetails.html" + window.location.search + "&index=" + i;
+            window.location.href = "route-details.html" + window.location.search + "&index=" + i;
         })
 
         const startTime = document.createElement("div");

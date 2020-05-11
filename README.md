@@ -1,10 +1,10 @@
 # Vy Door-to-door 
 
 ### Group 7 members:
-##### Tommy Hamaranses - Front End & Mobiledevelopment
-##### Krister Pongos Emanuelsen - Front End & Mobiledevelopment
-##### Andreas Østby - Inteligent Systems
-##### Baste Øxseth - Inteligent Systems
+##### Tommy Hamaranses - Front End & Mobile development
+##### Krister Pongos Emanuelsen - Front End & Mobile development
+##### Andreas Østby - Intelligent Systems
+##### Baste Øxseth - Intelligent Systems
 ##### Jørgen Sølyst - Digital Marketing
 ##### Frederik Zimmer Wold - Digital Marketing
 ##### Andreas Sæther - Game Programming
@@ -14,8 +14,8 @@
 
 ### Scrum Roles
 
-#### Product Owner:
-#### Scrum Master: 
+#### Product Owner: Tommy Hamarsnes
+#### Scrum Master: Krister Pongos Emanuelsen
 
 
 ## Starting the project
