@@ -1,0 +1,21 @@
+{
+  "name": "vy-reiser-smidig-prosjekt",
+  "version": "1.0.0",
+  "description": "Smidig prosjekt - Vy Reiser prosjektmappe",
+  "main": "index.js",
+  "repository": "https://github.com/zamFe/Smidig.git",
+  "author": "Jørgen Bjølseth, Andreas Sæther, Andreas Østby, Tommy Hamarsnes, Felix Amundsen Zamora, Baste Øxseth, Frederik Zimmer Wold, Krister Pongos Emanuelsen",
+  "license": "MIT",
+  "engines": {
+    "node": "^12.0.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.2",
+    "fs": "^0.0.1-security",
+    "querystring": "^0.2.0"
+  },
+  "scripts": {
+    "start": "node src/server/server.js"
+  }
+}

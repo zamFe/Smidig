@@ -14,7 +14,7 @@ swapRouteButton.addEventListener('click', e => {
     let to = urlParams.get('from');
     let toName = urlParams.get('fromname');
     let datetime = urlParams.get('datetime');
-    window.location = `/html/routes.html?from=${from}&fromname=${fromName}&to=${to}&toname=${toName}&datetime=${datetime}`;
+    window.location = `../../public/routes.html`;
 })
  
 // Convert from Seconds to real time
