@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="res/style/index.css" rel="stylesheet">
+    <link href="res/style/footer.css" rel="stylesheet">
+    <script src="../src/client/fallback.js"></script>
+    <title>Vy</title>
+</head>
+<body>
+
+    <div id="error-container"></div>
+
+    <div id="dark-screen"></div>
+
+    <header id="header-container">
+        <div id="logo-container">
+            <img id="logo" src="res/img/logos/vy_reiser_logo.png" alt="">
+        </div><!--end logo-container-->
+    </header>
+
+    <main>
+
+
+        <div id="main-container">
+         
+
+            <div id="hello-container">
+                <span id="hello-span"></span>
+            </div> <!--end hello-container-->
+
+            <div id="destination-container">
+
+                <div id="from-input-container" class="input-container">
+                    <span>Hvor vil du reise fra?</span>
+                    <br>
+                    <input id="from-input" class="Destination-Input" type="text" name="from" placeholder="Reise fra..." onclick="fromDropdownMenu();"oninput="updateDropdown('from')">
+
+                    <div id="from-droplist"></div>
+                </div><!--end from-input-container-->
+
+                <img id="swap-from-to" src="res/img/icons/SwapUpDown.png" alt="swap-from-to-destination">
+                <div id="to-input-container" class="input-container">
+                    <span>Hvor vil du reise?</span>
+                    <br>
+                    <input id="to-input" class="Destination-Input" type="text" name="to" placeholder="Reise til..."  onclick="toDropdownMenu();"oninput="updateDropdown('to')">
+
+                    <div id="to-droplist"></div>
+
+                </div><!--end to-input-container-->
+
+                <div id="route-button-container">
+                    <img onclick="checkLocation()" id="route_button" src="res/img/icons/find_route_button.png" alt="Find route" >
+                </div>
+            </div> <!--end destination-container-->
+
+
+
+        </div><!--end main-container-->
+    </main>
+
+    <footer>
+        <div class="flex-container">
+            <div class="nav-container">
+                <img class="footer-img" src="res/img/icons/routeSearch.png">
+                <br>
+                <span>Reise</span>
+            </div>
+            <div class="nav-container">
+                <img class="footer-img" src="res/img/icons/starFooter.png">
+                <br>
+                <span>Favoritter</span>
+            </div>
+            <div class="nav-container">
+                <img class="footer-img" src="res/img/icons/profilFooter.png">
+                <br>
+                <span>Profil</span>
+            </div>
+        </div>
+    </footer>
+
+<script src="../src/client/index.js"></script>
+</body>
+</html>

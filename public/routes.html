@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../src/client/fallback.js"></script>
+    <script src="../src/client/getRoutes.js"></script>
+    <link rel="stylesheet" type="text/css" href="res/style/routes.css">
+    <title>Ruter</title>
+</head>
+<body style='font-family:"Arial Black"'> 
+    <div id="error-container"></div>
+    <div id="main-container-routes">
+        <header class="header-routes">
+            <a href="/"><img id="back-arrow" src="res/img/icons/back.png"></a>
+            <div id="title-routes">Rutevalg</div>
+            <div id="from-dest" class="from-destination-routes"></div>
+            <img id="switch-arrow" src="res/img/icons/revert.png">
+            <div id="to-dest" class="to-destination-routes"></div>
+        </header>
+        <div class="border-line"></div>
+        <div class="priority-container-routes">
+            <div id="priority-routes">Prioritering: Raskest</div>
+            <img id="filter-routes" src="res/img/icons/filter.png">
+        </div> <!-- End of priority container -->
+
+        <div class="border-line"></div>
+        <div id="routes-result-container">        
+        </div> <!-- End of routes result container -->
+
+    </div> <!-- End of main container -->
+
+    <footer>
+        <div class="flex-container">
+            <div class="nav-container nav-container-1">
+                <img class="footer-img" src="res/img/icons/routeSearch.png">
+                <br>
+                <span>Reise</span>
+            </div>
+            <div class="nav-container nav-container-2">
+                <img class="footer-img" src="res/img/icons/starFooter.png">
+                <br>
+                <span>Favoritter</span>
+            </div>
+            <div class="nav-container nav-container-3">
+                <img class="footer-img" src="res/img/icons/profilFooter.png">
+                <br>
+                <span>Profil</span>
+            </div>
+        </div>
+    </footer>
+    <script src="../src/client/routegetter.js"></script>
+</body>
+</html>
