@@ -10,12 +10,12 @@ console.log(route);
 // Sets date and time (and link) to current time by default.
 let currentDate = new Date().toISOString();
 inputElem.value = currentDate.substring(0,currentDate.lastIndexOf(':'));
-buttonElem.setAttribute("href", `/html/routes?${route}&datetime=${Math.floor(new Date().getTime()/1000)}`)
+buttonElem.setAttribute("href", `routes.html?${route}&datetime=${Math.floor(new Date().getTime()/1000)}`)
 
 // Changes the link based on changes made in the input
 inputElem.addEventListener('change', e => {
     let selectedTime = Math.floor(new Date(inputElem.value).getTime()/1000);
-    buttonElem.setAttribute("href", `/html/routes?${route}&datetime=${selectedTime}`);
+    buttonElem.setAttribute("href", `routes.html?${route}&datetime=${selectedTime}`);
 })
 
 let fromPlace = searchParams.get("fromname");

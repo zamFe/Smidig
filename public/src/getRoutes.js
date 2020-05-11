@@ -13,7 +13,7 @@ console.log(searchData);
 if(!searchData.currentTime){
     searchData.currentTime = Math.floor(new Date().getMilliseconds()/1000)
 }
-fetch(`${window.location.origin}?action=getroute&from=${searchData.from}&to=${searchData.to}&datetime=${searchData.currentTime}`)
+fetch(`${window.location.origin}/api/routes?action=getroute&from=${searchData.from}&to=${searchData.to}&datetime=${searchData.currentTime}`)
     .then(function (response) {
         return response.text();
     }).then(function (text) {

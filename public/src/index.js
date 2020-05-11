@@ -24,7 +24,7 @@ function updateDropdown(loc) {
     } 
 
      inputDelay = setTimeout(() => {
-        fetch(`${window.location.origin}/api/routes?action=getlocation&q=` + document.getElementById(loc + "-input").value)
+        fetch(`${window.location.origin}/api/location?action=getlocation&q=` + document.getElementById(loc + "-input").value)
         .then(function (response) {
             return response.text();
         }).then(function (text) {
@@ -128,7 +128,7 @@ function checkLocation(){
     if(locationData.from.address == locationData.to.address){
         alert("Samme lokasjoner støttes ikke!");
     } else {
-        window.location.href="html/datetime.html?from=(" + locationData.from.lat + 
+        window.location.href="datetime.html?from=(" + locationData.from.lat +
         "," + locationData.from.lng + ")&to=(" + locationData.to.lat + 
         "," + locationData.to.lng +")&fromname=" + 
         encodeURI(locationData.from.address) + "&toname=" + encodeURI(locationData.to.address);      
