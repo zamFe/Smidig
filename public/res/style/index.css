@@ -21,14 +21,6 @@ main {
     overflow-y: auto;
 }
 
-footer {
-    position: fixed;
-    width: 100%;
-    height: 8%;
-    margin: 0;
-    bottom: 0;
-}
-
 /* header elements */
 
 #logo-container {
