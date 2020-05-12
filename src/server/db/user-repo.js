@@ -113,6 +113,7 @@ function updateUserData(email, password, searchHistory, favoriteSearches) {
         }
 
         return {
+            data: user,
             status: "Successfully updated the data!",
             statusCode: 200
         };

@@ -5,40 +5,6 @@ let querystring = require('querystring');
 
 // console.log(querystring.decode("a=(59.9233%2C10.79249)"))
 
-function databaseHandling(action, jUser, res){
-
-    var user = jUser;
-    console.log(action)
-    console.log(user)
-
-    console.log(querystring.decode("a=(59.9233%2C10.79249)"))
-
-    switch (action) {
-        case "create":
-            console.log("CREATE");
-
-
-            break;
-        case "login":
-            console.log("LOGIN");
-
-            break;
-        case "update":
-            console.log("UPDATE");
-            res.send(
-                users.updateUserData(user.email, user.password, user.searchHistory, user.favorites)
-            );
-            break;
-
-        default:
-            res.send({
-                statusCode: 400,
-                status: "No such action!"
-            })
-            break;
-    }
-}
-
 function fromTripGo(args, res) {
 
     fs.readFile('src/server/api-keys/tripgo.properties', 'utf8', (err, data) => {
@@ -267,6 +233,5 @@ function getLocation(loc, res) {
 module.exports.getMap = getMap;
 module.exports.getRoute = getRoute;
 module.exports.getLocation = getLocation;
-module.exports.databaseHandling = databaseHandling;
 // from: "(59.9233,10.79249)",
 // to: "(60.7945331,11.067997699999978)",
