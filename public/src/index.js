@@ -24,7 +24,7 @@ function updateDropdown(loc) {
     } 
 
     inputDelay = setTimeout( async () => {
-        const url = `${window.location.origin}/api/location?action=getlocation&q=` + document.getElementById(loc + "-input").value
+        const url = `${window.location.origin}/api/location?q=` + document.getElementById(loc + "-input").value
 
         let response;
         let payload;
