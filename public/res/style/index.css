@@ -11,14 +11,12 @@ html, body {
 header {
     position: relative;
     width: 100%;
-    height: 400px;
-
 }
 
 main {
     position: relative;
     width: 100%;
-    height: calc(100% - 400px);
+    height: 92%;
     overflow-y: auto;
 }
 
@@ -31,17 +29,11 @@ main {
 #logo-container {
     height: 100%;
     width: 100%;
-
 }
 
 #logo {
-    left: 50%;
-    top: 10%;
-    transform: translate(-50%);
-    position: relative;
-    height: 100%;
+    width: 100%
 }
-
 
 /* main elements */
 
@@ -49,17 +41,21 @@ main {
     display: grid;
     width: 100%;
     height: 100%;
-    grid-template-rows: 1fr 1fr 2fr 2fr 2fr;
+    grid-template-rows: 10rem 50em 30em;
     justify-items: center;
+    margin-top: 2em;
 
 }
 
 #hello-container {
     width: 100%;
-    height: 100%;
+    padding: 1em 0;
     font-size: 3.5em;
     text-align: center;
-    margin-top: 60px;
+}
+
+#hello-span {
+    height: 1em
 }
 
 /* input containers*/
@@ -80,7 +76,7 @@ main {
 #destination-container {
     font-size: 50px;
     display: grid;
-    grid-template-rows: 0.75fr 1fr 0.6fr 1.35fr 1fr;
+    grid-template-rows: 1em 3.6em 3em 3.6em 4em;
     width: 80%;
     height: 100%;
 }
@@ -140,10 +136,8 @@ main {
 #swap-from-to {
     grid-row: 3;
     display: none;
-    margin-right: 2%;
-    margin-left: auto;
-    margin-top: 3%;
-    margin-bottom: auto;
+    margin: auto 0 auto auto;
+    width: 2em;
 }
 
 #swap-from-to:hover{
@@ -191,9 +185,9 @@ main {
 
 #search-history {
     margin: .4em 0 .2em 0;
-    grid-row: 3/5;
-    overflow-y: auto;
+    grid-row: 3;
     width: 70%;
+    height: fit-content;
 }
 
 #search-history h4 {
