@@ -7,6 +7,13 @@ const routesApi = require("./routes/routes-api")
 
 let fs = require('fs');
 
+const users = require("./db/user-repo.js");
+console.log(users.createUser("andreas@hotmail.com", "andreas", "østby", "apeKatten"));
+console.log(users.loginUser("andreas@hotmail.com", "apeKatten"));
+
+console.log(users.createUser("andreas@hotmail.com", "aasdndreas", "øby", "apeasKatten"));
+console.log(users.loginUser("andreas@hotmail.com", "apeKattenen"));
+
 // Serves the static files: HTML CSS and Bundle.JS
 app.use(express.static('public'));
 
