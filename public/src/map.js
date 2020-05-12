@@ -51,6 +51,11 @@ function initMap() {
 
 }
 
+async function fetchMap() {
+    let response;
+    let 
+}
+
 fetch(`${window.location.origin}?action=getmap`)
     .then(function(response) {
         return response.text();

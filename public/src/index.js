@@ -176,14 +176,41 @@ function updateHistory(newSearch, from, to) {
         history.splice(0,1) //Remove oldest entry. Limits to 10 entries
     }
 
+    let user = JSON.parse(localStorage.getItem("user"));
     let entry = {
         url: newSearch,
         from: from,
         to: to
     }
 
+    if(user){
+        updateUserHistory(user, entry)
+    }
+
     history.push(entry);
     localStorage.setItem("history", JSON.stringify(history))
+}
+
+async function updateUserHistory(user, entry) {
+    const url = `${window.location.origin}/api/db/updateuser?email=${user.email}&password=${user.password}`
+    let response;
+    let payload;
+
+    try {
+        response = await fetch(url, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(entry)
+        })
+
+        payload = response.json();
+
+        localStorage.setItem("user", payload)
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 function generateSearchHistory() {

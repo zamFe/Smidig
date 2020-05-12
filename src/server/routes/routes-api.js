@@ -17,6 +17,10 @@ router.post("/location", (req, res) => {
     api.getLocation(req.query.q, res);
 })
 
+router.get("/map", (req, res) => {
+    api.getMap(res)
+})
+
 router.post("/db/createuser", (req, res) => {
     res.send(
         users.createUser(req.query.email, req.query.password, req.query.firstname, req.query.lastname)
