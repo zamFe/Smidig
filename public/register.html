@@ -2,9 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link href="res/style/register.css" rel="stylesheet">
+    <link href="res/style/footer.css" rel="stylesheet">
+    <title>Vy</title>
 </head>
 <body>
 
+<div id="error-container"></div>
+
+<div id="dark-screen"></div>
+
+<header id="header-container">
+    <div id="logo-container">
+        <img id="logo" src="res/img/logos/vy_reiser_logo.png" alt="">
+    </div><!--end logo-container-->
+</header>
+
+<main>
+
+
+    <div id="main-container">
+
+        <div id="input-container">
+
+            <div class="input-container">
+                <span>Fornavn</span>
+                <br>
+                <input id="name-input" class="Register-Input" type="text" name="from" placeholder="fornavn">
+            </div><!--end from-input-container-->
+
+            <div class="input-container">
+                <span>Etternavn</span>
+                <br>
+                <input id="surname-input" class="Register-Input" type="text" name="from" placeholder="etternavn">
+            </div><!--end from-input-container-->
+
+            <div class="input-container">
+                <span>E-post</span>
+                <br>
+                <input id="email-input" class="Register-Input" type="text" name="from" placeholder="ola@normann.no">
+            </div><!--end from-input-container-->
+
+            <div class="input-container">
+                <span>Passord</span>
+                <br>
+                <input id="password-input" class="Register-Input" type="password" name="from" placeholder="passord">
+            </div><!--end from-input-container-->
+
+            <div id="register-button-container">
+                <img onclick="" id="register-button" src="res/img/icons/register.png" alt="Find route" >
+            </div>
+
+            <div id="register-container">
+                allerede registrert?
+                <br>
+                <a id="link" href="login.html"> logg inn her</a>
+            </div>
+        </div><!-- end input-container-->
+    </div><!--end main-container-->
+</main>
+
+<footer>
+    <div class="flex-container">
+        <div class="nav-container">
+            <img class="footer-img" src="res/img/icons/routeSearch.png">
+            <br>
+            <span class="footer-text">Reise</span>
+        </div>
+        <div class="nav-container">
+            <img class="footer-img" src="res/img/icons/starFooter.png">
+            <br>
+            <span class="footer-text">Favoritter</span>
+        </div>
+        <div class="nav-container">
+            <img class="footer-img" src="res/img/icons/profilFooter.png">
+            <br>
+            <span class="footer-text">Profil</span>
+        </div>
+    </div>
+</footer>
+
+<script src="src/index.js"></script>
 </body>
 </html>
