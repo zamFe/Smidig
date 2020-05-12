@@ -1,4 +1,5 @@
 const express = require('express');
+var bodyParser = require("body-parser");
 const app = express();
 const path = require('path');
 
@@ -9,6 +10,9 @@ let fs = require('fs');
 
 // Serves the static files: HTML CSS and Bundle.JS
 app.use(express.static('public'));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 /* Routes */
 app.use('/api', routesApi);
