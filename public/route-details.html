@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,42 +8,46 @@
     <title>Detaljert Rutefremvisning</title>
 </head>
 <body>
-<header>
-    <div id="back-tab-container" onclick="window.location.href='/html/routes.html' + window.location.search.substring(0,window.location.search.lastIndexOf('&'));">
-        <img id="back-tab" src="res/img/icons/back.png" alt="">
-    </div>
-    <div id="map-button-container" onclick="window.location.href='/html/routemap.html' + window.location.search">
-        <img id="map-button" src="res/img/icons/button_map.png" alt="">
-    </div>
-</header>
-
-<main>
-    <div id="main-container">
-        <!--content added via stop-getter.js, based on the stop.node.component.js templatte-->
-    </div>
-</main>
-
-<footer>
-    <div class="flex-container">
-        <div class="nav-container">
-            <img class="footer-img" src="res/img/icons/routeSearch.png">
-            <br>
-            <span class="footer-text">Reise</span>
+    <header>
+        <div id="back-tab-container" onclick="window.location.href='/html/routes.html' + window.location.search.substring(0,window.location.search.lastIndexOf('&'));">
+            <img id="back-tab" src="res/img/icons/back.png" alt="">
         </div>
-        <div class="nav-container">
-            <img class="footer-img" src="res/img/icons/starFooter.png">
-            <br>
-            <span class="footer-text">Favoritter</span>
+        <div id="map-button-container" onclick="window.location.href='/html/route-map.html' + window.location.search">
+            <img id="map-button" src="res/img/icons/button_map.png" alt="">
         </div>
-        <div class="nav-container">
-            <img class="footer-img" src="res/img/icons/profilFooter.png">
-            <br>
-            <span class="footer-text">Profil</span>
-        </div>
-    </div>
-</footer>
+    </header>
 
-<script src="../components/stop.node.component.js"></script>
-<script src="src/stop-getter.js"></script>
+    <main>
+        <div id="main-container">
+            <!--content added via stop-getter.js, based on the stop.node.component.js templatte-->
+        </div>
+    </main>
+
+    <footer>
+        <div class="flex-container">
+            <div class="nav-container">
+                <img class="footer-img" src="res/img/icons/routeSearch.png">
+                <br>
+                <span class="footer-text">Reise</span>
+            </div>
+            <div class="nav-container">
+                <img class="footer-img" src="res/img/icons/starFooter.png">
+                <br>
+                <span class="footer-text">Favoritter</span>
+            </div>
+            <div class="nav-container">
+                <img class="footer-img" src="res/img/icons/profilFooter.png">
+                <br>
+                <span class="footer-text">Profil</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!--
+    <script src="../components/stop.node.component.js"></script>
+    -->
+
+    <script src="src/stop-getter.js"></script>
 </body>
 </html>
