@@ -189,3 +189,4 @@ function setUp() {
         container.appendChild(lineDiv);
     }
 }
+

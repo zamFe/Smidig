@@ -10,21 +10,41 @@ let searchData = {
 
 console.log(searchData);
 
-if(!searchData.currentTime){
-    searchData.currentTime = Math.floor(new Date().getMilliseconds()/1000)
-}
-fetch(`${window.location.origin}/api/routes?action=getroute&from=${searchData.from}&to=${searchData.to}&datetime=${searchData.currentTime}`)
-    .then(function (response) {
-        return response.text();
-    }).then(function (text) {
-        fullRoute = JSON.parse(text).data;
+
+async function renderRoutes() {
+
+    if (!searchData.currentTime) {
+        searchData.currentTime = Math.floor(new Date().getMilliseconds() / 1000)
+    }
+
+    const url = `${window.location.origin}/api/routes?from=${searchData.from}&to=${searchData.to}&datetime=${searchData.currentTime}`
+
+    let response;
+    let payload;
+
+    try {
+        response = await fetch(url, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+        payload = await response.json();
+    } catch (e) {
+        console.log(e);
+    }
+
+    fullRoute = payload.data;
 
     // Creates an error message upon API Call failures
     console.log(fullRoute);
+
+    //Error handler
     let container = document.getElementById('error-container');
-    if(typeof(fullRoute) !== 'object') {
+    if (typeof (fullRoute) !== 'object') {
         container.innerHTML = "";
-        if(fullRoute.substring(0,6) == 'Error:'){
+        if (fullRoute.substring(0, 6) == 'Error:') {
             let errorBox = document.createElement('div');
             errorBox.style.position = 'absolute';
             errorBox.style.width = '100%';
@@ -40,17 +60,19 @@ fetch(`${window.location.origin}/api/routes?action=getroute&from=${searchData.fr
             errorTextElem.innerText = "API Call Error - Fallback Data Displayed";
             errorBox.appendChild(errorTextElem);
             container.appendChild(errorBox);
-        
+
             fullRoute = fallbackData.routeList; //Sets route-list
         }
     } else {
         container.innerHTML = "";
     }
 
+    // Sorting
+    fullRoute.sort((a, b) => (a.startTime > b.startTime) ? 1 : -1);
 
-        fullRoute.sort((a,b) => (a.startTime > b.startTime) ? 1 : -1);
-        setUp();
-})
+    setUp()
+}
 
+renderRoutes()
 //from: (59.9233,10.79249)
 //to: (60.7945331,11.067997699999978)
