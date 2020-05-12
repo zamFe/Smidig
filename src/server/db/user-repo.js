@@ -16,7 +16,7 @@ let sampleUser = {
     ]
 }
 
-function createUser(email, firstname, lastname, password) {
+function createUser(email, password, firstname, lastname) {
     var path = `src/server/db/Users/${hashString(email)}.json`;
     console.log(path)
     if (fs.existsSync(path)) {
@@ -49,7 +49,7 @@ function loginUser(email, password) {
     if (user) {
         return {
             data: user,
-            status: "Correct password, login in!",
+            status: "Correct credentials, login in!",
             statusCode: 200
         }
     }

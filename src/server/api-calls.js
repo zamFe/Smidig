@@ -1,11 +1,45 @@
 let request = require('request');
 let fs = require('fs');
 let querystring = require('querystring');
-// let server = require('./server.js');
 
-//let rp = require('request-promise-native');
+const users = require("./db/user-repo.js");
+console.log(users.createUser("andreas@hotmail.com", "apeKatten", "andreas", "østby"));
+console.log(users.loginUser("andreas@hotmail.com", "apeKatten"));
+
+console.log(users.createUser("andreas@hotmail.com", "apeasKatten", "aasdndreas", "øby"));
+console.log(users.loginUser("andreas@hotmail.com", "apeKattenen"));
 
 // console.log(querystring.decode("a=(59.9233%2C10.79249)"))
+
+function databaseHandling(action, jUser, res){
+
+    var user = JSON.parse(jUser);
+
+    switch (action) {
+        case "create":
+            res.send(
+                users.createUser(user.email, user.password, user.firstName, user.lastName)
+            );
+            break;
+        case "login":
+            res.send(
+                users.loginUser(user.email, user.password)
+            );
+            break;
+        case "update":
+            res.send(
+                users.updateUserData(user.email, user.password, user.searchHistory, user.favorites)
+            );
+            break;
+
+        default:
+            res.send({
+                statusCode: 400,
+                status: "No such action!"
+            })
+            break;
+    }
+}
 
 function fromTripGo(args, res) {
 
