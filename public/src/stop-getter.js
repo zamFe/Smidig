@@ -25,7 +25,7 @@ function stepBuilder(stop) {
     if(stop.action != "") {
         let serviceProviderIcon = document.createElement("img");
         serviceProviderIcon.id = "serviceprovider-icon";
-        serviceProviderIcon.src = "../VyAssets/vy.logo.final_primary.png"; //PLACEHOLDER
+        serviceProviderIcon.src = "../res/vy.logo.final_primary.png"; //PLACEHOLDER
         serviceProvider.appendChild(serviceProviderIcon);
         if(stop.action != "Gå") {
             serviceProvider.innerText = stop.operatorName;
@@ -47,7 +47,7 @@ function stepBuilder(stop) {
 
     let nodeImg = document.createElement("img");
     nodeImg.classList.add("Node");
-    nodeImg.src = "../img/icons/node.png";
+    nodeImg.src = "../res/img/icons/node.png";
     nodeImg.alt = "";
     routeLine.appendChild(nodeImg);
 
@@ -56,7 +56,7 @@ function stepBuilder(stop) {
     endNode.id = "node-container";
     let endNodeImg = document.createElement("img");
     endNodeImg.classList.add("Node");
-    endNodeImg.src = "../img/icons/node.png";
+    endNodeImg.src = "../res/img/icons/node.png";
     endNodeImg.alt = "";
     endNodeImg.style.top = "calc(100% - 50px)";
     routeLine.appendChild(endNodeImg);
@@ -175,7 +175,7 @@ function convertTime(time) {
 }
 
 function getImages(routeAction) {
-    let image = "../img/icons/";
+    let image = "../res/img/icons/";
     switch(routeAction) {
         case "T-bane": image += "subway.png";
             break;
@@ -201,7 +201,7 @@ let fullRoute = JSON.parse(localStorage.getItem("route"));
 urlParams = new URLSearchParams(window.location.search);
 
     var index = (urlParams.get('index'))?urlParams.get('index'):0;
-    console.log(urlParams.get('index'));
+    //console.log(urlParams.get('index'));
     for(let i = 0; i < fullRoute[index].route.length; i++) {
         let step = fullRoute[index].route[i];
         if (step.action === 'Overgang') {

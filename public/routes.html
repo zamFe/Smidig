@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="src/fallback.js"></script>
-    <script src="src/get-routes.js"></script>
     <link rel="stylesheet" type="text/css" href="res/style/routes.css">
+    <link rel="stylesheet" type="text/css" href="res/style/footer.css">
+
     <title>Ruter</title>
 </head>
-<body style='font-family:"Arial Black"'> 
+<body>
     <div id="error-container"></div>
     <div id="main-container-routes">
         <header class="header-routes">
@@ -33,23 +33,25 @@
 
     <footer>
         <div class="flex-container">
-            <div class="nav-container nav-container-1">
+            <div class="nav-container">
                 <img class="footer-img" src="res/img/icons/routeSearch.png">
                 <br>
-                <span>Reise</span>
+                <span class="footer-text">Reise</span>
             </div>
-            <div class="nav-container nav-container-2">
+            <div class="nav-container">
                 <img class="footer-img" src="res/img/icons/starFooter.png">
                 <br>
-                <span>Favoritter</span>
+                <span class="footer-text">Favoritter</span>
             </div>
-            <div class="nav-container nav-container-3">
+            <div class="nav-container">
                 <img class="footer-img" src="res/img/icons/profilFooter.png">
                 <br>
-                <span>Profil</span>
+                <span class="footer-text">Profil</span>
             </div>
         </div>
     </footer>
+    <script src="src/fallback.js"></script>
+    <script src="src/get-routes.js"></script>
     <script src="src/route-getter.js"></script>
 </body>
 </html>
