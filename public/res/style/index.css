@@ -4,7 +4,8 @@ html, body {
     margin: 0;
     font-family: sans-serif;
     font-weight: bold;
-    color: #242424;
+    color: #212721;
+    background-color: #f2f2f3;
 }
 
 header {
@@ -19,6 +20,10 @@ main {
     width: 100%;
     height: calc(100% - 400px);
     overflow-y: auto;
+}
+
+.footer-text {
+    font-size: 3rem;
 }
 
 /* header elements */

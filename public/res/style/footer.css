@@ -4,6 +4,7 @@ footer {
 	height: 8%;
 	margin: 0;
 	bottom: 0;
+
 }
 
 .flex-container {
@@ -22,7 +23,6 @@ footer {
 	height: 100%;
 	text-align: center;
 	align-content: center;
-	font-size: 6vw; 
 
 }
 
@@ -30,10 +30,6 @@ footer {
 	position: relative;
 	top: 10%;
 	width: 15%;
-}
-
-.footer-text {
-	font-size: 3rem;
 }
 
 .nav-container span {

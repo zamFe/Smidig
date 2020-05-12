@@ -4,7 +4,8 @@ html, body {
     margin: 0;
     font-family: sans-serif;
     font-weight: bold;
-    color: #242424;
+    color: #212721;
+    background-color: #f2f2f3;
 }
 
 #page-container {
@@ -13,6 +14,10 @@ html, body {
     height: 98vh;
     grid-template-columns: 5% auto 5%;
     grid-template-rows: 20% auto;
+}
+
+.footer-text{
+    font-size: 1.2rem;
 }
 
 /* Start of header */
