@@ -14,7 +14,7 @@ swapRouteButton.addEventListener('click', e => {
     let to = urlParams.get('from');
     let toName = urlParams.get('fromname');
     let datetime = urlParams.get('datetime');
-    window.location = `../routes.html`;
+    window.location = `../routes.html?from=${from}&to=${to}&fromname=${fromName}&toname=${toName}&datetime${datetime}`;
 })
  
 // Convert from Seconds to real time
@@ -49,7 +49,7 @@ function setGridColom(routeLength, div) {
 
 // Displays correct route action image
 function getImages(routeAction) {
-    let image = "../img/icons/"; 
+    let image = "../res/img/icons/"; 
     switch(routeAction) {
         case "T-bane": image += "subway.png";
             break;
