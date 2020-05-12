@@ -23,13 +23,27 @@ function updateDropdown(loc) {
         clearTimeout(inputDelay);
     } 
 
-     inputDelay = setTimeout(() => {
-        fetch(`${window.location.origin}/api/location?action=getlocation&q=` + document.getElementById(loc + "-input").value)
-        .then(function (response) {
-            return response.text();
-        }).then(function (text) {
-            addToDropdown(JSON.parse(text).data, loc);
-        })
+    inputDelay = setTimeout( async () => {
+        const url = `${window.location.origin}/api/location?action=getlocation&q=` + document.getElementById(loc + "-input").value
+
+        let response;
+        let payload;
+
+        try {
+            response = await fetch(url, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            payload = await response.json();
+
+        } catch (e) {
+            console.log(e)
+        }
+
+        addToDropdown( payload.data, loc)
+
         console.log("Post");
     }, 600)
 }
@@ -133,6 +147,16 @@ function checkLocation(){
         "," + locationData.to.lng +")&fromname=" + 
         encodeURI(locationData.from.address) + "&toname=" + encodeURI(locationData.to.address);      
     }
+    
+}
+
+function updateHistory(newSearch) {
+    let history = JSON.parse(localStorage.getItem("history"));
+    history.push(newSearch);
+    lo
+}
+
+function generateSearchHistory() {
     
 }
 
