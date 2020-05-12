@@ -86,12 +86,3 @@ html, body {
     cursor: pointer;
     transform: scale(0.9);
 }
-
-/* Footer - Nav */
-footer {
-    position: fixed;
-    width: 100%;
-    height: 8%;
-    margin: 0;
-    bottom: 0;
-}
