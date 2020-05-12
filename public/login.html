@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="res/style/login.css" rel="stylesheet">
+    <link href="res/style/footer.css" rel="stylesheet">
+    <title>Vy</title>
+</head>
+<body>
+
+<div id="error-container"></div>
+
+<div id="dark-screen"></div>
+
+<header id="header-container">
+    <div id="logo-container">
+        <img id="logo" src="res/img/logos/vy_reiser_logo.png" alt="">
+    </div><!--end logo-container-->
+</header>
+
+<main>
+
+
+    <div id="main-container">
+
+        <div id="input-container">
+
+            <div id="username-input-container" class="input-container">
+                <span>Brukernavn eller E-post</span>
+                <br>
+                <input id="username-input" class="Login-Input" type="text" name="from" placeholder="Brukernavn/Epost">
+            </div><!--end from-input-container-->
+
+            <div id="password-input-container" class="input-container">
+                <span>Passord</span>
+                <br>
+                <input id="password-input" class="Login-Input" type="password" name="from" placeholder="Passord">
+            </div><!--end from-input-container-->
+
+            <div id="login-button-container">
+                <img onclick="" id="login_button" src="res/img/icons/login.png" alt="Find route" >
+            </div>
+
+            <div id="register-container">
+                har du ikke bruker?
+                <br>
+               <a id="link"> registrer deg her</a>
+            </div>
+
+        </div><!-- end input-container-->
+
+    </div><!--end main-container-->
+</main>
+
+<footer>
+    <div class="flex-container">
+        <div class="nav-container">
+            <img class="footer-img" src="res/img/icons/routeSearch.png">
+            <br>
+            <span class="footer-text">Reise</span>
+        </div>
+        <div class="nav-container">
+            <img class="footer-img" src="res/img/icons/starFooter.png">
+            <br>
+            <span class="footer-text">Favoritter</span>
+        </div>
+        <div class="nav-container">
+            <img class="footer-img" src="res/img/icons/profilFooter.png">
+            <br>
+            <span class="footer-text">Profil</span>
+        </div>
+    </div>
+</footer>
+
+<script src="src/index.js"></script>
+</body>
+</html>
