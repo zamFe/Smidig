@@ -11,4 +11,8 @@ router.post("/api/location", (req, res) => {
     api.getLocation(req.query.q, res);
 })
 
+router.post("/api/db", (req, res) => {
+    api.databaseHandling(req.query.action, req.query.user, res);
+})
+
 module.exports = router;
