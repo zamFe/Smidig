@@ -5,7 +5,7 @@ let locationData = {
 
 let inputDelay;
 
-document.getElementById("dark-screen").addEventListener("click", (e) =>  {  
+document.getElementById("dark-screen").addEventListener("click", (e) =>  {
     e.stopPropagation();
     document.getElementById("from-droplist").style.display = "none"; 
     document.getElementById("dark-screen").style.display = "none";
@@ -14,7 +14,7 @@ document.getElementById("dark-screen").addEventListener("click", (e) =>  {
 document.getElementById("dark-screen").addEventListener("click", (e) =>  {
    e.stopPropagation();
     document.getElementById("to-droplist").style.display = "none";
-    document.getElementById("dark-screen").style.display = "none"; 
+    document.getElementById("dark-screen").style.display = "none";
 })
 
 function updateDropdown(loc) {

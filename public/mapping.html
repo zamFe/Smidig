@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <!-- HTML, CSS & JS for frontEnd map visualization -->
-
 	<head>
 		<style>
 			#map{
@@ -17,23 +16,16 @@
 	<script>
 		function initMap(){
 			//Location of Oslo
-			var oslo = {lat: 59.911491, lng: 10.757933};
+			let oslo = {lat: 59.911491, lng: 10.757933};
 			//The map, centered at Oslo
-			var map = new google.maps.Map(
+			let map = new google.maps.Map(
 				document.getElementById('map'), {zoom: 4, center: oslo});
 			//The marker, positioned at Oslo
-			var marker = new google.maps.Marker({position: oslo, map: map});
+			let marker = new google.maps.Marker({position: oslo, map: map});
 		}
 	</script>
-	<script async defer 
-	src= "https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
-		
-	</script>	
 
-
-
-
-
+	<script async defer src= "https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+	</script>
 	</body>
-
 </html>
