@@ -165,9 +165,15 @@ function checkLocation(){
 
 function updateHistory(newSearch, from, to) {
     let history = JSON.parse(localStorage.getItem("history"));
+    const historyLimit = 10; //Search history limit
+
 
     if(!history){
         history = []; //if empty, create new array
+    }
+
+    if(history.length >= historyLimit) {
+        history.splice(0,1) //Remove oldest entry. Limits to 10 entries
     }
 
     let entry = {
@@ -188,8 +194,9 @@ function generateSearchHistory() {
         for(let item of history) {
             let listElement = document.createElement("div");
 
-            let listTitle = document.createElement("h4");
-            listTitle.innerText = `${item.from} til ${item.to}`
+            let listTitle = document.createElement("p");
+            listTitle.innerText = `${item.from} ⮞ ${item.to}`
+            listElement.appendChild(listTitle);
 
             listElement.addEventListener('click', () => {
                 window.location.href = item.url; //Redirects to the route
@@ -197,6 +204,9 @@ function generateSearchHistory() {
 
             list.appendChild(listElement);
         }
+    } else {
+        const historyContainer = document.getElementById("search-history")
+        historyContainer.style.display = "none";
     }
 }
 
