@@ -202,7 +202,7 @@ async function updateUserHistory(user, entry) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(entry)
+            body: JSON.stringify({searchHistory: entry})
         })
 
         payload = response.json();
