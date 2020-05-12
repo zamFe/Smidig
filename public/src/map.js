@@ -52,14 +52,21 @@ function initMap() {
 }
 
 async function fetchMap() {
+    const url = `${window.location.origin}/api/map`
+
     let response;
-    let 
+    let payload;
+    try {
+        response = await fetch(url, {method: "get",})
+        payload = await response.json();
+
+        console.log(payload)
+
+        document.getElementById("googleMap").innerHTML = payload.body;
+    } catch (e) {
+        console.log(e);
+    }
 }
 
-fetch(`${window.location.origin}?action=getmap`)
-    .then(function(response) {
-        return response.text();
-    }).then(function(text) {
-        console.log(JSON.parse(text));
-        document.getElementById("googleMap").innerHTML = JSON.parse(text).response.body;
-    })
+
+fetchMap();
