@@ -23,7 +23,7 @@ function createUser(email, firstname, lastname, password) {
         // User already exists
         return {
             status: "Email is already in use!",
-            statusCode: 400
+            statusCode: 401
         };
     }
 
@@ -56,7 +56,7 @@ function loginUser(email, password) {
 
     return {
         status: "Incorrect email or password!",
-        statusCode: 400
+        statusCode: 401
     };
 }
 
@@ -89,7 +89,7 @@ function updateUserData(email, password, searchHistory, favoriteSearches) {
     }
     return {
         status: "Could not update the data!",
-        statusCode: 400
+        statusCode: 401
     };
 }
 
