@@ -24,7 +24,7 @@ function updateDropdown(loc) {
     } 
 
     inputDelay = setTimeout( async () => {
-        const url = `${window.location.origin}/api/location?action=getlocation&q=` + document.getElementById(loc + "-input").value
+        const url = `${window.location.origin}/api/location?q=` + document.getElementById(loc + "-input").value
 
         let response;
         let payload;
@@ -139,27 +139,78 @@ function addToDropdown(data, loc) {
 }
 
 function checkLocation(){
-    if(locationData.from.address == locationData.to.address){
+    if(locationData.from.address === locationData.to.address){
         alert("Samme lokasjoner støttes ikke!");
     } else {
+        let fromLatLng = [locationData.from.lat, locationData.from.lng];
+        let toLatLng = [locationData.to.lat, locationData.to.lng];
+        let fromName = locationData.from.address;
+        let toName = locationData.to.address;
+
+        let url = `date-time.html?from=(${fromLatLng[0]},${fromLatLng[1]})&to=(${toLatLng[0]},${toLatLng[1]})&fromname=${encodeURI(fromName)}&toname=${encodeURI(toName)}`
+
+        updateHistory(url, fromName, toName);
+
+        window.location.href = url;
+
+        /*
         window.location.href="date-time.html?from=(" + locationData.from.lat +
         "," + locationData.from.lng + ")&to=(" + locationData.to.lat + 
         "," + locationData.to.lng +")&fromname=" + 
-        encodeURI(locationData.from.address) + "&toname=" + encodeURI(locationData.to.address);      
+        encodeURI(locationData.from.address) + "&toname=" + encodeURI(locationData.to.address);
+         */
     }
     
 }
 
-function updateHistory(newSearch) {
+function updateHistory(newSearch, from, to) {
     let history = JSON.parse(localStorage.getItem("history"));
-    history.push(newSearch);
-    lo
+    const historyLimit = 10; //Search history limit
+
+
+    if(!history){
+        history = []; //if empty, create new array
+    }
+
+    if(history.length >= historyLimit) {
+        history.splice(0,1) //Remove oldest entry. Limits to 10 entries
+    }
+
+    let entry = {
+        url: newSearch,
+        from: from,
+        to: to
+    }
+
+    history.push(entry);
+    localStorage.setItem("history", JSON.stringify(history))
 }
 
 function generateSearchHistory() {
-    
+    const list = document.getElementById("generated-history");
+    const history = JSON.parse(localStorage.getItem("history"));
+
+    if(history){
+        for(let item of history) {
+            let listElement = document.createElement("div");
+
+            let listTitle = document.createElement("p");
+            listTitle.innerText = `${item.from} ⮞ ${item.to}`
+            listElement.appendChild(listTitle);
+
+            listElement.addEventListener('click', () => {
+                window.location.href = item.url; //Redirects to the route
+            })
+
+            list.appendChild(listElement);
+        }
+    } else {
+        const historyContainer = document.getElementById("search-history")
+        historyContainer.style.display = "none";
+    }
 }
 
+generateSearchHistory(); //renders history from LocalStorage
 
 setup("Ola Nordmann");
 

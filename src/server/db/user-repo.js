@@ -17,6 +17,14 @@ let sampleUser = {
 }
 
 function createUser(email, password, firstname, lastname) {
+
+    if (!email || !password || !firstname || !lastname) {
+        return {
+            status: "Not all credentials are inserted!",
+            statusCode: 400
+        };
+    }
+
     var path = `src/server/db/Users/${hashString(email)}.json`;
     console.log(path)
     if (fs.existsSync(path)) {
@@ -45,6 +53,14 @@ function createUser(email, password, firstname, lastname) {
 }
 
 function loginUser(email, password) {
+
+    if (!email || !password) {
+        return {
+            status: "Not all credentials are inserted!",
+            statusCode: 400
+        };
+    }
+
     var user = authenticateUser(email, password);
     if (user) {
         return {
@@ -61,6 +77,7 @@ function loginUser(email, password) {
 }
 
 function authenticateUser(email, password) {
+
     var path = `src/server/db/Users/${hashString(email)}.json`;
     console.log(path)
     if (fs.existsSync(path)) {
@@ -77,10 +94,23 @@ function authenticateUser(email, password) {
 }
 
 function updateUserData(email, password, searchHistory, favoriteSearches) {
+
+    if (!email || !password) {
+        return {
+            status: "Not all credentials are inserted!",
+            statusCode: 400
+        };
+    }
+
     var user = authenticateUser(email, password);
     if (user) {
-        user.searchHistory = searchHistory;
-        user.favorites = favoriteSearches;
+        if (searchHistory) {
+            user.searchHistory = searchHistory;
+        }
+
+        if (favoriteSearches) {
+            user.favorites = favoriteSearches;
+        }
 
         return {
             status: "Successfully updated the data!",
