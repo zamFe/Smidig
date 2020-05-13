@@ -88,10 +88,15 @@ function getName(address, lat, lng, loc){
     document.getElementById("dark-screen").style.display = "none";
 }
 
-function setup(name){
-
-    let username = document.getElementById("hello-span");
-    username.innerText = "God Morgen, " + name + "!";   
+function setup(){
+    /* Welcome message */
+    const elem = document.getElementById("hello-span");
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(user){
+        elem.innerText = `God reise, ${user.firstName} ${user.lastName}`
+    } else {
+        elem.innerText = `Ha en god tur!`
+    }
 }
 
 function addToDropdown(data, loc) {
@@ -237,9 +242,9 @@ function generateSearchHistory() {
     }
 }
 
-generateSearchHistory(); //renders history from LocalStorage
+setup(); //Sets the user's name in welcome message if they are logged in
 
-setup("Ola Nordmann");
+generateSearchHistory(); //renders history from LocalStorage
 
 
 /*
