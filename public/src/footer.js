@@ -13,7 +13,7 @@ switch (currentURL.substring(0, currentURL.lastIndexOf('.'))) {
     case "/favorite": isFavoriteActive = true; break;
     case "/profile": isProfileActive = true; break;
     case "/login":
-    case "/signup": isLoginActive = true; break;
+    case "/register": isLoginActive = true; break;
     default: isSearchActive = true; break;
 }
 

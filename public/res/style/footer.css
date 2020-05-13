@@ -13,7 +13,6 @@ footer {
 	flex-wrap: nowrap;
 	flex-direction: row;
 	justify-content: space-between;
-	background-color: red;
 	margin: 0;
 	width: inherit;
 	height: 100%;
