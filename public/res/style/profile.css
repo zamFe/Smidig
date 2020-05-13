@@ -60,7 +60,7 @@ main {
 }
 
 .profile-text {
-    border: none;
+    border: 0.1em solid black;
     border-bottom: 0.1em solid #00957a;
     background-color: rgb(200,200,200);
     width: 100%;
