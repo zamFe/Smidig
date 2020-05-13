@@ -9,8 +9,8 @@ let template = `
                     </div>
                 </div>
                 <div id="name-container">
-                    <p class="Text-Name">[Navn på stop]</p>
-                    <p class="Text-Transport">Transportmiddel</p>
+                    <p class="text-Name">[Navn på stop]</p>
+                    <p class="text-Transport">Transportmiddel</p>
                     <div id="transport-icon-container">
                         <img id="transport-icon" src="../public/res/img/icons/bus.jpg" alt="">
                     </div>

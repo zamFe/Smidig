@@ -13,15 +13,9 @@ function stepBuilder(stop) {
     let timeP = document.createElement("p");
     timeP.innerText = convertTime(stop.startTime);
 
-/*     let endTime = document.createElement("div");
-    endTime.id = "time-container"; */
-
-/*     let endTimeP = document.createElement("p");
-    endTimeP.innerText = convertTime((stop.endTime)); */
-
     //add service provider icon
     let serviceProvider = document.createElement("div");
-    serviceProvider.id = "serviceprovider-icon-container";
+    serviceProvider.id = "serviceprovider-icon";
     if(stop.action != "") {
         let serviceProviderIcon = document.createElement("img");
         serviceProviderIcon.id = "serviceprovider-icon";
@@ -46,7 +40,7 @@ function stepBuilder(stop) {
     }
 
     let nodeImg = document.createElement("img");
-    nodeImg.classList.add("Node");
+    nodeImg.classList.add("node");
     nodeImg.src = "../res/img/icons/node.png";
     nodeImg.alt = "";
     routeLine.appendChild(nodeImg);
@@ -54,31 +48,34 @@ function stepBuilder(stop) {
     //build end node
     let endNode = document.createElement("div");
     endNode.id = "node-container";
+    /*
     let endNodeImg = document.createElement("img");
     endNodeImg.classList.add("Node");
     endNodeImg.src = "../res/img/icons/node.png";
     endNodeImg.alt = "";
     endNodeImg.style.top = "calc(100% - 50px)";
     routeLine.appendChild(endNodeImg);
+    */
 
     //build name element
     let name = document.createElement("div");
     name.id = "name-container";
 
     let nameP = document.createElement("p");
-    nameP.classList.add("Text-Name");
+    nameP.classList.add("text-Name");
     nameP.innerText = stop.from.address;
 
+    // TODO: Sjekk over denne om den brukes/er nødvendig
 /*     let endName = document.createElement("div");
     endName.id = "name-container";
 
     let endNameP = document.createElement("p");
-    endNameP.classList.add("Text-name");
+    endNameP.classList.add("text-name");
     endNameP.innerText = stop.to.address; */
 
     //build transport-medium information
     let transport = document.createElement("p");
-    transport.classList.add("Text-Transport");
+    transport.classList.add("text-Transport");
     if(stop.action != "Gå") {
         transport.innerHTML = stop.serviceName;
         if(stop.serviceName != stop.serviceNumber) {
@@ -111,6 +108,7 @@ function stepBuilder(stop) {
         name.appendChild(transportIcon);
     }
 
+    // TODO: Sjekk over
  /*    endTime.appendChild(endTimeP); */
 /*     endName.appendChild(endNameP); */
 
@@ -118,6 +116,8 @@ function stepBuilder(stop) {
     step.appendChild(time);
     step.appendChild(stopNode);
     step.appendChild(name);
+
+    // TODO: Sjekk over
   //  step.appendChild(endTime);
    // step.appendChild(document.createElement("br"));
    // step.appendChild(endName);
@@ -189,6 +189,7 @@ function getImages(routeAction) {
     return image;
 }
 
+// TODO: Sjekk over
 /*
 stepBuilder("Gå", "Ellingsrudåsen", "10:00", "T-Bane");
 stepBuilder("", "Jernbanetorget", "10:30", "");
@@ -202,6 +203,7 @@ urlParams = new URLSearchParams(window.location.search);
 
     var index = (urlParams.get('index'))?urlParams.get('index'):0;
     //console.log(urlParams.get('index'));
+    console.log(fullRoute)
     for(let i = 0; i < fullRoute[index].route.length; i++) {
         let step = fullRoute[index].route[i];
         if (step.action === 'Overgang') {
