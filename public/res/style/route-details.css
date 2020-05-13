@@ -133,6 +133,7 @@ main {
     /*font-family: Arial;*/ 
     font-style: italic;
     font-size: 0.6em;
+    word-wrap: break-word;
 }
 
 #transport-icon-container {
