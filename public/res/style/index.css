@@ -29,10 +29,13 @@ main {
 #logo-container {
     height: 100%;
     width: 100%;
+    text-align: center;
 }
 
 #logo {
-    width: 100%
+    padding: 7vw;
+    width: 60vw;
+    margin: auto;
 }
 
 /* main elements */
@@ -83,7 +86,7 @@ main {
 
 .Destination-Input {
     border: none;
-    border-bottom: 10px solid #00957a;
+    border-bottom: 4px solid #00957a;
     background-color: rgb(200,200,200);
     padding: 5px 0 0 10px;
     width: 97%;

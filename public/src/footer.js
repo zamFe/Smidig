@@ -26,7 +26,7 @@ function redirectToLogin() {
 }
 
 function redirectToFavorites() {
-    window.location.href = "/favourites.html"
+    window.location.href = "/favorite.html"
 }
 
 function redirectToProfile() {
