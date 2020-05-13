@@ -86,6 +86,8 @@ function errorHandling(error, response, body) {
 
 function formatData(data) {
     //console.log(data)
+    if(!data.groups || data.groups.length === 0) return [];
+
     trips = data.groups[0].trips;
 
 
@@ -162,7 +164,7 @@ function getSegmentTemplate(data, hashCode) {
 function getRouteData(error, response, body, res) {
     var data = errorHandling(error, response, body);
     console.log(data);
-    if (data.statusCode != 200) {
+    if (data.statusCode !== 200) {
         transmitData(data, res);
     } else {
         transmitData({
@@ -175,7 +177,7 @@ function getRouteData(error, response, body, res) {
 function getLocationData(error, response, body, res) {
     var data = errorHandling(error, response, body);
     console.log(data);
-    if (data.statusCode != 200) {
+    if (data.statusCode !== 200) {
         transmitData(data, res);
     } else {
 
