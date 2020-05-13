@@ -51,6 +51,7 @@ function createUser(email, password, firstname, lastname) {
     saveUser(user);
 
     return {
+        data: user,
         status: "User created successfully!",
         statusCode: 200
     };
@@ -138,7 +139,7 @@ function hashString(toHash) {
     var crypto = require('crypto');
     return crypto.createHash('sha256')
         .update(toHash)
-        .digest('base64');
+        .digest('hex');
 }
 
 module.exports = {loginUser, createUser, updateUserData};
