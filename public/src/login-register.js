@@ -1,4 +1,4 @@
-const notification = windows.createNotification({});
+//const notification = windows.createNotification({});
 
 function login()
 {
@@ -28,7 +28,8 @@ function register()
     let password = document.getElementById("password-input").value;
 
     createUser(email, password, name, surname).then((payLoad) => {
-        if(payLoad.statusCode != 200) {
+        if (payLoad.statusCode != 200) {
+            /*
             notification({
                 closeOnClick: true,
                 displayCloseButton: false,
@@ -39,6 +40,10 @@ function register()
                 title: 'Feil!',
                 message: 'Kunne ikke opprette profilen'
             });
+             */
+            alert("Kunne ikke logge inn");
+        } else {
+            window.location.href = "./profile.html";
         }
     })
 }
