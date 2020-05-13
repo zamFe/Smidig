@@ -6,7 +6,7 @@ async function getUser(email, password) { // Login
     if (response.payload.statusCode === 200)
         localStorage.setItem("user", JSON.stringify(response.payload.data));
 
-    return {statusCode:response.payload.statusCode, status:response.payload.status};
+    return response.payload;
 }
 
 async function updateUser(email, password, packet) {
@@ -17,7 +17,7 @@ async function updateUser(email, password, packet) {
     if (response.payload.statusCode === 200)
         localStorage.setItem("user", JSON.stringify(response.payload.data));
 
-    return {statusCode:response.payload.statusCode, status:response.payload.status};
+    return response.payload;
 }
 
 async function createUser(email, password, firstname, lastname) {
@@ -27,7 +27,7 @@ async function createUser(email, password, firstname, lastname) {
     if (response.payload.statusCode === 200)
         localStorage.setItem("user", JSON.stringify(response.payload.data));
 
-    return {statusCode:response.payload.statusCode, status:response.payload.status};
+    return response.payload;
 }
 
 async function getDbRequest(url, body = null) {
