@@ -64,7 +64,7 @@ async function fetchMap() {
 
         document.getElementById("googleMap").innerHTML = payload.body;
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 }
 

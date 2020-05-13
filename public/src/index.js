@@ -165,7 +165,7 @@ function checkLocation(){
 
 function updateHistory(newSearch, from, to) {
     let history = JSON.parse(localStorage.getItem("history"));
-    const historyLimit = 10; //Search history limit
+    const historyLimit = 5; //Search history limit
 
 
     if(!history){
@@ -176,21 +176,21 @@ function updateHistory(newSearch, from, to) {
         history.splice(0,1) //Remove oldest entry. Limits to 10 entries
     }
 
-    let user = JSON.parse(localStorage.getItem("user"));
     let entry = {
         url: newSearch,
         from: from,
         to: to
     }
 
+    let user = JSON.parse(localStorage.getItem("user"));
     if(user){
-        updateUserHistory(user, entry)
+        updateUser(user.email, user.password, {searchHistory: entry})
     }
 
     history.push(entry);
     localStorage.setItem("history", JSON.stringify(history))
 }
-
+/*
 async function updateUserHistory(user, entry) {
     const url = `${window.location.origin}/api/db/updateuser?email=${user.email}&password=${user.password}`
     let response;
@@ -212,7 +212,7 @@ async function updateUserHistory(user, entry) {
         console.log(e);
     }
 }
-
+*/
 function generateSearchHistory() {
     const list = document.getElementById("generated-history");
     const history = JSON.parse(localStorage.getItem("history"));
