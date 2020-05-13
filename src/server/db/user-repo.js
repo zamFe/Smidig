@@ -16,6 +16,10 @@ let sampleUser = {
     ]
 }
 
+function getUserPath (email) {
+    return `src/server/db/Users/${hashString(email)}.json`;
+}
+
 function createUser(email, password, firstname, lastname) {
 
     if (!email || !password || !firstname || !lastname) {
@@ -25,7 +29,7 @@ function createUser(email, password, firstname, lastname) {
         };
     }
 
-    var path = `src/server/db/Users/${hashString(email)}.json`;
+    var path = getUserPath(email);
     console.log(path)
     if (fs.existsSync(path)) {
         // User already exists
@@ -44,7 +48,7 @@ function createUser(email, password, firstname, lastname) {
         favorites: []
     }
 
-    fs.writeFileSync(path, JSON.stringify(user), 'utf8');
+    saveUser(user);
 
     return {
         status: "User created successfully!",
@@ -93,6 +97,10 @@ function authenticateUser(email, password) {
     return null;
 }
 
+function saveUser(user){
+    fs.writeFileSync(getUserPath(user.email), JSON.stringify(user), 'utf8');
+}
+
 function updateUserData(email, password, searchHistory, favoriteSearches) {
 
     if (!email || !password) {
@@ -111,6 +119,8 @@ function updateUserData(email, password, searchHistory, favoriteSearches) {
         if (favoriteSearches) {
             user.favorites = favoriteSearches;
         }
+
+        saveUser(user);
 
         return {
             data: user,

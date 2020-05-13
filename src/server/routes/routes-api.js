@@ -35,7 +35,7 @@ router.post("/db/loginuser", (req, res) => {
 
 router.post("/db/updateuser", (req, res) => {
     res.send(
-        users.updateUserData(req.query.email, req.query.password, req.body.searchHistory, req.query.favorites)
+        users.updateUserData(req.query.email, req.query.password, req.body.searchHistory, req.body.favorites)
     );
 })
 
