@@ -4,24 +4,24 @@ html, body {
     margin: 0;
     font-family: sans-serif;
     font-weight: bold;
-    color: #242424;
+    color: #212721;
+    background-color: #f2f2f3;
 }
 
 header {
     position: relative;
     width: 100%;
-    height: 400px;
 }
 
 main {
     position: relative;
     width: 100%;
-    height: calc(100% - 400px);
+    height: 70%;
     overflow-y: auto;
 }
 
 .footer-text {
-    font-size: 3rem;
+    font-size: 1rem;
 }
 
 /* header elements */
@@ -32,11 +32,7 @@ main {
 }
 
 #logo {
-    left: 50%;
-    top: 10%;
-    transform: translate(-50%);
-    position: relative;
-    height: 100%;
+    width: 100%
 }
 
 /* main elements */
@@ -45,7 +41,7 @@ main {
     display: grid;
     width: 100%;
     height: 100%;
-    
+    grid-template-rows: 1fr 1fr ;
     justify-items: center;
 }
 
@@ -53,45 +49,40 @@ main {
 
 .profile-details {
     max-width: 100%;
-    margin-top: 50px;
 }
 
 #profile-details-container {
+    font-size: 2em;
     display: grid;
-    font-size: 50px;
-    grid-template-rows: 0.3fr 0.3fr 0.3fr 0.5fr 0.15fr;
-    width: 100%;
-    height: 100%;
-    justify-items: center;
-}
-
-#firstname-container {
-    grid-row: 1;
-    width: 60%;
-}
-
-#lastname-container {
-    grid-row: 2;
-    width: 60%;
-}
-
-#email-container {
-    grid-row: 3;
-    width: 60%;
-}
-
-#logout-container {
-    margin-top: 50px;
-    grid-row: 4;
+    grid-template-rows: 0.75fr 1fr 0.6fr 1.35fr;
+    width: 80%;
+    height: 70%;
 }
 
 .profile-text {
     border: none;
-    border-bottom: 10px solid #00957a;
+    border-bottom: 0.1em solid #00957a;
     background-color: rgb(200,200,200);
     width: 100%;
-    height: 100px;
-    font-size: 50px;
+    height: 2em;
+    font-size: 1em;
+}
+
+#firstname-container {
+    grid-row: 1;
+}
+
+#lastname-container {
+    grid-row: 2;
+}
+
+#email-container {
+    grid-row: 3;
+}
+
+#logout-container {
+    margin-top: 3em;
+    grid-row: 4;
 }
 
 #logout-button {
