@@ -3,7 +3,17 @@ let firstNameSpan = document.getElementById("firstname-span");
 let lastNameSpan = document.getElementById("lastname-span");
 let emailSpan = document.getElementById("email-span");
 
+let email = "";
+let password = "";
 
+getUserInfo();
+
+console.log(email);
+console.log(password);
+
+DisplayInfo(email, password);
+
+/*
 createUser("randomannet", "passss", "andreas", "østny").then((value) => {
     getUser("randomannet", "passss").then((v) => {
         console.log(v.data)
@@ -14,3 +24,27 @@ createUser("randomannet", "passss", "andreas", "østny").then((value) => {
 
     })
 })
+ */
+
+function DisplayInfo(email, pass) {
+
+    console.log(email + ", " + pass);
+
+    getUser(email, password).then((v) => {
+        if (v.statusCode != 200) {
+            console.log("Feil epost eller passord");
+            window.location.href = "Login.html";
+        }
+        console.log(v);
+        firstNameSpan.innerHTML = v.data.firstName;
+        lastNameSpan.innerHTML = v.data.lastName;
+        emailSpan.innerHTML = v.data.email;
+    })
+}
+
+function getUserInfo() {
+    let info = JSON.parse(localStorage.getItem("user"));
+
+    email = info.email;
+    password = info.password;
+}

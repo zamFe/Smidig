@@ -1,5 +1,7 @@
 src/server/api-keys
 Source/JS/demoroute.js
+src/server/db/Users/*
+
 .vs
 
 # GITIGNORE GENERATED THROUGH GITIGNORE.IO
