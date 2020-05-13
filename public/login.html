@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="res/style/login.css" rel="stylesheet">
     <link href="res/style/footer.css" rel="stylesheet">
+    <link rel="stylesheet" href="libraries/notifications/dist/notifications.css">
     <title>Vy</title>
 </head>
 <body>
@@ -38,7 +39,7 @@
             </div><!--end from-input-container-->
 
             <div id="login-button-container">
-                <img onclick="" id="login_button" src="res/img/icons/login.png" alt="Find route" >
+                <img onclick="login();" id="login_button" src="res/img/icons/login.png" alt="Find route" >
             </div>
 
             <div id="register-container">
@@ -71,5 +72,8 @@
         </div>
     </div>
 </footer>
+<script src="libraries/notifications/dist/notifications.js"></script>
+<script src="src/database.js"></script>
+<script src="src/login-register.js"></script>
 </body>
 </html>
