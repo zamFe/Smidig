@@ -59,6 +59,7 @@ body {
     grid-column: 5;
     top: 2vh;
     height: 5vh;
+    visibility: hidden;
 }
 
 .from-destination-routes {

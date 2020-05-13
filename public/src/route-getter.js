@@ -16,6 +16,18 @@ swapRouteButton.addEventListener('click', e => {
     let datetime = urlParams.get('datetime');
     window.location = `../routes.html?from=${from}&to=${to}&fromname=${fromName}&toname=${toName}&datetime${datetime}`;
 })
+
+function checkUser() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const favStar = document.getElementById("favourite-star");
+
+    if(user) {
+        favStar.style.visibility = "";
+    } else {
+        favStar.style.visibility = "hidden";
+    }
+}
+
  
 // Convert from Seconds to real time
 function convertTime(time) {
@@ -190,3 +202,5 @@ function setUp() {
     }
 }
 
+// Function calls
+checkUser(); // Loads star if user logged in
