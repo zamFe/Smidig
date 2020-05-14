@@ -1,12 +1,14 @@
+// Other global variables of elements
 const container = document.getElementById("routes-result-container");
+const favStar = document.getElementById("favourite-star");
 
-//Displays the route names in the route list
+// Displays the route names in the route list
 const fromElem = document.getElementById("from-dest");
 const toElem = document.getElementById("to-dest");
 fromElem.innerText = urlParams.get("fromname");
 toElem.innerText = urlParams.get("toname");
 
-//Swaps the route directions
+// Swaps the route directions
 const swapRouteButton = document.getElementById('switch-arrow');
 swapRouteButton.addEventListener('click', e => {
     let from = urlParams.get('to');
@@ -17,31 +19,26 @@ swapRouteButton.addEventListener('click', e => {
     window.location = `../routes.html?from=${from}&to=${to}&fromname=${fromName}&toname=${toName}&datetime${datetime}`;
 })
 
+// Renders star in if user is logged in for adding a favorite route
 function checkUser() {
     const user = JSON.parse(localStorage.getItem("user"));
-    const favStar = document.getElementById("favourite-star");
-
+    console.log(user)
     if(user) {
-        favStar.style.visibility = "";
+        favStar.style.visibility = "visible";
     } else {
         favStar.style.visibility = "hidden";
     }
 }
 
+// CHeck wether to add or remove from favorite list on user
+favStar.addEventListener("click", event => {
+    console.log(event)
+});
+
  
 // Convert from Seconds to real time
 function convertTime(time) {
-    /*
-    let date = new Date(time*1000);
-    let convertedTime = `${date.getHours()}:${date.getMinutes()}`
 
-    if(convertedTime.length != 5){
-        if (convertedTime.indexOf(':', 0) === 1) {
-            convertedTime = "0" + convertedTime;
-        } else {
-            convertedTime = convertedTime + "0";
-        }
-    }*/
     let date = new Date(time*1000);
     let convertedTime = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
 
@@ -127,6 +124,7 @@ function setRoutings(oneRoute) {
     return div;
 }
 
+// Time converter
 function secondsToTime(end, start) {
     let time = end - start;
     let hour = Math.floor(time / 3600);
@@ -135,15 +133,11 @@ function secondsToTime(end, start) {
 
     if (hour != 0) {
         convTime += `${hour}t `;
-    } 
-    
-    convTime += min + "min";    
-    
-
+    }
+    convTime += min + "min";
     return convTime;
 }
 
-console.log();
 // Create dynamic route alternatives of search
 function setUp() {
     localStorage.setItem("route", JSON.stringify(fullRoute));
