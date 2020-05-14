@@ -32,7 +32,7 @@ function DisplayInfo(email, pass) {
 
     getUser(email, password).then((v) => {
         if (v.statusCode != 200) {
-            console.log("Feil epost eller passord");
+            alert("Feil brukernavn eller passord");
             window.location.href = "Login.html";
         }
         console.log(v);
@@ -47,4 +47,11 @@ function getUserInfo() {
 
     email = info.email;
     password = info.password;
+}
+
+function logout() {
+    alert("Trykket på logg ut knappen");
+
+    localStorage.setItem("user", null);
+    window.location.href = "index.html";
 }
