@@ -47,7 +47,7 @@ function checkIfRouteInFavorite(user) {
         user.favorites.forEach(favRoute => {
             if(favRoute.from === newRoute.from && favRoute.to === newRoute.to) {
                 favStar.alt = "true";
-                star.style.fill = "#fae053"
+                star.style.fill = "#00957a"
                 return;
             } else {
                 favStar.alt = "false";
@@ -80,7 +80,7 @@ favStar.addEventListener("click", event => {
     // Exception if no other favorite route has been added
     if(user.favorites.length === 0) {
         user.favorites.push(newRoute);
-        star.style.fill = "#fae053";
+        star.style.fill = "#00957a";
         updateUser(user.email, user.password, {favorites: user.favorites});
         console.log(user)
         return;
@@ -97,7 +97,7 @@ favStar.addEventListener("click", event => {
 
         console.log(i+1 === user.favorites.length)
         if(i+1 === user.favorites.length) {
-            star.style.fill = "#fae053";
+            star.style.fill = "#00957a";
             user.favorites.push(newRoute);
             updateUser(user.email, user.password, {favorites: user.favorites})
             break;
