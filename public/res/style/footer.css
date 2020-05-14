@@ -29,6 +29,45 @@ footer {
 	align-items: center;
 }
 
+@keyframes rainbow{
+	100%,0%{
+		stroke: rgb(255,0,0);
+	}
+	8%{
+		stroke: rgb(255,127,0);
+	}
+	16%{
+		stroke: rgb(255,255,0);
+	}
+	25%{
+		stroke: rgb(127,255,0);
+	}
+	33%{
+		stroke: rgb(0,255,0);
+	}
+	41%{
+		stroke: rgb(0,255,127);
+	}
+	50%{
+		stroke: rgb(0,255,255);
+	}
+	58%{
+		stroke: rgb(0,127,255);
+	}
+	66%{
+		stroke: rgb(0,0,255);
+	}
+	75%{
+		stroke: rgb(127,0,255);
+	}
+	83%{
+		stroke: rgb(255,0,255);
+	}
+	91%{
+		stroke: rgb(255,0,127);
+	}
+}
+
 .active-option {
 	background-color: #00957a !important;
 	margin-bottom: 5%;
@@ -43,6 +82,12 @@ footer {
 .active-option * {
 	opacity: .9 !important;
 }
+
+.icon{
+	fill: none;
+	stroke: #212721;
+	stroke-miterlimit: 10;
+	stroke-width:25px;}
 
 .nav-option span {
 	font-size: 1.3em;
