@@ -54,12 +54,19 @@ body {
     margin-top: -2vh;
 }
 
-#favourite-star {
+#favorite-star {
     position: relative;
     grid-column: 5;
     top: 2vh;
     height: 5vh;
     visibility: hidden;
+}
+
+.star-fav {
+    fill: none;
+    stroke: #0e0c0c;
+    stroke-miterlimit: 10;
+    stroke-width: 20px;
 }
 
 .from-destination-routes {

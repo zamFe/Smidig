@@ -1,7 +1,8 @@
 
 // Other global variables of elements
 const container = document.getElementById("routes-result-container");
-const favStar = document.getElementById("favourite-star");
+const favStar = document.getElementById("favorite-star");
+const star = document.getElementsByClassName("star-fav")[0];
 
 // Displays the route names in the route list
 const fromElem = document.getElementById("from-dest");
@@ -42,15 +43,14 @@ function checkUserAndStarData() {
 function checkIfRouteInFavorite(user) {
     const newRoute = getCurrentRoute();
 
-    if(user.favorites.length !== 0) {
+    if(user.favorites.length > 0) {
         user.favorites.forEach(favRoute => {
             if(favRoute.from === newRoute.from && favRoute.to === newRoute.to) {
                 favStar.alt = "true";
+                star.style.fill = "#fae053"
+                return;
             } else {
                 favStar.alt = "false";
-                console.log("Something went from, check objects under:")
-                console.log(favRoute);
-                console.log(newRoute);
             }
         });
     } else {
@@ -73,37 +73,43 @@ function getCurrentRoute() {
 
 // Check whether to add or remove from favorite list on user
 favStar.addEventListener("click", event => {
+
     const user = retrieveUser();
-    let status = event.target.alt; // Retrieve the current status of the star
     const newRoute = getCurrentRoute();
 
-    // User HAS this route in favorite
-    if(status === "true") {
-        favStar.alt = "false";
-        console.log(1);
-        user.favorites.forEach(favRoute => {
-            if(favRoute.from === newRoute.from && favRoute.to === newRoute.to) {
-                user.favorites.splice(user.favorites.indexOf(favRoute), 1);
-            } else {
-                console.log("Something went from, check objects under:")
-                console.log(favRoute);
-                console.log(newRoute);
-            }
-        });
+    // Exception if no other favorite route has been added
+    if(user.favorites.length === 0) {
+        user.favorites.push(newRoute);
+        star.style.fill = "#fae053";
         updateUser(user.email, user.password, {favorites: user.favorites});
+        console.log(user)
+        return;
     }
 
-    // User does NOT have this in favorite
-    if(status === "false") {
-        favStar.alt = "true";
-        console.log(2);
-        user.favorites.push(newRoute);
-        updateUser(user.email, user.password, {favorites: user.favorites});
+
+    for(let i = 0; i < user.favorites.length; i++) {
+        console.log(user.favorites.length)
+        if(user.favorites[i].from === newRoute.from && user.favorites[i].to === newRoute.to) {
+            user.favorites.splice(user.favorites.indexOf(user.favorites[i]), 1) // Find route and remove
+            star.style.fill = "none";
+        }
+
+
+        console.log(i+1 === user.favorites.length)
+        if(i+1 === user.favorites.length) {
+            star.style.fill = "#fae053";
+            user.favorites.push(newRoute);
+            updateUser(user.email, user.password, {favorites: user.favorites})
+            break;
+        }
     }
     console.log(user);
+    updateUser(user.email, user.password, {favorites: user.favorites});
 });
+// user.favorites.splice(user.favorites.indexOf(route), 1) // Find route and remove
+// updateUser(user.email, user.password, {favorites: user.favorites});
 
- 
+
 // Convert from Seconds to real time
 function convertTime(time) {
     let date = new Date(time*1000);
