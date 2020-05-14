@@ -17,7 +17,7 @@ let sampleUser = {
 }
 
 function getUserPath (email) {
-    return `src/server/db/Users/${hashString(email)}.json`;
+    return `src/server/db/users/${hashString(email)}.json`;
 }
 
 function createUser(email, password, firstname, lastname) {
@@ -83,7 +83,7 @@ function loginUser(email, password) {
 
 function authenticateUser(email, password) {
 
-    var path = `src/server/db/Users/${hashString(email)}.json`;
+    var path = `src/server/db/users/${hashString(email)}.json`;
     console.log(path)
     if (fs.existsSync(path)) {
         // User exists

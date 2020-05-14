@@ -1,6 +1,6 @@
 src/server/api-keys
 Source/JS/demoroute.js
-src/server/db/Users/*
+src/server/db/users/*
 
 .vs
 
