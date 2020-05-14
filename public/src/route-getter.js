@@ -1,3 +1,4 @@
+
 // Other global variables of elements
 const container = document.getElementById("routes-result-container");
 const favStar = document.getElementById("favourite-star");
@@ -17,35 +18,86 @@ swapRouteButton.addEventListener('click', e => {
     let toName = urlParams.get('fromname');
     let datetime = urlParams.get('datetime');
     window.location = `../routes.html?from=${from}&to=${to}&fromname=${fromName}&toname=${toName}&datetime${datetime}`;
-})
+});
+
+// Retrieves user information from Localstorage
+function retrieveUser() {
+    return JSON.parse(localStorage.getItem("user"));
+}
 
 // Renders star in if user is logged in for adding a favorite route
-function checkUser() {
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user)
+function checkUserAndStarData() {
+    const user = retrieveUser();
+    console.log(user);
+
     if(user) {
         favStar.style.visibility = "visible";
+        checkIfRouteInFavorite();
     } else {
         favStar.style.visibility = "hidden";
     }
 }
 
-// CHeck wether to add or remove from favorite list on user
+
+function checkIfRouteInFavorite() {
+    const user = retrieveUser();
+    const newRoute = getCurrentRoute();
+
+
+}
+
+// Fetches URL params and creates route object for user
+function getCurrentRoute() {
+    const url = window.location.search;
+
+    const newRoute = {
+        from: urlParams.get("fromname"),
+        to: urlParams.get("toname"),
+        url: `date-time.html${url}`
+    };
+    return newRoute;
+}
+
+// Check whether to add or remove from favorite list on user
 favStar.addEventListener("click", event => {
-    console.log(event)
+    const user = retrieveUser();
+    let status = event.target.alt; // Retrieve the current status of the star
+    const newRoute = getCurrentRoute();
+
+    // User HAS this route in favorite
+    if(status === "true") {
+        favStar.alt = "false";
+        console.log(1);
+        user.favorites.forEach(favRoute => {
+            if(favRoute.from === newRoute.from && favRoute.to === newRoute.to) {
+                user.favorites.splice(user.favorites.indexOf(favRoute), 1);
+            } else {
+                console.log("Something went from, check objects under:")
+                console.log(favRoute);
+                console.log(newRoute);
+            }
+        });
+    }
+
+    // User does NOT have this in favorite
+    if(status === "false") {
+        favStar.alt = "true";
+        console.log(2);
+        user.favorites.push(newRoute);
+        updateUser();
+    }
+    console.log(user);
 });
 
  
 // Convert from Seconds to real time
 function convertTime(time) {
-
     let date = new Date(time*1000);
     let convertedTime = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
 
     if(date.getHours() < 10) {
         convertedTime = '0' + `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
     }
-
     return convertedTime;
 }
 
@@ -197,4 +249,4 @@ function setUp() {
 }
 
 // Function calls
-checkUser(); // Loads star if user logged in
+checkUserAndStarData(); // Loads star if user logged in
