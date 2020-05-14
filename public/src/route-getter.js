@@ -32,17 +32,30 @@ function checkUserAndStarData() {
 
     if(user) {
         favStar.style.visibility = "visible";
-        checkIfRouteInFavorite();
+        checkIfRouteInFavorite(user);
     } else {
         favStar.style.visibility = "hidden";
     }
 }
 
 
-function checkIfRouteInFavorite() {
-    const user = retrieveUser();
+function checkIfRouteInFavorite(user) {
     const newRoute = getCurrentRoute();
 
+    if(user.favorites.length !== 0) {
+        user.favorites.forEach(favRoute => {
+            if(favRoute.from === newRoute.from && favRoute.to === newRoute.to) {
+                favStar.alt = "true";
+            } else {
+                favStar.alt = "false";
+                console.log("Something went from, check objects under:")
+                console.log(favRoute);
+                console.log(newRoute);
+            }
+        });
+    } else {
+        favStar.alt = "false";
+    }
 
 }
 
@@ -77,6 +90,7 @@ favStar.addEventListener("click", event => {
                 console.log(newRoute);
             }
         });
+        updateUser(user.email, user.password, {favorites: user.favorites});
     }
 
     // User does NOT have this in favorite
@@ -84,7 +98,7 @@ favStar.addEventListener("click", event => {
         favStar.alt = "true";
         console.log(2);
         user.favorites.push(newRoute);
-        updateUser();
+        updateUser(user.email, user.password, {favorites: user.favorites});
     }
     console.log(user);
 });
