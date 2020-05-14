@@ -10,21 +10,21 @@ function stepBuilder(stop) {
     let time = document.createElement("div");
     time.id = "time-container";
 
-    let timeP = document.createElement("p");
+    let timeP = document.createElement("div");
+    timeP.style.marginTop = ".5em";
     timeP.innerText = convertTime(stop.startTime);
 
     //add service provider icon
     let serviceProvider = document.createElement("div");
     serviceProvider.id = "serviceprovider-icon";
-    if(stop.action != "") {
+    if (stop.action != "") {
         let serviceProviderIcon = document.createElement("img");
         serviceProviderIcon.id = "serviceprovider-icon";
         serviceProviderIcon.src = "../res/vy.logo.final_primary.png"; //PLACEHOLDER
         serviceProvider.appendChild(serviceProviderIcon);
-        if(stop.action != "Gå") {
+        if (stop.action != "Gå") {
             serviceProvider.innerText = stop.operatorName;
-        }
-        else {
+        } else {
             serviceProvider.innerText = stop.metres + " meter";
         }
     }
@@ -33,16 +33,26 @@ function stepBuilder(stop) {
     let stopNode = document.createElement("div");
     stopNode.id = "node-container";
 
-    let routeLine = document.createElement("div");
+    let routeLine;
+    routeLine = document.createElement("div");
+    if (stop.to) {
     routeLine.id = "route-line";
-    if(stop.action == "Gå") {
-        routeLine.style.background = "repeating-linear-gradient(to bottom, #FFFFFF, #FFFFFF 10px, #383e42 10px, #383e42 30px)";
+        if (stop.action === "Gå") {
+            routeLine.style.background = "repeating-linear-gradient(to bottom, #FFFFFF, #FFFFFF 10px, #383e42 10px, #383e42 30px)";
+        }
+    } else {
+        routeLine.style.top = "2.1em";
+        routeLine.style.position = "relative";
+        routeLine.style.width = ".4em";
+        routeLine.style.height = "8em";
     }
 
     let nodeImg = document.createElement("img");
     nodeImg.classList.add("node");
     nodeImg.src = "../res/img/icons/node.png";
     nodeImg.alt = "";
+
+    //if (stop.to)
     routeLine.appendChild(nodeImg);
 
     //build end node
@@ -66,29 +76,28 @@ function stepBuilder(stop) {
     nameP.innerText = stop.from.address;
 
     // TODO: Sjekk over denne om den brukes/er nødvendig
-/*     let endName = document.createElement("div");
-    endName.id = "name-container";
+    /*     let endName = document.createElement("div");
+        endName.id = "name-container";
 
-    let endNameP = document.createElement("p");
-    endNameP.classList.add("text-name");
-    endNameP.innerText = stop.to.address; */
+        let endNameP = document.createElement("p");
+        endNameP.classList.add("text-name");
+        endNameP.innerText = stop.to.address; */
 
     //build transport-medium information
     let transport = document.createElement("p");
     transport.classList.add("text-Transport");
-    if(stop.action != "Gå") {
+    if (stop.action != "Gå") {
         transport.innerHTML = stop.serviceName;
-        if(stop.serviceName != stop.serviceNumber) {
+        if (stop.serviceName != stop.serviceNumber) {
             transport.innerHTML += " (" + stop.serviceNumber + ")";
         }
 
-    }
-    else{
+    } else {
         transport.innerHTML = stop.action;
     }
 
 
-    if(stop.action != "") {
+    if (stop.action != "") {
         var transportIcon = document.createElement("div");
         transportIcon.id = "transport-icon-container";
 
@@ -100,17 +109,18 @@ function stepBuilder(stop) {
 
     time.appendChild(timeP);
     time.appendChild(serviceProvider);
+    /*if(stop.to) */
     stopNode.appendChild(routeLine);
 
     name.appendChild(nameP);
-    name.appendChild(transport);
-    if(stop.action != "") {
+    if (stop.action != "") {
+        name.appendChild(transport);
         name.appendChild(transportIcon);
     }
 
     // TODO: Sjekk over
- /*    endTime.appendChild(endTimeP); */
-/*     endName.appendChild(endNameP); */
+    /*    endTime.appendChild(endTimeP); */
+    /*     endName.appendChild(endNameP); */
 
 
     step.appendChild(time);
@@ -118,9 +128,9 @@ function stepBuilder(stop) {
     step.appendChild(name);
 
     // TODO: Sjekk over
-  //  step.appendChild(endTime);
-   // step.appendChild(document.createElement("br"));
-   // step.appendChild(endName);
+    //  step.appendChild(endTime);
+    // step.appendChild(document.createElement("br"));
+    // step.appendChild(endName);
 
     container.appendChild(step);
 }
@@ -133,7 +143,7 @@ function transitionBuilder(startTime, stopTime, stopName) {
     time.id = "time-container";
 
     let timeP = document.createElement("p");
-    timeP.innerText = Math.floor((stopTime-startTime) / 60) + "min";
+    timeP.innerText = Math.floor((stopTime - startTime) / 60) + "min";
 
     let stopNode = document.createElement("div");
     stopNode.id = "node-container";
@@ -156,17 +166,16 @@ function transitionBuilder(startTime, stopTime, stopName) {
 }
 
 
-
 function convertTime(time) {
     /*let date = new Date(time*1000);
     let convertedTime = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
     return convertedTime;*/
 
-    let date = new Date(time*1000);
-    let convertedTime = `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
+    let date = new Date(time * 1000);
+    let convertedTime = `${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`
 
-    if(date.getHours() < 10) {
-        convertedTime = '0' + `${date.getHours()}:${('0'+date.getMinutes()).slice(-2)}`
+    if (date.getHours() < 10) {
+        convertedTime = '0' + `${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`
     }
 
     return convertedTime;
@@ -176,14 +185,18 @@ function convertTime(time) {
 
 function getImages(routeAction) {
     let image = "../res/img/icons/";
-    switch(routeAction) {
-        case "T-bane": image += "subway.png";
+    switch (routeAction) {
+        case "T-bane":
+            image += "subway.png";
             break;
-        case "Gå": image += "walk.png";
+        case "Gå":
+            image += "walk.png";
             break;
-        case "Tog": image += "traing.png";
+        case "Tog":
+            image += "traing.png";
             break;
-        case "Buss": image += "bus.png";
+        case "Buss":
+            image += "bus.png";
             break;
     }
     return image;
@@ -201,14 +214,30 @@ stepBuilder("", "Lilletorget", "10:45", "");
 let fullRoute = JSON.parse(localStorage.getItem("route"));
 urlParams = new URLSearchParams(window.location.search);
 
-    var index = (urlParams.get('index'))?urlParams.get('index'):0;
-    //console.log(urlParams.get('index'));
-    console.log(fullRoute)
-    for(let i = 0; i < fullRoute[index].route.length; i++) {
-        let step = fullRoute[index].route[i];
-        if (step.action === 'Overgang') {
-            //transitionBuilder(step.startTime, step.endTime);
-            continue;
-        }
-        stepBuilder(step);
+var index = (urlParams.get('index')) ? urlParams.get('index') : 0;
+//console.log(urlParams.get('index'));
+console.log(fullRoute)
+let i;
+for (i = 0; i < fullRoute[index].route.length; i++) {
+    let step = fullRoute[index].route[i];
+    if (step.action === 'Overgang') {
+        //transitionBuilder(step.startTime, step.endTime);
+        continue;
     }
+    //stepBuilder(step);
+}
+
+let step = fullRoute[index].route[i - 1]
+console.log(step)
+/*
+stepBuilder({
+    action: "",
+    from: {
+        address: step.to.address,
+        lat: step.to.lat,
+        lng: step.to.lng,
+        name: step.to.name
+    },
+    startTime: step.endTime
+});
+*/

@@ -12,7 +12,7 @@ async function getUser(email, password) { // Login
     return response.payload;
 }
 
-async function updateUser(email, password, packet) {
+async function updateUser(email, password, packet) { //email, password, {favorites:[]}
     const url = `${window.location.origin}/api/db/updateuser?email=${email}&password=${hash(password)}`
 
     var response = await getDbRequest(url, JSON.stringify(packet));

@@ -4,7 +4,6 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: sans-serif;
-    font-weight: bold;
     color: #212721;
 }
 
@@ -24,7 +23,7 @@ main {
     overflow-y: scroll;
 }
 
-.footer-text{
+.footer-text {
     font-size: 1rem;
 }
 
@@ -67,6 +66,68 @@ main {
     overflow: scroll;
 }
 
+.detail-box {
+    margin: 5px;
+    padding: 5px;
+    font-size: 2vh;
+    box-shadow: 0px 3px #c7c9c7;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    background-color: #FFFFFF;
+}
+
+.route-line {
+    padding: .5em;
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+    align-items: center;
+}
+
+.node-icon {
+    width: 1em;
+    height: 1em;
+}
+
+.line {
+    width: .23em;
+    height: 100%;
+    background-color: #383e42;
+    margin: 0 10px 0 calc(.5em - .115em);
+}
+
+.route-details {
+    display: grid;
+    grid-template-rows: 10% 10% 60% 10% 10%;
+    padding: .3em .3em .7em .3em;
+}
+
+.route-time {
+    display: flex;
+    align-items: center;
+    font-size: 1.8vh;
+}
+
+.route-place {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.route-action {
+    display: flex;
+    align-items: center;
+    margin: 1em 0 1em 0;
+}
+
+.action-img {
+    width: 2em;
+}
+
+.action-extra {
+    font-style: italic;
+    color: #9c9c9c;
+}
+
+/*
 #departure {
     display: grid;
     grid-auto-rows: 7.7em;
@@ -86,6 +147,7 @@ main {
     left: 50%;
     transform: translateX(-50%);
     line-height: 1em;
+    top: 2em;
 }
 
 .node {
@@ -120,10 +182,19 @@ main {
 }
 
 .text-Transport {
-    /*font-family: Arial;*/ 
-    font-style: italic;
-    font-size: 0.6em;
-    word-wrap: break-word;
+
+font-style: italic
+
+;
+font-size:
+
+0.6
+em
+
+;
+word-wrap: break-word
+
+;
 }
 
 #transport-icon-container {
@@ -131,9 +202,10 @@ main {
 
 }
 
-#transport-icon
-{
+#transport-icon {
     width: 2em;
     height: auto;
 }
+
+*/
 
