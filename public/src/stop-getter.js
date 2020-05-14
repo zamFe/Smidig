@@ -2,6 +2,49 @@ let container = document.getElementById("main-container");
 
 //build step and adds to HTML
 function stepBuilder(stop) {
+
+    let stepBlock = document.createElement("div");
+    stepBlock.classList.add("detail-box");
+
+    let serviceP = "";
+
+    if (stop.action !== "Gå") {
+        serviceP = stop.operatorName;
+    } else {
+        serviceP = stop.metres + " meter";
+    }
+
+    let serviceNr = "";
+
+    if (stop.action !== "Gå"){
+        serviceNr = stop.serviceName;
+    } else {
+        serviceNr = `Gå ${Math.floor((stop.endTime - stop.startTime)/60)} min`;
+    }
+
+    var template = `<div class="route-line">
+
+                    <img class="node-icon" src="../res/img/icons/node.png">
+                    <div class="line"></div>
+                    <img class="node-icon" src="../res/img/icons/node.png">
+
+                </div>
+                <div class="route-details">
+                    <span class="route-time">${convertTime(stop.startTime)}</span>
+                    <span class="route-place">${stop.from.address}</span>
+                    <div class="route-action">
+                        <img class="action-img" src="${getImages(stop.action)}" alt="">
+                        <span class="action-time">${serviceNr} <span class="action-extra">(${serviceP})</span></span>
+                    </div>
+                    <span class="route-time">${convertTime(stop.endTime)}</span>
+                    <span class="route-place">${stop.to.address}</span>
+                </div>`
+
+    stepBlock.innerHTML = template;
+    document.getElementById("main-container").appendChild(stepBlock)
+    return;
+
+
     //the step "container"
     let step = document.createElement("div");
     step.id = "departure";
@@ -224,7 +267,7 @@ for (i = 0; i < fullRoute[index].route.length; i++) {
         //transitionBuilder(step.startTime, step.endTime);
         continue;
     }
-    //stepBuilder(step);
+    stepBuilder(step);
 }
 
 let step = fullRoute[index].route[i - 1]
