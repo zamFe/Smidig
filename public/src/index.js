@@ -230,7 +230,7 @@ function generateSearchHistory() {
             let listElement = document.createElement("div");
 
             let listTitle = document.createElement("p");
-            listTitle.innerText = `${item.from} ⮞ ${item.to}`
+            listTitle.innerHTML = `<span>${item.from}</span> til <span>${item.to}</span>`
             listElement.appendChild(listTitle);
 
             listElement.addEventListener('click', () => {
