@@ -84,7 +84,7 @@ main {
     width: 80%;
 }
 
-.Destination-Input {
+.destination-input {
     border: none;
     border-bottom: 4px solid #00957a;
     background-color: rgb(200,200,200);
@@ -167,17 +167,32 @@ main {
     grid-row: 5;
 }
 
-#route_button {
-    position: relative;
-    width: 65%;
-    left: 50%;
-    transform: translate(-50%);
-    transition: 0.1s;
-    z-index: 0;
-    
+.route-button {
+    opacity: .3;
+    pointer-events: none;
+    width: 50%;
+    height: 100%;
+    font-size: 1.4rem;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-style: none;
+    padding: 10px;
+    background-color: #00957a;
+    color: #f2f2f3;
+    transition: .02s ease;
+    border-radius: 4px;
 }
 
-#route_button:active {
+.route-icon {
+    fill: #f2f2f3;
+    stroke:#000;
+    stroke-miterlimit:10;
+}
+
+#route-button:active {
     opacity: 0.6;
 }
 

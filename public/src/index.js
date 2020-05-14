@@ -78,10 +78,13 @@ function getName(address, lat, lng, loc){
 
     if(locationData.from && locationData.to){
         document.getElementById("swap-from-to").style.display = "inline-block";
+        document.getElementById("route-button").style.opacity = "1";
+        document.getElementById("route-button").style.pointerEvents = "auto";
     } else {
         document.getElementById("swap-from-to").style.display = "none";
+        document.getElementById("route-button").style.opacity = ".3";
+        document.getElementById("route-button").style.pointerEvents = "none";
     }
-
 
     document.getElementById(loc + "-input").value = address;
     document.getElementById(loc + "-droplist").style.display = "none";
