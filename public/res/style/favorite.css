@@ -3,12 +3,11 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: sans-serif;
-    font-weight: bold;
     background-color: #f2f2f3;
     color: #212721;
 }
 
-/*** Header styling ***/
+/** Header styling **/
 #back-arrow {
     height: 5.5vh;
     align-self: center;
@@ -16,28 +15,37 @@ html, body {
     margin-left: 4vw;
 }
 
-#favourite-main-container {
+#favorite-main-container {
     position: relative;
     height: 92%;
     overflow-y: auto;
 }
 
-#favourite-header-container {
+#favorite-header-container {
     display: grid;
     grid-template-columns: 20% auto;
 }
 
-.favourite-title-container {
+.favorite-title-container {
     align-items: center;
+    font-weight: bold;
 }
 
-#favourite-title {
+/* Used when no route has been saved */
+.text-empty-route {
+    text-align: center;
+    padding-top: 1.5vh;
+    font-weight: bold;
+}
+
+#favorite-title {
     display: grid;
     font-size: 3vh;
     text-align: center;
     padding-top: 3vh;
 }
 
+/** Route from users list **/
 .detail-box {
     margin: 5px;
     padding: 5px;
@@ -48,6 +56,7 @@ html, body {
     background-color: #FFFFFF;
 }
 
+/** Delete svg **/
 .delete-icon {
     text-align: center;
 }
@@ -81,6 +90,7 @@ html, body {
     align-items: center;
 }
 
+/** Left side travel display **/
 .node-icon {
     width: 1em;
     height: 1em;
