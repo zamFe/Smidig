@@ -6,7 +6,6 @@
     <link href="res/style/footer.css" rel="stylesheet">
     <title>Profil</title>
     <script src="src/database.js"></script>
-
 </head>
 
 <body>
@@ -17,27 +16,31 @@
             </div><!--end logo-container-->
         </header>
         <div id="main-container">
-
             <div id="profile-details-container">
-
                 <div id="firstname-container" class="profile-details">
                     Fornavn:
                     <br>
-                    <span id="firstname-span" class="profile-text">Ole </span>
+                    <div class="profile-text">
+                        <span id="firstname-span"></span>
+                    </div>
                 </div>
                 <div id="lastname-container" class="profile-details">
                     Etternavn:
                     <br>
-                    <span id="lastname-span" class="profile-text">Nordmann </span>
+                    <div class="profile-text">
+                        <span id="lastname-span" ></span>
+                    </div>
                 </div>
                 <div id="email-container" class="profile-details">
                     Epost:
                     <br>
-                    <span id="email-span" class="profile-text">olenordmann@yahoo.no </span>
+                    <div class="profile-text">
+                        <span id="email-span"></span>
+                    </div>
                 </div>
-            </div>
-            <div id="logout-container">
-                <img id="logout-button" onclick="logout()" src="res/img/icons/logout.png" alt="Logg ut">
+                <div id="logout-container">
+                    <img id="logout-button" onclick="logout()" src="res/img/icons/logout.png" alt="Logg ut">
+                </div>
             </div>
         </div>
     </main>

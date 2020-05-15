@@ -3,14 +3,16 @@ let firstNameSpan = document.getElementById("firstname-span");
 let lastNameSpan = document.getElementById("lastname-span");
 let emailSpan = document.getElementById("email-span");
 
-let email = "";
-let password = "";
 
-getUserInfo();
+function getUserInfo() {
+    let info = JSON.parse(localStorage.getItem("user"));
 
-DisplayInfo(email, password);
+    const email = info.email;
+    const password = info.password;
+    DisplayInfo(email, password);
+}
 
-function DisplayInfo(email, pass) {
+function DisplayInfo(email, password) {
 
     getUser(email, password).then((v) => {
         if (v.statusCode != 200) {
@@ -22,14 +24,9 @@ function DisplayInfo(email, pass) {
     })
 }
 
-function getUserInfo() {
-    let info = JSON.parse(localStorage.getItem("user"));
-
-    email = info.email;
-    password = info.password;
-}
-
 function logout() {
     localStorage.setItem("user", null);
     window.location.href = "index.html";
 }
+
+getUserInfo();
