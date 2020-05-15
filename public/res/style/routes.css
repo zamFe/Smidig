@@ -1,12 +1,13 @@
 /* Styling for main container */
+
 body {
     width: 100%;
     height: 100%;
     margin: 0;
     font-family: sans-serif;
-    font-weight: bold;
     background-color: #f2f2f3;
     color: #212721;
+    overflow-x: hidden;
 }
 
 #main-container-routes {
@@ -14,11 +15,6 @@ body {
     width: 100%;
     overflow-x: hidden;
     margin-bottom: 10vh;
-}
-
-.border-line {
-    border: solid 1px;
-    opacity: 0.4;
 }
 
 .footer-text {
@@ -30,20 +26,23 @@ body {
     position: relative;
     height: 100%;
     min-height: 13vh;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 15% 30% 10% 30% 15%;
-    grid-template-rows: 60% 40%;
-    align-content: center;
+    padding: 0 5vw;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.top-nav {
+    margin: 1em 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #back-arrow {
     height: 5.5vh;
     align-self: center;
-    grid-column: 1;
-    grid-row: 1;
-    margin-top: 2vh;
-    margin-left: 4vw;
 }
 
 #title-routes {
@@ -56,7 +55,6 @@ body {
 
 #favorite-star {
     position: relative;
-    grid-column: 5;
     top: 2vh;
     height: 5vh;
     visibility: hidden;
@@ -69,16 +67,20 @@ body {
     stroke-width: 20px;
 }
 
-.from-destination-routes {
-    grid-column: 1/3;
-    grid-row: 2;
-    align-self: center;
-    margin: 5vw
+.from-to {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.4rem;
+}
+
+.route-name {
+    color: #00957a;
+    font-weight: bold;
 }
 
 #switch-arrow {
-    grid-column: 3;
-    grid-row: 2;
+    padding: 0 1em;
     height: 4vh;
     align-self: center;
 }
@@ -110,98 +112,222 @@ body {
 }
 
 /* Styling of routes box container */
-.routes-box-container {
-    display: grid;
-    grid-template-columns: 20% auto 20%;
-    grid-template-rows: 13% auto 20%;
-    overflow: scroll;
+#routes-result-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
 }
 
-.border-line-2 {
-    border: solid 1px;
-    opacity: 0.2;
-    margin-top: 1.4vh;
-    margin-bottom: 1.4vh;
+.route-container {
+    width: 94vw;
+    padding: 1em 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: .5em 0;
+    box-shadow: #b9c4bf 0 2px 4px;
 }
 
-.time-font {
-    font-size: 2vh;
+.route-time {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
-#startTime {
-    grid-column: 1;
-    margin-left: 1.3vw;
+.time-destination {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 30%;
 }
 
-#endTime {
-    grid-column: 3;
+.destination {
+    height: 1em;
+    white-space: nowrap;
+    color: #a1a1a1;
+    margin: 0 0 .4em 0;
+    font-size: .8rem;
 }
 
-#route-box {
-    grid-column: 1/4;
-    grid-row: 2;
-    overflow-x: scroll;
+.dest-end {
+    text-align: right;
 }
 
-.routes-row {
-    grid-row: 1;
+.time {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
-.line-routes-div {
-    width: 5vw;
+.travel-time {
+    font-size: .9rem !important;
+    bottom: 0;
+    color: #9a9a9a;
+    font-weight: normal;
 }
 
-.line-routes {
-    background-color: #383e42;
-    height: 5px;
-    width: 100%;
+.route-path {
+    margin: 3.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.route-path-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.svg {
     position: relative;
-    top: 30%;
-} 
-
-.route-detail-spacing {
-    margin: 3vw;
+    height: 1.6em;
+    width: 1.6em;
+    z-index: 10;
+    background-color: #f2f2f3;
 }
 
-#total-time {
-    grid-column: 1/3;
-    grid-row: 3;
-    font-size: 2vh;
-    color: #00957a;
-    margin-left: 1.3vw;
+.action-icon {
+    fill: #212721;
+    stroke: none;
+    stroke-miterlimit: 10;
+    stroke-width:25px;
 }
 
-#total-price {
-    grid-column: 3;
-    grid-row: 3;
-    font-size: 2vh;
+.path-service {
+    font-size: .8rem;
+    padding: .5em;
+    font-weight: bold;
 }
 
-#route-box {
-    display: grid;
-    align-content: center;
-    grid-column: 2;
-    grid-row: 2;
-}
-
-.round {
-    border: solid 2px black;
-    border-radius: 50%;
-    height: 2vh; 
-    width: 4vw;
-    text-align: center;
-    margin-left: 33%;
-    margin-top: 33%;
+.vy-service {
     background-color: #00957a;
+    color: #f2f2f3;
 }
 
-.first-dot-routes {
-    grid-column: 1; 
+.ruter-service {
+    background-color: #E60000;
+    color: #f2f2f3;
 }
 
-.action-img {
-    height: 3vh;
+.sporveien-service {
+    background-color: #df8200;
+    color: #f2f2f3;
+}
+
+.walk-time {
+    font-weight: normal;
+    font-size: .7rem;
+    color: #c7c9c7;
+}
+
+/* Start of Visual Flare styling */
+
+.vf {
+    position: absolute;
+    background-color: #e8e7e7;
     z-index: 1;
-    padding: 5%;
-    align-content: center;
+    overflow-x: hidden;
+}
+
+.line {
+    display: inline-block;
+    width: 100%;
+    left: 0;
+    height: 3px;
+    margin-top: .8em;
+}
+
+.start-point {
+    width: 1em;
+    height: 1em;
+    display: block;
+    margin-top: .4em;
+    border-radius: 50%;
+    left: 0;
+}
+
+.end-point {
+    width: 1em;
+    height: 1em;
+    display: block;
+    margin-top: .4em;
+    border-radius: 50%;
+    right: 0;
+}
+
+/* End of visual flair styling*/
+
+.status {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.status-indicator {
+    background-color: #212721;
+    border-radius: 50%;
+    width: .45em;
+    height: .45em;
+}
+
+.status-text {
+    margin: 0 0 0 .5em;
+    font-size: .9rem;
+    color: #868686;
+}
+
+/* Start of route info styling*/
+@keyframes pulsate {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(50%);
+    }
+
+    50% {
+        transform: scale(1.1);
+        filter: brightness(70%);
+    }
+}
+
+.in-route {
+    animation: pulsate ease-in-out 1s infinite;
+    background-color: #0ee70e;
+}
+
+.delayed {
+    animation: pulsate ease-in-out 1s infinite;
+    background-color: #df8200;
+}
+
+.cancelled {
+    animation: pulsate ease-in-out 1s infinite;
+    background-color: #b42f2f;
+}
+
+.complete {
+    animation: pulsate ease-in-out 1s infinite;
+    background-color: #434e4a;
+}
+
+.not-started {
+    background-color: #95a195;
+}
+
+
+.route-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    margin: 0;
+    font-weight: bold;
+    color: #00957a;
 }

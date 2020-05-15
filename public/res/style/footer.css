@@ -1,6 +1,7 @@
 /* Footer is locked to bottom of the screen */
 footer {
 	position: fixed;
+	z-index: 9999;
 	width: 100%;
 	height: 8%;
 	margin: 0;
