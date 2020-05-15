@@ -22,32 +22,20 @@ html, body {
     overflow-y: auto;
 }
 
+#favourite-header-container {
+    display: grid;
+    grid-template-columns: 20% auto;
+}
+
 .favourite-title-container {
     align-items: center;
 }
 
 #favourite-title {
     display: grid;
-    font-size: 1.2em;
+    font-size: 3vh;
     text-align: center;
-}
-
-favorite-main-container svg{
-    height: 50px;
-}
-
-.cls-1 {
-    fill: none;
-    stroke: #0e0c0c;
-    stroke-miterlimit: 10;
-    stroke-width: 20px;
-}
-
-.cls-2 {
-    fill: blue;
-    stroke: #0e0c0c;
-    stroke-miterlimit: 10;
-    stroke-width: 20px;
+    padding-top: 3vh;
 }
 
 .detail-box {
@@ -55,9 +43,33 @@ favorite-main-container svg{
     padding: 5px;
     box-shadow: 0px 3px #c7c9c7;
     display: grid;
-    grid-template-columns: 10% 80% 10%;
+    grid-template-columns: 10% auto 15%;
     grid-template-rows: 30% auto;
     background-color: #FFFFFF;
+}
+
+.delete-icon {
+    text-align: center;
+}
+
+.delete-icon svg{
+    height: 4vh;
+    margin: 0;
+    padding: 0;
+}
+
+.cls-1 {
+    fill: #00957a;
+    stroke: #0e0c0c;
+    stroke-miterlimit: 10;
+    stroke-width: 20px;
+}
+
+.cls-2 {
+    fill: none;
+    stroke: red;
+    stroke-miterlimit: 10;
+    stroke-width: 20px;
 }
 
 .route-line {
@@ -81,9 +93,7 @@ favorite-main-container svg{
     margin: 0 10px 0 calc(.5em - .115em);
 }
 
-.delete-icon {
-    text-align: center;
-    margin: 0.6em;
-    height: 60%;
+.route-detail > p {
+    font-weight: normal;
 }
 
