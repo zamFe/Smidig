@@ -10,48 +10,43 @@
     <title>Detaljert Rutefremvisning</title>
 </head>
 <body>
-    <header>
-        <div id="back-tab-container" onclick="window.location.href='routes.html' + window.location.search.substring(0,window.location.search.lastIndexOf('&'));">
-            <img id="back-tab" src="res/img/icons/back.png" alt="">
+<header>
+    <div id="back-tab-container"
+         onclick="window.location.href='routes.html' + window.location.search.substring(0,window.location.search.lastIndexOf('&'));">
+        <img id="back-tab" src="res/img/icons/back.png" alt="">
+    </div>
+    <div id="header-title">
+        <span>Detaljert rute</span>
+    </div>
+    <div id="map-button-container" onclick="window.location.href='route-map.html' + window.location.search">
+        <img id="map-button" src="res/img/icons/button_map.png" alt="">
+    </div>
+</header>
+
+<main>
+    <div id="main-container">
+        <!--content added via route-details.js, based on the stop.node.component.js templatte-->
+
+        <div id="small-info-header" class="detail-box">
+            <div class="small-header-box">
+                <span class="small-info-title">Reisetid </span>
+                <span id="travel-time">Loading...</span>
+            </div>
+            <div class="small-header-box">
+                <span class="small-info-title">Ankomsttid </span>
+                <span id="arrival-time">Loading...</span>
+            </div>
         </div>
-        <div id="map-button-container" onclick="window.location.href='route-map.html' + window.location.search">
-            <img id="map-button" src="res/img/icons/button_map.png" alt="">
-        </div>
-    </header>
 
-    <main>
-        <div id="main-container">
-            <!--content added via route-detail.js, based on the stop.node.component.js templatte-->
-
-            <!--<div class="detail-box">
-                <div class="route-line">
-
-                    <img class="node-icon" src="../res/img/icons/node.png">
-                    <div class="line"></div>
-                    <img class="node-icon" src="../res/img/icons/node.png">
-
-                </div>
-                <div class="route-details">
-                    <span class="route-time">09:45</span>
-                    <span class="route-place">Nationaltheatret</span>
-                    <div class="route-action">
-                        <img class="action-img" src="../res/img/icons/walk.png" alt="">
-                        <span class="action-time">Gå 4 min <span class="action-extra">(200m)</span></span>
-                    </div>
-                    <span class="route-time">10:00</span>
-                    <span class="route-place">Oslo S</span>
-                </div>
-
-            </div>-->
+        <div id="route-container"></div>
 
 
-        </div>
-    </main>
+    </div>
+</main>
 
 
-
-    <footer id="footer"></footer>
-    <script src="src/footer.js"></script>
-    <script src="src/route-detail.js"></script>
+<footer id="footer"></footer>
+<script src="src/footer.js"></script>
+<script src="src/route-details.js"></script>
 </body>
 </html>
