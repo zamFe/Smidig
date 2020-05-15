@@ -38,8 +38,11 @@ function setDateTime() {
     //Expects format: 2020-05-14
     setDate(`${currentDateTime.getFullYear()}-${month}-${day}`);
 
+    let hour = currentDateTime.getHours() < 10 ? `0${currentDateTime.getHours()}` : currentDateTime.getHours();
+    let minute = currentDateTime.getMinutes() < 10 ? `0${currentDateTime.getMinutes()}` : currentDateTime.getMinutes();
+
     //Expects format: 13:07
-    setTime(`${currentDateTime.getHours()}:${currentDateTime.getMinutes()+1}`);
+    setTime(`${hour}:${minute}`);
 }
 
 function setDate(currentDate) {
