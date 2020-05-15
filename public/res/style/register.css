@@ -29,10 +29,13 @@ main {
 #logo-container {
     height: 100%;
     width: 100%;
+    text-align: center;
 }
 
 #logo {
-    width: 100%
+    padding: 7vw;
+    width: 60vw;
+    margin: auto;
 }
 
 /* main elements */
