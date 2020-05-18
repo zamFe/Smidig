@@ -13,14 +13,14 @@ function setFromAndTo() {
 }
 
 // Swaps the route directions
-const swapRouteButton = document.getElementById('switch-arrow');
+const swapRouteButton = document.getElementById('swap-from-to');
 swapRouteButton.addEventListener('click', e => {
     let from = urlParams.get('to');
     let fromName = urlParams.get('toname');
     let to = urlParams.get('from');
     let toName = urlParams.get('fromname');
     let datetime = urlParams.get('datetime');
-    window.location = `../routes.html?from=${from}&to=${to}&fromname=${fromName}&toname=${toName}&datetime${datetime}`;
+    window.location = `../routes.html?from=${from}&to=${to}&fromname=${fromName}&toname=${toName}&datetime=${datetime}`;
 });
 
 // Retrieves user information from Localstorage
@@ -47,15 +47,16 @@ function checkIfRouteInFavorite(user) {
     if(user.favorites.length > 0) {
         user.favorites.forEach(favRoute => {
             if(favRoute.from === newRoute.from && favRoute.to === newRoute.to) {
-                favStar.alt = "true";
-                star.style.fill = "#00957a"
-                return;
+                star.classList.add("star-fav-active")
+                star.classList.remove("star-fav-default")
             } else {
-                favStar.alt = "false";
+                star.classList.remove("star-fav-active")
+                star.classList.add("star-fav-default")
             }
         });
     } else {
-        favStar.alt = "false";
+        star.classList.remove("star-fav-active")
+        star.classList.add("star-fav-default")
     }
 
 }
@@ -81,7 +82,8 @@ favStar.addEventListener("click", event => {
     // Exception if no other favorite route has been added
     if(user.favorites.length === 0) {
         user.favorites.push(newRoute);
-        star.style.fill = "#00957a";
+        star.classList.add("star-fav-active")
+        star.classList.remove("star-fav-default")
         updateUser(user.email, user.password, {favorites: user.favorites});
         return;
     }
@@ -90,12 +92,14 @@ favStar.addEventListener("click", event => {
     for(let i = 0; i < user.favorites.length; i++) {
         if(user.favorites[i].from === newRoute.from && user.favorites[i].to === newRoute.to) {
             user.favorites.splice(user.favorites.indexOf(user.favorites[i]), 1) // Find route and remove
-            star.style.fill = "none";
+            star.classList.remove("star-fav-active")
+            star.classList.add("star-fav-default")
         }
 
 
         if(i+1 === user.favorites.length) {
-            star.style.fill = "#00957a";
+            star.classList.add("star-fav-active")
+            star.classList.remove("star-fav-default")
             user.favorites.push(newRoute);
             updateUser(user.email, user.password, {favorites: user.favorites})
             break;
@@ -103,9 +107,6 @@ favStar.addEventListener("click", event => {
     }
     updateUser(user.email, user.password, {favorites: user.favorites});
 });
-// user.favorites.splice(user.favorites.indexOf(route), 1) // Find route and remove
-// updateUser(user.email, user.password, {favorites: user.favorites});
-
 
 // Convert from Seconds to real time
 function convertTime(time) {
@@ -124,21 +125,38 @@ function getServiceClasses(operator) {
         case "Nobina Norge AS" :
         case "Ruter" : return "ruter-service"
         case "Sporveien T-banen AS" : return "sporveien-service"
+        case "Unibuss AS": return "unibuss-service"
         default: return "walk-time"
     }
 }
 
-function generatePath(path) {
+//Routeindex = part of route
+//Listindex = route of list
+function simulateDelay(info) {
+    console.log(info)
+    //const cutRoute = fullRoute[info].route.splice(routeIndex, (route.length - routeIndex));
+    //console.log(cutRoute)
+}
+
+function generatePath(route, index) {
     let list = [];
 
-    for(let part of path) {
+    for(let i = 0; i < route.length; i++) {
+        const part = route[i];
         if(part.action === "Overgang") {
             continue; //Skip transitions
         }
+
+        if(route.length > 6) {
+            if(part.action === "Gå") {
+                continue;
+            }
+        }
         const svg = getActionSVG(part.action);
-        const service = getServiceClasses(part.operatorName)
+        const service = getServiceClasses(part.operatorName);
+
         let template = `
-            <div class="route-path-part">
+            <div class="route-path-part" onclick="simulateDelay('${i}-${index}')">
                 <div class="line vf"></div>
                 <div class="start-point vf"></div>
                 <div class="end-point vf"></div>
@@ -167,12 +185,13 @@ function getStatus(route) {
     // 3 kansellert //TODO:
     // 4 ferdig
 
-    let status = 0 //Ikke started by default
+    let status = route.status ? route.status : 1; //Ikke started by default
     let statusStyle = "not-started";
-    let message = "Ikke startet";
 
-    if(currentTime > startTime) {
-        status = 1;
+    let message = "Ikke startet";
+    if(currentTime < startTime) {
+        status = 0;
+
     }
 
     if(currentTime > endTime) {
@@ -213,19 +232,43 @@ function goToDetails(index) {
     window.location.href = `route-details.html${window.location.search}&index=${index}`
 }
 
+function convertMonthToMonthname(monthIndex) {
+    switch (monthIndex) {
+        case 0: return "Januar";
+        case 1: return "Februar";
+        case 2: return "Mars";
+        case 3: return "April";
+        case 4: return "Mai";
+        case 5: return "Juni";
+        case 6: return "Juli";
+        case 7: return "August";
+        case 8: return "September";
+        case 9: return "Oktober";
+        case 10: return "November";
+        case 11: return "Desember";
+        default: return "Error: Undefined month"
+    }
+}
+
 function generateRoute(route, index) {
     console.log(route);
     const currentTime = parseInt(urlParams.get("datetime"));
 
-    console.log(currentTime, route.endTime)
     if(currentTime > route.endTime) {
         return; //Skip any routes that are already done
-
     }
+
+    //TODO: Random chance to have a delay (Only os a message) Remove later
+    let randomChance = Math.random();
+    if(randomChance > .9) {
+        console.log("Delay!")
+        route.status = 2; //Delayed
+    }
+
     const startTime = convertTime(route.startTime);
     const endTime = convertTime(route.endTime);
 
-    const path = generatePath(route.route);
+    const path = generatePath(route.route, index);
     const price = `NOK ${route.cost},-`;
     const status = getStatus(route);
 
@@ -280,20 +323,47 @@ function secondsToTime(end, start) {
     let min = Math.ceil(time % 3600 / 60);
     let convTime = "";
 
-    if (hour != 0) {
+    if (hour !== 0) {
         convTime += `${hour} timer `;
     }
     convTime += min + " min";
     return convTime;
 }
 
+function renderDate(dateString) {
+    container.innerHTML += `
+        <div class="route-date">
+            <p>${dateString}</p>
+        </div>
+    `
+}
+
+//Renders the route from localstorage
+function renderRouteList() {
+    const list = JSON.parse(localStorage.getItem("route"));
+    container.innerHTML = ""; //Empty the container before render
+
+    let dates = []
+    for(let i = 0; i < fullRoute.length; i++){
+
+        const routeDate = new Date(list[i].startTime * 1000);
+        let dateString = routeDate.getDate() === new Date().getDate() ? "I dag" : `${routeDate.getDate()}. ${convertMonthToMonthname(routeDate.getMonth())}`;
+        if(!dates.includes(routeDate.getDate())){
+            dates.push(routeDate.getDate());
+            renderDate(dateString);
+        }
+
+        generateRoute(fullRoute[i], i);
+    }
+}
+
 // Create dynamic route alternatives of search
 function setUp() {
     setFromAndTo()
+
     localStorage.setItem("route", JSON.stringify(fullRoute));
-    for(let i = 0; i < fullRoute.length; i++){
-        generateRoute(fullRoute[i], i);
-    }
+
+    renderRouteList();
 }
 
 // Function calls
