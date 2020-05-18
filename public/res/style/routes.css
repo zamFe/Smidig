@@ -1,5 +1,4 @@
 /* Styling for main container */
-
 body {
     width: 100%;
     height: 100%;
@@ -26,7 +25,7 @@ body {
     position: relative;
     height: 100%;
     min-height: 13vh;
-    padding: 0 5vw;
+    padding: 0 5vw 1em 5vw;
     width: 90vw;
     display: flex;
     flex-direction: column;
@@ -38,6 +37,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 #back-arrow {
@@ -55,23 +55,38 @@ body {
 
 #favorite-star {
     position: relative;
-    top: 2vh;
-    height: 5vh;
+    width: 2em;
     visibility: hidden;
+    transition: .1s ease;
 }
 
-.star-fav {
+#favorite-star:active {
+    transform: scale(.8);
+}
+
+.star-fav-default {
     fill: none;
-    stroke: #0e0c0c;
+    stroke: #a5a5a5;
     stroke-miterlimit: 10;
-    stroke-width: 20px;
+    stroke-width: 35px;
+}
+
+.star-fav-active {
+    fill: #00957a;
+    stroke: none;
 }
 
 .from-to {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     font-size: 1.4rem;
+}
+
+#route-title {
+    margin: 0;
+    width: 100%;
 }
 
 .route-name {
@@ -79,10 +94,22 @@ body {
     font-weight: bold;
 }
 
-#switch-arrow {
-    padding: 0 1em;
-    height: 4vh;
-    align-self: center;
+#swap-from-to {
+    height: 2.4em;
+    width: 2em !important;
+    margin-left: 1em;
+    transition: .1s ease;
+}
+
+#swap-from-to:active {
+    transform: scale(.8);
+}
+
+.swap-icon {
+    fill: #00957a;
+    stroke: none;
+    stroke-miterlimit: 10;
+    stroke-width: 16px;
 }
 
 .to-destination-routes {
@@ -119,6 +146,20 @@ body {
     align-items: center;
 }
 
+.route-date {
+    text-align: center;
+    background-color: #212721;
+    color: #f2f2f3;
+    font-weight: bold;
+    font-size: 1em;
+    width: 100%;
+    padding: .5em;
+}
+
+.route-date p {
+    margin: 0;
+}
+
 .route-container {
     width: 94vw;
     padding: 1em 6vw;
@@ -127,6 +168,11 @@ body {
     justify-content: space-evenly;
     margin: .5em 0;
     box-shadow: #b9c4bf 0 2px 4px;
+    transition: .1s ease;
+}
+
+.route-container:active {
+    transform: scale(.9);
 }
 
 .route-time {
@@ -215,6 +261,11 @@ body {
 
 .sporveien-service {
     background-color: #df8200;
+    color: #f2f2f3;
+}
+
+.unibuss-service {
+    background-color: #012E8C;
     color: #f2f2f3;
 }
 
