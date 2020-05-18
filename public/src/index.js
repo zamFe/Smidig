@@ -180,22 +180,29 @@ function updateHistory(newSearch, from, to) {
         history = []; //if empty, create new array
     }
 
-    if(history.length >= historyLimit) {
-        history.splice(0,1) //Remove oldest entry. Limits to 10 entries
-    }
-
     let entry = {
         url: newSearch,
         from: from,
         to: to
     }
 
+    for(let route of history) { // Removes if already added
+        if(route.from === entry.from && route.to === entry.to) {
+            history.splice(history.indexOf(route), 1);
+            break;
+        }
+    }
+
+    if(history.length >= historyLimit) {
+        history.splice(history.length-1, 1) //Remove oldest entry. Limits to 10 entries
+    }
+
     let user = JSON.parse(localStorage.getItem("user"));
-    if(user){
+    if(user) {
         updateUser(user.email, user.password, {searchHistory: entry})
     }
 
-    history.push(entry);
+    history.unshift(entry); // Adds to start of history array
     localStorage.setItem("history", JSON.stringify(history))
 }
 /*
