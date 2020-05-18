@@ -157,11 +157,49 @@ for (i = 0; i < fullRoute[index].route.length; i++) {
     }
     stepBlock += stepBuilder(step);
 
-
     last = step;
 }
 stepBlock += getLastNode(last)
 stepBlock += '</div>'
+
+/*
+<div class="detail-box"><div style="display: grid;grid-template-columns: 40% 60%;">
+
+                <div class="route-details">
+                    <span class="route-time">15:42</span>
+                    <span class="route-place">Skøyen stasjon</span>
+                    <div class="route-action">
+                        <img class="action-img" src="../res/img/icons/traing.png" alt="">
+                        <span class="action-time">L2x <span class="action-extra">(Vy)</span></span>
+                    </div>
+
+                </div>
+    <div style="
+    background-color: #ffe400;
+     height: 100%;
+ width: 100%;
+display: inline-block;
+padding: 10px;
+justify-content: center;
+align-items: center;
+"><div style="
+width: 100%;
+font-weight: bold;
+font-size: 2.4vh;
+">Instilt!</div><div style="
+height: 2px;
+width: 100%;
+background-color: gray;
+margin: 1px 0 9px 0;
+"></div>
+<div style="
+font-size: 1.7vh;
+">Toget er, grunnet arbeid på sporet, instilt. Loren ipsum dolor mit amet.</div></div>
+
+
+</div></div>
+*/
+
 
 document.getElementById("route-container").innerHTML = stepBlock;
 
