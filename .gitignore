@@ -2,6 +2,7 @@ src/server/api-keys
 Source/JS/demoroute.js
 src/server/db/users/*
 !src/server/db/users/.gitkeep
+src/server/ssl
 
 .vs
 

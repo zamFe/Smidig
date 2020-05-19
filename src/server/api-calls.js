@@ -43,7 +43,7 @@ function getData(key, args, res) {
         }
     };
 
-    // const requestPromise = util.promisify(request);
+    console.log(options)    // const requestPromise = util.promisify(request);
     // const response = await requestPromise(options.url);
     request(options, (error, response, body) => {
         args.callback(error, response, body, res);
