@@ -130,12 +130,28 @@ function getServiceClasses(operator) {
     }
 }
 
-//Routeindex = part of route
-//Listindex = route of list
-function simulateDelay(info) {
-    console.log(info)
-    //const cutRoute = fullRoute[info].route.splice(routeIndex, (route.length - routeIndex));
-    //console.log(cutRoute)
+//Function sets a delay on first click, and sets cancellation on second click
+//
+function setDelay(event, stepIndex, routeIndex){
+    event.stopPropagation();
+
+    const destinations = {
+        from: fullRoute[routeIndex].route[stepIndex].from.address,
+        to:  fullRoute[routeIndex].route[stepIndex].to.address
+    }
+
+    if(fullRoute[routeIndex].route[stepIndex].hasWarning) {
+        fullRoute[routeIndex].delay = {cancelled: true, duration: 5, statusMessage: `Innstilt`} //Cancels on second click
+    } else {
+        fullRoute[routeIndex].delay = {cancelled: false, duration: 5, statusMessage: `Forsinket (${5} min)`}
+        fullRoute[routeIndex].route[stepIndex].hasWarning = true;
+    }
+
+    localStorage.setItem("route", JSON.stringify(fullRoute))
+
+    renderRouteList();
+
+    console.log(routeIndex, stepIndex)
 }
 
 function generatePath(route, index) {
@@ -152,15 +168,19 @@ function generatePath(route, index) {
                 continue;
             }
         }
+
+        const warnIcon = `<svg class="warning-svg" data-name="Warning icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 486.27 486.27"><path class="warn-icon" d="M250,6.86C115.72,6.86,6.86,115.72,6.86,250S115.72,493.14,250,493.14,493.14,384.28,493.14,250,384.28,6.86,250,6.86ZM222.24,78.67h55.52V300.32H222.24ZM250,409.77a41.68,41.68,0,1,1,41.68-41.68A41.68,41.68,0,0,1,250,409.77Z" transform="translate(-6.86 -6.86)"/></svg>`
+
         const svg = getActionSVG(part.action);
         const service = getServiceClasses(part.operatorName);
 
         let template = `
-            <div class="route-path-part" onclick="simulateDelay('${i}-${index}')">
+            <div class="route-path-part" onclick="setDelay(event, ${i}, ${index})">
                 <div class="line vf"></div>
                 <div class="start-point vf"></div>
                 <div class="end-point vf"></div>
                 <div class="path-action">
+                    ${part.hasWarning ? warnIcon : ""}
                     ${svg}
                 </div>
                 <div class="path-service ${service}">
@@ -185,13 +205,20 @@ function getStatus(route) {
     // 3 kansellert //TODO:
     // 4 ferdig
 
-    let status = route.status ? route.status : 1; //Ikke started by default
-    let statusStyle = "not-started";
+    let status = 1; //On Route by default
+    let statusStyle;
+
+    if(route.delay) {
+        if(route.delay.cancelled) {
+            status = 3;
+        } else {
+            status = 2
+        }
+    }
 
     let message = "Ikke startet";
     if(currentTime < startTime) {
         status = 0;
-
     }
 
     if(currentTime > endTime) {
@@ -205,11 +232,11 @@ function getStatus(route) {
             break;
         case 2:
             statusStyle = "delayed";
-            message = "Forsinket";
+            message = route.delay.statusMessage;
             break;
         case 3:
             statusStyle = "cancelled";
-            message = "Innstillt";
+            message = route.delay.statusMessage;
             break;
         case 4:
             statusStyle = "complete";
@@ -252,13 +279,6 @@ function convertMonthToMonthname(monthIndex) {
 
 function generateRoute(route, index) {
     console.log(route);
-
-    //TODO: Random chance to have a delay (Only os a message) Remove later
-    let randomChance = Math.random();
-    if(randomChance > .9) {
-        console.log("Delay!")
-        route.status = 2; //Delayed
-    }
 
     const startTime = convertTime(route.startTime);
     const endTime = convertTime(route.endTime);
