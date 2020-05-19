@@ -228,6 +228,36 @@ body {
     align-items: center;
 }
 
+.path-action {
+    position: relative;
+}
+
+@keyframes iconBounce {
+    0%, 100%{
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-.2em);
+    }
+}
+
+.warning-svg {
+    width: 1em;
+    height: 1em;
+    position: absolute;
+    right: -.4em;
+    top: -.4em;
+    z-index: 15;
+    animation: iconBounce infinite ease 2s;
+}
+
+.warn-icon {
+    fill: #df8200;
+    stroke: none;
+    stroke-miterlimit: 10;
+    stroke-width:2px;
+}
+
 .svg {
     position: relative;
     height: 1.6em;
