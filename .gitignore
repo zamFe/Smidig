@@ -2,7 +2,7 @@ src/server/api-keys
 Source/JS/demoroute.js
 src/server/db/users/*
 !src/server/db/users/.gitkeep
-src/server/ssl
+/src/server/ssl/
 
 .vs
 
@@ -482,3 +482,4 @@ temp/
 # Markdown Navigator plugin
 
 # End of https://www.gitignore.io/api/node,intellij,webstorm,jetbrains+all
+
