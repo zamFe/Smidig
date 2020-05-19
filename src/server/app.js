@@ -1,7 +1,8 @@
 const express = require('express');
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const app = express();
 const path = require('path');
+
 
 let api = require('./api-calls.js');
 const routesApi = require("./routes/routes-api")
@@ -51,5 +52,7 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     res.sendFile(path.resolve(__dirname, '..', '..', 'client', 'index.html'));
 })
+
+
 
 module.exports = app;
