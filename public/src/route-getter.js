@@ -361,8 +361,8 @@ function renderRouteList(filter) {
     const currentTime = parseInt(urlParams.get("datetime"));
     let dates = []
 
-    if(filter != null) {
-        list = filterBy(list, "fast");
+    if(filter == null) {
+        list = filterBy(list, filter);
     }
 
     for(let i = 0; i < fullRoute.length; i++){
@@ -382,7 +382,7 @@ function renderRouteList(filter) {
     }
 }
 
-//filter routes by criteria
+//sorts list based on filter
 function filterBy(list, filter) {
     //filter can currently be:
     //"green"
@@ -394,16 +394,24 @@ function filterBy(list, filter) {
     };
 
     switch(filter) {
+        case "green":
+            filter_function = (a, b) => {
+                return  (a.carbonCost) - (b.carbonCost);
+            };
+            break;
+        case "cheap":
+            filter_function = (a, b) => {
+                return  (a.cost) - (b.cost);
+            };
+            break;
         case "fast":
-            filter_function = function (a, b) {
+            filter_function = (a, b) => {
                 return  (a.endTime - a.startTime) - (b.endTime - b.startTime);
             };
             break;
     }
 
-    //currently ignores check, only filtering by fastest
-
-    let filtered_list = list.slice().sort((a,b) => (a.endTime - a.startTime) - (b.endTime - b.startTime));
+    let filtered_list = list.slice().sort(filter_function);
 
     return filtered_list;
 }
