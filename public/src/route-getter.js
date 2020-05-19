@@ -252,11 +252,6 @@ function convertMonthToMonthname(monthIndex) {
 
 function generateRoute(route, index) {
     console.log(route);
-    const currentTime = parseInt(urlParams.get("datetime"));
-
-    if(currentTime > route.endTime) {
-        return; //Skip any routes that are already done
-    }
 
     //TODO: Random chance to have a delay (Only os a message) Remove later
     let randomChance = Math.random();
@@ -343,8 +338,14 @@ function renderRouteList() {
     const list = JSON.parse(localStorage.getItem("route"));
     container.innerHTML = ""; //Empty the container before render
 
+    const currentTime = parseInt(urlParams.get("datetime"));
     let dates = []
+
     for(let i = 0; i < fullRoute.length; i++){
+
+        if(currentTime > fullRoute[i].endTime) {
+            continue; //Skip any routes that are already done
+        }
 
         const routeDate = new Date(list[i].startTime * 1000);
         let dateString = routeDate.getDate() === new Date().getDate() ? "I dag" : `${routeDate.getDate()}. ${convertMonthToMonthname(routeDate.getMonth())}`;
