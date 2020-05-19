@@ -29,8 +29,19 @@ function initMap() { // Called on callback in mapping HTML file
 
     for (var i = 0; i < fullRoute[index].route.length; i++) {
         const route = fullRoute[index].route[i];
+        let startIcon = false;
+        let endIcon = false;
 
-        if(fullRoute[index].route[i].action === "Gå") { // If walk is action
+        if(i === 0) {
+
+        }
+
+        if(route === fullRoute[index].route.length-1) {
+            // set icon at end
+        }
+
+
+        if(route.action === "Gå") { // If walk is action
             const start = {lat: route.from.lat, lng: route.from.lng};
             const end = {lat: route.to.lat, lng: route.to.lng};
             const coordinates = [start, end];
@@ -41,15 +52,24 @@ function initMap() { // Called on callback in mapping HTML file
                 scale: 4
             };
 
+            let iconArray = [{icon: lineSymbol, offset: "0", repeat: "20px"}];
+            if(startIcon) {
+                iconArray.push(startIcon);
+            }
+
             // Creates walk path with dotted lines as display
             const walkpath = new google.maps.Polyline({
                strokeColor: walkCol,
                strokeOpacity: 0,
-               icons: [{
-                   icon: lineSymbol,
-                   offset: "0",
-                   repeat: "20px"
-               }],
+               icons: [
+                   {
+                       icon: lineSymbol,
+                       offset: "0",
+                       repeat: "20px"
+                   }, {
+                    icon: null
+                   }
+               ],
                path: coordinates
             });
 
@@ -78,11 +98,19 @@ function initMap() { // Called on callback in mapping HTML file
                 }
                 console.log(shapeColor)
 
+                let start = (startIcon) ? startIcon : "";
+                let end = (endIcon) ? endIcon : "";
+
                 var cascadiaFault = new google.maps.Polyline({
                     strokeColor: shapeColor,
                     strokeOpacity: 1,
                     strokeWeight: 5,
-                    path: shapes
+                    path: shapes,
+                    icon:
+                        [
+                            {start},
+                            {end}
+                        ]
                 });
 
                 for (var a = 0; a < shapes.length; a++) {
@@ -92,8 +120,11 @@ function initMap() { // Called on callback in mapping HTML file
                 cascadiaFault.setMap(map);
             }
         }
-
     }
+
+
+
+
 
     map.fitBounds(bounds);
     map.panToBounds(bounds);
