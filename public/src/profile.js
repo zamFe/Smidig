@@ -1,4 +1,3 @@
-
 let firstNameSpan = document.getElementById("firstname-span");
 let lastNameSpan = document.getElementById("lastname-span");
 let emailSpan = document.getElementById("email-span");
@@ -18,9 +17,9 @@ function DisplayInfo(email, password) {
         if (v.statusCode != 200) {
             window.location.href = "Login.html";
         }
-        firstNameSpan.innerHTML = v.data.firstName;
-        lastNameSpan.innerHTML = v.data.lastName;
-        emailSpan.innerHTML = v.data.email;
+        firstNameSpan.innerText = v.data.firstName;
+        lastNameSpan.innerText = v.data.lastName;
+        emailSpan.innerText = v.data.email;
     })
 }
 
