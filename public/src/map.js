@@ -28,9 +28,9 @@ function initMap() { // Called on callback in mapping HTML file
     console.log(fullRoute[index]);
 
     for (var i = 0; i < fullRoute[index].route.length; i++) {
+        const route = fullRoute[index].route[i];
 
         if(fullRoute[index].route[i].action === "Gå") { // If walk is action
-            const route = fullRoute[index].route[i];
             const start = {lat: route.from.lat, lng: route.from.lng};
             const end = {lat: route.to.lat, lng: route.to.lng};
             const coordinates = [start, end];
@@ -43,7 +43,7 @@ function initMap() { // Called on callback in mapping HTML file
 
             // Creates walk path with dotted lines as display
             const walkpath = new google.maps.Polyline({
-               strokeColor: "#828181",
+               strokeColor: walkCol,
                strokeOpacity: 0,
                icons: [{
                    icon: lineSymbol,
@@ -59,19 +59,27 @@ function initMap() { // Called on callback in mapping HTML file
         } else {
 
             // When action is something else than "Gå"/"Walk"
-            for (var j = 0; j < fullRoute[index].route[i].waypoints.shapes.length; j++) {
+            for (var j = 0; j < route.waypoints.shapes.length; j++) {
 
-                if(!fullRoute[index].route[i].waypoints.shapes[j].travelled) {
+                if(!route.waypoints.shapes[j].travelled) {
                     continue; // Ignores routes not in the actual route
                 }
 
-                let shapes = google.maps.geometry.encoding.decodePath(fullRoute[index].route[i].waypoints.shapes[j].encodedWaypoints)
+                let shapes = google.maps.geometry.encoding.decodePath(route.waypoints.shapes[j].encodedWaypoints)
 
-                // TODO: Make switch case of the action of transport to decide color pallet to use
-
+                let shapeColor;
+                switch (route.action) {
+                    case "Tog": shapeColor = trainCol; break;
+                    case "Buss": shapeColor = bussCol; break;
+                    case "Trikk": shapeColor = tramCol; break;
+                    case "Ferje": shapeColor = ferryCol; break;
+                    case "T-Bane": shapeColor = subwayCol; break;
+                    default: shapeColor = "#000000"; break;
+                }
+                console.log(shapeColor)
 
                 var cascadiaFault = new google.maps.Polyline({
-                    strokeColor: "#0e5ce3",
+                    strokeColor: shapeColor,
                     strokeOpacity: 1,
                     strokeWeight: 5,
                     path: shapes
