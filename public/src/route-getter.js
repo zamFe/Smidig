@@ -354,12 +354,16 @@ function renderDate(dateString) {
 }
 
 //Renders the route from localstorage
-function renderRouteList() {
-    const list = JSON.parse(localStorage.getItem("route"));
+function renderRouteList(filter) {
+    let list = JSON.parse(localStorage.getItem("route"));
     container.innerHTML = ""; //Empty the container before render
 
     const currentTime = parseInt(urlParams.get("datetime"));
     let dates = []
+
+    if(filter != null) {
+        list = filterBy(list, "fast");
+    }
 
     for(let i = 0; i < fullRoute.length; i++){
 
@@ -374,7 +378,7 @@ function renderRouteList() {
             renderDate(dateString);
         }
 
-        generateRoute(fullRoute[i], i);
+        generateRoute(list[i], i);
     }
 }
 
@@ -392,15 +396,16 @@ function filterBy(list, filter) {
     switch(filter) {
         case "fast":
             filter_function = function (a, b) {
-                return ((a.endTime - a.startTime) - (b.endTime - b.startTime));
+                return  (a.endTime - a.startTime) - (b.endTime - b.startTime);
             };
             break;
     }
-    console.log(list);
-    console.log("sorting");
-    console.log(list.sort(function(a,b) {(a.endTime - a.startTime) - (b.endTime - b.startTime)}));
 
-    return list.sort(function(a,b) {(a.endTime - a.startTime) - (b.endTime - b.startTime)});
+    //currently ignores check, only filtering by fastest
+
+    let filtered_list = list.slice().sort((a,b) => (a.endTime - a.startTime) - (b.endTime - b.startTime));
+
+    return filtered_list;
 }
 
 // Create dynamic route alternatives of search
