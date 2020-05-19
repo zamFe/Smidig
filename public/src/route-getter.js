@@ -358,6 +358,31 @@ function renderRouteList() {
     }
 }
 
+//filter routes by criteria
+function filterBy(list, filter) {
+    //filter can currently be:
+    //"green"
+    //"cheap"
+    //"fast"
+
+    let filter_function = function(a, b) {
+        return 0;
+    };
+
+    switch(filter) {
+        case "fast":
+            filter_function = function (a, b) {
+                return ((a.endTime - a.startTime) - (b.endTime - b.startTime));
+            };
+            break;
+    }
+    console.log(list);
+    console.log("sorting");
+    console.log(list.sort(function(a,b) {(a.endTime - a.startTime) - (b.endTime - b.startTime)}));
+
+    return list.sort(function(a,b) {(a.endTime - a.startTime) - (b.endTime - b.startTime)});
+}
+
 // Create dynamic route alternatives of search
 function setUp() {
     setFromAndTo()
