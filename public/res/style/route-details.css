@@ -169,3 +169,48 @@ main {
 .small-info-title {
     font-weight: bold;
 }
+
+
+/* Delay and Cancelled */
+.delay-message {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+}
+
+.warning-svg {
+    height: 1em;
+    margin-right: 0.5em;
+}
+
+.warn-icon {
+    fill: #df8200;
+    stroke: none;
+    stroke-miterlimit: 10;
+    stroke-width:2px;
+}
+
+.cancelled-container {
+    background-color: #ffe400;
+    display: inline-block;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cancelled-title {
+    width: 100%;
+    font-weight: bold;
+    font-size: 2.4vh;
+}
+
+.grey-line {
+    height: 2px;
+    width: 100%;
+    background-color: gray;
+    margin: 1px 0 9px 0;
+}
+
+.cancelled-message {
+    font-size: 1.7vh;
+}

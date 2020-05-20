@@ -1,9 +1,9 @@
 let container = document.getElementById("main-container");
 
 //build step and adds to HTML
-function stepBuilder(stop) {
-
-
+function stepBuilder(stop, delay) {
+    delay = (delay === undefined) ? false : delay;
+    console.log(delay)
 
     let serviceP = "";
 
@@ -39,29 +39,70 @@ function stepBuilder(stop) {
                     <span class="route-place">${stop.to.address}</span>
                 </div>`;*/
 
-    var routeTemplate = `<div style="display: grid; grid-template-columns: 10% 90%">
-                <div class="route-line">
-
-                    <img class="node-icon" src="../res/img/icons/node.png">
-                    <div class="line" style="height:105%; margin-top:.25em"></div>
-
-                </div>
-                <div class="route-details">
-                    <span class="route-time">${convertTime(stop.startTime)}</span>
-                    <span class="route-place">${stop.from.address}</span>
-                    <div class="route-action">
-                        <img class="action-img" src="${getImages(stop.action)}" alt="">
-                        <span class="action-time">${serviceNr} <span class="action-extra">(${serviceP})</span></span>
+    let delayedHTML = "";
+    let cancelledHTML = "";
+    if(stop.hasWarning) { // Only a delay
+        if(delay.cancelled) { // Transport led is cancelled
+            // Call new function to render the new route for customer
+            cancelledTransport(stop);
+            cancelledHTML = `
+                <div class="cancelled-container">
+                    <div class="cancelled-title">Instilt!</div>
+                    <div class="grey-line"></div>
+                    <div class="cancelled-message">
+                        Toget er, grunnet arbeid på sporet, instilt. Loren ipsum dolor mit amet.
                     </div>
-
                 </div>
+       `;
+        } else {
+            const delayedIcon = "<svg class=\"warning-svg\" data-name=\"Warning icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 486.27 486.27\"><path class=\"warn-icon\" d=\"M250,6.86C115.72,6.86,6.86,115.72,6.86,250S115.72,493.14,250,493.14,493.14,384.28,493.14,250,384.28,6.86,250,6.86ZM222.24,78.67h55.52V300.32H222.24ZM250,409.77a41.68,41.68,0,1,1,41.68-41.68A41.68,41.68,0,0,1,250,409.77Z\" transform=\"translate(-6.86 -6.86)\"/></svg>";
+            delayedHTML = `
+                <div class="delay-message">
+                    ${delayedIcon}
+                    <span class="delay-message">${delay.statusMessage}</span>
+                    <span class="delay-time"> (${delay.duration} min)</span>
+                </div>
+            `;
+        }
+    }
 
-            </div>`
+    // Returns true and is used for deciding template rendering elements
+    const routeIsCancelled = (delay.cancelled && stop.hasWarning);
+    const gridTemp = (routeIsCancelled) ? "50% 50%" : "10% 90%";
+
+    const lineTemplate =  (!routeIsCancelled) ?
+        `<div class="route-line">
+            <img class="node-icon" src="../res/img/icons/node.png">
+            <div class="line" style="height:105%; margin-top:.25em"></div>
+        </div>`
+        :
+        "";
+
+
+    const routeTemplate = `
+        <div style="display: grid; grid-template-columns: ${gridTemp}">
+            ${lineTemplate}
+            <div class="route-details">
+                <span class="route-time">${convertTime(stop.startTime)}</span>
+                <span class="route-place">${stop.from.address}</span>
+                ${delayedHTML}
+                <div class="route-action">
+                    <img class="action-img" src="${getImages(stop.action)}" alt="">
+                    <span class="action-time">${serviceNr} <span class="action-extra">(${serviceP})</span></span>
+                </div>
+            </div>
+            ${cancelledHTML}
+        </div>`
 
     //stepBlock.innerHTML = routeTemplate;
     //document.getElementById("main-container").appendChild(stepBlock)
     return routeTemplate;
 }
+
+function cancelledTransport(route) {
+    console.log(route);
+}
+
 
 function convertTime(time) {
 
@@ -103,9 +144,7 @@ function getLastNode (stop){
                 <div class="route-details" style="grid-template-rows: auto">
                     <span class="route-time">${convertTime(stop.endTime)}</span>
                     <span class="route-place">${stop.to.address}</span>
-
                 </div>
-
             </div>`
 }
 
@@ -130,7 +169,7 @@ let fullRoute = JSON.parse(localStorage.getItem("route"));
 urlParams = new URLSearchParams(window.location.search);
 
 var index = (urlParams.get('index')) ? urlParams.get('index') : 0;
-console.log(fullRoute)
+console.log(fullRoute[index])
 
 
 let last = null;
@@ -152,53 +191,13 @@ for (i = 0; i < fullRoute[index].route.length; i++) {
         stepBlock += drawWait(Math.ceil((step.startTime - last.endTime)/60));
         stepBlock += '<div class="detail-box">';
     }
-    stepBlock += stepBuilder(step);
+    const stepHTML = stepBuilder(step, fullRoute[index].delay);
+    stepBlock += stepHTML;
 
     last = step;
 }
 stepBlock += getLastNode(last)
 stepBlock += '</div>'
-
-
-
-
-/*
-<div class="detail-box">
-    <div style="display: grid;grid-template-columns: 40% 60%;">
-        <div class="route-details">
-            <span class="route-time">15:42</span>
-            <span class="route-place">Skøyen stasjon</span>
-            <div class="route-action">
-                <img class="action-img" src="../res/img/icons/traing.png" alt="">
-                <span class="action-time">L2x <span class="action-extra">(Vy)</span></span>
-            </div>
-        </div>
-        <div style="background-color: #ffe400; height: 100%;
-                    width: 100%;
-                    display: inline-block;
-                    padding: 10px;
-                    justify-content: center;
-                    align-items: center;">
-            <div style="
-                width: 100%;
-                font-weight: bold;
-                font-size: 2.4vh;">
-                    Instilt!
-                </div>
-                <div style="
-                    height: 2px;
-                    width: 100%;
-                    background-color: gray;
-                    margin: 1px 0 9px 0;">
-                </div>
-                <div style="font-size: 1.7vh;">
-                    Toget er, grunnet arbeid på sporet, instilt. Loren ipsum dolor mit amet.
-                </div>
-            </div>
-        </div>
-    </div>
-*/
-
 
 document.getElementById("route-container").innerHTML = stepBlock;
 
