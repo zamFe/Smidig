@@ -202,6 +202,7 @@ stepBlock += '</div>'
 document.getElementById("route-container").innerHTML = stepBlock;
 
 let travelTime = fullRoute[index].endTime-fullRoute[index].startTime;
-document.getElementById("travel-time").innerText = `${Math.floor(travelTime/3600)}t ${Math.ceil((travelTime%3600)/60)} min`;
+const hours = (Math.floor(travelTime/3600) <= 0) ? "" : Math.floor(travelTime/3600)+"t";
+document.getElementById("travel-time").innerText = `${hours} ${Math.ceil((travelTime%3600)/60)} min`;
 console.log(travelTime)
 document.getElementById("arrival-time").innerText = `${convertTime(fullRoute[index].endTime)}`;
