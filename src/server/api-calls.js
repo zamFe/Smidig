@@ -2,34 +2,35 @@ let request = require('request');
 let fs = require('fs');
 let querystring = require('querystring');
 
+let GOOGLEMAPS_KEY = process.env.GoogleMaps || fs.readFileSync('src/server/api-keys/googleMaps.properties', 'utf8');
+let TRIPGO_KEY = process.env.TripGo || fs.readFileSync('src/server/api-keys/tripgo.properties', 'utf8');
+
+if (!GOOGLEMAPS_KEY) console.error("GOOGLE KEY MISSING");
+if (!TRIPGO_KEY) console.error("TRIPGO KEY MISSING");
 
 // console.log(querystring.decode("a=(59.9233%2C10.79249)"))
 
 function fromTripGo(args, res) {
 
-    fs.readFile('src/server/api-keys/tripgo.properties', 'utf8', (err, data) => {
-        if (err) throw err;
-        getData(data, args, res);
-    });
+    getData(args, res);
+
 }
 
 function getMap(res) {
-    fs.readFile('src/server/api-keys/googleMaps.properties', 'utf8', (err, data) => {
-        if (err) throw err;
-        var options = {
-            url: 'https://maps.googleapis.com/maps/api/js?key=' + data + '&callback=initMap&libraries=geometry',
-            headers: {
-                'User-Agent': 'request'
-            }
-        };
-        request(options, (error, response, body) => {
-            res.json({ error, response, body });
-        });
+
+    var options = {
+        url: 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLEMAPS_KEY + '&callback=initMap&libraries=geometry',
+        headers: {
+            'User-Agent': 'request'
+        }
+    };
+    request(options, (error, response, body) => {
+        res.json({error, response, body});
     });
 }
 
 
-function getData(key, args, res) {
+function getData(args, res) {
 
     query = convertQuery(args.parameters);
 
@@ -39,7 +40,7 @@ function getData(key, args, res) {
         url: 'https://api.tripgo.com/v1/' + args.requestFile + query,
         headers: {
             'User-Agent': 'request',
-            'X-TripGo-Key': key
+            'X-TripGo-Key': TRIPGO_KEY
         }
     };
 
@@ -49,7 +50,6 @@ function getData(key, args, res) {
         args.callback(error, response, body, res);
     }); //, {form:{key:'value'}}
     // console.log(response)
-
 
 
     // let resp = await doRequest(options);
@@ -86,7 +86,7 @@ function errorHandling(error, response, body) {
 
 function formatData(data) {
     //console.log(data)
-    if(!data.groups || data.groups.length === 0) return [];
+    if (!data.groups || data.groups.length === 0) return [];
 
     trips = data.groups[0].trips;
 
@@ -225,7 +225,8 @@ function getLocation(loc, res) {
         requestFile: "geocode.json",
 
         parameters: {
-            q: loc
+            q: loc,
+            near: `(${59.91273},${10.74609})`
         },
         callback: getLocationData
     }, res)
