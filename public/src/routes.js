@@ -314,9 +314,24 @@ function generatePath(route, index) {
                 <div class="path-service ${service}">
                     ${part.serviceNumber ? part.serviceNumber : secondsToTime(part.endTime, part.startTime)}
                 </div>
-
             </div>
         `
+
+        // Make sure you can't put a delay on your legs
+        if(part.action === "Gå") {
+            template = `
+                <div class="route-path-part">
+                    <div class="path-action">
+                        ${part.hasWarning ? warnIcon : ""}
+                        ${svg}
+                    </div>
+                <div class="path-service ${service}">
+                    ${part.serviceNumber ? part.serviceNumber : secondsToTime(part.endTime, part.startTime)}
+                </div>
+            </div>
+            `
+        }
+
         list.push(template);
     }
     return list.join("")
