@@ -97,7 +97,7 @@ function formatData(data) {
         var d = trips[i];
 
         formattedData[i] = {
-            cost: (d.moneyCost) ? d.moneyCost : 149,
+            cost: (d.moneyCost) ? d.moneyCost : Math.floor((Math.random() * 300) + 100),
             map: {},
             startTime: d.depart,
             endTime: d.arrive,
