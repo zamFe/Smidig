@@ -21,7 +21,7 @@ server.listen(securePort, ()=>{
 	console.log("URL to allow chrome for unsecure https on localhost: \nchrome://flags/#allow-insecure-localhost");
 	console.log("");
 })*/
-const port = process.env.port || 8080;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
 	console.log('Started server on port: ' + port);
