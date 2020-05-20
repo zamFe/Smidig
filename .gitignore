@@ -1,8 +1,16 @@
-src/server/api-keys
 Source/JS/demoroute.js
+
+#Keep API keys folder, but not its contents
+src/server/api-keys/*
+!src/server/api-keys/.gitkeep
+
+#Keep users folder, but not its contents
 src/server/db/users/*
 !src/server/db/users/.gitkeep
-/src/server/ssl/
+
+#Keep SSL folder, but not its contents
+src/server/ssl/*
+!src/server/ssl/.gitkeep
 
 .vs
 
