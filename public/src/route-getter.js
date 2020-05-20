@@ -354,12 +354,16 @@ function renderDate(dateString) {
 }
 
 //Renders the route from localstorage
-function renderRouteList() {
-    const list = JSON.parse(localStorage.getItem("route"));
+function renderRouteList(filter) {
+    let list = JSON.parse(localStorage.getItem("route"));
     container.innerHTML = ""; //Empty the container before render
 
     const currentTime = parseInt(urlParams.get("datetime"));
     let dates = []
+
+    if(filter == null) {
+        list = filterBy(list, filter);
+    }
 
     for(let i = 0; i < fullRoute.length; i++){
 
@@ -374,8 +378,42 @@ function renderRouteList() {
             renderDate(dateString);
         }
 
-        generateRoute(fullRoute[i], i);
+        generateRoute(list[i], i);
     }
+}
+
+//sorts list based on filter
+function filterBy(list, filter) {
+    //filter can currently be:
+    //"green"
+    //"cheap"
+    //"fast"
+
+    let filter_function = function(a, b) {
+        return 0;
+    };
+
+    switch(filter) {
+        case "green":
+            filter_function = (a, b) => {
+                return  (a.carbonCost) - (b.carbonCost);
+            };
+            break;
+        case "cheap":
+            filter_function = (a, b) => {
+                return  (a.cost) - (b.cost);
+            };
+            break;
+        case "fast":
+            filter_function = (a, b) => {
+                return  (a.endTime - a.startTime) - (b.endTime - b.startTime);
+            };
+            break;
+    }
+
+    let filtered_list = list.slice().sort(filter_function);
+
+    return filtered_list;
 }
 
 // Create dynamic route alternatives of search
