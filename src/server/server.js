@@ -3,16 +3,15 @@
 const app = require("./app")
 const fs = require("fs");
 const path = require('path');
-const https = require('https');
-
+//const https = require('https');
+/*
 const options = {
-	cert: fs.readFileSync(path.join(__dirname, 'ssl', 'selfsigned.crt')/*, 'utf8'*/),
-	key: fs.readFileSync(path.join(__dirname, 'ssl', 'selfsigned.key')/*, 'utf8'*/)
+	cert: fs.readFileSync(path.join(__dirname, 'ssl', 'selfsigned.crt')),
+	key: fs.readFileSync(path.join(__dirname, 'ssl', 'selfsigned.key'))
 }
 
 const server = https.createServer(options, app);
 
-const port = process.env.port || 8080;
 const securePort = 8443;
 
 server.listen(securePort, ()=>{
@@ -21,7 +20,8 @@ server.listen(securePort, ()=>{
 	console.log("URL: " + "https://localhost:" + securePort);
 	console.log("URL to allow chrome for unsecure https on localhost: \nchrome://flags/#allow-insecure-localhost");
 	console.log("");
-})
+})*/
+const port = process.env.port || 8080;
 
 app.listen(port, () => {
 	console.log('Started server on port: ' + port);
