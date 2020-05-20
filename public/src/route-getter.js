@@ -176,9 +176,6 @@ function generatePath(route, index) {
 
         let template = `
             <div class="route-path-part" onclick="setDelay(event, ${i}, ${index})">
-                <div class="line vf"></div>
-                <div class="start-point vf"></div>
-                <div class="end-point vf"></div>
                 <div class="path-action">
                     ${part.hasWarning ? warnIcon : ""}
                     ${svg}
@@ -301,7 +298,12 @@ function generateRoute(route, index) {
                     <p class="time">${endTime}</p>
                 </div>
             </div>
-            <div class="route-path">${path}</div>
+            <div class="route-path">
+                <div class="line vf"></div>
+                <div class="start-point vf"></div>
+                <div class="end-point vf"></div>
+                ${path}
+            </div>
             <div class="route-info">
                 ${status}
                 <p class="price">${price}</p>

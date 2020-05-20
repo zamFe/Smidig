@@ -1,4 +1,5 @@
-src/server/api-keys
+src/server/api-keys/*
+!src/server/api-keys/.gitkeep
 Source/JS/demoroute.js
 src/server/db/users/*
 !src/server/db/users/.gitkeep
