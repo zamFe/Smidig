@@ -25,7 +25,7 @@ webpush.setVapidDetails("mailto:test@test.com", publicVapidKey, privateVapidKey)
 // Subscribe Route
 app.post("/subscribe", (req, res) => {
     // Get pushSubscription object
-    const subscription = //req.body;
+    const subscription = req.body;
 
     // Send 201 - resource created
     res.status(201).json({});
