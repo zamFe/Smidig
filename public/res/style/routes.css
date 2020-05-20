@@ -98,14 +98,19 @@ body {
     height: 2.4em;
     width: 2em !important;
     margin-left: 1em;
+    margin-right: 1em;
+}
+
+.header-icon {
     transition: .1s ease;
 }
 
-#swap-from-to:active {
+.header-icon:active{
     transform: scale(.8);
 }
 
 .swap-icon {
+    display: block;
     fill: #00957a;
     stroke: none;
     stroke-miterlimit: 10;
@@ -116,7 +121,47 @@ body {
     grid-column: 4/6;
     grid-row: 2;
     align-self: center;
-    margin: 5vw
+    margin: 5vw;
+}
+
+/* header filter-by styling */
+
+#filter-by-container {
+    height: 2.4em;
+    width: 2em !important;
+}
+
+#filter-by-icon {
+    display: inline-block;
+    height: 100%;
+    width: 1.4em !important;
+    vertical-align: middle;
+}
+
+#filter-dropdown {
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+    width: 6em;
+    height: auto;
+    max-height: 0;
+    right: 4.5em;
+    transition: .5s ease-out;
+}
+
+#filter-by-container:hover > #filter-dropdown {
+    max-height: 500px;
+}
+
+.filter-element {
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    margin-top: 0.2em;
+    border-bottom: 0.05em solid #b9c4bf;
+}
+
+.filter-element:hover {
+    background-color: #b9c4bf;
 }
 
 /* Priority styling*/
