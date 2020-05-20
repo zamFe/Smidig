@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const app = express();
 const path = require('path');
-const webpush = require('web-push')
 
 let api = require('./api-calls.js');
+let notif = require("./routeNotifications.js")
 const routesApi = require("./routes/routes-api")
 
 let fs = require('fs');
@@ -15,13 +15,6 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
-
-const publicVapidKey = "BKTEYj8Zc0k5p1D3WIYqPy8mg__7QdJVfqdSY5IuUJOM3OL7nHq-5qVTm0JrCy36oxa8MYcSNZRU0OQC87FcAg4";
-const privateVapidKey = "XFSYXRuJ6lfuvUu6-kvFtlcplGmqvArn4bMAwb9Un20";
-
-webpush.setVapidDetails("mailto:test@test.com", publicVapidKey, privateVapidKey);
-
 // Subscribe Route
 app.post("/subscribe", (req, res) => {
     // Get pushSubscription object
@@ -30,16 +23,18 @@ app.post("/subscribe", (req, res) => {
     // Send 201 - resource created
     res.status(201).json({});
 
-    // Create payload
-    const payload = JSON.stringify({ title: "Push Test" });
-
-    console.log("MESSAGE BACK")
-    // Pass object into sendNotification
-    webpush
-        .sendNotification(subscription, payload)
-        .catch(err => console.error(err));
+    notif.subscribeToRoute(subscription);
 });
 
+/*notif.subscribeToRoute({
+        endpoint: 'https://fcm.googleapis.com/fcm/send/f2r3Pe-w6gg:APA91bE5xX7ZNxmzLq1Ip8Bp4cdUtPvOzje-5gtWEtLY9VvuI5UeN5kTbVM4NbtxzP2Ay4u497asINUhYlKe0ff6pIw0iHPsp1tMcvdeOMt7pnlKzCcEpuPvrSn3oog-fJHnXQlLmpBq',
+        expirationTime: null,
+        keys: {
+            p256dh: 'BANFXus34CAgdPW1YhLfIyMwlbrtcShLJ-uGMG3D3MU7S1KosEtAomxrJMfN2EED-aFamXrRv2uXMm88zHOA-q0',
+            auth: 'S6gylkORVsnW0MoTF1Pvww'
+        }
+    }
+)*/
 
 /* Routes */
 app.use('/api', routesApi);
