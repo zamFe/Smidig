@@ -225,7 +225,8 @@ function getLocation(loc, res) {
         requestFile: "geocode.json",
 
         parameters: {
-            q: loc
+            q: loc,
+            near: `(${59.91273},${10.74609})`
         },
         callback: getLocationData
     }, res)
