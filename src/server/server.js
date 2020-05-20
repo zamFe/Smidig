@@ -1,21 +1,10 @@
 
-const express = require('express')
+
 const app = require("./app")
 const fs = require("fs");
 const path = require('path');
 const https = require('https');
-//const app = express();
 
-/*const router = express.Router();
-app.use((req, res, next) => {
-	res.send('Now using https..');
-});*/
-
-//app.use("/", express.static(path.join(__dirname, "..", "public")));
-//app.use(express.static('public'));
-//console.log(httpsOptions)
-//const httpServer = http.createServer(app);
-//const httpserver = httpServer.listen(8080);
 const options = {
 	cert: fs.readFileSync(path.join(__dirname, 'ssl', 'selfsigned.crt')/*, 'utf8'*/),
 	key: fs.readFileSync(path.join(__dirname, 'ssl', 'selfsigned.key')/*, 'utf8'*/)
@@ -39,6 +28,8 @@ app.listen(port, () => {
 	console.log("URL: " + "http://localhost:" + port);
 	console.log("---------------");
 })
+
+
 
 /*
 

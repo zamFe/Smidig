@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const app = express();
 const path = require('path');
-
+const webpush = require('web-push')
 
 let api = require('./api-calls.js');
 const routesApi = require("./routes/routes-api")
@@ -14,6 +14,32 @@ app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+
+
+const publicVapidKey = "BKTEYj8Zc0k5p1D3WIYqPy8mg__7QdJVfqdSY5IuUJOM3OL7nHq-5qVTm0JrCy36oxa8MYcSNZRU0OQC87FcAg4";
+const privateVapidKey = "XFSYXRuJ6lfuvUu6-kvFtlcplGmqvArn4bMAwb9Un20";
+
+webpush.setVapidDetails("mailto:test@test.com", publicVapidKey, privateVapidKey);
+
+// Subscribe Route
+app.post("/subscribe", (req, res) => {
+    // Get pushSubscription object
+    const subscription = //req.body;
+
+    // Send 201 - resource created
+    res.status(201).json({});
+
+    // Create payload
+    const payload = JSON.stringify({ title: "Push Test" });
+
+    console.log("MESSAGE BACK")
+    // Pass object into sendNotification
+    webpush
+        .sendNotification(subscription, payload)
+        .catch(err => console.error(err));
+});
+
 
 /* Routes */
 app.use('/api', routesApi);
