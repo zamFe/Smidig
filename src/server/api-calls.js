@@ -96,8 +96,8 @@ function formatData(data) {
         var d = trips[i];
 
         if(i === 0) {
-            console.log("<-------------- First Transport ------------------>")
-            console.log(d.segments[0])
+            console.log("<-------------- Segments ------------------>")
+            console.log(d.segments[1])
         }
 
         formattedData[i] = {
@@ -124,7 +124,7 @@ function formatData(data) {
 
             if(j === 0 && status) {
                 console.log("<-------------- First Transport ------------------>")
-                console.log(segment);
+                console.log(r);
                 status = false;
             }
 
@@ -135,11 +135,13 @@ function formatData(data) {
                 to: segment.to,
                 //time: r[j].durationString,
                 operatorName: segment.serviceOperator,
+                operatorID: segment.operatorID,
                 stops: r[j].stops,
                 platform: r[j].platform,
                 endPlatform: r[j].endPlatform,
                 serviceName: r[j].serviceName,
                 serviceNumber: r[j].serviceNumber,
+                serviceTripID: r[j].serviceTripID,
                 startTime: r[j].startTime,
                 endTime: r[j].endTime,
                 stops: r[j].stops,
@@ -218,7 +220,9 @@ function getRoute(from, to, dateTime, res) {
             unit: "auto",
             wp: "(1,1,1,1)",
             locale: "no",
+            includeStops: true,
             bestOnly: true,
+            //neverAllowAuthorities: "X6EXwvf7",
             // ir: 1,
             // ws: 1,
             // cs: 1,
