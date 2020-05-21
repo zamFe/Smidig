@@ -2,34 +2,35 @@ let request = require('request');
 let fs = require('fs');
 let querystring = require('querystring');
 
+let GOOGLEMAPS_KEY = process.env.GoogleMaps || fs.readFileSync('src/server/api-keys/googleMaps.properties', 'utf8');
+let TRIPGO_KEY = process.env.TripGo || fs.readFileSync('src/server/api-keys/tripgo.properties', 'utf8');
+
+if (!GOOGLEMAPS_KEY) console.error("GOOGLE KEY MISSING");
+if (!TRIPGO_KEY) console.error("TRIPGO KEY MISSING");
 
 // console.log(querystring.decode("a=(59.9233%2C10.79249)"))
 
 function fromTripGo(args, res) {
 
-    fs.readFile('src/server/api-keys/tripgo.properties', 'utf8', (err, data) => {
-        if (err) throw err;
-        getData(data, args, res);
-    });
+    getData(args, res);
+
 }
 
 function getMap(res) {
-    fs.readFile('src/server/api-keys/googleMaps.properties', 'utf8', (err, data) => {
-        if (err) throw err;
-        var options = {
-            url: 'https://maps.googleapis.com/maps/api/js?key=' + data + '&callback=initMap&libraries=geometry',
-            headers: {
-                'User-Agent': 'request'
-            }
-        };
-        request(options, (error, response, body) => {
-            res.json({ error, response, body });
-        });
+
+    var options = {
+        url: 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLEMAPS_KEY + '&callback=initMap&libraries=geometry',
+        headers: {
+            'User-Agent': 'request'
+        }
+    };
+    request(options, (error, response, body) => {
+        res.json({error, response, body});
     });
 }
 
 
-function getData(key, args, res) {
+function getData(args, res) {
 
     query = convertQuery(args.parameters);
 
@@ -39,7 +40,7 @@ function getData(key, args, res) {
         url: 'https://api.tripgo.com/v1/' + args.requestFile + query,
         headers: {
             'User-Agent': 'request',
-            'X-TripGo-Key': key
+            'X-TripGo-Key': TRIPGO_KEY
         }
     };
 
@@ -49,7 +50,6 @@ function getData(key, args, res) {
         args.callback(error, response, body, res);
     }); //, {form:{key:'value'}}
     // console.log(response)
-
 
 
     // let resp = await doRequest(options);
@@ -83,9 +83,10 @@ function errorHandling(error, response, body) {
     }
 
 }
-let status = true;
+
 function formatData(data) {
-    if(!data.groups || data.groups.length === 0) return [];
+    //console.log(data)
+    if (!data.groups || data.groups.length === 0) return [];
 
     trips = data.groups[0].trips;
 
@@ -94,10 +95,6 @@ function formatData(data) {
 
     for (var i = 0; i < trips.length; i++) {
         var d = trips[i];
-        if(i === 0) {
-            console.log("<------------------------- Segment ------------------------------->")
-             console.log(d.segments[0].externalData.netex.authority)
-        }
 
         formattedData[i] = {
             cost: (d.moneyCost) ? d.moneyCost : Math.floor((Math.random() * 300) + 100),
@@ -121,12 +118,7 @@ function formatData(data) {
 
             var segment = getSegmentTemplate(data, r[j].segmentTemplateHashCode);
 
-            if(status) {
-                console.log("<------------------------- First transport ------------------------------->")
-                console.log(segment)
-                status = false;
-            }
-
+            //console.log(segment)
             formattedData[i].route[j] = {
                 action: segment.modeInfo.alt,
                 description: segment.mini.description,
@@ -134,13 +126,11 @@ function formatData(data) {
                 to: segment.to,
                 //time: r[j].durationString,
                 operatorName: segment.serviceOperator,
-                operatorID: segment.operatorID,
                 stops: r[j].stops,
                 platform: r[j].platform,
                 endPlatform: r[j].endPlatform,
                 serviceName: r[j].serviceName,
                 serviceNumber: r[j].serviceNumber,
-                serviceID: r[j].serviceTripID,
                 startTime: r[j].startTime,
                 endTime: r[j].endTime,
                 stops: r[j].stops,
@@ -158,11 +148,13 @@ function formatData(data) {
     }
 
     return formattedData;
+
 }
 
 function getSegmentTemplate(data, hashCode) {
 
     for (var i = 0; i < data.segmentTemplates.length; i++) {
+        // console.log(data.segmentTemplates[i].hashCode + ", " + hashCode)
         if (data.segmentTemplates[i].hashCode === hashCode) {
             return data.segmentTemplates[i];
         }
@@ -217,24 +209,16 @@ function getRoute(from, to, dateTime, res) {
             unit: "auto",
             wp: "(1,1,1,1)",
             locale: "no",
-            includeStops: true,
             bestOnly: true,
-            //neverAllowOperators: "NSB:Operator:503",
-            neverAllowAuthorities: "1626:2020-05-21",
             // ir: 1,
             // ws: 1,
             // cs: 1,
             // tt: 0,
             v: 11
 
-            // Vy buss: VYX:Operator:1o
-            // Vy tog: NSB:Operator:503
-
-
         },
         callback: getRouteData
     }, res)
-
 }
 
 function getLocation(loc, res) {

@@ -41,6 +41,7 @@ async function renderRoutes() {
     console.log(fullRoute);
 
     //Error handler
+    /*
     let container = document.getElementById('error-container');
     if (typeof (fullRoute) !== 'object') {
         container.innerHTML = "";
@@ -66,6 +67,7 @@ async function renderRoutes() {
     } else {
         container.innerHTML = "";
     }
+    */
 
     // Sorting
     fullRoute.sort((a, b) => (a.startTime > b.startTime) ? 1 : -1);
@@ -73,6 +75,29 @@ async function renderRoutes() {
     setUp()
 }
 
-renderRoutes()
+async function fetchReroute(from, to, time) {
+    const url = `${window.location.origin}/api/routes?from=${from}&to=${to}&datetime=${time}`;
+
+    let response;
+    let payload;
+
+    try {
+        response = await fetch(url, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+
+        payload = await response.json();
+
+    } catch (e) {
+        console.log(e);
+    }
+
+    return payload.data;
+}
+
+renderRoutes();
 //from: (59.9233,10.79249)
 //to: (60.7945331,11.067997699999978)

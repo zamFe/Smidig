@@ -1,6 +1,11 @@
 const publicVapidKey =
     "BKTEYj8Zc0k5p1D3WIYqPy8mg__7QdJVfqdSY5IuUJOM3OL7nHq-5qVTm0JrCy36oxa8MYcSNZRU0OQC87FcAg4";
 
+
+function subscribeToRoute(route) {
+    console.log(route);
+}
+
 // Check for service worker
 if ("serviceWorker" in navigator) {
     send().catch(err => console.error(err));
@@ -67,10 +72,10 @@ function askPermission() {
         });
 }
 
-askPermission().then(d => {
+/*askPermission().then(d => {
     navigator.serviceWorker.ready
         .then(function(swreg) {
-            console.log("blaxblux");
-            swreg.showNotification('Successfully subscribed!', {body:'giorgi'});
+
+            //swreg.showNotification('Du får nå viktige varsler om ruten!');
         });
-})
+})*/

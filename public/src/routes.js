@@ -22,7 +22,6 @@ swapRouteButton.addEventListener('click', e => {
     window.location = `../routes.html?from=${from}&to=${to}&fromname=${fromName}&toname=${toName}&datetime=${datetime}`;
 });
 
-
 /*
 * DATA CONVERSION SECTION:
 * These functions deal with converting data like time and months to proper values
@@ -382,9 +381,9 @@ function renderRouteList(filter) {
     container.innerHTML = ""; //Empty the container before render
 
     const currentTime = parseInt(urlParams.get("datetime"));
-    let dates = []
+    let dates = [];
 
-    if(filter == null) {
+    if(filter != null) {
         list = filterBy(list, filter);
     }
 
@@ -401,7 +400,12 @@ function renderRouteList(filter) {
             renderDate(dateString);
         }
 
-        generateRoute(list[i], i);
+        if(filter != null) {
+            generateRoute(list[i], i);
+        }
+        else {
+            generateRoute(fullRoute[i], i);
+        }
     }
 }
 
@@ -409,7 +413,7 @@ function renderRouteList(filter) {
 function filterBy(list, filter) {
     //filter can currently be:
     //"green"
-    //"cheap"
+    //"price"
     //"fast"
 
     let filter_function = function(a, b) {
@@ -422,7 +426,7 @@ function filterBy(list, filter) {
                 return  (a.carbonCost) - (b.carbonCost);
             };
             break;
-        case "cheap":
+        case "price":
             filter_function = (a, b) => {
                 return  (a.cost) - (b.cost);
             };
