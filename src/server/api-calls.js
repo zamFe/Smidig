@@ -103,6 +103,7 @@ function formatData(data) {
             endTime: d.arrive,
             calories: d.caloriesCost,
             carbonCost: d.caloriesCost,
+            alerts: d.alerts,
             route: []
         }
 
@@ -226,7 +227,8 @@ function getLocation(loc, res) {
 
         parameters: {
             q: loc,
-            near: `(${59.91273},${10.74609})`
+            a: true,
+            allowGoogle: true
         },
         callback: getLocationData
     }, res)
