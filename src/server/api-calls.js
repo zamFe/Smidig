@@ -83,9 +83,8 @@ function errorHandling(error, response, body) {
     }
 
 }
-
+let status = true;
 function formatData(data) {
-    //console.log(data)
     if(!data.groups || data.groups.length === 0) return [];
 
     trips = data.groups[0].trips;
@@ -95,14 +94,19 @@ function formatData(data) {
 
     for (var i = 0; i < trips.length; i++) {
         var d = trips[i];
+        if(i === 0) {
+            console.log("<------------------------- Segment ------------------------------->")
+             console.log(d.segments[0].externalData.netex.authority)
+        }
 
         formattedData[i] = {
-            cost: (d.moneyCost) ? d.moneyCost : 149,
+            cost: (d.moneyCost) ? d.moneyCost : Math.floor((Math.random() * 300) + 100),
             map: {},
             startTime: d.depart,
             endTime: d.arrive,
             calories: d.caloriesCost,
             carbonCost: d.caloriesCost,
+            alerts: d.alerts,
             route: []
         }
 
@@ -117,7 +121,12 @@ function formatData(data) {
 
             var segment = getSegmentTemplate(data, r[j].segmentTemplateHashCode);
 
-            //console.log(segment)
+            if(status) {
+                console.log("<------------------------- First transport ------------------------------->")
+                console.log(segment)
+                status = false;
+            }
+
             formattedData[i].route[j] = {
                 action: segment.modeInfo.alt,
                 description: segment.mini.description,
@@ -125,11 +134,13 @@ function formatData(data) {
                 to: segment.to,
                 //time: r[j].durationString,
                 operatorName: segment.serviceOperator,
+                operatorID: segment.operatorID,
                 stops: r[j].stops,
                 platform: r[j].platform,
                 endPlatform: r[j].endPlatform,
                 serviceName: r[j].serviceName,
                 serviceNumber: r[j].serviceNumber,
+                serviceID: r[j].serviceTripID,
                 startTime: r[j].startTime,
                 endTime: r[j].endTime,
                 stops: r[j].stops,
@@ -147,13 +158,11 @@ function formatData(data) {
     }
 
     return formattedData;
-
 }
 
 function getSegmentTemplate(data, hashCode) {
 
     for (var i = 0; i < data.segmentTemplates.length; i++) {
-        // console.log(data.segmentTemplates[i].hashCode + ", " + hashCode)
         if (data.segmentTemplates[i].hashCode === hashCode) {
             return data.segmentTemplates[i];
         }
@@ -208,16 +217,24 @@ function getRoute(from, to, dateTime, res) {
             unit: "auto",
             wp: "(1,1,1,1)",
             locale: "no",
+            includeStops: true,
             bestOnly: true,
+            //neverAllowOperators: "NSB:Operator:503",
+            neverAllowAuthorities: "1626:2020-05-21",
             // ir: 1,
             // ws: 1,
             // cs: 1,
             // tt: 0,
             v: 11
 
+            // Vy buss: VYX:Operator:1o
+            // Vy tog: NSB:Operator:503
+
+
         },
         callback: getRouteData
     }, res)
+
 }
 
 function getLocation(loc, res) {
@@ -225,7 +242,9 @@ function getLocation(loc, res) {
         requestFile: "geocode.json",
 
         parameters: {
-            q: loc
+            q: loc,
+            a: true,
+            allowGoogle: true
         },
         callback: getLocationData
     }, res)
