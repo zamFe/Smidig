@@ -84,6 +84,7 @@ function errorHandling(error, response, body) {
 
 }
 
+let status = true;
 function formatData(data) {
     //console.log(data)
     if (!data.groups || data.groups.length === 0) return [];
@@ -95,6 +96,11 @@ function formatData(data) {
 
     for (var i = 0; i < trips.length; i++) {
         var d = trips[i];
+
+        if(i === 0) {
+            console.log("<-------------- First Transport ------------------>")
+            console.log(d.segments[0])
+        }
 
         formattedData[i] = {
             cost: (d.moneyCost) ? d.moneyCost : Math.floor((Math.random() * 300) + 100),
@@ -118,7 +124,12 @@ function formatData(data) {
 
             var segment = getSegmentTemplate(data, r[j].segmentTemplateHashCode);
 
-            //console.log(segment)
+            if(j === 0 && status) {
+                console.log("<-------------- First Transport ------------------>")
+                console.log(segment);
+                status = false;
+            }
+
             formattedData[i].route[j] = {
                 action: segment.modeInfo.alt,
                 description: segment.mini.description,
