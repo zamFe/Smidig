@@ -345,6 +345,23 @@ function generateRoute(route, index) {
     const price = `NOK ${route.cost},-`;
     const status = getStatus(route);
 
+    if(route.delay){
+        if(route.delay.cancelled) {
+            let cancelledLatLng;
+            let cancelledStartTime;
+            for(let i = 0; i < route.route.length; i++) {
+                if(route.route[i].hasWarning){
+                    cancelledLatLng = `(${route.route[i].from.lat},${route.route[i].from.lng})`;
+                    cancelledStartTime = route.route[i].startTime;
+                }
+            }
+
+            let newRoute = fetchReroute(cancelledLatLng, urlParams.get("to"), cancelledStartTime);
+            console.log("Showing alternative route")
+            console.log(newRoute)
+        }
+    }
+
     let template = `
         <div class="route-container" onclick=goToDetails(${index})>
             <div class="route-time">

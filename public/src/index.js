@@ -42,7 +42,7 @@ function updateDropdown(loc) {
             console.log(e)
         }
 
-        addToDropdown( payload.data, loc)
+        addToDropdown(JSON.parse(payload).features, loc)
 
         console.log("Post");
     }, 600)
@@ -102,47 +102,24 @@ function setup(){
     }
 }
 
-function addToDropdown(data, loc) {
+function addToDropdown(features, loc) {
     
     // Creates an error message upon API Call failures
-    console.log(data);
-    let container = document.getElementById('error-container');
-    if(typeof(data) !== 'object') {
-        container.innerHTML = "";
-        if(data.substring(0,6) == 'Error:'){
-            let errorBox = document.createElement('div');
-            errorBox.style.position = 'absolute';
-            errorBox.style.width = '100%';
-            errorBox.style.height = '12vh';
-            errorBox.style.zIndex = '100';
-            errorBox.style.margin = '0 0 auto 0';
-            errorBox.style.top = '0px';
-            errorBox.style.fontSize = '2rem';
-            errorBox.style.backgroundColor = 'rgba(255,100,100,.8)';
-            errorBox.style.color = '#ffffff';
-            errorBox.style.textAlign = 'center';
-            let errorTextElem = document.createElement('p');
-            errorTextElem.innerText = data;
-            errorBox.appendChild(errorTextElem);
-            container.appendChild(errorBox);
-
-            data = fallbackData.dropDownData;
-        }
-    } else {
-        container.innerHTML = "";
-    }
+    console.log(features);
 
     let template = "";
 
-    for(let i = 0; i < data.choices.length; i++){
-        template += '<div class="droplist-content" onclick="getName(\''+
-            data.choices[i].address +
-            '\', \''+
-            data.choices[i].lat +
-            '\', \''+ data.choices[i].lng +
-            '\', \''+ loc + '\'  )"><span class="dropdown-span">' +
-            data.choices[i].address + '</span></div>'
+    for(let i = 0; i < features.length; i++){
+        template += `
+            <div class="droplist-content" onclick="getName('${features[i].properties.label}', 
+            '${features[i].geometry.coordinates[1]}',
+            '${features[i].geometry.coordinates[0]}',
+            '${loc}')">
+                <span class="dropdown-span"> ${features[i].properties.label}</span>
+            </div>
+        `
     }
+
     document.getElementById(loc + "-droplist").innerHTML = template;
 }
 
@@ -160,13 +137,6 @@ function checkLocation(){
         updateHistory(url, fromName, toName);
 
         window.location.href = url;
-
-        /*
-        window.location.href="date-time.html?from=(" + locationData.from.lat +
-        "," + locationData.from.lng + ")&to=(" + locationData.to.lat + 
-        "," + locationData.to.lng +")&fromname=" + 
-        encodeURI(locationData.from.address) + "&toname=" + encodeURI(locationData.to.address);
-         */
     }
     
 }
@@ -205,29 +175,8 @@ function updateHistory(newSearch, from, to) {
     history.unshift(entry); // Adds to start of history array
     localStorage.setItem("history", JSON.stringify(history))
 }
-/*
-async function updateUserHistory(user, entry) {
-    const url = `${window.location.origin}/api/db/updateuser?email=${user.email}&password=${user.password}`
-    let response;
-    let payload;
 
-    try {
-        response = await fetch(url, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({searchHistory: entry})
-        })
 
-        payload = response.json();
-
-        localStorage.setItem("user", payload)
-    } catch (e) {
-        console.log(e);
-    }
-}
-*/
 function generateSearchHistory() {
     const list = document.getElementById("generated-history");
     const history = JSON.parse(localStorage.getItem("history"));

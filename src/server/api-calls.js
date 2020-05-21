@@ -11,9 +11,7 @@ if (!TRIPGO_KEY) console.error("TRIPGO KEY MISSING");
 // console.log(querystring.decode("a=(59.9233%2C10.79249)"))
 
 function fromTripGo(args, res) {
-
     getData(args, res);
-
 }
 
 function getMap(res) {
@@ -232,17 +230,25 @@ function getRoute(from, to, dateTime, res) {
     }, res)
 }
 
-function getLocation(loc, res) {
-    fromTripGo({
-        requestFile: "geocode.json",
+getLocation = (q, res) => {
+    const options = {
+        method: "GET",
+        url: `https://api.entur.io/geocoder/v1/autocomplete?text=${q}&size=20&lang=no`,
+        headers: {
+            "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+            "content-type": "application/json;charset=utf-8",
+            "expires": 0,
+            "pragma": "no-cache"
+        }
+    }
 
-        parameters: {
-            q: loc,
-            a: true,
-            allowGoogle: true
-        },
-        callback: getLocationData
-    }, res)
+    request.get(options,  (err, response, body) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        res.json(body)
+    })
 }
 
 

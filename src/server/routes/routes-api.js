@@ -14,7 +14,7 @@ router.post("/routes", (req, res) => {
 })
 
 router.post("/location", (req, res) => {
-    api.getLocation(req.query.q, res);
+    const payload = api.getLocation(req.query.q, res);
 })
 
 router.get("/map", (req, res) => {
