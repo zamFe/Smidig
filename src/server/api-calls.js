@@ -2,11 +2,9 @@ let request = require('request');
 let fs = require('fs');
 let querystring = require('querystring');
 
-let GOOGLEMAPS_KEY = process.env.GoogleMaps || fs.readFileSync('src/server/api-keys/googleMaps.properties', 'utf8');
-let TRIPGO_KEY = process.env.TripGo || fs.readFileSync('src/server/api-keys/tripgo.properties', 'utf8');
+let keys = require("api-keys");
 
-if (!GOOGLEMAPS_KEY) console.error("GOOGLE KEY MISSING");
-if (!TRIPGO_KEY) console.error("TRIPGO KEY MISSING");
+
 
 // console.log(querystring.decode("a=(59.9233%2C10.79249)"))
 
@@ -17,7 +15,7 @@ function fromTripGo(args, res) {
 function getMap(res) {
 
     var options = {
-        url: 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLEMAPS_KEY + '&callback=initMap&libraries=geometry',
+        url: 'https://maps.googleapis.com/maps/api/js?key=' + keys.GOOGLEMAPS_KEY + '&callback=initMap&libraries=geometry',
         headers: {
             'User-Agent': 'request'
         }
@@ -38,7 +36,7 @@ function getData(args, res) {
         url: 'https://api.tripgo.com/v1/' + args.requestFile + query,
         headers: {
             'User-Agent': 'request',
-            'X-TripGo-Key': TRIPGO_KEY
+            'X-TripGo-Key': keys.TRIPGO_KEY
         }
     };
 
