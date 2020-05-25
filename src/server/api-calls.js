@@ -1,8 +1,8 @@
 let request = require('request');
-let fs = require('fs');
+
 let querystring = require('querystring');
 
-let keys = require("api-keys");
+let keys = require("./get-api-keys.js");
 
 
 
