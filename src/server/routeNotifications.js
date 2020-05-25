@@ -7,12 +7,13 @@ const privateVapidKey = "XFSYXRuJ6lfuvUu6-kvFtlcplGmqvArn4bMAwb9Un20";
 
 webpush.setVapidDetails("mailto:test@test.com", publicVapidKey, privateVapidKey);
 
-function subscribeToRoute(subscription) {
+function subscribeToRoute(subscription, id) {
     // Create payload
-    const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten!"});
+    const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten med id: " + id});
 
     console.log("New subscription!")
     console.log(subscription)
+    console.log(id)
 
     // Pass object into sendNotification
     webpush
@@ -20,18 +21,19 @@ function subscribeToRoute(subscription) {
         .catch(err => console.error(err));
 
     const options = {
-        "method": "POST",
-        "url": `https://api.tripgo.com/v1/trip/hook/${ID}`,
-        "body": {
+        method: "POST",
+        url: `https://api.tripgo.com/v1/trip/hook/${id}`,
+        body: {
             "url": "https://vy-reiser.herokuapp.com/api/log",
         },
-        "headers": {
+        headers: {
             "content-type": "application/json;charset=utf-8",
             "x-api-key": keys.TRIPGO_KEY
         }
     }
+    console.log(JSON.stringify(options))
 
-    request.post(options, (err, response, body) => {
+    request.post(JSON.stringify(options), (err, response) => {
         if (err) {
             return console.log(err);
         }

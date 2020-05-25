@@ -19,11 +19,17 @@ app.use(bodyParser.json());
 app.post("/subscribe", (req, res) => {
     // Get pushSubscription object
     const subscription = req.body;
+    const id = req.query.id;
+
+    if (!id) {
+        res.status(400).json({});
+        return;
+    }
 
     // Send 201 - resource created
     res.status(201).json({});
 
-    notif.subscribeToRoute(subscription);
+    notif.subscribeToRoute(subscription, id);
 });
 
 /*notif.subscribeToRoute({

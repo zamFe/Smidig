@@ -18,7 +18,7 @@ router.post("/location", (req, res) => {
 })
 
 router.post("/log", (req, res) => {
-    console.log(res.body()) //;
+    console.log(res) //;
     console.log("WEBHOOK HOOKED");
 });
 

@@ -106,7 +106,8 @@ function formatData(data) {
             calories: d.caloriesCost,
             carbonCost: d.caloriesCost,
             alerts: d.alerts,
-            route: []
+            route: [],
+            id: d.id
         }
 
         // Route
