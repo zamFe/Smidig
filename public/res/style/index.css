@@ -2,7 +2,7 @@ html, body {
     width: 100%;
     height: 100%;
     margin: 0;
-    font-family: sans-serif;
+    font-family: "Helvetica", sans-serif;
     color: #212721;
     background-color: #f2f2f3;
     overflow-y: hidden;
@@ -42,21 +42,22 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
     width: 100%;
+    height: 70%;
     margin-top: 1em;
 
 }
 
 #hello-container {
     width: 100%;
-    padding: 1em 0;
-    font-size: 1em;
-    text-align: center;
+    text-wrap: normal;
+    font-size: 1.3rem;
 }
 
-#hello-span {
-    height: 1em
+#hello-text {
+    margin: 0;
+    padding: 0 1em;
 }
 
 /* input containers*/
@@ -75,102 +76,156 @@ main {
 
 
 #destination-container {
+    position: relative;
     font-size: 1.3em;
-    display: grid;
-    grid-template-rows: 1em 3.6em 3em 3.6em 4.5em;
-    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 15em;
+    width: 90%;
 }
 
 .destination-input {
+    top: 0;
     border: none;
-    border-bottom: 4px solid #00957a;
-    background-color: rgb(200,200,200);
-    padding: 5px 0 0 10px;
-    width: 97%;
-    height: 2rem;
+    background-color: rgba(0,0,0,0);
+    padding: .7em 0 .7em .3em;
+    width: 100%;
     font-size: 1.3rem;
 }
 
 .input-container {
-    max-width: 100%;
+    width: 100%;
+    background-color: rgb(231, 231, 231);
+    border-bottom: 2px solid #00957a;
+    margin: 0 0 0 0;
+}
+
+.front {
+    margin: 1em 0;
+}
+
+.front input {
+    padding: 1em -.3em 1em .3em;
+    font-size: 1rem;
+}
+
+.search-icons{
+    margin: 0 1em;
+}
+
+#back-arrow {
+    border-style: none;
+    background-color: rgba(0,0,0,0);
+}
+
+.back-svg {
+    height: 1.7em;
+}
+
+.back-icon {
+    fill: #00957a;
+    stroke: none;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#clear-x {
+    border-style: none;
+    background-color: rgba(0,0,0,0);
+}
+
+.x-svg {
+    height: 1.4em;
+}
+
+.x-icon {
+    fill:none;
+    stroke: #a1a1a1;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-width:70px;
+}
+
+.my-location {
+    width: 100%;
+    height: 3em;
+    border-style: none;
+    transition: .1s ease;
+    background-color: #00957a;
+    color: #f2f2f3;
+    font-weight: bold;
+}
+
+.my-location:active {
+    filter: brightness(.5);
+}
+
+/* DROPDOWN LIST STYLINGS */
+.droplist {
+    width: 100%;
 }
 
 .droplist-content {
-    display: inline-block;
-    font-size: 1rem;
-    width: 75vw;
-    height: 2em;
-    background-color: lightgray;
-    border-bottom: 3px solid #00957a;
-    padding: 5px 10px 0 10px;
+    box-sizing: border-box;
+    padding: 1em 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(231, 231, 231);
+    border-bottom: 1px solid #c6c6c6;
 }
 
-.dropdown-span {
-    position: relative;
+.place-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 70%;
 }
 
-#from-input-container {
-    grid-row: 2;
-    z-index: 2;
+.place-name {
+    margin: 0;
+    font-size: 1.2rem;
 }
 
-#from-droplist {
-    position: absolute;
-    max-height: 500px;
-    display: none;
-    z-index: 5;
-    overflow-y: scroll;
+.place-area {
+    margin: 0;
+    font-size: .8em;
+    color: #9c9c9c;
 }
 
-#to-droplist {
-    position: absolute;
-    max-height: 500px;
-    display: none;
-    z-index: 5;
-    overflow-y: scroll;
+.place-options {
+    max-width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-#swap-from-to {
-    grid-row: 3;
-    display: none;
-    margin: auto 0 auto auto;
-    width: 2em;
+.svg {
+    width: 1.5em;
+    margin: 0 .4em;
 }
 
-#swap-from-to:hover{
-    cursor: pointer;
-}
-
-#swap-from-to:active {
-    transform: scale(0.9);
-}
-
-#to-input-container {
-    grid-row: 4;
-    z-index: 1;
-}
-
-#to-droplist {
-    display: none;
-}
-
-
-#to.droplist:hover {
-    color: red;
+.action-icon {
+    fill: #212721;
 }
 
 #route-button-container {
     margin: 1em 0 1em 0;
-    grid-row: 5;
 }
 
 .route-button {
-    opacity: .3;
-    pointer-events: none;
-    width: 50%;
     height: 100%;
     font-size: 1.4rem;
-    margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -183,6 +238,11 @@ main {
     border-radius: 4px;
 }
 
+.route-pointer {
+    width: 1em;
+    margin: 0 .3em 0 .7em;
+}
+
 .route-icon {
     fill: #f2f2f3;
     stroke:#000;
@@ -190,7 +250,17 @@ main {
 }
 
 #route-button:active {
-    opacity: 0.6;
+    transform: scale(.9);
+}
+
+.route-ready {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+}
+
+.route-unready {
+    pointer-events: none !important;
+    opacity: .3 !important;
 }
 
 /* Search history styles */
