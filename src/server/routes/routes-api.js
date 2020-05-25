@@ -19,6 +19,8 @@ router.post("/location", (req, res) => {
 
 router.post("/log", (req, res) => {
     console.log(res) //;
+
+    res.body.tripID
     console.log("WEBHOOK HOOKED");
 });
 
