@@ -18,9 +18,8 @@ router.post("/location", (req, res) => {
 })
 
 router.post("/log", (req, res) => {
-    console.log(req)
-    console.log(res)
-    console.log("WEBHOOK HOOKED")
+    console.log(res.body()) //;
+    console.log("WEBHOOK HOOKED");
 });
 
 router.get("/map", (req, res) => {
