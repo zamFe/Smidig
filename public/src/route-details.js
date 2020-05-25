@@ -1,9 +1,11 @@
 let container = document.getElementById("main-container");
+let delayTime = 0;
 
 //build step and adds to HTML
 function stepBuilder(stop, delay) {
+    delayTime = 0;
     delay = (delay === undefined) ? false : delay;
-    console.log(delay)
+
 
     let serviceP = "";
 
@@ -59,10 +61,11 @@ function stepBuilder(stop, delay) {
             delayedHTML = `
                 <div class="delay-message">
                     ${delayedIcon}
-                    <span class="delay-message">${delay.statusMessage}</span>
+                    <span class="delay-message">${delay.statusMessage} </span>
                     <span class="delay-time"> (${delay.duration} min)</span>
                 </div>
             `;
+            delayTime = delay.duration * 60;
         }
     }
 
@@ -78,12 +81,14 @@ function stepBuilder(stop, delay) {
         :
         "";
 
-
+    const lineOver = (delayTime !== 0) ? "line-over" : "";
     const routeTemplate = `
         <div style="display: grid; grid-template-columns: ${gridTemp}">
             ${lineTemplate}
             <div class="route-details">
-                <span class="route-time">${convertTime(stop.startTime)}</span>
+                <span class="time-container">
+                    ${convertTime(stop.startTime, delayTime)}
+                </span>
                 <span class="route-place">${stop.from.address}</span>
                 ${delayedHTML}
                 <div class="route-action">
@@ -104,16 +109,30 @@ function cancelledTransport(route) {
 }
 
 
-function convertTime(time) {
+function convertTime(time, delay) {
+    let delayFormat = "";
+    let lineOver = "";
 
-    let date = new Date(time * 1000);
-    let convertedTime = `${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`
-
-    if (date.getHours() < 10) {
-        convertedTime = '0' + `${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`
+    if(delay !== 0) {
+        const newTime = new Date((time + delayTime) * 1000);
+        delayFormat = `<span class="new-time">${convertToHours(newTime)}</span>`;
+        lineOver = "line-over";
     }
 
-    return convertedTime;
+    let date = new Date(time * 1000);
+    let convertedTime = `<span class="current-time ${lineOver}">${convertToHours(date)}</span>`;
+    let html = convertedTime + delayFormat;
+    return html;
+}
+
+function convertToHours(date) {
+    let formattedDate;
+    if(date.getHours() < 10) {
+        formattedDate = '0' + `${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`;
+    } else {
+     formattedDate = `${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`
+    }
+    return formattedDate;
 }
 
 function getImages(routeAction) {
@@ -142,7 +161,9 @@ function getLastNode (stop){
                     <img class="node-icon" src="../res/img/icons/node.png">
                 </div>
                 <div class="route-details" style="grid-template-rows: auto">
-                    <span class="route-time">${convertTime(stop.endTime)}</span>
+                    <span>
+                        ${convertTime(stop.endTime, delayTime)}
+                    </span>
                     <span class="route-place">${stop.to.address}</span>
                 </div>
             </div>`
@@ -188,7 +209,7 @@ for (i = 0; i < fullRoute[index].route.length; i++) {
         console.log(step)
         stepBlock += getLastNode(last)
         stepBlock += "</div>"
-        stepBlock += drawWait(Math.ceil((step.startTime - last.endTime)/60));
+        stepBlock += drawWait(Math.ceil((step.startTime - last.endTime - delayTime)/60));
         stepBlock += '<div class="detail-box">';
     }
     const stepHTML = stepBuilder(step, fullRoute[index].delay);
@@ -205,4 +226,4 @@ let travelTime = fullRoute[index].endTime-fullRoute[index].startTime;
 const hours = (Math.floor(travelTime/3600) <= 0) ? "" : Math.floor(travelTime/3600)+"t";
 document.getElementById("travel-time").innerText = `${hours} ${Math.ceil((travelTime%3600)/60)} min`;
 console.log(travelTime)
-document.getElementById("arrival-time").innerText = `${convertTime(fullRoute[index].endTime)}`;
+document.getElementById("arrival-time").innerHTML = `${convertTime(fullRoute[index].endTime, delayTime)}`;

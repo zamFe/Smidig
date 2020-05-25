@@ -178,6 +178,22 @@ main {
     justify-items: center;
 }
 
+.line-over {
+    text-decoration: line-through;
+}
+
+.new-time {
+    padding-left: 1em;
+}
+
+.time-container {
+    display: flex;
+    font-size: 1.8vh;
+    align-items: center;
+    padding: 5px;
+    padding-left: 0;
+}
+
 .warning-svg {
     height: 1em;
     margin-right: 0.5em;
