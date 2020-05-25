@@ -231,19 +231,20 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    width: 30%;
+    width: 30%
 }
 
 .destination {
     height: 1em;
     white-space: nowrap;
+    text-overflow: ellipsis;
     color: #a1a1a1;
     margin: 0 0 .4em 0;
     font-size: .8rem;
 }
 
-.dest-end {
-    text-align: right;
+.dest-end  *{
+    direction: rtl;
 }
 
 .time {

@@ -6,8 +6,23 @@ const star = document.getElementsByClassName("star-fav")[0];
 
 // Sets the from and to names and adds eventlistener to the swap button
 function setFromAndTo() {
-    const from = urlParams.get("fromname");
-    const to = urlParams.get("toname");
+    let from;
+
+    if(urlParams.get("fromname").lastIndexOf(',') < 0) {
+        from = urlParams.get("fromname")
+    } else {
+        from = urlParams.get("fromname").substring(0, urlParams.get("fromname").lastIndexOf(','))
+    }
+
+    let to;
+
+    if(urlParams.get("toname").lastIndexOf(',') < 0) {
+        to = urlParams.get("toname");
+    } else {
+        to = urlParams.get("toname").substring(0, urlParams.get("toname").lastIndexOf(','))
+    }
+
+    console.log(from + " <= AAAAAAAA")
 
     const titleDiv = document.getElementById("route-title");
     titleDiv.innerHTML = `Reise fra <span class="route-name">${from}</span> til <span class="route-name">${to}</span>`
@@ -183,6 +198,7 @@ function getActionSVG(action) {
         default: return walk;
     }
 }
+
 function getStatus(route) {
     const currentTime = Math.floor(Date.now() / 1000);
     const startTime = route.startTime;
@@ -362,17 +378,20 @@ function generateRoute(route, index) {
         }
     }
 
+    const fromName = urlParams.get("fromname").substring(0, urlParams.get("fromname").lastIndexOf(','))
+    const toName = urlParams.get("toname").substring(0, urlParams.get("toname").lastIndexOf(','))
+
     let template = `
         <div class="route-container" onclick=goToDetails(${index})>
             <div class="route-time">
                 <div class="time-destination dest-start">
-                    <p class="destination">${urlParams.get("fromname")}</p>
+                    <p class="destination">${fromName}</p>
                     <p class="time">${startTime}</p>
                 </div>
                 
                 <p class="time travel-time">${secondsToTime(route.endTime, route.startTime)}</p>
                 <div class="time-destination dest-end">
-                    <p class="destination">${urlParams.get("toname")}</p>
+                    <p class="destination">${toName}</p>
                     <p class="time">${endTime}</p>
                 </div>
             </div>
