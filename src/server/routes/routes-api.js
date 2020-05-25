@@ -17,6 +17,12 @@ router.post("/location", (req, res) => {
     const payload = api.getLocation(req.query.q, res);
 })
 
+router.post("/log", (req, res) => {
+    console.log(req)
+    console.log(res)
+    console.log("WEBHOOK HOOKED")
+});
+
 router.get("/map", (req, res) => {
     api.getMap(res)
 })

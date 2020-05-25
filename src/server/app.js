@@ -36,6 +36,7 @@ app.post("/subscribe", (req, res) => {
     }
 )*/
 
+
 /* Routes */
 app.use('/api', routesApi);
 
