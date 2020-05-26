@@ -3,7 +3,6 @@ let delayTime = 0;
 
 //build step and adds to HTML
 function stepBuilder(stop, delay) {
-    delayTime = 0;
     delay = (delay === undefined) ? false : delay;
 
 
@@ -49,10 +48,10 @@ function stepBuilder(stop, delay) {
             cancelledTransport(stop);
             cancelledHTML = `
                 <div class="cancelled-container">
-                    <div class="cancelled-title">Instilt!</div>
+                    <div class="cancelled-title">Innstilt!</div>
                     <div class="grey-line"></div>
                     <div class="cancelled-message">
-                        Toget er, grunnet arbeid på sporet, instilt. Loren ipsum dolor mit amet.
+                        Toget er innstilt grunnet arbeid på sporet.
                     </div>
                 </div>
        `;
@@ -81,7 +80,6 @@ function stepBuilder(stop, delay) {
         :
         "";
 
-    const lineOver = (delayTime !== 0) ? "line-over" : "";
     const routeTemplate = `
         <div style="display: grid; grid-template-columns: ${gridTemp}">
             ${lineTemplate}
@@ -210,6 +208,7 @@ for (i = 0; i < fullRoute[index].route.length; i++) {
         stepBlock += getLastNode(last)
         stepBlock += "</div>"
         stepBlock += drawWait(Math.ceil((step.startTime - last.endTime - delayTime)/60));
+        delayTime = 0;
         stepBlock += '<div class="detail-box">';
     }
     const stepHTML = stepBuilder(step, fullRoute[index].delay);

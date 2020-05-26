@@ -443,7 +443,58 @@ function renderRouteList(filter) {
             generateRoute(fullRoute[i], i);
         }
     }
+
+    setFilterSelection(filter)
 }
+
+function setFilterSelection(selected){
+    const dept = document.getElementById("filter-none");
+    const time = document.getElementById("filter-time");
+    const price = document.getElementById("filter-price");
+    const green = document.getElementById("filter-green");
+
+    switch(selected){
+        case "fast":
+            dept.classList.remove("filter-selected");
+            time.classList.add("filter-selected");
+            price.classList.remove("filter-selected");
+            green.classList.remove("filter-selected");
+            return;
+        case "price":
+            dept.classList.remove("filter-selected");
+            time.classList.remove("filter-selected");
+            price.classList.add("filter-selected");
+            green.classList.remove("filter-selected");
+            return;
+        case "green":
+            dept.classList.remove("filter-selected");
+            time.classList.remove("filter-selected");
+            price.classList.remove("filter-selected");
+            green.classList.add("filter-selected");
+            return;
+        default:
+            dept.classList.add("filter-selected");
+            time.classList.remove("filter-selected");
+            price.classList.remove("filter-selected");
+            green.classList.remove("filter-selected");
+            return;
+    }
+}
+
+//Toggles filter visibility
+let isFilterVisible = false;
+const filterElem = document.getElementById("filter-by-container");
+document.getElementById("filter-by").addEventListener("click", () => {
+    if(isFilterVisible) {
+        filterElem.classList.remove("filter-visible")
+        document.getElementById("filter-by").classList.remove("open-filter")
+        isFilterVisible = false;
+    } else {
+        filterElem.classList.add("filter-visible")
+        document.getElementById("filter-by").classList.add("open-filter")
+        isFilterVisible = true;
+    }
+})
 
 // Sorts list based on filter
 function filterBy(list, filter) {

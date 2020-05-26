@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="res/style/register.css" rel="stylesheet">
     <link href="res/style/footer.css" rel="stylesheet">
-    <link rel="stylesheet" href="libraries/notifications/dist/notifications.css">
     <title>Vy Registrer</title>
 </head>
 <body>
@@ -26,25 +25,25 @@
         <div id="input-container">
 
             <div class="input">
-                <span>Fornavn</span>
+                <span id="firstname">Fornavn</span>
                 <br>
                 <input id="name-input" class="register-Input" type="text" name="from" placeholder="Fornavn">
             </div><!--end from-input-container-->
 
             <div class="input">
-                <span>Etternavn</span>
+                <span id="surname">Etternavn</span>
                 <br>
                 <input id="surname-input" class="register-Input" type="text" name="from" placeholder="Etternavn">
             </div><!--end from-input-container-->
 
             <div class="input">
-                <span>E-post</span>
+                <span id="email">E-post</span>
                 <br>
                 <input id="email-input" class="register-Input" type="text" name="from" placeholder="Ola@normann.no">
             </div><!--end from-input-container-->
 
             <div class="input">
-                <span>Passord</span>
+                <span id="password">Passord <span class="pass-require-text">Minst 8 tegn</span></span>
                 <br>
                 <input id="password-input" class="register-Input" type="password" name="from" placeholder="Passord">
             </div><!--end from-input-container-->
@@ -64,7 +63,6 @@
 
 <footer id="footer"></footer>
 <script src="src/footer.js"></script>
-<script src="libraries/notifications/dist/notifications.js"></script>
 <script src="src/database.js"></script>
 <script src="src/login-register.js"></script>
 </body>
