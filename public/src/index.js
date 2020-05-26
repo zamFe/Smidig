@@ -121,6 +121,7 @@ function addToDropdown(features, loc) {
             let placeName = label.lastIndexOf(',') > 0 ? label.substring(0,label.lastIndexOf(',')) : label;
             let areaName = label.lastIndexOf(',') > 0 ? label.substring(label.lastIndexOf(',')+1) : "";
 
+            let countyDescriptor = areaName ? `${areaName.trim()}, ${features[i].properties.county}` : `${features[i].properties.county}`;
 
             template += `
             <div class="droplist-content" onclick="setSelectedPlace('${features[i].properties.label}', 
@@ -129,7 +130,7 @@ function addToDropdown(features, loc) {
             '${loc}')">
                 <div class="place-label">
                     <p class="place-name">${placeName}</p>
-                    <p class="place-area">${areaName.trim()}, ${features[i].properties.county}</p>
+                    <p class="place-area">${countyDescriptor}</p>
                 </div>
                 <div class="place-options">
                     ${getFeatureCategories(features[i].properties.category)}
@@ -307,12 +308,12 @@ function renderIndexSearch(loc) {
             <button id="back-arrow" class="search-icons" onclick="renderMainIndex()">
                 <svg class="back-svg" data-name="Back to front page" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.66 500"><defs><style>.cls-1{fill:none;}</style></defs><path class="cls-1" d="M395.67,0" transform="translate(-55.2)"/><path class="back-icon" d="M414.86,0,199.52,252,414.86,500H271.52L55.2,252,271.52,0Z" transform="translate(-55.2)"/></svg>
             </button>
-            <input id="${loc}-input" class="destination-input" type="text" name="${loc}" placeholder="Reise til..." autocomplete="off" oninput="updateDropdown('${loc}')">
+            <input id="${loc}-input" class="destination-input" type="text" name="${loc}" placeholder="Reise ${loc === "to" ? "til" : "fra"}..." autocomplete="off" oninput="updateDropdown('${loc}')">
             <button id="clear-x" class="search-icons" onclick="clearInput('${loc}')">
                 <svg class="x-svg" data-name="Clear input" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 430"><line class="x-icon" x1="35" y1="35" x2="395" y2="395"/><line class="x-icon" x1="395" y1="35" x2="35" y2="395"/></svg>
             </button>
         </div>
-        <button class="my-location" onclick="getCurrentLocation('${loc}')">Min Posisjon</button>
+        <button class="my-location" onclick="getCurrentLocation('${loc}')">Søk fra Min Posisjon</button>
         <div>
             <div id="${loc}-droplist" class="droplist"></div>
         </div>
