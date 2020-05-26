@@ -34,7 +34,7 @@ function subscribeToRoute(subscription, id) {
             "x-api-key": keys.TRIPGO_KEY
         }
     }
-    console.log(options)
+    console.log(options);
 
     request.post(options, (err, response) => {
         if (err) {
