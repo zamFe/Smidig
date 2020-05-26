@@ -10,14 +10,16 @@
 </head>
 <body>
     <div id="favorite-main-container">
-        <header id="favorite-header-container">
-            <a onclick="window.history.back()"><img id="back-arrow" src="res/img/icons/back.png"></a>
-            <div class="favorite-title-container">
-                <span id="favorite-title">Dine favorittreiser</span>
-            </div>
+        <header class="header">
+            <a onclick="window.history.back()"><svg id="back-arrow" data-name="Return to search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.66 500"><path class="back-icon" d="M395.67,0" transform="translate(-55.2)"/><path class="back-icon" d="M414.86,0,199.52,252,414.86,500H271.52L55.2,252,271.52,0Z" transform="translate(-55.2)"/></svg></a>
+            <div class="title-bar"><p>Dine Favorittreiser</p></div>
         </header>
 
-        <hr>
+        <div class="description-field">
+            <p id="info-field">
+                Ved å trykke på reisene under kan du raskt søke opp reiser du har lagt til som favoritt
+            </p>
+        </div>
         <div class="routes-container" id="favorite-routes"></div>
     </div>
 
