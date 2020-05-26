@@ -17,7 +17,6 @@ router.post("/updatedtrip", (req, res) => {
     notif.notifyChange(res.body);
 })
 
-
 router.post("/log", (req, res) => {
     console.log(res.body);
 
