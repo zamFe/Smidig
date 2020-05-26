@@ -1,12 +1,8 @@
 const express = require("express");
 const api = require("../api-calls");
 const users = require("../db/user-repo.js");
-/*console.log(users.createUser("andreas@hotmail.com", "apeKatten", "andreas", "østby"));
-console.log(users.loginUser("andreas@hotmail.com", "apeKatten"));
+const notif = require("../routeNotifications")
 
-console.log(users.createUser("andreas@hotmail.com", "apeasKatten", "aasdndreas", "øby"));
-console.log(users.loginUser("andreas@hotmail.com", "apeKattenen"));
-*/
 const router = express.Router();
 
 router.post("/routes", (req, res) => {
@@ -17,10 +13,13 @@ router.post("/location", (req, res) => {
     const payload = api.getLocation(req.query.q, res);
 })
 
-router.post("/log", (req, res) => {
-    console.log(res) //;
+router.post("/updatedTrip", (req, res) => {
+    notif.notifyChange(res.body);
+})
 
-    res.body.tripID
+router.post("/log", (req, res) => {
+    console.log(res.body);
+
     console.log("WEBHOOK HOOKED");
 });
 
