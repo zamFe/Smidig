@@ -101,3 +101,7 @@ main {
     color: blue;
     text-decoration: underline;
 }
+
+.pass-require-text {
+    font-size: 1.5vh;
+}
