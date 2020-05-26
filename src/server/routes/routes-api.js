@@ -13,7 +13,7 @@ router.post("/location", (req, res) => {
     const payload = api.getLocation(req.query.q, res);
 })
 
-router.post("/updatedTrip", (req, res) => {
+router.post("/updatedtsrip", (req, res) => {
     notif.notifyChange(res.body);
 })
 

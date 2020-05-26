@@ -26,12 +26,12 @@ function subscribeToRoute(subscription, id) {
         method: "POST",
         url: `https://api.tripgo.com/v1/trip/hook/${id}`,
         json: {
-            url:'https://vy-reiser.herokuapp.com/api/updatedTrip'
+            url:'https://vy-reiser.herokuapp.com/api/updatedtrip'
         },
         headers: {
             "content-type": "application/json;charset=utf-8",
-            //"X-TripGo-Key": keys.TRIPGO_KEY,
-            //"x-api-key": keys.TRIPGO_KEY
+            "X-TripGo-Key": keys.TRIPGO_KEY,
+            "x-api-key": keys.TRIPGO_KEY
         }
     }
     console.log(options);
@@ -83,6 +83,7 @@ function sendNotification(subscription, payload){
 
 function notifyChange (trip){
 
+    // TODO: remove hook if no user found
     console.log(trip)
     let users = tripIDs[trip.tripID];
 
