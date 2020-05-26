@@ -82,6 +82,8 @@ function sendNotification(subscription, payload){
 }
 
 function notifyChange (trip){
+
+    console.log(trip)
     let users = tripIDs[trip.tripID];
 
     for (let user in users) {
