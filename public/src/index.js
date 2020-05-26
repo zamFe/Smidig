@@ -324,8 +324,34 @@ function renderIndexSearch(loc) {
     document.getElementById(`${loc}-input`).focus();
 }
 
-renderMainIndex(); //Sets the user's name in welcome message if they are logged in
+// Cookie code
 
+const acceptCookie = document.getElementsByClassName("accept-btn")[0].onclick = acceptedCookieData;
+const settingsCookie = document.getElementsByClassName("settings-btn")[0];
+const xCookie = document.getElementsByClassName("x-container")[0];
+const cookie = document.getElementsByClassName("cookie-container")[0];
+
+// Renders cookie depending on saved setting or not
+function cookieRender() {
+    const cookieStatus = localStorage.getItem("cookieAccepted");
+    if(cookieStatus === "true") {
+        cookie.style.display = "none";
+    } else {
+        cookie.style.display = "block";
+    }
+}
+
+// Set cookie true on user
+function acceptedCookieData() {
+    cookie.style.display = "none";
+    localStorage.setItem("cookieAccepted", "true");
+}
+
+renderMainIndex(); //Sets the user's name in welcome message if they are logged in
+cookieRender();
 /*
 window.location.href='html/date-time.html?from=('+ locationData.from.lat + ',' + locationData.from.lng +')&to=('+ locationData.to.lat + ',' + locationData.to.lng +')&fromname=' + encodeURI(locationData.from.address) + '&toname=' + encodeURI(locationData.to.address)"
 */
+
+
+

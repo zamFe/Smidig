@@ -308,3 +308,52 @@ main {
     font-weight: bold;
     white-space: nowrap;
 }
+
+
+/* Cookie styling */
+.cookie-container {
+    position: absolute;
+    bottom: 0;
+    background-color: #383E42;
+    color: #f2f2f3;
+    display: flex;
+    flex-direction: column;
+    z-index: 15;
+    padding: 1em;
+    display: none;
+}
+
+.cookie-titleBox {
+    font-size: 1.5em;
+    padding-bottom: 1em;
+    font-weight: bold;
+}
+
+.cookie-infoBox {
+    padding-bottom: 1em;
+}
+
+.cookie-infoBox span a {
+    text-decoration: underline;
+    color: #1e9cef;
+}
+
+.cookie-choices {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.cookie-choices span{
+    border: solid 2px #00957a;
+    padding: 1.3vh;
+    min-width: 35%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.accept-btn {
+    background-color: #00957a;
+}
