@@ -228,8 +228,9 @@ function renderMainIndex(){
     /* Welcome message */
     let welcomeMessage;
     const user = JSON.parse(localStorage.getItem("user"));
-    let fullName = sanitizeHTML(`${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)} ${user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}`);
+    let fullName;
     if(user){
+        fullName = sanitizeHTML(`${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)} ${user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}`);
         welcomeMessage = `Velkommen ${fullName}!`
     } else {
         welcomeMessage = `Ha en god tur!`
