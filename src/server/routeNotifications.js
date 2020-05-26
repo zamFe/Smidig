@@ -30,8 +30,8 @@ function subscribeToRoute(subscription, id) {
         },
         headers: {
             "content-type": "application/json;charset=utf-8",
-            "X-TripGo-Key": keys.TRIPGO_KEY,
-            "x-api-key": keys.TRIPGO_KEY
+            //"X-TripGo-Key": keys.TRIPGO_KEY,
+            //"x-api-key": keys.TRIPGO_KEY
         }
     }
     console.log(options);
