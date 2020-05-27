@@ -27,8 +27,12 @@ function getMap(res) {
 
 
 function getData(args, res) {
-
     query = convertQuery(args.parameters);
+    const nl = keys.TRIPGO_KEY.indexOf('\n')
+    let key = keys.TRIPGO_KEY;
+    if(nl >= 0) {
+        key = key.substring(0, nl);
+    }
 
     // console.log(query)
 
@@ -36,7 +40,7 @@ function getData(args, res) {
         url: 'https://api.tripgo.com/v1/' + args.requestFile + query,
         headers: {
             'User-Agent': 'request',
-            'X-TripGo-Key': keys.TRIPGO_KEY
+            'X-TripGo-Key': key
         }
     };
 
