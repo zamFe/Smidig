@@ -1,5 +1,5 @@
 function searchRoute(url) {
-    //window.location.href = url //Redirect to the search
+    window.location.href = url //Redirect to the search
 }
 
 function removeFavorite(url) {
