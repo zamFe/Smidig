@@ -25,32 +25,37 @@ a {
 
 /* Start of header */
 
-#back-tab-container {
-    height: 60%;
+header {
+    box-sizing: border-box;
+    margin: 1em 0;
+    padding: 0 1.5em 0 1.5em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#back-arrow {
+    height: 5.5vh;
+    align-self: center;
+}
+
+.back-icon {
+    fill: #383e42;
+}
+
+.pad {
     width: 100%;
 }
 
-#back-tab {
-    position: absolute;
-    width: 12.2%;
-    left: 4%;
-    top: 2%;
-}
+/*  Datetime Start */
 
 #datetime-content{
-    grid-column: 2;
-    grid-row: 2;
-    height: 80%;
+    padding: 1.5em;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-}
-
-#page-container header {
-    grid-column: 2;
-    grid-row: 1;
-    text-align: center;
 }
 
 .datetime-header {

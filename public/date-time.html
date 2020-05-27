@@ -10,38 +10,34 @@
     <title>Velg Dato og Tid</title>
 </head>
 <body>
-    <div id="page-container">
-        <header>
-            <div id="back-tab-container" onclick="window.location.href='/'">
-                <img id="back-tab" src="res/img/icons/back.png" alt="">
-            </div>
-        </header>
-        
-        <section id="datetime-content">
+    <header>
+        <a onclick="window.location.href = '/'"><svg id="back-arrow" data-name="Return to search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.66 500"><path class="back-icon" d="M395.67,0" transform="translate(-55.2)"/><path class="back-icon" d="M414.86,0,199.52,252,414.86,500H271.52L55.2,252,271.52,0Z" transform="translate(-55.2)"/></svg></a>
+        <div class="pad"></div>
+    </header>
 
-            <div id="route-container">
-                <p id="route"></p>
+    <section id="datetime-content">
+        <div id="route-container">
+            <p id="route"></p>
+        </div>
+        <div id="selection-container">
+            <div>
+                <p class="input-header">Dato</p>
+                <input id="date-input" class="datetime-input" type="date"/>
             </div>
-            <div id="selection-container">
-                <div>
-                    <p class="input-header">Dato</p>
-                    <input id="date-input" class="datetime-input" type="date"/>
-                </div>
 
-                <div>
-                    <p class="input-header">Tid</p>
-                    <input id="time-input" class="datetime-input" type="time"/>
-                </div>
-
-                <div id="route-button-container">
-                    <button id="datetime-button" class="route-button button" onclick="findRoutes()">
-                        Finn Rute
-                        <svg class="route-pointer" data-name="Route Pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495.57 498.05"><path class="route-icon" d="M326.47,499,227,276.13,2.21,179.87,497.79,1Z" transform="translate(-0.85 -0.15)"/></svg>
-                    </button>
-                </div>
+            <div>
+                <p class="input-header">Tid</p>
+                <input id="time-input" class="datetime-input" type="time"/>
             </div>
-        </section>
-    </div>
+
+            <div id="route-button-container">
+                <button id="datetime-button" class="route-button button" onclick="findRoutes()">
+                    Finn Rute
+                    <svg class="route-pointer" data-name="Route Pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495.57 498.05"><path class="route-icon" d="M326.47,499,227,276.13,2.21,179.87,497.79,1Z" transform="translate(-0.85 -0.15)"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
 
     <footer id="footer"></footer>
     <script src="src/footer.js"></script>
