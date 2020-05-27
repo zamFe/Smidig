@@ -46,8 +46,7 @@ function initMap() { // Called on callback in mapping HTML file
 
     for (var i = 0; i < fullRoute[index].route.length; i++) {
         const route = fullRoute[index].route[i];
-        let startIcon = false;
-        let endIcon = false;
+
 
         if(route.action === "Gå") { // If walk is action
             const start = {lat: route.from.lat, lng: route.from.lng};
@@ -59,11 +58,6 @@ function initMap() { // Called on callback in mapping HTML file
                 strokeOpacity: 1,
                 scale: 4
             };
-
-            let iconArray = [{icon: lineSymbol, offset: "0", repeat: "20px"}];
-            if(startIcon) {
-                iconArray.push(startIcon);
-            }
 
             // Creates walk path with dotted lines as display
             const walkpath = new google.maps.Polyline({
@@ -96,44 +90,54 @@ function initMap() { // Called on callback in mapping HTML file
                 let shapes = google.maps.geometry.encoding.decodePath(route.waypoints.shapes[j].encodedWaypoints)
 
                 let shapeColor;
+                let routeIcon = "../res/img/svg/";
                 switch (route.action) {
-                    case "Tog": shapeColor = trainCol; break;
-                    case "Buss": shapeColor = bussCol; break;
-                    case "Trikk": shapeColor = tramCol; break;
-                    case "Ferge": shapeColor = ferryCol; break;
-                    case "T-bane": shapeColor = subwayCol; break;
+                    case "Tog": shapeColor = trainCol; routeIcon += "train-label.svg"; break;
+                    case "Buss": shapeColor = bussCol; routeIcon += "bus-label.svg"; break;
+                    case "Trikk": shapeColor = tramCol; routeIcon += "tram-label.svg"; break;
+                    case "Ferge": shapeColor = ferryCol; routeIcon += "ferry-label.svg"; break;
+                    case "T-bane": shapeColor = subwayCol; routeIcon += "metro-label.svg"; break;
                     default: shapeColor = "#000000"; break;
                 }
-                console.log(shapeColor)
 
-                let start = (startIcon) ? startIcon : "";
-                let end = (endIcon) ? endIcon : "";
+                const transportCoord = {lat: route.from.lat, lng: route.from.lng};
 
-                var cascadiaFault = new google.maps.Polyline({
+
+                let textSize = "14px";
+                if(route.serviceNumber.length >= 5) {
+                    textSize = "10px";
+                }
+
+                const transportMarker = new google.maps.Marker({
+                    icon: {
+                        url: routeIcon,
+                        labelOrigin: new google.maps.Point(20, 12)
+                    },
+                    position: transportCoord,
+                    map: map,
+                    label: {
+                        text: `${route.serviceNumber}`,
+                        color: "white",
+                        fontSize: textSize,
+                        fontWeight: "bold"
+                    }
+                });
+
+                const cascadiaFault = new google.maps.Polyline({
                     strokeColor: shapeColor,
                     strokeOpacity: 1,
                     strokeWeight: 5,
                     path: shapes,
-                    icon:
-                        [
-                            {start},
-                            {end}
-                        ]
+                    map: map
                 });
+
 
                 for (var a = 0; a < shapes.length; a++) {
                     bounds.extend(new google.maps.LatLng(shapes[a].lat(), shapes[a].lng()));
                 }
-
-                cascadiaFault.setMap(map);
             }
         }
     }
-
-
-
-
-
     map.fitBounds(bounds);
     map.panToBounds(bounds);
 }
@@ -154,6 +158,5 @@ async function fetchMap() {
         console.error(e);
     }
 }
-
 
 fetchMap();
