@@ -10,10 +10,15 @@ const ferryCol = "#0e5ce3";
 const walkCol = "#828181";
 const subwayCol = "#de5b04";
 
+const routeArr = fullRoute[index].route;
 
 let coordFrom = {
     lat: fullRoute[index].route[0].from.lat,
     lng: fullRoute[index].route[0].from.lng
+}
+let coordDest = {
+    lat: routeArr[routeArr.length - 1].to.lat,
+    lng: routeArr[routeArr.length - 1].to.lng
 }
 
 function initMap() { // Called on callback in mapping HTML file
@@ -27,19 +32,22 @@ function initMap() { // Called on callback in mapping HTML file
 
     console.log(fullRoute[index]);
 
+
+    var startMarker = new google.maps.Marker({
+        position: coordFrom,
+        map: map,
+        icon: '../res/img/svg/map-start.svg'
+    })
+    var endMarker = new google.maps.Marker({
+        position: coordDest,
+        map: map,
+        icon: '../res/img/svg/flag-icon.svg'
+    })
+
     for (var i = 0; i < fullRoute[index].route.length; i++) {
         const route = fullRoute[index].route[i];
         let startIcon = false;
         let endIcon = false;
-
-        if(i === 0) {
-
-        }
-
-        if(route === fullRoute[index].route.length-1) {
-            // set icon at end
-        }
-
 
         if(route.action === "Gå") { // If walk is action
             const start = {lat: route.from.lat, lng: route.from.lng};
@@ -59,18 +67,18 @@ function initMap() { // Called on callback in mapping HTML file
 
             // Creates walk path with dotted lines as display
             const walkpath = new google.maps.Polyline({
-               strokeColor: walkCol,
-               strokeOpacity: 0,
-               icons: [
-                   {
-                       icon: lineSymbol,
-                       offset: "0",
-                       repeat: "20px"
-                   }, {
-                    icon: null
-                   }
-               ],
-               path: coordinates
+                strokeColor: walkCol,
+                strokeOpacity: 0,
+                icons: [
+                    {
+                        icon: lineSymbol,
+                        offset: "0",
+                        repeat: "20px"
+                    }, {
+                        icon: null
+                    }
+                ],
+                path: coordinates
             });
 
             walkpath.setMap(map);
@@ -92,8 +100,8 @@ function initMap() { // Called on callback in mapping HTML file
                     case "Tog": shapeColor = trainCol; break;
                     case "Buss": shapeColor = bussCol; break;
                     case "Trikk": shapeColor = tramCol; break;
-                    case "Ferje": shapeColor = ferryCol; break;
-                    case "T-Bane": shapeColor = subwayCol; break;
+                    case "Ferge": shapeColor = ferryCol; break;
+                    case "T-bane": shapeColor = subwayCol; break;
                     default: shapeColor = "#000000"; break;
                 }
                 console.log(shapeColor)
