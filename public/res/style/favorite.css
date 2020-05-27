@@ -9,7 +9,8 @@ html, body {
 
 /** Header styling **/
 #back-arrow {
-    height: 5.5vh;
+    height: 2em;
+    width: 2em;
     align-self: center;
 }
 

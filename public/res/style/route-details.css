@@ -34,7 +34,8 @@ main {
 }
 
 #back-arrow {
-    height: 5.5vh;
+    height: 2em;
+    width: 2em;
     align-self: center;
 }
 
@@ -43,6 +44,7 @@ main {
 }
 
 .maps-svg {
+    height: 2em;
     width: 2em;
 }
 
