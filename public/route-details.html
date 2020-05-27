@@ -10,24 +10,16 @@
     <title>Detaljert Rutefremvisning</title>
 </head>
 <body>
-<header>
-    <div id="back-tab-container"
-         onclick="window.location.href='routes.html' + window.location.search.substring(0,window.location.search.lastIndexOf('&'));">
-        <img id="back-tab" src="res/img/icons/back.png" alt="">
-    </div>
-    <div id="header-title">
-        <span>Detaljert rute</span>
-    </div>
-    <div id="map-button-container" onclick="window.location.href='route-map.html' + window.location.search">
-        <img id="map-button" src="res/img/icons/button_map.png" alt="">
-    </div>
-</header>
+    <header>
+        <a onclick="window.history.back()"><svg id="back-arrow" data-name="Return to search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.66 500"><path class="back-icon" d="M395.67,0" transform="translate(-55.2)"/><path class="back-icon" d="M414.86,0,199.52,252,414.86,500H271.52L55.2,252,271.52,0Z" transform="translate(-55.2)"/></svg></a>
+        <svg onclick="window.location.href='route-map.html' + window.location.search" class="maps-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375.01 470.94"><g id="Marker" data-name="Map Marker"><path class="marker-icon" d="M237.15,14.49h25.76a32,32,0,0,0,4,.82,179.31,179.31,0,0,1,73.21,22.34C375.84,57.48,402.67,86,420,123.13c18.15,39,22.11,79.56,12.42,121.45-8.63,37.26-25.93,70.54-47.47,101.75C355,389.73,318.8,427.54,279,461.91c-9.36,8.08-19.12,15.7-28.69,23.52-1.85-1.28-3.25-2.19-4.6-3.19-44.68-33.13-84.73-71-118.55-115.31-24.64-32.27-44.58-67-55.91-106.24-8.22-28.45-11.14-57.4-6.53-86.81,5.95-37.94,21.92-71.15,48.12-99.3Q154.31,30,214.12,18.08C221.73,16.56,229.47,15.67,237.15,14.49ZM339.32,202a89.21,89.21,0,0,0-89-89.35c-49.3-.33-89.52,39.68-89.62,89.16a89.3,89.3,0,1,0,178.6.19Z" transform="translate(-62.49 -14.49)"/></g><g id="marker-2" data-name="Marker 2"><path class="marker-icon-hole" d="M339.3,202a89.3,89.3,0,1,1-178.6-.19c.1-49.48,40.32-89.49,89.62-89.16A89.21,89.21,0,0,1,339.3,202Z" transform="translate(-62.49 -14.49)"/></g></svg>
+    </header>
 
 <main>
     <div id="main-container">
         <!--content added via route-details.js, based on the stop.node.component.js templatte-->
 
-        <div id="small-info-header" class="detail-box">
+        <div id="small-info-header">
             <div class="small-header-box">
                 <span class="small-info-title">Reisetid </span>
                 <span id="travel-time">Loading...</span>
