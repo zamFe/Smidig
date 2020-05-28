@@ -34,9 +34,7 @@ main {
 }
 
 #back-arrow {
-    height: 2em;
-    width: 2em;
-    align-self: center;
+    height: 5.5vh;
 }
 
 .back-icon {
@@ -44,8 +42,8 @@ main {
 }
 
 .maps-svg {
-    height: 2em;
-    width: 2em;
+    height: 5.5vh;
+    width: 5.5vh;
 }
 
 .marker-icon {
