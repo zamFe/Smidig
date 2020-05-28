@@ -66,11 +66,15 @@ function subscribeToRoute(subscription, id) {
         console.log(subscriptionIDs)
 
         // Create payload
-        const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten med id: " + id});
+        //const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten med id: " + id});
 
-        sendNotification(subscription, payload)
+        //sendNotification(subscription, payload)
 
     })
+    // Create payload
+    const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten!"});
+
+    sendNotification(subscription, payload)
 
 }
 
