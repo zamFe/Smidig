@@ -7,45 +7,39 @@
     <link href="res/style/login.css" rel="stylesheet">
     <link href="res/style/footer.css" rel="stylesheet">
     <link rel="stylesheet" href="libraries/notifications/dist/notifications.css">
-    <title>Vy Login</title>
+    <link rel="shortcut icon" href="res/img/logos/favicon.png" />
+    <title>Vy-Reiser - Login</title>
 </head>
 <body>
-
-    <div id="error-container"></div>
-
-    <div id="dark-screen"></div>
     <main>
-    <header id="header-container">
-        <div id="logo-container">
-            <img id="logo" src="res/img/logos/vy_reiser_logo_transparent.png" alt="Vy">
-        </div><!--end logo-container-->
-    </header>
+        <header id="header-container">
+            <div id="logo-container">
+                <img id="logo" src="res/img/logos/vy_reiser_logo_transparent.png" alt="Vy">
+            </div><!--end logo-container-->
+        </header>
 
 
         <div id="main-container">
 
-            <div id="input-container">
+            <div id="login-form">
 
                 <div id="username-input-container" class="input-container">
-                    <span class="input-top-text">E-post</span>
-                    <br>
-                    <input id="username-input" class="login-Input" type="text" name="from" placeholder="Epost">
+                    <p class="input-top-text">E-post</p>
+                    <input id="username-input" class="login-input" type="text" name="from" placeholder="Epost">
                 </div><!--end from-input-container-->
 
                 <div id="password-input-container" class="input-container">
-                    <span class="input-top-text">Passord</span>
-                    <br>
-                    <input id="password-input" class="login-Input" type="password" name="from" placeholder="Passord">
+                    <p class="input-top-text">Passord</p>
+                    <input id="password-input" class="login-input" type="password" name="from" placeholder="Passord">
                 </div><!--end from-input-container-->
 
                 <div id="login-button-container">
-                    <img onclick="login();" id="login_button" src="res/img/icons/login.png" alt="Find route">
+                    <button onclick="login();" id="login_button">Logg Inn</button>
                 </div>
 
                 <div id="register-container">
-                    Har du ikke bruker?
-                    <br>
-                    <a id="link" href="register.html"> Registrer deg her</a>
+                    <p>Har du ikke bruker?</p>
+                    <a class="register-link" href="register.html"> Registrer deg her</a>
                 </div>
 
             </div><!-- end input-container-->

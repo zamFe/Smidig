@@ -5,86 +5,81 @@ html, body {
     font-family: sans-serif;
     color: #212721;
     background-color: #f2f2f3;
-    overflow-y: hidden;
 }
 
 header {
     width: 100%;
 }
 
+main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
 
 .footer-text {
     font-size: 1rem;
 }
 
-/* header elements */
-
-#logo-container {
-    height: 100%;
-    width: 100%;
-}
-
-#logo {
-    width: 50%;
-    padding-left: 25%;
-    padding-top: 10%;
-}
-
 /* main elements */
-
 #main-container {
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    justify-content: start;
+    box-sizing: border-box;
+    padding: 0 1.5em;
     width: 100%;
-    height: 100%;
+    height: 80%;
 }
 
-/* end main elements */
-
-.profile-details {
-    max-width: 100%;
-    border-bottom: 3px solid #00957a;
-
-}
-
-#profile-details-container {
-    font-size: 2vh;
+.primary-info {
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: 70%;
-    margin: 1em;
+    justify-content: center;
+    align-items: center;
 }
 
-.profile-text {
-    background-color: rgb(220,220,220);
-    width: 100%;
-    font-size: 3vh;
+.profile-svg {
+    width: 6em;
+    height: 6em;
+    fill: none;
+    stroke: #383e42;
+    stroke-width: 25px;
 }
 
-.profile-text span {
-    padding-left: 20px;
+.name {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-#firstname-container {
-    margin: 1.2em;
+#full-name {
+    font-size: 1.5rem;
+    margin: .2em;
 }
 
-#lastname-container {
-    margin: 1.2em;
-}
-
-#email-container {
-    margin: 1.2em;
-}
-
-#logout-container {
-    margin-top: 3em;
+#email {
+    font-size: 1rem;
     text-align: center;
+    color: #585858;
 }
 
+.action-button {
+    border-style: none;
+    border-radius: 2em;
+    background-color: #4a4c4e;
+    color: #f2f2f3;
+    font-size: 1.1rem;
+    padding: .5em 2em;
+}
+
+/* Logout button */
 #logout-button {
-    height: 6vh;
+    padding: 1em 3em;
+    font-size: 1.2rem;
+    border-style: none;
+    background-color: #00957a;
+    color: white;
 }
