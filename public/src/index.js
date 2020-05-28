@@ -349,6 +349,7 @@ function acceptedCookieData() {
 
 renderMainIndex(); //Sets the user's name in welcome message if they are logged in
 cookieRender();
+
 /*
 window.location.href='html/date-time.html?from=('+ locationData.from.lat + ',' + locationData.from.lng +')&to=('+ locationData.to.lat + ',' + locationData.to.lng +')&fromname=' + encodeURI(locationData.from.address) + '&toname=' + encodeURI(locationData.to.address)"
 */

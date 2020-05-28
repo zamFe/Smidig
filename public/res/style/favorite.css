@@ -9,8 +9,7 @@ html, body {
 
 /** Header styling **/
 #back-arrow {
-    height: 2em;
-    width: 2em;
+    height: 5.5vh;
     align-self: center;
 }
 
@@ -53,7 +52,7 @@ html, body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: #9a9a9a;
+    color: #686868;
 }
 
 /* Used when no route has been saved */
