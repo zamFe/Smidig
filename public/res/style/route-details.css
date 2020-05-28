@@ -331,7 +331,7 @@ main {
     right: 0;
     width: 2.4em;
     height: 2.4em;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     background-color: #d2d2d2;
