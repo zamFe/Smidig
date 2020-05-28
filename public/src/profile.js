@@ -28,7 +28,7 @@ function displayInfo(email, password) {
 
     getUser(email, password).then((v) => {
         if (v.statusCode != 200) {
-            window.location.href = "Login.html";
+            window.location.href = "login.html";
         }
         nameElem.innerText = `${v.data.firstName} ${v.data.lastName}`;
         emailElem.innerText = v.data.email;
