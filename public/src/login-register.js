@@ -48,7 +48,7 @@ function register() {
         });
     } else {
         if(!mailMet) {
-            mailText.innerHTML = `E-post<span style="font-size: 1.5vh; color: red"> ikke gyldig (Eks: ola@nordmann.no)</span>`;
+            mailText.innerHTML = `E-post<p class="pass-require-text error"> Ugyldig E-Post (eks: min@epost.no)</p>`;
             email.style.borderBottom = "3px solid red";
         }
         if(!passwordMet) {

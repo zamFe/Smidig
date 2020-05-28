@@ -2,45 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="VyReiser.no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="res/style/profile.css" rel="stylesheet">
     <link href="res/style/footer.css" rel="stylesheet">
-    <title>Profil</title>
+    <link rel="shortcut icon" href="res/img/logos/favicon.png" />
+    <title>Vy-Reiser - Profil</title>
     <script src="src/database.js"></script>
 </head>
 
 <body>
     <main>
-        <header id="header-container">
-            <div id="logo-container">
-                <img id="logo" src="res/img/logos/vy_reiser_logo_transparent.png" alt="">
-            </div><!--end logo-container-->
-        </header>
         <div id="main-container">
-            <div id="profile-details-container">
-                <div id="firstname-container" class="profile-details">
-                    Fornavn:
-                    <br>
-                    <div class="profile-text">
-                        <span id="firstname-span"></span>
+            <div class="primary-info">
+                <svg class="profile-svg" data-name="Profile Picture" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470.87 413.15">
+                    <path class="profile-icon" d="M337.17,304.53c36.34-26,60-68.19,60-115.77,0-79.06-65.22-143.16-145.68-143.16S105.77,109.7,105.77,188.76c0,48,24,90.39,60.82,116.37-108,33.15-130,123.63-130,123.63H469.22S446.88,337.16,337.17,304.53Z" transform="translate(-17.45 -30.6)"/>
+                </svg>
+                <div class="user-info">
+                    <div class="name">
+                        <p id="full-name"></p>
+                    </div>
+                    <div class="email">
+                        <p id="email"></p>
                     </div>
                 </div>
-                <div id="lastname-container" class="profile-details">
-                    Etternavn:
-                    <br>
-                    <div class="profile-text">
-                        <span id="lastname-span" ></span>
-                    </div>
-                </div>
-                <div id="email-container" class="profile-details">
-                    Epost:
-                    <br>
-                    <div class="profile-text">
-                        <span id="email-span"></span>
-                    </div>
-                </div>
-                <div id="logout-container">
-                    <img id="logout-button" onclick="logout()" src="res/img/icons/logout.png" alt="Logg ut">
-                </div>
+            </div>
+            <div id="action-container">
+                <button onclick="clearSearchHistory()" id="clear-history-btn" class="action-button">Tøm Søkehistorikk</button>
+            </div>
+
+            <div id="logout-container">
+                <button id="logout-button" onclick="logout()">Logg Ut</button>
             </div>
         </div>
     </main>

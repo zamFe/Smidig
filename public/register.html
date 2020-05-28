@@ -6,61 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="res/style/register.css" rel="stylesheet">
     <link href="res/style/footer.css" rel="stylesheet">
-    <title>Vy Registrer</title>
+    <link rel="shortcut icon" href="res/img/logos/favicon.png" />
+    <title>Vy-Reiser - Registrer</title>
 </head>
 <body>
+    <main>
+        <header>
+            <h3>Opprett Bruker</h3>
+        </header>
+        <div id="main-container">
+            <div id="register-form">
+                <div class="input">
+                    <label for="name-input" class="input-header">Fornavn</label>
+                    <input id="name-input" class="register-input" type="text" placeholder="Fornavn">
+                </div><!--end from-input-container-->
 
-<div id="error-container"></div>
+                <div class="input">
+                    <label for="surname-input" class="input-header">Etternavn</label>
+                    <input id="surname-input" class="register-input" type="text" placeholder="Etternavn">
+                </div><!--end from-input-container-->
 
-<div id="dark-screen"></div>
-<main>
-    <header id="header-container">
-    <div id="logo-container">
-        <img id="logo" src="res/img/logos/vy_reiser_logo_transparent.png" alt="">
-    </div><!--end logo-container-->
-</header>
+                <div class="input">
+                    <label for="email-input" id="email" class="input-header">E-post</label>
+                    <input id="email-input" class="register-input" type="text" placeholder="din@epost.no">
+                </div><!--end from-input-container-->
 
-    <div id="main-container">
+                <div class="input">
+                    <div class="password-header">
+                        <label for="password-input" class="input-header">Passord </label>
+                        <p class="pass-require-text">Minst 8 tegn</p>
+                    </div>
+                    <input id="password-input" class="register-input" type="password" name="from" placeholder="Passord">
+                </div><!--end from-input-container-->
 
-        <div id="input-container">
+                <div id="register-button-container">
+                    <button onclick="register();" id="register-button">Registrer</button>
+                </div>
 
-            <div class="input">
-                <span id="firstname">Fornavn</span>
-                <br>
-                <input id="name-input" class="register-Input" type="text" name="from" placeholder="Fornavn">
-            </div><!--end from-input-container-->
-
-            <div class="input">
-                <span id="surname">Etternavn</span>
-                <br>
-                <input id="surname-input" class="register-Input" type="text" name="from" placeholder="Etternavn">
-            </div><!--end from-input-container-->
-
-            <div class="input">
-                <span id="email">E-post</span>
-                <br>
-                <input id="email-input" class="register-Input" type="text" name="from" placeholder="Ola@normann.no">
-            </div><!--end from-input-container-->
-
-            <div class="input">
-                <span id="password">Passord <span class="pass-require-text">Minst 8 tegn</span></span>
-                <br>
-                <input id="password-input" class="register-Input" type="password" name="from" placeholder="Passord">
-            </div><!--end from-input-container-->
-
-            <div id="register-button-container">
-                <img onclick="register();" id="register-button" src="res/img/icons/register.png" alt="Find route" >
-            </div>
-
-            <div id="register-container">
-                Allerede registrert?
-                <br>
-                <a id="link" href="login.html"> Logg inn her</a>
-            </div>
-        </div><!-- end input-container-->
-    </div><!--end main-container-->
-</main>
-
+                <div id="register-container">
+                    <p>Allerede registrert?</p>
+                    <a class="login-link" href="login.html">Logg inn her</a>
+                </div>
+            </div><!-- end input-container-->
+        </div><!--end main-container-->
+    </main>
 <footer id="footer"></footer>
 <script src="src/footer.js"></script>
 <script src="src/database.js"></script>

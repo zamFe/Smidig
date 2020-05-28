@@ -9,22 +9,23 @@ html, body {
 }
 
 header {
-    position: relative;
-    width: 100%;
-     padding-bottom: 6vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: 1.5rem;
+    padding: 1em 1em .2em 1em;
+}
+
+h3 {
+    margin: 0;
+    color: #00957a;
 }
 
 main {
     position: relative;
     width: 100%;
     height: 100%;
-    overflow-y: hidden;
 }
-
-.footer-text {
-    font-size: 1rem;
-}
-
 /* header elements */
 
 #logo-container {
@@ -39,69 +40,79 @@ main {
 }
 
 /* main elements */
-
 #main-container {
     display: flex;
-    width: 100%;
-    height: 100%;
+    flex-direction: column;
     justify-content: center;
+    box-sizing: border-box;
+    padding: 0 1.5em;
+    width: 100%;
+    height: 80%;
 }
 
 /* input containers */
 
-.input-container {
-    max-width: 100%;
-}
-
-.input {
-    padding-bottom: 2vh;
-}
-
-#input-container {
-    font-size: 2vh;
+#register-form {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: 100%;
-    grid-row: 2;
-    z-index: 2;
+    justify-content: space-evenly;
 }
 
-.register-Input {
+.register-input {
     border: none;
+    box-sizing: border-box;
     border-bottom: 3px solid #00957a;
     background-color: rgb(200,200,200);
     width: 100%;
     height: 2em;
     font-size: 1em;
-    padding-left: 10px;
+    padding: 1.3em 0 1.3em .7em;
 }
 
-#register-button-container {
-    margin-top: 2em;
-    grid-row: 5;
+.password-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 #register-container {
-    grid-row: 6;
     text-align: center;
     font-size: 1em;
 }
 
-#register-button {
-    position: relative;
-    width: 65%;
-    left: 50%;
-    transform: translate(-50%);
-    transition: 0.1s;
-    z-index: 0;
+#register-button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-#link {
-    color: blue;
-    text-decoration: underline;
+#register-button {
+    padding: 1em 3em;
+    font-size: 1.2rem;
+    border-style: none;
+    background-color: #00957a;
+    color: white;
+}
+
+.login-link{
+    text-decoration: none;
+    background-color: #cdcdcd;
+    color: #383e42;
+    font-size: 1rem;
+    border-radius: 1em;
+    padding: .4em 4em;
+}
+
+.error {
+    color: red;
+    display: inline-block;
 }
 
 .pass-require-text {
-    font-size: 1.5vh;
+    margin: 0 1em;
+    font-weight: normal;
+    font-size: .9rem;
 }
