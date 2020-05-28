@@ -86,7 +86,6 @@ function errorHandling(error, response, body) {
 
 let status = true;
 function formatData(data) {
-    //console.log(data)
     if (!data.groups || data.groups.length === 0) return [];
 
     trips = data.groups[0].trips;
@@ -97,6 +96,7 @@ function formatData(data) {
     for (var i = 0; i < trips.length; i++) {
         var d = trips[i];
 
+        //console.log(d)
         if(i === 0) {
             console.log("<-------------- Segments ------------------>")
             console.log(d.segments[1])
@@ -111,7 +111,8 @@ function formatData(data) {
             carbonCost: d.caloriesCost,
             alerts: d.alerts,
             route: [],
-            id: d.id
+            id: d.id,
+            hookURL: d.hookURL
         }
 
         // Route

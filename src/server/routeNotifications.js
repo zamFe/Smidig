@@ -24,7 +24,7 @@ function subscribeToRoute(subscription, id) {
 
     const options = {
         method: "POST",
-        url: `https://api.tripgo.com/v1/trip/hook/${id}`,
+        url: id,
         json: {
             url:'https://vy-reiser.herokuapp.com/api/updatedtrip'
         },
@@ -66,9 +66,9 @@ function subscribeToRoute(subscription, id) {
         console.log(subscriptionIDs)
 
         // Create payload
-        //const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten med id: " + id});
+        const payload = JSON.stringify({title: "KOBLET TIL SERVER"});
 
-        //sendNotification(subscription, payload)
+        sendNotification(subscription, payload)
 
     })
     // Create payload
