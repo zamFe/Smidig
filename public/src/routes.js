@@ -3,6 +3,7 @@ const container = document.getElementById("routes-result-container");
 const favStar = document.getElementById("favorite-star");
 const star = document.getElementsByClassName("star-fav")[0];
 
+let activeFilter = "(0.1, 0.1 ,0.1 ,2.0)" //Default to convenience
 
 // Sets the from and to names and adds eventlistener to the swap button
 function setFromAndTo() {
@@ -324,7 +325,7 @@ function generatePath(route, index) {
         let template = `
             <div class="route-path-part" onclick="setDelay(event, ${i}, ${index})">
                 <div class="path-action">
-                    ${part.hasWarning ? warnIcon : ""}
+                    ${part.hasWarning || part.alertHashcodes ? warnIcon : ""}
                     ${svg}
                 </div>
                 <div class="path-service ${service}">
@@ -372,10 +373,10 @@ function generateRoute(route, index) {
                     cancelledStartTime = route.route[i].startTime;
                 }
             }
-
+            /*
             let newRoute = fetchReroute(cancelledLatLng, urlParams.get("to"), cancelledStartTime);
             console.log("Showing alternative route")
-            console.log(newRoute)
+            console.log(newRoute)*/
         }
     }
 
@@ -413,16 +414,12 @@ function generateRoute(route, index) {
 }
 
 //Renders the route from localstorage
-function renderRouteList(filter) {
+function renderRouteList() {
     let list = JSON.parse(localStorage.getItem("route"));
     container.innerHTML = ""; //Empty the container before render
 
     const currentTime = parseInt(urlParams.get("datetime"));
     let dates = [];
-
-    if(filter != null) {
-        list = filterBy(list, filter);
-    }
 
     for(let i = 0; i < fullRoute.length; i++){
 
@@ -437,15 +434,8 @@ function renderRouteList(filter) {
             renderDate(dateString);
         }
 
-        if(filter != null) {
-            generateRoute(list[i], i);
-        }
-        else {
-            generateRoute(fullRoute[i], i);
-        }
+        generateRoute(fullRoute[i], i);
     }
-
-    setFilterSelection(filter)
 }
 
 function setFilterSelection(selected){
@@ -455,29 +445,37 @@ function setFilterSelection(selected){
     const green = document.getElementById("filter-green");
 
     switch(selected){
-        case "fast":
+        case "fast": // Speed
+            activeFilter = "(0.1, 0.1 ,2.0 ,1.0)";
             dept.classList.remove("filter-selected");
             time.classList.add("filter-selected");
             price.classList.remove("filter-selected");
             green.classList.remove("filter-selected");
+            renderRoutes(activeFilter);
             return;
-        case "price":
+        case "price": // Price
+            activeFilter = "(2.0, 0.1 ,0.1 ,0.1)"
             dept.classList.remove("filter-selected");
             time.classList.remove("filter-selected");
             price.classList.add("filter-selected");
             green.classList.remove("filter-selected");
+            renderRoutes(activeFilter);
             return;
-        case "green":
+        case "green": // Environment
+            activeFilter = "(0.1, 2.0 ,0.1 ,0.1)"
             dept.classList.remove("filter-selected");
             time.classList.remove("filter-selected");
             price.classList.remove("filter-selected");
             green.classList.add("filter-selected");
+            renderRoutes(activeFilter);
             return;
-        default:
+        default: // Convenience
+            activeFilter = "(0.1, 0.1 ,0.1 ,2.0)"
             dept.classList.add("filter-selected");
             time.classList.remove("filter-selected");
             price.classList.remove("filter-selected");
             green.classList.remove("filter-selected");
+            renderRoutes(activeFilter);
             return;
     }
 }
@@ -534,9 +532,7 @@ function filterBy(list, filter) {
 // Create dynamic route alternatives of search
 function setUp() {
     setFromAndTo()
-
     localStorage.setItem("route", JSON.stringify(fullRoute));
-
     renderRouteList();
 }
 

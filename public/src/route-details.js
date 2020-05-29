@@ -3,9 +3,19 @@ let delayTime = 0;
 
 //build step and adds to HTML
 let stepIndex = 0;
+
+function getAlert(hashCode) {
+    const alerts = fullRoute[index].alerts
+    for(alert of alerts) {
+        if(alert.hashCode === hashCode) {
+            return alert;
+        }
+    }
+    return null;
+}
+
 function stepBuilder(stop, delay) {
     delay = (delay === undefined) ? false : delay;
-
 
     let serviceP = "";
 
@@ -26,7 +36,7 @@ function stepBuilder(stop, delay) {
     }
 
     let delayTemplate = "";
-    if(stop.hasWarning) { // Only a delay
+    if(stop.hasWarning || stop.alertHashcodes) { // Only a delay
         const delayedIcon = "<svg class=\"warning-svg\" data-name=\"Delay icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 486.27 486.27\"><path class=\"warn-icon\" d=\"M250,6.86C115.72,6.86,6.86,115.72,6.86,250S115.72,493.14,250,493.14,493.14,384.28,493.14,250,384.28,6.86,250,6.86ZM222.24,78.67h55.52V300.32H222.24ZM250,409.77a41.68,41.68,0,1,1,41.68-41.68A41.68,41.68,0,0,1,250,409.77Z\" transform=\"translate(-6.86 -6.86)\"/></svg>";
         const cancelledIcon = "<svg class=\"warning-svg\" data-name=\"Cancellation icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 486.27 486.27\"><path class=\"cancelled-icon\" d=\"M250,6.86C115.72,6.86,6.86,115.72,6.86,250S115.72,493.14,250,493.14,493.14,384.28,493.14,250,384.28,6.86,250,6.86ZM222.24,78.67h55.52V300.32H222.24ZM250,409.77a41.68,41.68,0,1,1,41.68-41.68A41.68,41.68,0,0,1,250,409.77Z\" transform=\"translate(-6.86 -6.86)\"/></svg>";
 
@@ -42,6 +52,28 @@ function stepBuilder(stop, delay) {
                     </div>
                 </div>
        `;
+        } else if (stop.alertHashcodes) {
+            if(stop.alertHashcodes.length > 0) {
+                const alerts = [];
+                for(let hashCode of stop.alertHashcodes) {
+                    alerts.push(getAlert(hashCode))
+                }
+                let alertIndex = 1;
+                for(let alert of alerts) {
+                    delayTemplate += `
+                    <div class="delay" onclick="showDelayDescription('delay-${stepIndex}-${alertIndex}')">
+                        <div class="delay-container">
+                            ${delayedIcon}
+                            <p class="delay-message">${alert.title}</p>
+                        </div>
+                        <div id="delay-${stepIndex}-${alertIndex}" class="delay-details">
+                            <p class="delay-desc">${alert.text}</p>
+                        </div>
+                    </div>
+                    `
+                    alertIndex++;
+                }
+            }
         } else {
            delayTemplate = `
                 <div class="delay" onclick="showDelayDescription('delay-${stepIndex}')">
@@ -61,7 +93,6 @@ function stepBuilder(stop, delay) {
 
     // Returns true and is used for deciding template rendering elements
     const routeIsCancelled = (delay.cancelled && stop.hasWarning);
-    const gridTemp = (routeIsCancelled) ? "50% 50%" : "10% 90%";
 
     let lineTemplate =
         `<div class="route-line vs">

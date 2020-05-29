@@ -241,13 +241,17 @@ main {
 }
 
 /* Delay and Cancelled */
+.delay {
+    margin-bottom: .2em;
+}
+
 .delay-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     background-color: #df8200;
-    padding: .5em 0 .5em .5em
+    padding: .5em 0 .5em .5em;
 }
 
 .isCancelled {
@@ -307,8 +311,9 @@ main {
 }
 
 .warning-svg {
-    height: 1.2em;
-    margin-right: 0.5em;
+    height: 1.2em !important;
+    min-width: 1.2em !important;
+    margin-right: .5em;
 }
 
 .warn-icon {

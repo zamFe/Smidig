@@ -86,20 +86,21 @@ function errorHandling(error, response, body) {
 
 let status = true;
 function formatData(data) {
+    //console.log(data)
     if (!data.groups || data.groups.length === 0) return [];
 
     trips = data.groups[0].trips;
 
+    //console.log(data.alerts)
 
     var formattedData = [];
 
     for (var i = 0; i < trips.length; i++) {
         var d = trips[i];
 
-        //console.log(d)
         if(i === 0) {
             console.log("<-------------- Segments ------------------>")
-            console.log(d.segments[1])
+            //console.log(d.segments[1])
         }
 
         formattedData[i] = {
@@ -109,7 +110,7 @@ function formatData(data) {
             endTime: d.arrive,
             calories: d.caloriesCost,
             carbonCost: d.caloriesCost,
-            alerts: d.alerts,
+            alerts: data.alerts,
             route: [],
             id: d.id,
             hookURL: d.hookURL
@@ -137,9 +138,10 @@ function formatData(data) {
                 description: segment.mini.description,
                 from: segment.from,
                 to: segment.to,
-                //time: r[j].durationString,
                 operatorName: segment.serviceOperator,
                 operatorID: segment.operatorID,
+                //time: r[j].durationString,
+                alertHashcodes: r[j].alertHashCodes,
                 stops: r[j].stops,
                 platform: r[j].platform,
                 endPlatform: r[j].endPlatform,
@@ -212,7 +214,7 @@ function transmitData(data, res) {
     res.json(data);
 }
 
-function getRoute(from, to, dateTime, res) {
+function getRoute(from, to, dateTime, priority, res) {
     fromTripGo({
         requestFile: "routing.json",
 
@@ -222,7 +224,7 @@ function getRoute(from, to, dateTime, res) {
             departAfter: dateTime,
             modes: "pt_pub",
             unit: "auto",
-            wp: "(1,1,1,1)",
+            wp: priority,
             locale: "no",
             includeStops: true,
             bestOnly: true,

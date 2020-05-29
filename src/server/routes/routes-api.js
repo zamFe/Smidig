@@ -6,11 +6,11 @@ const notif = require("../routeNotifications")
 const router = express.Router();
 
 router.post("/routes", (req, res) => {
-    api.getRoute(req.query.from, req.query.to, req.query.datetime, res);
+    api.getRoute(req.query.from, req.query.to, req.query.datetime, req.query.priority, res);
 })
 
 router.post("/location", (req, res) => {
-    const payload = api.getLocation(req.query.q, res);
+    api.getLocation(req.query.q, res);
 })
 
 router.post("/updatedtrip", (req, res) => {
