@@ -83,7 +83,7 @@ function subscribeToRoute(subscription, url, departure, arrival) {
 
 
         // Create payload
-        const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten!", icon:"./res/img/logos/vy_not.png"});
+        const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten!", icon:"./res/img/logos/vy_not.png", updateurl:"asd"});
 
         sendNotification(subscription, payload)
 
@@ -100,6 +100,7 @@ function notifyChange (trip){
 
     // TODO: remove hook if no user found
     console.log(trip)
+    if (!trip) return;
     let url = trip.tripID;
 
     let idArray = url.split("/")
