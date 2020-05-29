@@ -20,8 +20,10 @@ app.post("/subscribe", (req, res) => {
     // Get pushSubscription object
     const subscription = req.body;
     const id = req.query.id;
+    const departure = req.query.departure;
+    const arrival = req.query.arrival;
 
-    if (!id) {
+    if (!id || !departure || !arrival) {
         res.status(400).json({});
         return;
     }
@@ -29,7 +31,7 @@ app.post("/subscribe", (req, res) => {
     // Send 201 - resource created
     res.status(201).json({});
 
-    notif.subscribeToRoute(subscription, id);
+    notif.subscribeToRoute(subscription, id, departure, arrival);
 });
 
 /*notif.subscribeToRoute({

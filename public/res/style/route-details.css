@@ -327,11 +327,11 @@ main {
 
 .bell-icon {
     position: absolute;
+    display: flex;
     bottom: 0;
     right: 0;
     width: 2.4em;
     height: 2.4em;
-    display: none;
     align-items: center;
     justify-content: center;
     background-color: #d2d2d2;
