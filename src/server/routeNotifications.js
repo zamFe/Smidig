@@ -112,9 +112,9 @@ function notifyChange (trip){
         return;
     }
 
-    for (let user in users) {
-        console.log(user.subscription)
-        sendNotification(user.subscription, JSON.stringify(
+    for (let i = 0; i < users.length; i++){
+        console.log(users[i].subscription)
+        sendNotification(users[i].subscription, JSON.stringify(
             {
                 title: "Det har skjedd en forandring på ruten!",
                 body: "Trykk her for mer detaljer!",
