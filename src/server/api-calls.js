@@ -62,6 +62,7 @@ async function getTripFromID(url) {
     console.log(url)
 
     var options = {
+        method: "GET",
         url: url.replace("hook", "update"), // Not Ghetto >:)
         headers: {
             'User-Agent': 'request',
