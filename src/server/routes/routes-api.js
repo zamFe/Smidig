@@ -15,11 +15,11 @@ router.post("/location", (req, res) => {
 
 router.post("/updatedtrip", (req, res) => {
     console.log(res)
-    notif.notifyChange(res.body);
+    notif.notifyChange(res.req.body);
 })
 
 router.post("/log", (req, res) => {
-    console.log(res.body);
+    console.log(res);
 
     console.log("WEBHOOK HOOKED");
 });
