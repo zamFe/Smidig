@@ -58,10 +58,8 @@ function getData(args, res) {
 
 }
 
-function getTripFromID(url, res) {
+async function getTripFromID(url) {
     console.log(url)
-    //https://api.tripgo.com/v1/trip/update/{id}
-
 
     var options = {
         url: url.replace("hook", "update"), // Not Ghetto >:)
@@ -73,17 +71,14 @@ function getTripFromID(url, res) {
 
     console.log(options)
 
-    request(options, (error, response, body) => {
+    return request(options, (error, response, body) => {
         //console.log(response);
 
         let data = formatData(JSON.parse(body));
 
         console.log(data)
 
-        transmitData({
-            statusCode: 200,
-            data: data
-        }, res);
+        return data;
     });
 }
 
