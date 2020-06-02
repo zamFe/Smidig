@@ -121,7 +121,7 @@ async function notifyChange (trip){
                 "X-TripGo-Key": keys.TRIPGO_KEY,
                 "x-api-key": keys.TRIPGO_KEY
             }}, (error, response)=>{
-            console.log(response)
+            //console.log(response)
         })
 
         console.log("UNSUBB-----------");
