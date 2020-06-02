@@ -115,7 +115,7 @@ async function notifyChange (trip){
         console.log(route);
 
         await request({method: "DELETE",
-            url: trip.tripURL,
+            url: route[0].hookURL,
             headers: {
                 "content-type": "application/json;charset=utf-8",
                 "X-TripGo-Key": keys.TRIPGO_KEY,
