@@ -66,6 +66,7 @@ function subscribeToRoute(subscription, url, departure, arrival) {
 
 
         subscriptionIDs[subscription["keys"]["auth"]] = {
+            data: subscription,
             trip: tripIDs[id]
         };
 
@@ -116,7 +117,7 @@ function notifyChange (trip){
     console.log(users)
     for (let i = 0; i < users.length; i++){
         console.log(users[i].subscription)
-        sendNotification(users[i].subscription, JSON.stringify(
+        sendNotification(users[i].subscription.data, JSON.stringify(
             {
                 title: "Det har skjedd en forandring på ruten!",
                 body: "Trykk her for mer detaljer!",
