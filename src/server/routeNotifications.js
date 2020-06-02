@@ -1,6 +1,7 @@
 const webpush = require('web-push')
 const request = require('request')
 const keys = require('./get-api-keys.js')
+const api = request('./api-calls.js')
 
 const publicVapidKey = "BKTEYj8Zc0k5p1D3WIYqPy8mg__7QdJVfqdSY5IuUJOM3OL7nHq-5qVTm0JrCy36oxa8MYcSNZRU0OQC87FcAg4";
 const privateVapidKey = "XFSYXRuJ6lfuvUu6-kvFtlcplGmqvArn4bMAwb9Un20";
@@ -78,7 +79,7 @@ function subscribeToRoute(subscription, url, departure, arrival) {
     })
         setTimeout(()=>{
             // Create payload
-            const payload = JSON.stringify({title:  Math.floor(Math.max((departure -new Date().getTime()/1000), 0)/60)+" min til reisen starter!", icon:"./res/img/logos/vy_not.png"});
+            const payload = JSON.stringify({title:  Math.floor(Math.max((departure -new Date().getTime()/1000), 0)/60)+" min til reisen starter!", icon:"./res/img/logos/vy_not.png", data:url});
             sendNotification(subscription, payload)
         }, ((departure-600) - created)*1000)// 600s = 10min
 
@@ -97,7 +98,7 @@ function sendNotification(subscription, payload){
         .catch(err => console.error(err));
 }
 
-function notifyChange (trip){
+async function notifyChange (trip){
 
     // TODO: remove hook if no user found
     console.log(trip)
@@ -110,6 +111,14 @@ function notifyChange (trip){
     let users = tripIDs[id];
     if (!users) {
         // SHOULD UNSUBSCRIBE
+        let route = await api.getTripFromID(trip.tripURL);
+        console.log(route);
+
+        await request(route.hookURL, {method: "DELETE"}, (error, response)=>{
+            console.log(response)
+        })
+
+        console.log("UNSUBB-----------");
         return;
     }
 

@@ -18,10 +18,12 @@ router.post("/updatedtrip", (req, res) => {
     notif.notifyChange(res.req.body);
 })
 
-
-router.post("/tripid", (req, res) => {
-    api.getTripFromID(req.query.id, res)
-
+router.post("/tripid", async (req, res) => {
+    let data = await api.getTripFromID(req.query.id)
+    await res.json({
+        statusCode: 200,
+        data: data
+    });
 });
 
 router.post("/log", (req, res) => {
