@@ -7,18 +7,17 @@
 	<title>Reise kart</title>
 </head>
 <body>
-  <header>
-    <div class="back-tab-container" onclick="window.location.href='/route-details.html' + window.location.search">
-        <img id="back-tab" src="res/img/icons/back.png" alt="">
-    </div>
-  </header>
+    <header class="header">
+        <svg onclick="window.location.href='/route-details.html' + window.location.search" id="back-arrow" data-name="Return to route details" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.66 500"><path class="back-icon" d="M395.67,0" transform="translate(-55.2)"/><path class="back-icon" d="M414.86,0,199.52,252,414.86,500H271.52L55.2,252,271.52,0Z" transform="translate(-55.2)"/></svg>
+        <div></div> <!-- Padding for the back arrow -->
+    </header>
 
-  <div id="map">
+    <div id="map">
     <!-- Loading Map on html page -->
-  </div>
+    </div>
 
-  <script id="googleMap" async defer></script>
-  <script src="src/map.js"></script>
+    <script id="googleMap" async defer></script>
+    <script src="src/map.js"></script>
 
 </body>
 </html>

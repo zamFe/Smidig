@@ -46,12 +46,8 @@ main {
     width: 5.5vh;
 }
 
-.marker-icon {
+.map-icon {
     fill: #00957a;
-}
-
-.marker-icon-hole {
-    fill: #f2f2f3;
 }
 
 /* main components */
@@ -264,6 +260,16 @@ main {
 .delay-message {
     color: #f2f2f3;
     margin: 0;
+}
+
+.expcon-icon {
+    fill: #383e42;
+}
+
+.delay-collapser {
+    width: 1em;
+    height: 1em;
+    margin: 0 1em;
 }
 
 .delay-time {
