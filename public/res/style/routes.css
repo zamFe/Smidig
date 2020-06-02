@@ -31,6 +31,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    margin-bottom: 1em;
 }
 
 .top-nav {
@@ -101,7 +102,6 @@ body {
 
 .header-icon {
     padding: 0 .6em;
-    height: 2.4em;
     width: 2em !important;
 }
 
@@ -114,6 +114,16 @@ body {
 }
 
 /* header filter-by styling */
+#current-filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0 1.5em;
+}
+
+#filter-description {
+    margin-left: 1.5em;
+}
 
 .open-filter {
     background-color: #383e42;

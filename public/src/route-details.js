@@ -60,18 +60,27 @@ function stepBuilder(stop, delay) {
                 }
                 let alertIndex = 1;
                 for(let alert of alerts) {
+                    const alertText = alert.text ? `
+                        <div id="delay-${stepIndex}-${alertIndex}" class="delay-details">
+                            <p class="delay-desc">${alert.text}</p>
+                        </div>
+                    ` : "";
+
+                    const alertContainer = alert.text ? `<div class="delay" onclick="showDelayDescription('${stepIndex}-${alertIndex}')">`
+                        : `<div class="delay">`
+
                     delayTemplate += `
-                    <div class="delay" onclick="showDelayDescription('${stepIndex}-${alertIndex}')">
+                    ${alertContainer}
                         <div class="delay-container">
                             ${delayedIcon}
                             <p class="delay-message">${alert.title}</p>
                             <div id="delay-expander-${stepIndex}-${alertIndex}">
-                                <svg class="delay-collapser" data-name="Show delay description" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 216"><polygon class="expcon-icon" points="360 0 360 72 180 216 0 72 0 0 180 144 360 0"/></svg>
+                                ${alert.text ? "<svg class=\"delay-collapser\" data-name=\"Show delay description\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 360 216\"><polygon class=\"expcon-icon\" points=\"360 0 360 72 180 216 0 72 0 0 180 144 360 0\"/></svg>" : ""}
                             </div>
                         </div>
-                        <div id="delay-${stepIndex}-${alertIndex}" class="delay-details">
-                            <p class="delay-desc">${alert.text}</p>
-                        </div>
+                        
+                        ${alertText}
+                        
                     </div>
                     `
                     alertIndex++;

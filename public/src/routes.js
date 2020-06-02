@@ -452,6 +452,7 @@ function setFilterSelection(selected){
             price.classList.remove("filter-selected");
             green.classList.remove("filter-selected");
             renderRoutes(activeFilter);
+            document.getElementById("filter-description").innerText = "Kortest Reisetid"
             return;
         case "price": // Price
             activeFilter = "(2.0, 0.1 ,0.1 ,0.1)"
@@ -460,6 +461,7 @@ function setFilterSelection(selected){
             price.classList.add("filter-selected");
             green.classList.remove("filter-selected");
             renderRoutes(activeFilter);
+            document.getElementById("filter-description").innerText = "Lavest pris"
             return;
         case "green": // Environment
             activeFilter = "(0.1, 2.0 ,0.1 ,0.1)"
@@ -468,6 +470,7 @@ function setFilterSelection(selected){
             price.classList.remove("filter-selected");
             green.classList.add("filter-selected");
             renderRoutes(activeFilter);
+            document.getElementById("filter-description").innerText = "Lavest C02 utslipp"
             return;
         default: // Convenience
             activeFilter = "(0.1, 0.1 ,0.1 ,2.0)"
@@ -476,6 +479,7 @@ function setFilterSelection(selected){
             price.classList.remove("filter-selected");
             green.classList.remove("filter-selected");
             renderRoutes(activeFilter);
+            document.getElementById("filter-description").innerText = "Minst mulig overganger"
             return;
     }
 }
@@ -483,7 +487,7 @@ function setFilterSelection(selected){
 //Toggles filter visibility
 let isFilterVisible = false;
 const filterElem = document.getElementById("filter-by-container");
-document.getElementById("filter-by").addEventListener("click", () => {
+document.getElementById("current-filter").addEventListener("click", () => {
     if(isFilterVisible) {
         filterElem.classList.remove("filter-visible")
         document.getElementById("filter-by").classList.remove("open-filter")
@@ -494,40 +498,6 @@ document.getElementById("filter-by").addEventListener("click", () => {
         isFilterVisible = true;
     }
 })
-
-// Sorts list based on filter
-function filterBy(list, filter) {
-    //filter can currently be:
-    //"green"
-    //"price"
-    //"fast"
-
-    let filter_function = function(a, b) {
-        return 0;
-    };
-
-    switch(filter) {
-        case "green":
-            filter_function = (a, b) => {
-                return  (a.carbonCost) - (b.carbonCost);
-            };
-            break;
-        case "price":
-            filter_function = (a, b) => {
-                return  (a.cost) - (b.cost);
-            };
-            break;
-        case "fast":
-            filter_function = (a, b) => {
-                return  (a.endTime - a.startTime) - (b.endTime - b.startTime);
-            };
-            break;
-    }
-
-    let filtered_list = list.slice().sort(filter_function);
-
-    return filtered_list;
-}
 
 // Create dynamic route alternatives of search
 function setUp() {
