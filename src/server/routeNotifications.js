@@ -111,11 +111,8 @@ async function notifyChange (trip){
     let users = tripIDs[id];
     if (!users) {
         // Delete hook
-        let route = await api.getTripFromID(trip.tripURL);
-        console.log(route);
-
         await request({method: "DELETE",
-            url: route[0].hookURL,
+            url: trip.tripURL,
             headers: {
                 "content-type": "application/json;charset=utf-8",
                 "X-TripGo-Key": keys.TRIPGO_KEY,
