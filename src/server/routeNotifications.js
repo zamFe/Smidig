@@ -1,7 +1,7 @@
 const webpush = require('web-push')
 const request = require('request')
 const keys = require('./get-api-keys.js')
-const api = request('./api-calls.js')
+const api = require('./api-calls.js')
 
 const publicVapidKey = "BKTEYj8Zc0k5p1D3WIYqPy8mg__7QdJVfqdSY5IuUJOM3OL7nHq-5qVTm0JrCy36oxa8MYcSNZRU0OQC87FcAg4";
 const privateVapidKey = "XFSYXRuJ6lfuvUu6-kvFtlcplGmqvArn4bMAwb9Un20";
