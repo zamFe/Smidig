@@ -100,13 +100,10 @@ function sendNotification(subscription, payload){
 
 async function notifyChange (trip){
 
-    // TODO: remove hook if no user found
     console.log(trip)
     if (!trip) return;
     let id = trip.tripID;
 
-    //let idArray = url.split("/")
-    //let id = idArray[idArray.length-1];
     console.log(id, trip.tripURL)
     let users = tripIDs[id];
     if (!users) {
