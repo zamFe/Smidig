@@ -112,6 +112,8 @@ function notifyChange (trip){
         return;
     }
 
+    console.log("-----users-----")
+    console.log(users)
     for (let i = 0; i < users.length; i++){
         console.log(users[i].subscription)
         sendNotification(users[i].subscription, JSON.stringify(
