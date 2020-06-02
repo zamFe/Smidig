@@ -18,6 +18,12 @@ router.post("/updatedtrip", (req, res) => {
     notif.notifyChange(res.req.body);
 })
 
+
+router.post("/tripid", (req, res) => {
+    api.getTripFromID(req.query.id, res)
+
+});
+
 router.post("/log", (req, res) => {
     console.log(res);
 

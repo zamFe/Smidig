@@ -5,8 +5,16 @@ self.addEventListener("push", e => {
     console.log(e);
     const data = e.data.json();
     dataKept = data;
+    console.log("data worker")
+    console.log(data)
 
     return self.registration.showNotification(data.title, data);
+});
+
+self.addEventListener("notificationclick", function (event) {
+    console.log(event.notification)
+    event.notification.close();
+    event.waitUntil(clients.openWindow("xz.html?id=" + event.notification.data));
 });
 /*
 self.addEventListener('notificationclick', function (el) {
@@ -25,9 +33,7 @@ self.addEventListener('notificationclick', function (el) {
     }
 });*/
 
-self.addEventListener("notificationclick", function (event) {
-    event.waitUntil(clients.openWindow(event.notification.data.updateurl));
-});
+
 
 onmessage = function (e) {
     console.log('Message received from main script');

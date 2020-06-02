@@ -40,7 +40,7 @@ function getData(args, res) {
         url: 'https://api.tripgo.com/v1/' + args.requestFile + query,
         headers: {
             'User-Agent': 'request',
-            'X-TripGo-Key': key
+            'X-TripGo-Key': keys.TRIPGO_KEY
         }
     };
 
@@ -56,6 +56,35 @@ function getData(args, res) {
 
     // console.log(resp)
 
+}
+
+function getTripFromID(url, res) {
+    console.log(url)
+    //https://api.tripgo.com/v1/trip/update/{id}
+
+
+    var options = {
+        url: url.replace("hook", "update"), // Not Ghetto >:)
+        headers: {
+            'User-Agent': 'request',
+            'X-TripGo-Key': keys.TRIPGO_KEY
+        }
+    };
+
+    console.log(options)
+
+    request(options, (error, response, body) => {
+        //console.log(response);
+
+        let data = formatData(JSON.parse(body));
+
+        console.log(data)
+
+        transmitData({
+            statusCode: 200,
+            data: data
+        }, res);
+    });
 }
 
 function convertQuery(query) {
@@ -265,5 +294,7 @@ getLocation = (q, res) => {
 module.exports.getMap = getMap;
 module.exports.getRoute = getRoute;
 module.exports.getLocation = getLocation;
+module.exports.getTripFromID = getTripFromID;
+
 // from: "(59.9233,10.79249)",
 // to: "(60.7945331,11.067997699999978)",

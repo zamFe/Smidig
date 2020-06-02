@@ -83,7 +83,7 @@ function subscribeToRoute(subscription, url, departure, arrival) {
 
 
         // Create payload
-        const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten!", icon:"./res/img/logos/vy_not.png", updateurl:"asd"});
+        const payload = JSON.stringify({title: "Du får nå viktige varsler om ruten!", icon:"./res/img/logos/vy_not.png", data:url});
 
         sendNotification(subscription, payload)
 
@@ -101,11 +101,11 @@ function notifyChange (trip){
     // TODO: remove hook if no user found
     console.log(trip)
     if (!trip) return;
-    let url = trip.tripID;
+    let id = trip.tripID;
 
-    let idArray = url.split("/")
-    let id = idArray[idArray.length-1];
-    console.log(id, url)
+    //let idArray = url.split("/")
+    //let id = idArray[idArray.length-1];
+    console.log(id, trip.tripURL)
     let users = tripIDs[id];
     if (!users) {
         // SHOULD UNSUBSCRIBE
@@ -116,7 +116,9 @@ function notifyChange (trip){
         sendNotification(user.subscription, JSON.stringify(
             {
                 title: "Det har skjedd en forandring på ruten!",
-                icon:"./res/img/logos/vy_not.png"
+                body: "Trykk her for å se forandringen!",
+                icon:"./res/img/logos/vy_not.png",
+                data: trip.tripURL
             }
             ))
 
