@@ -113,10 +113,11 @@ function notifyChange (trip){
     }
 
     for (let user in users) {
+        console.log(user.subscription)
         sendNotification(user.subscription, JSON.stringify(
             {
                 title: "Det har skjedd en forandring på ruten!",
-                body: "Trykk her for å se forandringen!",
+                body: "Trykk her for mer detaljer!",
                 icon:"./res/img/logos/vy_not.png",
                 data: trip.tripURL
             }
