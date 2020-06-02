@@ -533,7 +533,11 @@ function filterBy(list, filter) {
 function setUp() {
     setFromAndTo()
     localStorage.setItem("route", JSON.stringify(fullRoute));
-    renderRouteList();
+
+    /*setTimeout( () =>  {*/
+        renderRouteList();
+    /*}, 2000)*/
+
 }
 
 

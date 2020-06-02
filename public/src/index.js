@@ -166,7 +166,7 @@ function checkLocation(){
 /* SEARCH HISTORY */
 function updateHistory(newSearch, from, to) {
     let history = JSON.parse(localStorage.getItem("history"));
-    const historyLimit = 5; //Search history limit
+    const historyLimit = 4; //Search history limit
 
 
     if(!history){

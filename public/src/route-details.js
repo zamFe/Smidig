@@ -61,10 +61,13 @@ function stepBuilder(stop, delay) {
                 let alertIndex = 1;
                 for(let alert of alerts) {
                     delayTemplate += `
-                    <div class="delay" onclick="showDelayDescription('delay-${stepIndex}-${alertIndex}')">
+                    <div class="delay" onclick="showDelayDescription('${stepIndex}-${alertIndex}')">
                         <div class="delay-container">
                             ${delayedIcon}
                             <p class="delay-message">${alert.title}</p>
+                            <div id="delay-expander-${stepIndex}-${alertIndex}">
+                                <svg class="delay-collapser" data-name="Show delay description" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 216"><polygon class="expcon-icon" points="360 0 360 72 180 216 0 72 0 0 180 144 360 0"/></svg>
+                            </div>
                         </div>
                         <div id="delay-${stepIndex}-${alertIndex}" class="delay-details">
                             <p class="delay-desc">${alert.text}</p>
@@ -138,11 +141,14 @@ function stepBuilder(stop, delay) {
 }
 
 function showDelayDescription(targetId) {
-    const elem = document.getElementById(targetId)
+    const elem = document.getElementById("delay-" + targetId)
+    const indicator = document.getElementById("delay-expander-" + targetId)
     if(elem.classList.contains("delay-show")) {
         elem.classList.remove("delay-show")
+        indicator.innerHTML = `<svg class="delay-collapser" data-name="Show delay description" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 216"><polygon class="expcon-icon" points="360 0 360 72 180 216 0 72 0 0 180 144 360 0"/></svg>`;
     } else {
         elem.classList.add("delay-show")
+        indicator.innerHTML = `<svg class="delay-collapser" data-name="Hide delay description" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 216"><polygon class="expcon-icon" points="0 216 0 144 180 0 360 144 360 216 180 72 0 216"/></svg>`
     }
 }
 
