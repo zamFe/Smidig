@@ -110,7 +110,7 @@ async function notifyChange (trip){
     console.log(id, trip.tripURL)
     let users = tripIDs[id];
     if (!users) {
-        // SHOULD UNSUBSCRIBE
+        // Delete hook
         let route = await api.getTripFromID(trip.tripURL);
         console.log(route);
 
@@ -121,7 +121,8 @@ async function notifyChange (trip){
                 "X-TripGo-Key": keys.TRIPGO_KEY,
                 "x-api-key": keys.TRIPGO_KEY
             }}, (error, response)=>{
-            //console.log(response)
+            console.log("Deleted hook")
+            console.log(response.statusCode)
         })
 
         console.log("UNSUBB-----------");
