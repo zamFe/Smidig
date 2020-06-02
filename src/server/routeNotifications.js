@@ -119,7 +119,6 @@ async function notifyChange (trip){
             console.log("Deleted hook")
             console.log(response.statusCode)
         })
-
         console.log("UNSUBB-----------");
         return;
     }
