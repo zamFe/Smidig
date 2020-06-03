@@ -51,7 +51,7 @@ function stepBuilder(stop, delay) {
         const delayedIcon = "<svg class=\"warning-svg\" data-name=\"Delay icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 486.27 486.27\"><path class=\"warn-icon\" d=\"M250,6.86C115.72,6.86,6.86,115.72,6.86,250S115.72,493.14,250,493.14,493.14,384.28,493.14,250,384.28,6.86,250,6.86ZM222.24,78.67h55.52V300.32H222.24ZM250,409.77a41.68,41.68,0,1,1,41.68-41.68A41.68,41.68,0,0,1,250,409.77Z\" transform=\"translate(-6.86 -6.86)\"/></svg>";
         const cancelledIcon = "<svg class=\"warning-svg\" data-name=\"Cancellation icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 486.27 486.27\"><path class=\"cancelled-icon\" d=\"M250,6.86C115.72,6.86,6.86,115.72,6.86,250S115.72,493.14,250,493.14,493.14,384.28,493.14,250,384.28,6.86,250,6.86ZM222.24,78.67h55.52V300.32H222.24ZM250,409.77a41.68,41.68,0,1,1,41.68-41.68A41.68,41.68,0,0,1,250,409.77Z\" transform=\"translate(-6.86 -6.86)\"/></svg>";
 
-        if(delay.cancelled) { // Transport led is cancelled
+        if(stop.isCancelled) { // Transport led is cancelled
             delayTemplate = `
                 <div class="delay">
                     <div class="delay-container isCancelled">

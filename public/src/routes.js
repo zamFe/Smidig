@@ -274,6 +274,7 @@ function setDelay(event, stepIndex, routeIndex){
 
     if(fullRoute[routeIndex].route[stepIndex].hasWarning) {
         fullRoute[routeIndex].delay = {cancelled: true, duration: 5, statusMessage: `Endring i rute som følge av innstilling`} //Cancels on second click
+        fullRoute[routeIndex].route[stepIndex].isCancelled = true;
         rerouteTrip(fullRoute, routeIndex, stepIndex, activeFilter);
     } else {
         fullRoute[routeIndex].delay = {cancelled: false, duration: 5, statusMessage: `Forsinket`}
@@ -317,13 +318,17 @@ function generatePath(route, index) {
             }
         }
 
-        const warnIcon = `<svg class="warning-svg" data-name="Warning icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 486.27 486.27"><path class="warn-icon" d="M250,6.86C115.72,6.86,6.86,115.72,6.86,250S115.72,493.14,250,493.14,493.14,384.28,493.14,250,384.28,6.86,250,6.86ZM222.24,78.67h55.52V300.32H222.24ZM250,409.77a41.68,41.68,0,1,1,41.68-41.68A41.68,41.68,0,0,1,250,409.77Z" transform="translate(-6.86 -6.86)"/></svg>`
+        let warnIcon = `<svg class="warning-svg" data-name="Warning icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 486.27 486.27"><path class="warn-icon" d="M250,6.86C115.72,6.86,6.86,115.72,6.86,250S115.72,493.14,250,493.14,493.14,384.28,493.14,250,384.28,6.86,250,6.86ZM222.24,78.67h55.52V300.32H222.24ZM250,409.77a41.68,41.68,0,1,1,41.68-41.68A41.68,41.68,0,0,1,250,409.77Z" transform="translate(-6.86 -6.86)"/></svg>`
+        if (part.isCancelled) {
+            warnIcon = `<svg class="warning-svg" data-name="Warning icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 486.27 486.27"><path class="warn-icon cancelled-warn" d="M250,6.86C115.72,6.86,6.86,115.72,6.86,250S115.72,493.14,250,493.14,493.14,384.28,493.14,250,384.28,6.86,250,6.86ZM222.24,78.67h55.52V300.32H222.24ZM250,409.77a41.68,41.68,0,1,1,41.68-41.68A41.68,41.68,0,0,1,250,409.77Z" transform="translate(-6.86 -6.86)"/></svg>`
+        }
 
+        console.log(part.hasWarning)
         const svg = getActionSVG(part.action);
         const service = getServiceClasses(part.operatorName);
 
         let template = `
-            <div class="route-path-part" onclick="setDelay(event, ${i}, ${index})">
+            <div class="route-path-part ${part.isCancelled ? "cancelled-part" : ""}" onclick="setDelay(event, ${i}, ${index})">
                 <div class="path-action">
                     ${part.hasWarning || part.alertHashcodes ? warnIcon : ""}
                     ${svg}
@@ -535,4 +540,5 @@ function setUp() {
 
 
 // Initializing Function calls
+renderRoutes("(0.1, 0.1 ,0.1 ,2.0)"); //Default priority Convenience
 checkUserAndStarData(); // Loads star if user logged in

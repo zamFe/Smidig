@@ -389,6 +389,10 @@ body {
     align-items: center;
 }
 
+.cancelled-part {
+    opacity: .4;
+}
+
 .path-action {
     position: relative;
 }
@@ -398,7 +402,7 @@ body {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-.2em);
+        transform: translateY(-.2em) scale(1.1);
     }
 }
 
@@ -417,6 +421,10 @@ body {
     stroke: none;
     stroke-miterlimit: 10;
     stroke-width:2px;
+}
+
+.cancelled-warn {
+    fill: #BD362F !important;
 }
 
 .svg {
@@ -439,6 +447,7 @@ body {
     padding: .5em;
     font-weight: bold;
 }
+
 
 .vy-service {
     background-color: #00957a;
