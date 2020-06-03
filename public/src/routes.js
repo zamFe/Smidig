@@ -430,6 +430,15 @@ function renderRouteList() {
     let list = JSON.parse(localStorage.getItem("route"));
     container.innerHTML = ""; //Empty the container before render
 
+    if(list.length < 1) {
+        container.innerHTML = `
+            <div class="no-route-container">
+                <p class="no-route">Fant ingen ruter på denne strekningen</p>
+            <div>
+        `
+        return;
+    }
+
     const currentTime = parseInt(urlParams.get("datetime"));
     let dates = [];
 
