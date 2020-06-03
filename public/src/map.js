@@ -1,6 +1,5 @@
-var fullRoute = JSON.parse(localStorage.getItem("route"));
-let index = new URLSearchParams(window.location.search).get("index");
-var map;
+const fullRoute = JSON.parse(localStorage.getItem("route"));
+const index = new URLSearchParams(window.location.search).get("index");
 
 /***** Color pallets *****/
 const bussCol = "#c20303";
@@ -23,34 +22,31 @@ let coordDest = {
 
 function initMap() { // Called on callback in mapping HTML file
 
-    map = new google.maps.Map(document.getElementById('map'), {
+    let map = new google.maps.Map(document.getElementById('map'), {
         center: coordFrom,
         zoom: 12
     });
 
     let bounds = new google.maps.LatLngBounds();
 
-    console.log(fullRoute[index]);
-
-
-    var startMarker = new google.maps.Marker({
+    const startMarker = new google.maps.Marker({
         position: coordFrom,
         map: map,
         icon: '../res/img/svg/map-start.svg'
-    })
-    var endMarker = new google.maps.Marker({
+    });
+    const endMarker = new google.maps.Marker({
         position: coordDest,
         map: map,
         icon: '../res/img/svg/flag-icon.svg'
-    })
+    });
 
-    for (var i = 0; i < fullRoute[index].route.length; i++) {
-        const route = fullRoute[index].route[i];
+    // Loop for checking and render each type of transportation type of this trip
+    for (let i = 0; i < fullRoute[index].route.length; i++) {
+        const routeType = fullRoute[index].route[i]; // Transportation type
 
-
-        if(route.action === "Gå") { // If walk is action
-            const start = {lat: route.from.lat, lng: route.from.lng};
-            const end = {lat: route.to.lat, lng: route.to.lng};
+        if(routeType.action === "Gå") { // If walk is action
+            const start = {lat: routeType.from.lat, lng: routeType.from.lng};
+            const end = {lat: routeType.to.lat, lng: routeType.to.lng};
             const coordinates = [start, end];
 
             const lineSymbol = { // Creates dotted line
@@ -81,48 +77,48 @@ function initMap() { // Called on callback in mapping HTML file
         } else {
 
             // When action is something else than "Gå"/"Walk"
-            for (var j = 0; j < route.waypoints.shapes.length; j++) {
+            for (var j = 0; j < routeType.waypoints.shapes.length; j++) {
 
-                if(!route.waypoints.shapes[j].travelled) {
+                if(!routeType.waypoints.shapes[j].travelled) {
                     continue; // Ignores routes not in the actual route
                 }
 
-                let shapes = google.maps.geometry.encoding.decodePath(route.waypoints.shapes[j].encodedWaypoints)
-
                 let shapeColor;
-                let routeIcon = "../res/img/svg/";
-                switch (route.action) {
-                    case "Tog": shapeColor = trainCol; routeIcon += "train-label.svg"; break;
-                    case "Buss": shapeColor = bussCol; routeIcon += "bus-label.svg"; break;
-                    case "Trikk": shapeColor = tramCol; routeIcon += "tram-label.svg"; break;
-                    case "Ferge": shapeColor = ferryCol; routeIcon += "ferry-label.svg"; break;
-                    case "T-bane": shapeColor = subwayCol; routeIcon += "metro-label.svg"; break;
+                let transportIcon = "../res/img/svg/";
+                switch (routeType.action) {
+                    case "Tog": shapeColor = trainCol; transportIcon += "train-label.svg"; break;
+                    case "Buss": shapeColor = bussCol; transportIcon += "bus-label.svg"; break;
+                    case "Trikk": shapeColor = tramCol; transportIcon += "tram-label.svg"; break;
+                    case "Ferge": shapeColor = ferryCol; transportIcon += "ferry-label.svg"; break;
+                    case "T-bane": shapeColor = subwayCol; transportIcon += "metro-label.svg"; break;
                     default: shapeColor = "#000000"; break;
                 }
 
-                const transportCoord = {lat: route.from.lat, lng: route.from.lng};
-
-
-                let textSize = "14px";
-                if(route.serviceNumber.length >= 5) {
+                let textSize = "14px"; // Default size for transportation service number
+                if(routeType.serviceNumber.length >= 5) {
                     textSize = "10px";
                 }
 
                 const transportMarker = new google.maps.Marker({
                     icon: {
-                        url: routeIcon,
+                        url: transportIcon,
                         labelOrigin: new google.maps.Point(20, 12)
                     },
-                    position: transportCoord,
+                    position: {
+                        lat: routeType.from.lat,
+                        lng: routeType.from.lng
+                    },
                     map: map,
                     label: {
-                        text: `${route.serviceNumber}`,
+                        text: routeType.serviceNumber,
                         color: "white",
                         fontSize: textSize,
                         fontWeight: "bold"
                     }
                 });
 
+                const shapes = google.maps.geometry.encoding.decodePath(routeType.waypoints.shapes[j].encodedWaypoints);
+                // Default settings for the lines rendered in the map
                 const cascadiaFault = new google.maps.Polyline({
                     strokeColor: shapeColor,
                     strokeOpacity: 1,
@@ -150,12 +146,9 @@ async function fetchMap() {
     try {
         response = await fetch(url, {method: "get"})
         payload = await response.json();
-
-        console.log(payload)
-
         document.getElementById("googleMap").innerHTML = payload.body;
     } catch (e) {
-        console.error(e);
+        console.error(`Fetching map failed: ${e}`);
     }
 }
 
