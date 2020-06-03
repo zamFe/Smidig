@@ -445,6 +445,15 @@ function setFilterSelection(selected){
     const price = document.getElementById("filter-price");
     const green = document.getElementById("filter-green");
 
+    const reLoad = `
+        <div id="routes-result-container">
+            <div class="route-container loading"></div>
+            <div class="route-container loading"></div>
+            <div class="route-container loading"></div>
+            <div class="route-container loading"></div>
+            <div class="route-container loading"></div>
+        </div> `
+
     switch(selected){
         case "fast": // Speed
             activeFilter = "(0.1, 0.1 ,2.0 ,1.0)";
@@ -452,6 +461,7 @@ function setFilterSelection(selected){
             time.classList.add("filter-selected");
             price.classList.remove("filter-selected");
             green.classList.remove("filter-selected");
+            container.innerHTML = reLoad;
             renderRoutes(activeFilter);
             document.getElementById("filter-description").innerText = "Kortest Reisetid"
             return;
@@ -461,6 +471,7 @@ function setFilterSelection(selected){
             time.classList.remove("filter-selected");
             price.classList.add("filter-selected");
             green.classList.remove("filter-selected");
+            container.innerHTML = reLoad;
             renderRoutes(activeFilter);
             document.getElementById("filter-description").innerText = "Lavest pris"
             return;
@@ -470,6 +481,7 @@ function setFilterSelection(selected){
             time.classList.remove("filter-selected");
             price.classList.remove("filter-selected");
             green.classList.add("filter-selected");
+            container.innerHTML = reLoad;
             renderRoutes(activeFilter);
             document.getElementById("filter-description").innerText = "Lavest C02 utslipp"
             return;
@@ -479,6 +491,7 @@ function setFilterSelection(selected){
             time.classList.remove("filter-selected");
             price.classList.remove("filter-selected");
             green.classList.remove("filter-selected");
+            container.innerHTML = reLoad;
             renderRoutes(activeFilter);
             document.getElementById("filter-description").innerText = "Minst mulig overganger"
             return;
