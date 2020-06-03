@@ -57,6 +57,7 @@ function stepBuilder(stop, delay) {
                     <div class="delay-container isCancelled">
                         ${cancelledIcon}
                         <p class="delay-message isCancelled">${delay.statusMessage} </p>
+                        <div></div> 
                     </div>
                     <div id="delay-${stepIndex}" class="delay-details isCancelled delay-show">
                         <p class="delay-desc">På grunn av sporarbeid er denne ruten innstilt</p>
@@ -107,6 +108,7 @@ function stepBuilder(stop, delay) {
                         ${delayedIcon}
                         <p class="delay-message">${delay.statusMessage} </p>
                         <p class="delay-time"> (${delay.duration} min)</p>
+                        <div></div>
                     </div>
                     <div id="delay-${stepIndex}" class="delay-details">
                         <p class="delay-desc">Høy trafikk mellom A og B</p>
