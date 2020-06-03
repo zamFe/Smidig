@@ -573,3 +573,7 @@ body {
     font-weight: bold;
     color: #00957a;
 }
+
+.notRecommended {
+    opacity: .4;
+}

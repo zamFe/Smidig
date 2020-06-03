@@ -273,7 +273,7 @@ function setDelay(event, stepIndex, routeIndex){
     }
 
     if(fullRoute[routeIndex].route[stepIndex].hasWarning) {
-        fullRoute[routeIndex].delay = {cancelled: true, duration: 5, statusMessage: `Innstilt`} //Cancels on second click
+        fullRoute[routeIndex].delay = {cancelled: true, duration: 5, statusMessage: `Endring i rute som følge av innstilling`} //Cancels on second click
         rerouteTrip(fullRoute, routeIndex, stepIndex, activeFilter);
     } else {
         fullRoute[routeIndex].delay = {cancelled: false, duration: 5, statusMessage: `Forsinket`}
@@ -353,8 +353,15 @@ function generatePath(route, index) {
     }
     return list.join("")
 }
-function generateRoute(route, index) {
+function generateRoute(trip, index) {
     //console.log(route);
+
+    let route = trip[index];
+
+    if (index < trip.length - 1) {
+        route.notRecommended = route.endTime >= trip[index + 1].endTime;
+    }
+
 
     const startTime = convertTime(route.startTime);
     const endTime = convertTime(route.endTime);
@@ -384,7 +391,7 @@ function generateRoute(route, index) {
     const toName = urlParams.get("toname").substring(0, urlParams.get("toname").lastIndexOf(','))
 
     let template = `
-        <div class="route-container" onclick=goToDetails(${index})>
+        <div class="route-container${route.notRecommended? " notRecommended" : ""}" onclick=goToDetails(${index})>
             <div class="route-time">
                 <div class="time-destination dest-start">
                     <p class="destination">${fromName}</p>
@@ -434,7 +441,7 @@ function renderRouteList() {
             renderDate(dateString);
         }
 
-        generateRoute(fullRoute[i], i);
+        generateRoute(fullRoute, i);
     }
 }
 
