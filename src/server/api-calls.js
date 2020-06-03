@@ -40,7 +40,7 @@ function getData(args, res) {
         url: 'https://api.tripgo.com/v1/' + args.requestFile + query,
         headers: {
             'User-Agent': 'request',
-            'X-TripGo-Key': keys.TRIPGO_KEY
+            'X-TripGo-Key': key
         }
     };
 
