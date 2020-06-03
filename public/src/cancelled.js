@@ -1,15 +1,10 @@
 
-async function rerouteTrip(trip, stepIndex, priority) {
+async function rerouteTrip(trip, tripIndex, stepIndex, priority) {
 
-    console.log("route, stepIndex")
-    console.log(trip, stepIndex)
+    let cancelled = trip[tripIndex].route[stepIndex]
+    let last = trip[tripIndex].route[trip[tripIndex].route.length-1]
 
-    let cancelled = trip.route[stepIndex]
-
-    let last = trip.route[trip.route.length-1]
-
-
-    const url = `/api/routes?from=(${cancelled.from.lat},${cancelled.from.lng})&to=(${last.to.lat},${cancelled.to.lng})&priority=${priority}`
+    const url = `/api/routes?from=(${cancelled.from.lat},${cancelled.from.lng})&to=(${last.to.lat},${last.to.lng})&datetime=${cancelled.startTime}&priority=${priority}`
 
     let response;
     let payload;
@@ -27,5 +22,20 @@ async function rerouteTrip(trip, stepIndex, priority) {
         console.log(e);
     }
 
-    console.log(payload.data)
-}                           
+    let data = payload.data
+    data = data.filter(a => a.startTime > cancelled.startTime);
+    data.sort((a, b) => (a.startTime > b.startTime) ? 1 : -1);
+    if (data.length === 0) return;
+
+    let newRoute = data[0].route
+    let route = JSON.parse(localStorage.getItem("route"));
+
+    route[tripIndex].route = route[tripIndex].route.slice(0, stepIndex+1).concat(newRoute);
+    route[tripIndex].endTime = route[tripIndex].route[route[tripIndex].route.length-1].endTime;
+
+    localStorage.setItem("route", JSON.stringify(route))
+
+
+    fullRoute = route;
+    setUp()
+}
