@@ -15,18 +15,18 @@ function setFromAndTo() {
         from = urlParams.get("fromname").substring(0, urlParams.get("fromname").lastIndexOf(','))
     }
 
-    let to;
+    const titleFrom = document.getElementById("title-from");
+    titleFrom.innerHTML = `${from}`
 
+    let to;
     if(urlParams.get("toname").lastIndexOf(',') < 0) {
         to = urlParams.get("toname");
     } else {
         to = urlParams.get("toname").substring(0, urlParams.get("toname").lastIndexOf(','))
+
     }
-
-    console.log(from + " <= AAAAAAAA")
-
-    const titleDiv = document.getElementById("route-title");
-    titleDiv.innerHTML = `Reise fra <span class="route-name">${from}</span> til <span class="route-name">${to}</span>`
+    const titleTo = document.getElementById("title-to");
+    titleTo.innerHTML = `${to}`
 }
 const swapRouteButton = document.getElementById('swap-from-to');
 swapRouteButton.addEventListener('click', e => {
@@ -487,15 +487,18 @@ function setFilterSelection(selected){
 //Toggles filter visibility
 let isFilterVisible = false;
 const filterElem = document.getElementById("filter-by-container");
+const expandElem = document.getElementById("filter-expander")
 document.getElementById("current-filter").addEventListener("click", () => {
     if(isFilterVisible) {
         filterElem.classList.remove("filter-visible")
         document.getElementById("filter-by").classList.remove("open-filter")
         isFilterVisible = false;
+        expandElem.innerHTML = `<polygon points="360 0 360 72 180 216 0 72 0 0 180 144 360 0"/>`;
     } else {
         filterElem.classList.add("filter-visible")
         document.getElementById("filter-by").classList.add("open-filter")
         isFilterVisible = true;
+        expandElem.innerHTML = `<polygon points="0 216 0 144 180 0 360 144 360 216 180 72 0 216"/>`;
     }
 })
 

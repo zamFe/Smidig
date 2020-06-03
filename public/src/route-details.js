@@ -4,11 +4,22 @@ let delayTime = 0;
 //build step and adds to HTML
 let stepIndex = 0;
 
-function getAlert(hashCode) {
+function getAlert(hashCode, serviceTripID) {
     const alerts = fullRoute[index].alerts
+    console.log(serviceTripID + " <== MAIN");
+
     for(alert of alerts) {
         if(alert.hashCode === hashCode) {
-            return alert;
+            console.log(alert.serviceTripID);
+            console.log("==============")
+
+            if(!alert.serviceTripID) {
+                return alert;
+            }
+
+            if(alert.serviceTripID === serviceTripID) {
+                return alert;
+            }
         }
     }
     return null;
@@ -56,7 +67,10 @@ function stepBuilder(stop, delay) {
             if(stop.alertHashcodes.length > 0) {
                 const alerts = [];
                 for(let hashCode of stop.alertHashcodes) {
-                    alerts.push(getAlert(hashCode))
+                    const alert = getAlert(hashCode, stop.serviceTripID);
+                    if(alert) {
+                        alerts.push(alert);
+                    }
                 }
                 let alertIndex = 1;
                 for(let alert of alerts) {
