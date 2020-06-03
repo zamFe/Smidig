@@ -274,6 +274,7 @@ function setDelay(event, stepIndex, routeIndex){
 
     if(fullRoute[routeIndex].route[stepIndex].hasWarning) {
         fullRoute[routeIndex].delay = {cancelled: true, duration: 5, statusMessage: `Innstilt`} //Cancels on second click
+        rerouteTrip(fullRoute[routeIndex], stepIndex, activeFilter);
     } else {
         fullRoute[routeIndex].delay = {cancelled: false, duration: 5, statusMessage: `Forsinket`}
         fullRoute[routeIndex].route[stepIndex].hasWarning = true;
