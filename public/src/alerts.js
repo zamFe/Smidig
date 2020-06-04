@@ -110,6 +110,8 @@ async function send(trip, unsub = false) {
         console.log('Service worker installed & waiting');
     } else if (register.active) {
         serviceWorker = register.active;
+        await pushCurrentNotification(register,trip, unsub);
+
         console.log('Service worker active');
     }
 
@@ -118,25 +120,27 @@ async function send(trip, unsub = false) {
         if (e.target.state === "activated") {
             // use pushManger for subscribing here.
             console.log("Just now activated. now we can subscribe for push notification")
-            // Register Push
-            const subscription = await register.pushManager.subscribe({
-                userVisibleOnly: true,
-                applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
-            });
-
-            // Send Push Notification
-            console.log(subscription)
-            await fetch(`/${unsub?"un":""}subscribe?id=` + trip.hookURL + "&departure=" + trip.startTime + "&arrival=" + trip.endTime, {
-                method: "POST",
-                body: JSON.stringify(subscription),
-                headers: {
-                    "content-type": "application/json"
-                }
-            });
+            await pushCurrentNotification(register,trip, unsub);
         }
     });
+}
 
+async function pushCurrentNotification (register, trip, unsub){
+    // Register Push
+    const subscription = await register.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
+    });
 
+    // Send Push Notification
+    console.log(subscription)
+    await fetch(`/${unsub?"un":""}subscribe?id=` + trip.hookURL + "&departure=" + trip.startTime + "&arrival=" + trip.endTime, {
+        method: "POST",
+        body: JSON.stringify(subscription),
+        headers: {
+            "content-type": "application/json"
+        }
+    });
 }
 
 function urlBase64ToUint8Array(base64String) {
