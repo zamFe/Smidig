@@ -100,21 +100,43 @@ async function send(trip, unsub = false) {
         scope: "/"
     });
 
-    // Register Push
-    const subscription = await register.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
-    });
+    let serviceWorker;
 
-    // Send Push Notification
-    console.log(subscription)
-    await fetch(`/${unsub?"un":""}subscribe?id=` + trip.hookURL + "&departure=" + trip.startTime + "&arrival=" + trip.endTime, {
-        method: "POST",
-        body: JSON.stringify(subscription),
-        headers: {
-            "content-type": "application/json"
+    if (register.installing) {
+        serviceWorker = register.installing;
+        console.log('Service worker installing');
+    } else if (register.waiting) {
+        serviceWorker = register.waiting;
+        console.log('Service worker installed & waiting');
+    } else if (register.active) {
+        serviceWorker = register.active;
+        console.log('Service worker active');
+    }
+
+    serviceWorker.addEventListener("statechange", async function(e) {
+        console.log("sw statechange : ", e.target.state);
+        if (e.target.state === "activated") {
+            // use pushManger for subscribing here.
+            console.log("Just now activated. now we can subscribe for push notification")
+            // Register Push
+            const subscription = await register.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
+            });
+
+            // Send Push Notification
+            console.log(subscription)
+            await fetch(`/${unsub?"un":""}subscribe?id=` + trip.hookURL + "&departure=" + trip.startTime + "&arrival=" + trip.endTime, {
+                method: "POST",
+                body: JSON.stringify(subscription),
+                headers: {
+                    "content-type": "application/json"
+                }
+            });
         }
     });
+
+
 }
 
 function urlBase64ToUint8Array(base64String) {
