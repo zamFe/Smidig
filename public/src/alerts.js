@@ -25,7 +25,7 @@ function subscribeToRoute(trip) {
 
         if(notifyRoutes.includes(trip.hookURL)) {
             // Localstorage already has this item, find and remove it
-            for(item of notifyRoutes) {
+            for(let item of notifyRoutes) {
                 if(item === trip.hookURL) {
                     notifyRoutes.splice(notifyRoutes.indexOf(item), 1);
                     localStorage.setItem("notifyRoute", JSON.stringify(notifyRoutes))
@@ -90,6 +90,11 @@ function setBellIcon(status) {
 
 // Register SW, Register Push, Send Push
 async function send(trip, unsub = false) {
+    let answer = await Notification.requestPermission();
+    console.log(answer)
+    if (answer !== "granted"){
+        return;
+    }
     // Register Service Worker
     const register = await navigator.serviceWorker.register("/worker.js", {
         scope: "/"
