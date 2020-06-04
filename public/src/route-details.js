@@ -148,7 +148,7 @@ function stepBuilder(stop, delay) {
                     <div class="time-container">
                         ${convertTime(stop.startTime, delayTime)}
                     </div>
-                    <span class="route-place">${fromAddress}</span>                
+                    <p class="route-place">${fromAddress}</p>                
                 </div>
                 <div class="path-container">
                     ${delayTemplate}
@@ -178,10 +178,6 @@ function showDelayDescription(targetId) {
         elem.classList.add("delay-show")
         indicator.innerHTML = `<svg class="delay-collapser" data-name="Hide delay description" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 216"><polygon class="expcon-icon" points="0 216 0 144 180 0 360 144 360 216 180 72 0 216"/></svg>`
     }
-}
-
-function cancelledTransport(route) {
-    console.log(route);
 }
 
 function convertTime(time, delay) {
@@ -241,6 +237,11 @@ function getServiceActionSVG(action) {
 
 
 function getLastNode (stop){
+    let toAddress = stop.to.address;
+    toAddress = toAddress.replace('Near ','Ved ');
+
+    console.log(toAddress);
+
     return `<div style="display: grid; grid-template-columns: 10% 90%">
                 <div class="route-line vs">
                     <div class="vs-ball vs-final" ></div>
@@ -250,7 +251,7 @@ function getLastNode (stop){
                         <div class="time-container">
                         ${convertTime(stop.endTime, delayTime)}
                         </div>
-                        <p class="route-place">${stop.to.address}</p>
+                        <p class="route-place">${toAddress}</p>
                     </div>
                 </div>
             </div>`
