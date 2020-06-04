@@ -5,6 +5,11 @@ const star = document.getElementsByClassName("star-fav")[0];
 
 let activeFilter = "(0.1, 0.1 ,0.1 ,2.0)" //Default to convenience
 
+//Redirects to index if there are no query params.
+if(window.location.href.indexOf('?') === -1) {
+    window.location.href = `/`
+}
+
 // Sets the from and to names and adds eventlistener to the swap button
 function setFromAndTo() {
     let from;
