@@ -23,7 +23,7 @@ app.post("/subscribe", (req, res) => {
     const departure = req.query.departure;
     const arrival = req.query.arrival;
 
-    if (!id || !departure || !arrival) {
+    if (!id || !departure || !arrival || Object.keys(subscription).length === 0) {
         res.status(400).json({});
         return;
     }
@@ -32,6 +32,23 @@ app.post("/subscribe", (req, res) => {
     res.status(201).json({});
 
     notif.subscribeToRoute(subscription, id, departure, arrival);
+});
+
+// Subscribe Route
+app.post("/unsubscribe", (req, res) => {
+    // Get pushSubscription object
+    const subscription = req.body;
+    const id = req.query.id;
+
+    if (!id || Object.keys(subscription).length === 0) {
+        res.status(400).json({});
+        return;
+    }
+
+    // Send 201 - resource created
+    res.status(201).json({});
+
+    notif.unsubscribeToRoute(subscription, id);
 });
 
 /*notif.subscribeToRoute({

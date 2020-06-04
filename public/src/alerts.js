@@ -30,6 +30,7 @@ function subscribeToRoute(trip) {
                     notifyRoutes.splice(notifyRoutes.indexOf(item), 1);
                     localStorage.setItem("notifyRoute", JSON.stringify(notifyRoutes))
                     setBellIcon(false);
+                    send(trip, true).catch(err => console.error(err));
                 }
             }
         } else {
@@ -82,7 +83,7 @@ function setBellIcon(status) {
 
 
 // Register SW, Register Push, Send Push
-async function send(trip) {
+async function send(trip, unsub = false) {
     // Register Service Worker
     const register = await navigator.serviceWorker.register("/worker.js", {
         scope: "/"
@@ -96,7 +97,7 @@ async function send(trip) {
 
     // Send Push Notification
     console.log(subscription)
-    await fetch("/subscribe?id=" + trip.hookURL + "&departure=" + trip.startTime + "&arrival=" + trip.endTime, {
+    await fetch(`/${unsub?"un":""}subscribe?id=` + trip.hookURL + "&departure=" + trip.startTime + "&arrival=" + trip.endTime, {
         method: "POST",
         body: JSON.stringify(subscription),
         headers: {
@@ -119,27 +120,3 @@ function urlBase64ToUint8Array(base64String) {
     }
     return outputArray;
 }
-function askPermission() {
-    return new Promise(function(resolve, reject) {
-        const permissionResult = Notification.requestPermission(function(result) {
-            resolve(result);
-        });
-
-        if (permissionResult) {
-            permissionResult.then(resolve, reject);
-        }
-    })
-        .then(function(permissionResult) {
-            if (permissionResult !== 'granted') {
-                throw new Error('We weren\'t granted permission.');
-            }
-        });
-}
-
-/*askPermission().then(d => {
-    navigator.serviceWorker.ready
-        .then(function(swreg) {
-
-            //swreg.showNotification('Du får nå viktige varsler om ruten!');
-        });
-})*/
