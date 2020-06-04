@@ -25,7 +25,7 @@ function subscribeToRoute(trip) {
 
         if(notifyRoutes.includes(trip.hookURL)) {
             // Localstorage already has this item, find and remove it
-            for(item of notifyRoutes) {
+            for(let item of notifyRoutes) {
                 if(item === trip.hookURL) {
                     notifyRoutes.splice(notifyRoutes.indexOf(item), 1);
                     localStorage.setItem("notifyRoute", JSON.stringify(notifyRoutes))
@@ -90,11 +90,42 @@ function setBellIcon(status) {
 
 // Register SW, Register Push, Send Push
 async function send(trip, unsub = false) {
+    let answer = await Notification.requestPermission();
+    console.log(answer)
+    if (answer !== "granted"){
+        return;
+    }
     // Register Service Worker
     const register = await navigator.serviceWorker.register("/worker.js", {
         scope: "/"
     });
 
+    let serviceWorker;
+
+    if (register.installing) {
+        serviceWorker = register.installing;
+        console.log('Service worker installing');
+    } else if (register.waiting) {
+        serviceWorker = register.waiting;
+        console.log('Service worker installed & waiting');
+    } else if (register.active) {
+        serviceWorker = register.active;
+        await pushCurrentNotification(register,trip, unsub);
+
+        console.log('Service worker active');
+    }
+
+    serviceWorker.addEventListener("statechange", async function(e) {
+        console.log("sw statechange : ", e.target.state);
+        if (e.target.state === "activated") {
+            // use pushManger for subscribing here.
+            console.log("Just now activated. now we can subscribe for push notification")
+            await pushCurrentNotification(register,trip, unsub);
+        }
+    });
+}
+
+async function pushCurrentNotification (register, trip, unsub){
     // Register Push
     const subscription = await register.pushManager.subscribe({
         userVisibleOnly: true,
