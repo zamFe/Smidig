@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Loading</title>
 
 </head>
 <body>
@@ -10,6 +10,9 @@
     (async () => {
         let urlParams = new URLSearchParams(window.location.search);
         let id = urlParams.get("id");
+        if (!id) {
+            window.location.href = "/";
+        }
 
         let response;
         let payload;
@@ -29,19 +32,16 @@
 
         fullRoute = payload.data;
         console.log(fullRoute)
+        if (Object.keys(fullRoute).length === 0) {
+            window.location.href = "/";
+        }
         localStorage.setItem("route", JSON.stringify(fullRoute))
 
-        //let localRoutes = localStorage.getItem("notifyRoute") || [];
-        //localRoutes.replace(id, h)
+        if (Object.keys(fullRoute).length !== 0) {
+            window.location.href = "route-details.html?index=0"; //http://localhost:8080/route-details.html?from=%2862.593111%2C9.694018%29&to=%2860.193361%2C11.097887%29&fromname=Oppdal+stasjon%2C+Oppdal&toname=Oslo+lufthavn%2C+Ullensaker&datetime=1591103040&index=2
+        }
 
-        window.location.href = "route-details.html?index=0"; //http://localhost:8080/route-details.html?from=%2862.593111%2C9.694018%29&to=%2860.193361%2C11.097887%29&fromname=Oppdal+stasjon%2C+Oppdal&toname=Oslo+lufthavn%2C+Ullensaker&datetime=1591103040&index=2
-
-        // Creates an error message upon API Call failures
-        console.log(fullRoute);
     })();
 </script>
-
-<!--<button onclick="notifyMe()" style="background-color: gray; width: 100%; height: 50vh"></button>-->
-
 </body>
 </html>

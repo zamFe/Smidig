@@ -72,7 +72,7 @@ function getTripFromID(url, res) {
 
     console.log(options)
     request(options, (error, response, body) => {
-        let data = formatData(JSON.parse(response.body));
+        let data = response.body?formatData(JSON.parse(response.body)):{};
         res.json({
             statusCode: 200,
             data

@@ -14,26 +14,8 @@ self.addEventListener("push", e => {
 self.addEventListener("notificationclick", function (event) {
     console.log(event.notification)
     event.notification.close();
-    event.waitUntil(clients.openWindow("xz.html?id=" + event.notification.data));
+    event.waitUntil(clients.openWindow("loading.html?id=" + event.notification.data));
 });
-/*
-self.addEventListener('notificationclick', function (el) {
-    var notification = el.notification;
-    var updateurl = data.updateurl;
-    console.log("------worker-----")
-    console.log(updateurl)
-    var action = el.action;
-    console.log(updateurl);
-
-    if (action === 'close') {
-        notification.close();
-    } else {
-        clients.openWindow('./xz.html?updateurl=' + updateurl);
-        notification.close();
-    }
-});*/
-
-
 
 onmessage = function (e) {
     console.log('Message received from main script');
