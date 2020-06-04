@@ -9,25 +9,31 @@
 <script >
     (async () => {
         let urlParams = new URLSearchParams(window.location.search);
+        let id = urlParams.get("id");
 
         let response;
         let payload;
 
         try {
-            response = await fetch("api/tripid?id=" + urlParams.get("id"), {
+            response = await fetch("api/tripid?id=" + id, {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json"
                 }
             })
-
             payload = await response.json();
+            console.log(payload)
         } catch (e) {
             console.log(e);
         }
 
         fullRoute = payload.data;
-        localStorage.getItem("route", JSON.stringify([fullRoute]))
+        console.log(fullRoute)
+        localStorage.setItem("route", JSON.stringify(fullRoute))
+
+        //let localRoutes = localStorage.getItem("notifyRoute") || [];
+        //localRoutes.replace(id, h)
+
         window.location.href = "route-details.html?index=0"; //http://localhost:8080/route-details.html?from=%2862.593111%2C9.694018%29&to=%2860.193361%2C11.097887%29&fromname=Oppdal+stasjon%2C+Oppdal&toname=Oslo+lufthavn%2C+Ullensaker&datetime=1591103040&index=2
 
         // Creates an error message upon API Call failures

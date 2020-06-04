@@ -171,10 +171,10 @@ function unsubscribeFromRoute(subscription, url) {
 
     console.log(tripIDs)
     console.log(subscriptionIDs)
-    if (subscriptionIDs[subscription["keys"]["auth"]].trip.length===0)
+    if (subscriptionIDs[subscription["keys"]["auth"]] && subscriptionIDs[subscription["keys"]["auth"]].trip.length===0)
         delete subscriptionIDs[subscription["keys"]["auth"]];
 
-    if (tripIDs[id].length===0) {
+    if (tripIDs[id] && tripIDs[id].length===0) {
         deleteHook(url)
             .then(r => console.log("unsubbed"))
         delete tripIDs[id];

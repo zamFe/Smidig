@@ -58,12 +58,12 @@ function getData(args, res) {
 
 }
 
-async function getTripFromID(url) {
+function getTripFromID(url, res) {
     console.log(url)
 
     var options = {
         method: "GET",
-        url: url.replace("hook", "update"), // Not Ghetto >:)
+        url: url.replace("hook", "update")+"?locale=no", // Not Ghetto >:)
         headers: {
             'User-Agent': 'request',
             'X-TripGo-Key': keys.TRIPGO_KEY
@@ -71,16 +71,14 @@ async function getTripFromID(url) {
     };
 
     console.log(options)
-
-    return request(options, (error, response, body) => {
-        //console.log(response);
-
-        let data = formatData(JSON.parse(body));
-
-        console.log(data)
-
-        return data;
+    request(options, (error, response, body) => {
+        let data = formatData(JSON.parse(response.body));
+        res.json({
+            statusCode: 200,
+            data
+        });
     });
+
 }
 
 function convertQuery(query) {
