@@ -48,7 +48,7 @@ app.post("/unsubscribe", (req, res) => {
     // Send 201 - resource created
     res.status(201).json({});
 
-    notif.unsubscribeToRoute(subscription, id);
+    notif.unsubscribeFromRoute(subscription, id);
 });
 
 /*notif.subscribeToRoute({

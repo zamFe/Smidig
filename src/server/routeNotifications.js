@@ -87,6 +87,11 @@ function subscribeToRoute(subscription, url, departure, arrival) {
     }, ((departure - 600) - created) * 1000)// 600s = 10min
 
 
+    setTimeout(() => {
+        unsubscribeFromRoute(subscription, url);
+        console.log("Trip has passed, unsubscribing...")
+    }, (arrival - created) * 1000)
+
     // Create payload
     const payload = JSON.stringify({
         title: "Du får nå viktige varsler om ruten!",
@@ -150,7 +155,7 @@ async function deleteHook(url) {
 
 }
 
-function unsubscribeToRoute(subscription, url) {
+function unsubscribeFromRoute(subscription, url) {
 
     let idArray = url.split("/")
     let id = idArray[idArray.length - 1];
@@ -179,4 +184,4 @@ function unsubscribeToRoute(subscription, url) {
 }
 
 
-module.exports = {subscribeToRoute, notifyChange, unsubscribeToRoute};
+module.exports = {subscribeToRoute, notifyChange, unsubscribeFromRoute};
