@@ -316,6 +316,8 @@ main {
 /* Cookie styling */
 .cookie-container {
     position: absolute;
+    box-sizing: border-box;
+    width: 100vw;
     bottom: 0;
     background-color: #383E42;
     color: #f2f2f3;
@@ -323,7 +325,6 @@ main {
     flex-direction: column;
     z-index: 15;
     padding: 1em;
-    display: none;
 }
 
 .cookie-titleBox {
@@ -334,6 +335,10 @@ main {
 
 .cookie-infoBox {
     padding-bottom: 1em;
+}
+
+.cookie-infoBox p {
+    margin: .2em;
 }
 
 .cookie-infoBox span a {

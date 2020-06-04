@@ -103,15 +103,12 @@ function stepBuilder(stop, delay) {
             }
         } else {
            delayTemplate = `
-                <div class="delay" onclick="showDelayDescription('delay-${stepIndex}')">
+                <div class="delay">
                     <div class="delay-container">
                         ${delayedIcon}
                         <p class="delay-message">${delay.statusMessage} </p>
                         <p class="delay-time"> (${delay.duration} min)</p>
                         <div></div>
-                    </div>
-                    <div id="delay-${stepIndex}" class="delay-details">
-                        <p class="delay-desc">Høy trafikk mellom A og B</p>
                     </div>
                 </div>
             `;
@@ -291,6 +288,9 @@ for (i = 0; i < fullRoute[index].route.length; i++) {
     if (step.action === 'Overgang') {
         //transitionBuilder(step.startTime, step.endTime);
         continue;
+    }
+    if(i < 2 && step.isCancelled) {
+        stepBlock = `<div class="detail-box cancelled-block">`
     }
 
     if (last && last.endTime !== step.startTime) {
