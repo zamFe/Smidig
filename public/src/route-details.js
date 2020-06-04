@@ -137,6 +137,9 @@ function stepBuilder(stop, delay) {
             </div>`
     }
 
+    let fromAddress = stop.from.address;
+    fromAddress = fromAddress.replace('Near ','Ved ');
+
     const routeTemplate = `
         <div class="route">
             ${lineTemplate}
@@ -145,7 +148,7 @@ function stepBuilder(stop, delay) {
                     <div class="time-container">
                         ${convertTime(stop.startTime, delayTime)}
                     </div>
-                    <span class="route-place">${stop.from.address}</span>                
+                    <span class="route-place">${fromAddress}</span>                
                 </div>
                 <div class="path-container">
                     ${delayTemplate}
