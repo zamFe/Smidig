@@ -103,6 +103,10 @@ main {
     background-color: #FFFFFF;
 }
 
+.cancelled-block {
+    opacity: .4;
+}
+
 .route-line {
     padding: 0 .5em 0 .5em;
     display: flex;
@@ -346,13 +350,33 @@ main {
 .bell-icon {
     position: absolute;
     display: flex;
-    bottom: 0;
-    right: 0;
-    width: 2.4em;
-    height: 2.4em;
+    flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: center;
-    background-color: #d2d2d2;
-    border-radius: 50%;
-    margin: 1em;
+    bottom: 1em;
+    right: .6em;
+    padding: .4em .7em;
+}
+
+.notif-turnon {
+    background-color: #00957a;
+}
+
+.notif-turnoff {
+    background-color: #f87b75;
+}
+
+.notif-text {
+    color: #f2f2f3;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.notif-svg {
+    height: 1em;
+    margin: 0 0 0 .4em;
+}
+
+.notif-icon {
+    fill: #f2f2f3;
 }

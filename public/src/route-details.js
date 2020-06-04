@@ -295,9 +295,11 @@ for (i = 0; i < fullRoute[index].route.length; i++) {
     if (last && last.endTime !== step.startTime) {
         stepBlock += getLastNode(last)
         stepBlock += "</div>"
-        stepBlock += drawWait(Math.ceil((step.startTime - last.endTime - delayTime)/60));
+        if(!last.isCancelled) {
+            stepBlock += drawWait(Math.ceil((step.startTime - last.endTime - delayTime)/60));
+        }
         delayTime = 0;
-        stepBlock += '<div class="detail-box">';
+        stepBlock += `<div class="detail-box ${step.isCancelled ? "cancelled-block" : ""}">`;
     }
     const stepHTML = stepBuilder(step, fullRoute[index].delay);
     stepBlock += stepHTML;

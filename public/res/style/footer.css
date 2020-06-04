@@ -16,13 +16,15 @@ footer {
 	margin: 0;
 	width: inherit;
 	height: 100%;
-	box-shadow: rgba(56, 62, 66, 0.67) 0 0 5px;
+	border-top: 1px solid #adadad;
+	;
 }
 
 .nav-option  {
 	background-color: #f2f2f3;
+	padding: .2em 0;
 	width: 100%;
-	height: 105%;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -35,14 +37,23 @@ footer {
 }
 
 .footer-img {
-	position: absolute;
-	height: 70%;
+	height: 2em;
 	opacity: .5;
-	width: 10%;
+}
+
+.footer-text {
+	margin: 0;
+	font-size: 1rem !important;
+	font-weight: bold;
+}
+
+.login-text {
+	font-size: 1.3em;
 }
 
 .active-option * {
 	opacity: 1 !important;
+	color: #f2f2f3;
 }
 
 .active-option svg path {
@@ -59,7 +70,6 @@ footer {
 }
 
 .nav-option span {
-	font-size: 1.3em;
 	opacity: .5;
 }
 
