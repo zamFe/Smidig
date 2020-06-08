@@ -28,6 +28,7 @@ function displayInfo(email, password) {
 
     getUser(email, password).then((v) => {
         if (v.statusCode != 200) {
+            localStorage.removeItem("user");
             window.location.href = "login.html";
         }
         nameElem.innerText = `${v.data.firstName} ${v.data.lastName}`;

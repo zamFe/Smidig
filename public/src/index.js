@@ -350,7 +350,7 @@ function cookieRender() {
     if(cookieStatus === "true") {
         cookie.style.display = "none";
     } else {
-        cookie.style.display = "block";
+        cookie.style.display = "flex";
     }
 }
 
