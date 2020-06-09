@@ -23,14 +23,12 @@ async function updateUser(email, password, packet) { //email, password, {favorit
         localStorage.setItem("user", JSON.stringify(modified));
     }
 
-
     return response.payload;
 }
 
 async function createUser(email, password, firstname, lastname) {
     const url = `${window.location.origin}/api/db/createuser?email=${email}&password=${hash(password)}&firstname=${firstname}&lastname=${lastname}`
 
-    console.log(url)
     var response = await getDbRequest(url);
     if (response.payload.statusCode === 200) {
         var modified = response.payload.data;

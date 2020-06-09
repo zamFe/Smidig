@@ -91,7 +91,7 @@ function setBellIcon(status) {
 // Register SW, Register Push, Send Push
 async function send(trip, unsub = false) {
     let answer = await Notification.requestPermission();
-    console.log(answer)
+
     if (answer !== "granted"){
         return;
     }
@@ -133,7 +133,6 @@ async function pushCurrentNotification (register, trip, unsub){
     });
 
     // Send Push Notification
-    console.log(subscription)
     await fetch(`/${unsub?"un":""}subscribe?id=` + trip.hookURL + "&departure=" + trip.startTime + "&arrival=" + trip.endTime, {
         method: "POST",
         body: JSON.stringify(subscription),

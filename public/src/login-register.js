@@ -27,7 +27,6 @@ function register() {
     passRequireText.style.color = "Black";
     password.style.borderBottom = "3px solid #00957a";
 
-
     const regExpMail = /.*([a-zA-Z0-9]+)@([a-zA-Z\d]+).[a-z]{2,}/;
     const regExpPass = /.{8,}/;
 

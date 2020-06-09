@@ -8,8 +8,6 @@ let searchData = {
     currentTime: urlParams.get('datetime')
 }
 
-console.log(searchData);
-
 let rememberState = localStorage.getItem("rememberstate");
 
 async function renderRoutes(priority) {
@@ -45,17 +43,8 @@ async function renderRoutes(priority) {
 
     fullRoute = payload.data;
 
-    // Creates an error message upon API Call failures
-    console.log(fullRoute);
-
     // Sorting
     fullRoute.sort((a, b) => (a.startTime > b.startTime) ? 1 : -1);
 
     setUp()
 }
-
-
-
-
-//from: (59.9233,10.79249)
-//to: (60.7945331,11.067997699999978)

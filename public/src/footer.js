@@ -1,7 +1,6 @@
 const parent = document.getElementById("footer");
 
 let currentURL = window.location.pathname;
-console.log(currentURL.substring(0, currentURL.lastIndexOf('.')));
 
 let isSearchActive = false;
 let isFavoriteActive = false;

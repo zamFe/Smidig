@@ -6,8 +6,6 @@ function removeFavorite(url) {
     event.stopPropagation();
     const user = JSON.parse(localStorage.getItem("user"));
 
-    console.log(user)
-
     user.favorites.forEach(route => {
         if (route.url === url) {
             user.favorites.splice(user.favorites.indexOf(route), 1);
@@ -32,7 +30,6 @@ function loadFavoriteRoutes() {
     list.innerHTML = "";
 
     if(user) {
-        console.log(user.favorites)
         if (user.favorites.length > 0) {
             for (let item of user.favorites) {
                 const url = item.url;

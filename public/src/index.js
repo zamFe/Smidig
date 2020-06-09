@@ -38,7 +38,6 @@ function updateDropdown(loc) {
 }
 
 function setSelectedPlace(address, lat, lng, loc){
-    console.log(address, lat, lng);
     locationData[loc] = {
         address, lat, lng
     };
@@ -88,6 +87,7 @@ function getCategorySVG(category) {
 function onlyUnique(v, i, self) {
     return self.indexOf(v) === i;
 }
+
 function getFeatureCategories(categories) {
     let template = ``;
 
@@ -109,8 +109,6 @@ function getFeatureCategories(categories) {
 
 function addToDropdown(features, loc) {
     let template = "";
-
-    console.log(features)
 
     if(!features) {
         template = `<div class="droplist-content">Søk etter steder</div>`
@@ -296,14 +294,11 @@ function getCurrentLocation() {
 }
 
 function setCurrentLocation(position) {
-    console.log(position)
     setSelectedPlace("Min Posisjon", position.coords.latitude, position.coords.longitude, currentlyViewing)
 }
 
 function renderIndexSearch(loc) {
     currentlyViewing = loc;
-
-    console.log(locationData)
 
     let inputValue = "";
     if(loc === "to") {
@@ -362,10 +357,3 @@ function acceptedCookieData() {
 
 renderMainIndex(); //Sets the user's name in welcome message if they are logged in
 cookieRender();
-
-/*
-window.location.href='html/date-time.html?from=('+ locationData.from.lat + ',' + locationData.from.lng +')&to=('+ locationData.to.lat + ',' + locationData.to.lng +')&fromname=' + encodeURI(locationData.from.address) + '&toname=' + encodeURI(locationData.to.address)"
-*/
-
-
-

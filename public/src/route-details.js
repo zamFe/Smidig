@@ -6,12 +6,9 @@ let stepIndex = 0;
 
 function getAlert(hashCode, serviceTripID) {
     const alerts = fullRoute[index].alerts
-    console.log(serviceTripID + " <== MAIN");
 
     for(alert of alerts) {
         if(alert.hashCode === hashCode) {
-            console.log(alert.serviceTripID);
-            console.log("==============")
 
             if(!alert.serviceTripID) {
                 return alert;
@@ -208,7 +205,7 @@ function getServiceClasses(operator) {
         case "Vy" : return "vy-service"
         case "Nobina Norge AS" :
         case "Sporveien T-banen AS" : return "sporveien-service"
-        case "Unibuss AS": //return "unibuss-service"
+        case "Unibuss AS": 
         case "Ruter" : return "ruter-service"
         default: return "walk-time"
     }
@@ -237,8 +234,6 @@ function getLastNode (stop){
     let toAddress = stop.to.address;
     toAddress = toAddress.replace('Near ','Ved ');
 
-    console.log(toAddress);
-
     return `<div style="display: grid; grid-template-columns: 10% 90%">
                 <div class="route-line vs">
                     <div class="vs-ball vs-final" ></div>
@@ -263,30 +258,20 @@ function drawWait (minutes){
               </div>`;
 
     return waitTemplate;
-  /*  let stepBlock = document.createElement("div");
-    stepBlock.classList.add("wait-div");
-
-    stepBlock.innerHTML = waitTemplate;
-    document.getElementById("main-container").appendChild(stepBlock)
-*/
 }
 
 let fullRoute = JSON.parse(localStorage.getItem("route"));
 urlParams = new URLSearchParams(window.location.search);
 
 var index = (urlParams.get('index')) ? urlParams.get('index') : 0;
-console.log(fullRoute[index])
-
 
 let last = null;
 let i;
-/*let stepBlock = document.createElement("div");
-stepBlock.classList.add("detail-box");*/
+
 let stepBlock = `<div class="detail-box">`
 for (i = 0; i < fullRoute[index].route.length; i++) {
     let step = fullRoute[index].route[i];
     if (step.action === 'Overgang') {
-        //transitionBuilder(step.startTime, step.endTime);
         continue;
     }
     if(i < 2 && step.isCancelled) {
@@ -315,5 +300,4 @@ document.getElementById("route-container").innerHTML = stepBlock;
 let travelTime = fullRoute[index].endTime-fullRoute[index].startTime;
 const hours = (Math.floor(travelTime/3600) <= 0) ? "" : Math.floor(travelTime/3600)+"t";
 document.getElementById("travel-time").innerText = `${hours} ${Math.ceil((travelTime%3600)/60)} min`;
-console.log(travelTime)
 document.getElementById("arrival-time").innerHTML = `${convertTime(fullRoute[index].endTime, delayTime)}`;

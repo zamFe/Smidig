@@ -5,7 +5,6 @@ const buttonElem = document.getElementById('datetime-button');
 // Saves all given URL parameters to pass them on to the route search
 let searchParams = new URLSearchParams(window.location.search);
 let route = searchParams.toString();
-console.log(route);
 
 let path = `routes.html?${route}&datetime=${Math.floor(new Date().getTime()/1000)}`;
 
@@ -17,8 +16,7 @@ function updatePath() {
     let bits = dateTime.split(/\D/);
     const date = new Date(bits[0], --bits[1], bits[2], bits[3], bits[4])
     path = `routes.html?${route}&datetime=${Math.floor(date.getTime()/1000)}`;
-    console.log(selectedTime)
-    console.log(new Date().getTimezoneOffset())
+
     if(!selectedTime || !selectedDate) {
         buttonElem.style.pointerEvents = "none"
         buttonElem.style.opacity = "0.4"
@@ -30,8 +28,7 @@ function updatePath() {
 
 function setDateTime() {
     let currentDateTime = new Date();
-    console.log(currentDateTime)
-
+ 
     let month = currentDateTime.getMonth()+1 < 10 ? `0${currentDateTime.getMonth()+1}` : currentDateTime.getMonth()+1;
     let day = currentDateTime.getDate() < 10 ? `0${currentDateTime.getDate()}` : currentDateTime.getDate();
 
@@ -46,7 +43,6 @@ function setDateTime() {
 }
 
 function setDate(currentDate) {
-    console.log(currentDate)
     dateInput.value = currentDate;
     selectedDate = currentDate;
     buttonElem.setAttribute("href", `routes.html?${route}&datetime=${Math.floor(new Date().getTime()/1000)}`)
