@@ -539,11 +539,7 @@ document.getElementById("current-filter").addEventListener("click", () => {
 function setUp() {
     setFromAndTo()
     localStorage.setItem("route", JSON.stringify(fullRoute));
-
-    /*setTimeout( () =>  {*/
-        renderRouteList();
-    /*}, 2000)*/
-
+    renderRouteList();
 }
 
 
