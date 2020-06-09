@@ -1,7 +1,6 @@
 const webpush = require('web-push')
 const request = require('request')
 const keys = require('./get-api-keys.js')
-const api = require('./api-calls.js')
 
 const publicVapidKey = "BKTEYj8Zc0k5p1D3WIYqPy8mg__7QdJVfqdSY5IuUJOM3OL7nHq-5qVTm0JrCy36oxa8MYcSNZRU0OQC87FcAg4";
 const privateVapidKey = "XFSYXRuJ6lfuvUu6-kvFtlcplGmqvArn4bMAwb9Un20";
@@ -15,8 +14,6 @@ webpush.setVapidDetails("mailto:test@test.com", publicVapidKey, privateVapidKey)
 function subscribeToRoute(subscription, url, departure, arrival) {
 
     console.log("New subscription!")
-    console.log(subscription)
-    console.log(url)
 
     let idArray = url.split("/")
     let id = idArray[idArray.length - 1];
@@ -40,10 +37,6 @@ function subscribeToRoute(subscription, url, departure, arrival) {
         if (err) {
             return console.log(err);
         }
-
-        console.log("Status code: ")
-        console.log(response.statusCode)
-        console.log(response.body)
 
         if (response.statusCode !== 200 && response.statusCode !== 204)
             return;
@@ -111,7 +104,6 @@ function sendNotification(subscription, payload) {
 
 async function notifyChange(trip) {
 
-    console.log(trip)
     if (!trip) return;
     let id = trip.tripID;
 
@@ -149,7 +141,6 @@ async function deleteHook(url) {
         }
     }, (error, response) => {
         console.log("Deleted hook")
-        //console.log(response.statusCode)
     })
 
 }
@@ -168,8 +159,6 @@ function unsubscribeFromRoute(subscription, url) {
         })
     }
 
-    console.log(tripIDs)
-    console.log(subscriptionIDs)
     if (subscriptionIDs[subscription["keys"]["auth"]] && subscriptionIDs[subscription["keys"]["auth"]].trip.length===0)
         delete subscriptionIDs[subscription["keys"]["auth"]];
 
