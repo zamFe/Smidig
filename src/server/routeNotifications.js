@@ -34,7 +34,6 @@ function subscribeToRoute(subscription, url, departure, arrival) {
             "x-api-key": keys.TRIPGO_KEY
         }
     }
-    console.log(options);
     let created = Math.floor(new Date().getTime() / 1000);
 
     request.post(options, (err, response) => {

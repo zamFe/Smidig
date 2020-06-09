@@ -30,7 +30,6 @@ function createUser(email, password, firstname, lastname) {
     }
 
     var path = getUserPath(email);
-    console.log(path)
     if (fs.existsSync(path)) {
         // User already exists
         return {
@@ -84,7 +83,6 @@ function loginUser(email, password) {
 function authenticateUser(email, password) {
 
     var path = `src/server/db/users/${hashString(email)}.json`;
-    console.log(path)
     if (fs.existsSync(path)) {
         // User exists
 
@@ -136,7 +134,6 @@ function updateUserData(email, password, searchHistory, favoriteSearches) {
 }
 
 function hashString(toHash) {
-    var crypto = require('crypto');
     return crypto.createHash('sha256')
         .update(toHash)
         .digest('hex');

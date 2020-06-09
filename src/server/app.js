@@ -51,16 +51,6 @@ app.post("/unsubscribe", (req, res) => {
     notif.unsubscribeFromRoute(subscription, id);
 });
 
-/*notif.subscribeToRoute({
-        endpoint: 'https://fcm.googleapis.com/fcm/send/f2r3Pe-w6gg:APA91bE5xX7ZNxmzLq1Ip8Bp4cdUtPvOzje-5gtWEtLY9VvuI5UeN5kTbVM4NbtxzP2Ay4u497asINUhYlKe0ff6pIw0iHPsp1tMcvdeOMt7pnlKzCcEpuPvrSn3oog-fJHnXQlLmpBq',
-        expirationTime: null,
-        keys: {
-            p256dh: 'BANFXus34CAgdPW1YhLfIyMwlbrtcShLJ-uGMG3D3MU7S1KosEtAomxrJMfN2EED-aFamXrRv2uXMm88zHOA-q0',
-            auth: 'S6gylkORVsnW0MoTF1Pvww'
-        }
-    }
-)*/
-
 
 /* Routes */
 app.use('/api', routesApi);
@@ -92,7 +82,7 @@ app.use((req, res, next) => {
             res.send('404 - This file does not exist');
         }
     } catch (e) {
-        console.error(e + "AAAAAAAAAAAAa");
+        console.error(e);
     }
 })
 

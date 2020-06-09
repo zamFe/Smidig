@@ -14,7 +14,6 @@ router.post("/location", (req, res) => {
 })
 
 router.post("/updatedtrip", (req, res) => {
-    //console.log(res)
     notif.notifyChange(res.req.body);
 })
 
@@ -24,8 +23,6 @@ router.post("/tripid", (req, res) => {
 
 router.post("/log", (req, res) => {
     console.log(res);
-
-    console.log("WEBHOOK HOOKED");
 });
 
 router.get("/map", (req, res) => {

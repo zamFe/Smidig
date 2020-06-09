@@ -5,9 +5,6 @@ let querystring = require('querystring');
 let keys = require("./get-api-keys.js");
 
 
-
-// console.log(querystring.decode("a=(59.9233%2C10.79249)"))
-
 function fromTripGo(args, res) {
     getData(args, res);
 }
@@ -25,7 +22,6 @@ function getMap(res) {
     });
 }
 
-
 function getData(args, res) {
     query = convertQuery(args.parameters);
     const nl = keys.TRIPGO_KEY.indexOf('\n')
@@ -33,8 +29,6 @@ function getData(args, res) {
     if(nl >= 0) {
         key = key.substring(0, nl);
     }
-
-    // console.log(query)
 
     var options = {
         url: 'https://api.tripgo.com/v1/' + args.requestFile + query,
@@ -44,33 +38,23 @@ function getData(args, res) {
         }
     };
 
-    console.log(options)    // const requestPromise = util.promisify(request);
-    // const response = await requestPromise(options.url);
+    console.log(options)
     request(options, (error, response, body) => {
         args.callback(error, response, body, res);
-    }); //, {form:{key:'value'}}
-    // console.log(response)
-
-
-    // let resp = await doRequest(options);
-
-    // console.log(resp)
-
+    });
 }
 
 function getTripFromID(url, res) {
-    console.log(url)
 
     var options = {
         method: "GET",
-        url: url.replace("hook", "update")+"?locale=no", // Not Ghetto >:)
+        url: url.replace("hook", "update")+"?locale=no",
         headers: {
             'User-Agent': 'request',
             'X-TripGo-Key': keys.TRIPGO_KEY
         }
     };
 
-    console.log(options)
     request(options, (error, response, body) => {
         let data = response.body?formatData(JSON.parse(response.body)):{};
         res.json({
@@ -92,12 +76,10 @@ function errorHandling(error, response, body) {
 
     if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
-        //console.log(body);
         return {
             statusCode: response.statusCode,
             data: info
         }
-
     }
 
     return {
@@ -107,24 +89,15 @@ function errorHandling(error, response, body) {
 
 }
 
-let status = true;
 function formatData(data) {
-    //console.log(data)
     if (!data.groups || data.groups.length === 0) return [];
 
     trips = data.groups[0].trips;
-
-    //console.log(data.alerts)
 
     var formattedData = [];
 
     for (var i = 0; i < trips.length; i++) {
         var d = trips[i];
-
-        if(i === 0) {
-            console.log("<-------------- Segments ------------------>")
-            //console.log(d.segments[1])
-        }
 
         formattedData[i] = {
             cost: (d.moneyCost) ? d.moneyCost : Math.floor((Math.random() * 300) + 100),
@@ -150,12 +123,6 @@ function formatData(data) {
 
             var segment = getSegmentTemplate(data, r[j].segmentTemplateHashCode);
 
-            if(j === 0 && status) {
-                console.log("<-------------- First Transport ------------------>")
-                console.log(r);
-                status = false;
-            }
-
             formattedData[i].route[j] = {
                 action: segment.modeInfo.alt,
                 description: segment.mini.description,
@@ -163,7 +130,6 @@ function formatData(data) {
                 to: segment.to,
                 operatorName: segment.serviceOperator,
                 operatorID: segment.operatorID,
-                //time: r[j].durationString,
                 alertHashcodes: r[j].alertHashCodes,
                 stops: r[j].stops,
                 platform: r[j].platform,
@@ -181,54 +147,30 @@ function formatData(data) {
                 }
 
             }
-            // if (!segment.shapes && segment.streets) {
-            //     formattedData[i].route[j].waypoints.shapes = segment.streets;
-            // }
         }
     }
 
     return formattedData;
-
 }
 
 function getSegmentTemplate(data, hashCode) {
 
     for (var i = 0; i < data.segmentTemplates.length; i++) {
-        // console.log(data.segmentTemplates[i].hashCode + ", " + hashCode)
         if (data.segmentTemplates[i].hashCode === hashCode) {
             return data.segmentTemplates[i];
         }
     }
-
 }
 
 function getRouteData(error, response, body, res) {
     var data = errorHandling(error, response, body);
-    console.log(data);
+
     if (data.statusCode !== 200) {
         transmitData(data, res);
     } else {
         transmitData({
             statusCode: 200,
             data: formatData(data.data)
-        }, res);
-    }
-}
-
-function getLocationData(error, response, body, res) {
-    var data = errorHandling(error, response, body);
-    console.log(data);
-    if (data.statusCode !== 200) {
-        transmitData(data, res);
-    } else {
-
-        if (data.data.usererror) {
-            data.data.choices = [];
-        }
-
-        transmitData({
-            statusCode: 200,
-            data: data.data
         }, res);
     }
 }
@@ -251,13 +193,7 @@ function getRoute(from, to, dateTime, priority, res) {
             locale: "no",
             includeStops: true,
             bestOnly: true,
-            //neverAllowAuthorities: "X6EXwvf7",
-            // ir: 1,
-            // ws: 1,
-            // cs: 1,
-            // tt: 0,
             v: 11
-
         },
         callback: getRouteData
     }, res)
@@ -289,6 +225,3 @@ module.exports.getMap = getMap;
 module.exports.getRoute = getRoute;
 module.exports.getLocation = getLocation;
 module.exports.getTripFromID = getTripFromID;
-
-// from: "(59.9233,10.79249)",
-// to: "(60.7945331,11.067997699999978)",
