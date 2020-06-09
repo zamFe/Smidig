@@ -29,7 +29,7 @@ function createUser(email, password, firstname, lastname) {
         };
     }
 
-    var path = getUserPath(email);
+    let path = getUserPath(email);
     if (fs.existsSync(path)) {
         // User already exists
         return {
@@ -38,7 +38,7 @@ function createUser(email, password, firstname, lastname) {
         };
     }
 
-    var user = {
+    let user = {
         email: email,
         firstName: firstname,
         lastName: lastname,
@@ -65,7 +65,7 @@ function loginUser(email, password) {
         };
     }
 
-    var user = authenticateUser(email, password);
+    let user = authenticateUser(email, password);
     if (user) {
         return {
             data: user,
@@ -82,11 +82,11 @@ function loginUser(email, password) {
 
 function authenticateUser(email, password) {
 
-    var path = `src/server/db/users/${hashString(email)}.json`;
+    let path = `src/server/db/users/${hashString(email)}.json`;
     if (fs.existsSync(path)) {
         // User exists
 
-        var data = JSON.parse(fs.readFileSync(path, 'utf8'));
+        let data = JSON.parse(fs.readFileSync(path, 'utf8'));
 
         if (data["password"] === hashString(password + salt)) {
             return data;
@@ -109,7 +109,7 @@ function updateUserData(email, password, searchHistory, favoriteSearches) {
         };
     }
 
-    var user = authenticateUser(email, password);
+    let user = authenticateUser(email, password);
     if (user) {
         if (searchHistory) {
             user.searchHistory = searchHistory;
